@@ -7,51 +7,20 @@ redirect_from:
   - /about.html
 ---
 
+
+
 ## Short Bio
 
-Zedong Peng is a Master of Science (MS) student in Computer Science at Shanghai Jiao Tong University, advised by [Prof. Jieru Zhao](https://zjru.github.io). He is also a research intern at the [National Center of Technology Innovation for EDA](https://www.nctieda.com/en/), working with [Prof. Qiang Xu](https://www.cse.cuhk.edu.hk/people/faculty/qiang-xu/) on AI-driven hardware/software co-design.
+Zedong Peng is a Master of Science student in Computer Science at Shanghai Jiao Tong University, advised by [Prof. Jieru Zhao](https://zjru.github.io). He is also a research intern at the [National Center of Technology Innovation for EDA](https://www.nctieda.com/en/), working with [Prof. Qiang Xu](https://www.cse.cuhk.edu.hk/people/faculty/qiang-xu/).
 
-Previously, he interned at Intel Asia-Pacific R&D Ltd., Imperial College London, and the John Hopcroft Center at SJTU.
+Previously, he interned at Intel Asia-Pacific Research & Development Ltd. and the [John Hopcroft Center for Computer Science](https://jhc.sjtu.edu.cn). He received his B.S. in Electronic Engineering from Shanghai Jiao Tong University in 2024 as Outstanding Graduate. [[Transcipts](files/pdf/TRANSCRIPT.pdf)]
 
-
----
+Check out my [[CV](files/pdf/cv.pdf)] for more details.
 
 ## Research Interests
 
-My interests broadly lie in:
+My research interests lie in:
 
 - AI for Electronic Design Automation (AI4EDA)
 - Hardware/Software Co-Design and System Optimization
-- Code Representation Learning and Program Analysis
-- Graph Neural Networks and Transformer Models for Structured Data
-
----
-
-## Education
-
-- **M.Eng., Computer Science**, Shanghai Jiao Tong University (2024–2027)  
-  Advisor: [Prof. Jieru Zhao](https://zjru.github.io)
-
-- **B.Eng., Electronic Engineering**, Shanghai Jiao Tong University (2020–2024)
-  - Outstanding Graduate of Shanghai Jiao Tong University
-  - [Transcript](files/pdf/transcript.pdf)
-
----
-
-## Experience
-
-**Research Intern**, *National Center of Technology Innovation for EDA* (Jul 2024 – Present)  
-Conducting AI4EDA research focused on hardware/software co-design, advised by [Prof. Qiang Xu](https://www.cse.cuhk.edu.hk/people/faculty/qiang-xu/) and [Prof. Jieru Zhao](https://zjru.github.io)
-
-**Intern**, *Intel Asia-Pacific R&D Ltd.* (Nov 2023 – Jul 2024)  
-- Optimized CI/CD and monitored system performance in the Apache Gluten project  
-- Built a functional Text-to-SQL demo with customized preprocessing and query generation
-
-**Research Intern**, *Data Science Institute, Imperial College London* (Jan – Feb 2024)  
-Worked on vector-space NLP analysis of COVID-19-related word distributions
-
-**Research Intern**, *Cooperative Medianet Innovation Center, SJTU* (Feb – Jul 2023)  
-Worked on long-tail multi-label classification with [Prof. Jiangchao Yao](https://sunarker.github.io)
-
-**Research Intern**, *John Hopcroft Center for Computer Science, SJTU* (Jul 2022 – Jul 2024)  
-Worked on secure machine learning with [Prof. Liyao Xiang](http://xiangliyao.cn); one paper accepted at *IEEE TDSC*
+- Code Representation Learning Including Graph Neural Networks and Transformer Models
