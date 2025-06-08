@@ -9,7 +9,7 @@ redirect_from:
 
 ## Short Bio
 
-Zedong Peng is a Master’s student in Computer Science at Shanghai Jiao Tong University, advised by [Prof. Jieru Zhao](https://zjru.github.io). He is also a research intern at the [National Center of Technology Innovation for EDA](https://www.cse.cuhk.edu.hk/people/faculty/qiang-xu/), working with [Prof. Qiang Xu](https://www.cse.cuhk.edu.hk/people/faculty/qiang-xu/) on AI-driven hardware/software co-design.
+Zedong Peng is a Master of Science (MS) student in Computer Science at Shanghai Jiao Tong University, advised by [Prof. Jieru Zhao](https://zjru.github.io). He is also a research intern at the [National Center of Technology Innovation for EDA](https://www.nctieda.com/en/), working with [Prof. Qiang Xu](https://www.cse.cuhk.edu.hk/people/faculty/qiang-xu/) on AI-driven hardware/software co-design.
 
 Previously, he interned at Intel Asia-Pacific R&D Ltd., Imperial College London, and the John Hopcroft Center at SJTU.
 
