@@ -12,7 +12,7 @@ main:
     url: /
 
   - title: "Publications"
-    url: /publications/
+    url: https://scholar.google.com/citations?user=t4pdXJEAAAAJ
         
   - title: "Blog Posts"
     url: /year-archive/
