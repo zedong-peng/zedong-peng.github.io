@@ -15,3 +15,4 @@ package-lock.json
 # Ignore the vendor file and bundle for alternative installation
 vendor/
 .bundle/
+markdown_generator/__pycache__/publist.cpython-311.pyc

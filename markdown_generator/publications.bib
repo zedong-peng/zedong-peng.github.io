@@ -1,0 +1,27 @@
+@ARTICLE{10444899,
+author={Duan, Haohua and Peng, Zedong and Xiang, Liyao and Hu, Yuncong and Li, Bo},
+journal={ IEEE Transactions on Dependable and Secure Computing },
+title={{ A Verifiable and Privacy-Preserving Federated Learning Training Framework }},
+year={2024},
+volume={21},
+number={05},
+ISSN={1941-0018},
+pages={5046-5058},
+abstract={ Federated learning allows multiple clients to collaboratively train a global model without revealing their private data. Despite its success in many applications, it remains a challenge to prevent malicious clients to corrupt the global model through uploading incorrect model updates. Hence, one critical issue arises in how to validate the training is truly conducted on legitimate neural networks. To address the issue, we propose VPNNT, a zero-knowledge proof scheme for neural network backpropagation. VPNNT enables each client to prove to others that the model updates (gradients) are indeed calculated on the global model of the previous round, without leaking any information about the client's private training data. Our proof scheme is generally applicable to any type of neural network. Different from conventional verification schemes constructing neural network operations by gate-level circuits, we improve verification efficiency by formulating the training process using custom gates — matrix operations, and apply an optimized linear time zero knowledge protocol for verification. Thanks to the recursive structure of neural network backward propagation, common custom gates are combined in verification thereby reducing prover and verifier costs over conventional zero knowledge proofs. Experimental results show that VPNNT is a lightweighted verification scheme for neural network backpropagation with an improved prove time, verification time and proof size. },
+keywords={Protocols;Neural networks;Training;Logic gates;Servers;Backpropagation;Integrated circuit modeling},
+doi={10.1109/TDSC.2024.3369658},
+url = {https://doi.ieeecomputersociety.org/10.1109/TDSC.2024.3369658},
+publisher={IEEE Computer Society},
+address={Los Alamitos, CA, USA},
+month=sep
+}
+
+@misc{li2025deepcircuitx,
+      title={DeepCircuitX: A Comprehensive Repository-Level Dataset for RTL Code Understanding, Generation, and PPA Analysis}, 
+      author={Zeju Li and Changran Xu and Zhengyuan Shi and Zedong Peng and Yi Liu and Yunhao Zhou and Lingfeng Zhou and Chengyu Ma and Jianyuan Zhong and Xi Wang and Jieru Zhao and Zhufei Chu and Xiaoyan Yang and Qiang Xu},
+      year={2025},
+      eprint={2502.18297},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2502.18297}
+} 
