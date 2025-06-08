@@ -12,10 +12,11 @@ main:
     url: /
 
   - title: "Publications"
-    url: https://scholar.google.com/citations?user=t4pdXJEAAAAJ
+    url: /publications/
         
   - title: "Blog Posts"
     url: /year-archive/
     
   - title: "CV"
     url: /files/pdf/cv.pdf
+
