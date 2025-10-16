@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://zedongpeng.com/sitemap.xml
+Sitemap: https://zedongpeng.github.io/sitemap.xml
