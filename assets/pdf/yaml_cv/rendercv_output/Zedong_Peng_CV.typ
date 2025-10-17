@@ -452,7 +452,7 @@
 // Print connections:
 #let connections-list = (
   [#box(original-link("mailto:zedongpeng1@gmail.com")[#fa-icon("envelope", size: 0.9em) #h(0.05cm)zedongpeng1\@gmail.com])],
-  [#box(original-link("https://zedongpeng.github.io/")[#fa-icon("link", size: 0.9em) #h(0.05cm)zedongpeng.github.io])],
+  [#box(original-link("https://zedon-gpeng.github.io/")[#fa-icon("link", size: 0.9em) #h(0.05cm)zedon-gpeng.github.io])],
 )
 #connections(connections-list)
 
