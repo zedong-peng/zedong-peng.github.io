@@ -1,7 +1,7 @@
 cv:
   name: Zedong Peng
   email: zedongpeng1@gmail.com
-  website: https://zedong-peng.github.io
+  website: https://zedongpeng.com
   social_networks:
     # - network: GitHub
     #   username: zdpeng
@@ -38,7 +38,7 @@ cv:
         location: Shanghai, China
         summary: Advised by Yuan Zhou
         highlights:
-          - 'SQL Native Engine (Gluten): optimizing CI pipeline.'
+          - 'Spark SQL Native Engine (Gluten): optimizing CI pipeline.'
           - 'LLM framework optimizations: improve Intel devices support for vLLM.'
           - 'Building LLM applications: Text to SQL.'
       - company: Data Science Institute, Imperial College London
