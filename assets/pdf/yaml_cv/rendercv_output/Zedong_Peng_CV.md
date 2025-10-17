@@ -1,7 +1,7 @@
 # Zedong Peng's CV
 
 - Email: [zedongpeng1@gmail.com](mailto:zedongpeng1@gmail.com)
-- Website: [zedon-gpeng.github.io](https://zedon-gpeng.github.io/)
+- Website: [zedong-peng.github.io](https://zedong-peng.github.io/)
 
 
 # Education
