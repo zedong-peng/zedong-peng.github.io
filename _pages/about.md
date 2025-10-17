@@ -1,34 +1,36 @@
 ---
 layout: about
-title: about
+title: "about"
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: ""
+
+subtitle: |+
+  (彭则栋) <br><br>
+  M.S. student in Computer Science, 2024 - 2027 (expected), <br>
+  advised by <a href="https://zjru.github.io">Prof. Jieru Zhao</a>, <br>
+  <a href="https://www.sjtu.edu.cn">Shanghai Jiao Tong University (SJTU)</a>. <br>
+  
 
 profile:
-  align: right
-  image: prof_pic.jpg
+  # align: right
+  image: profile.png
   image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+  more_info: false
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 
 announcements:
-  enabled: true # includes a list of news items
+  enabled: false # includes a list of news items
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
   limit: 5 # leave blank to include all the news in the `_news` folder
 
 latest_posts:
-  enabled: true
+  enabled: false
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+**Research:**  My target is to build powerful AI models capable of understanding, generating, and align with high-dimensional, multimodal data. I am currently focused on transferable methods for generative modeling and representation learning for EDA and hardware–software co-design, including model architectures, optimization, training objectives, and data efficiency.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
-
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+**Previously:** I was a research intern at [National Center of Technology Innovation for EDA](https://www.nctieda.com/en/), and Intel Asia-Pacific Research & Development Ltd.. I obtained my Bachelor's degree in Electronic Engineering from [Shanghai Jiao Tong University](https://www.sjtu.edu.cn), where I worked with [Prof. Liyao Xiang](http://xiangliyao.cn).
