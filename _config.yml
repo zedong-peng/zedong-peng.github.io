@@ -12,7 +12,7 @@ keywords: Zedong Peng, machine learning, AI # add your own keywords or leave emp
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
-url: https://zedong-peng.github.io # 你的主域名
+url: https://zedonpeng.com # 你的主域名
 baseurl: # 个人主页留空
 
 last_updated: true # set to true if you want to display last updated in the footer
