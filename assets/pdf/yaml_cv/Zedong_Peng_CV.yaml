@@ -1,0 +1,314 @@
+cv:
+  name: Zedong Peng
+  email: zedongpeng1@gmail.com
+  website: https://zedongpeng.github.io
+  social_networks:
+    # - network: GitHub
+    #   username: zdpeng
+  sections:
+    education:
+      - institution: Shanghai Jiao Tong University
+        area: Computer Science
+        degree: M.S.
+        start_date: 2024
+        end_date: 2027
+        location: Shanghai, China
+        summary: Advised by Prof. Jieru Zhao.
+      - institution: Shanghai Jiao Tong University
+        area: Electronic Engineering
+        degree: B.S.
+        start_date: 2020
+        end_date: 2024
+        location: Shanghai, China
+        summary: Outstanding Graduate.
+        highlights:
+    experience:
+      - company: National Center of Technology Innovation for EDA
+        position: Research Intern
+        start_date: 2024-07
+        end_date: present
+        location: Nanjing, China
+        summary: Advised by Prof. Qiang Xu and Prof. Jieru Zhao.
+        highlights:
+          - LLM post training, data construction on domain specific language. 
+      - company: Intel Asia-Pacific Research & Development Ltd.
+        position: Machine Learning Intern
+        start_date: 2023-11
+        end_date: 2024-07
+        location: Shanghai, China
+        summary: Advised by Yuan Zhou
+        highlights:
+          - 'SQL Native Engine (Gluten): optimizing CI pipeline.'
+          - 'LLM framework optimizations: improve Intel devices support for vLLM.'
+          - 'Building LLM applications: Text to SQL.'
+      - company: Data Science Institute, Imperial College London
+        position: Winter School
+        start_date: 2024-01
+        end_date: 2024-02
+        location: London, UK
+        highlights:
+          - Applied vector representations to analyze COVID-19 language modal features.
+      - company: Shanghai Jiao Tong University
+        position: Research Intern
+        start_date: 2022-07
+        end_date: 2024-07
+        location: Shanghai, China
+        summary: Advised by Prof. Liyao Xiang.
+        highlights:
+          - Advanced security-focused machine learning research.
+    honors_and_awards:
+      - bullet: Outstanding Graduate of Shanghai Jiao Tong University, 2024.
+      - bullet: 2nd Prize, 13th National University Mathematics Competition, 2021.
+      - bullet: 1st Prize, SJTU "Yunhan Cup" RobotMaster Intramural Competition, 2021.
+      - bullet: Liu Yongling Foundation Scholarship, 2021.
+      - bullet: Advanced Individual in Social Practice of Shanghai Jiao Tong University, 2021.
+    publications:
+      - title: 'HIPPO: A Hierarchy-Preserving and Noise-Tolerant Pre-HLS Power Modeling Framework for FPGA'
+        authors:
+          - Zefan Lin
+          - '**Zedong Peng**'
+          - Mingzhe Gao
+          - Jieru Zhao
+          - Zhe Lin
+        journal: '*Proceedings of the 44th IEEE/ACM International Conference on Computer-Aided Design* (ICCAD)'
+        date: 2025
+      - title: 'ForgeHLS: A Large-Scale, Open-Source Dataset for High-Level Synthesis'
+        authors:
+          - '**Zedong Peng**'
+          - Zeju Li
+          - Mingzhe Gao
+          - Qiang Xu
+          - Chen Zhang
+          - Jieru Zhao
+        journal: arXiv preprint arXiv:2507.03255
+        date: 2025
+      - title: 'DeepCircuitX: A Comprehensive Repository-Level Dataset for RTL Code Understanding, Generation, and PPA Analysis'
+        authors:
+          - Zeju Li
+          - Changran Xu
+          - Zhengyuan Shi
+          - '**Zedong Peng**'
+          - Yi Liu
+          - Yunhao Zhou
+          - Lingfeng Zhou
+          - Chengyu Ma
+          - Jianyuan Zhong
+          - Xi Wang
+          - Jieru Zhao
+          - Zhufei Chu
+          - Xiaoyan Yang
+          - Qiang Xu
+        journal: '*2025 IEEE International Conference on LLM-Aided Design* (ICLAD)'
+        date: 2025
+      - title: 'A Verifiable and Privacy-Preserving Federated Learning Training Framework'
+        authors:
+          - Haohua Duan
+          - '**Zedong Peng**'
+          - Liyao Xiang
+          - Yuncong Hu
+          - Bo Li
+        journal: '*2024 IEEE Transactions on Dependable and Secure Computing* (TDSC)'
+        date: 2024
+    projects:
+      - name: Robotic Dog Development
+        start_date: 2023-11
+        end_date: 2024-11
+        location: Shanghai, China
+        summary: Advised by Prof. Weiming Zhao and Xiaomi Technology.
+        highlights:
+          - Implemented algorithms that improved locomotion control and user interaction.
+      - name: VR Game "Strange Zoo"
+        start_date: 2021-09
+        end_date: 2022-01
+        location: Shanghai, China
+        summary: Original VR adventure puzzle game developed for CS085 VR & AR design practice.
+        highlights:
+          - Built interactive gameplay mechanics in Unity3D with C# and Microsoft VR tooling.
+      # - name: Reliability Assessment and System Optimization of a Multi-Node Sonar System
+      #   start_date: 2021-09
+      #   end_date: 2022-01
+      #   location: Shanghai, China
+      #   summary: Course project exploring the impact of node count on sonar system lifespan.
+      #   highlights:
+      #     - Modeled system reliability using MATLAB, Monte Carlo methods, and Markov chains to derive optimization insights.
+      - name: Robot Cart Design and Control
+        start_date: 2021-09
+        end_date: 2022-01
+        location: Shanghai, China
+        summary: SJTU "Yunhan Cup" RobotMaster Intramural Competition champion project.
+        highlights:
+          - Designed and fabricated a competition robot with Arduino-based control and C programming for precise actuation.
+      # - name: Automatic Tracking Camera
+      #   start_date: 2021-02
+      #   end_date: 2021-06
+      #   location: Shanghai, China
+      #   summary: Engineering practice project deploying face recognition for automated camera tracking.
+      #   highlights:
+      #     - Implemented OpenCV-based detection on Raspberry Pi with Python and Linux for real-time tracking.
+    skills:
+      - label: Programming
+        details: C++, Python, SQL, Verilog, Shell, Docker, MATLAB
+      - label: Languages
+        details: Chinese (Native), English (CET-6 481), German (A1)
+    # service:
+    #   - name: Student Representative, Department of Electronic Engineering, Shanghai Jiao Tong University
+    #     start_date: 2020-09
+    #     end_date: 2022-09
+    #     location: Shanghai, China
+    #     summary: Represented student cohort in departmental governance and feedback forums.
+    #   - name: Community Volunteer
+    #     start_date: 2021-01
+    #     end_date: 2021-02
+    #     location: Shanghai, China
+    #     summary: Supported local community initiatives during the winter volunteer program.
+    #   - name: Leader, Summer Social Practice, Shanghai Jiao Tong University
+    #     start_date: 2021-06
+    #     end_date: 2021-09
+    #     location: Shanghai, China
+    #     summary: Coordinated team logistics and deliverables for university-led social practice activities.
+design:
+  theme: classic
+  page:
+    size: a4
+    top_margin: 2cm
+    bottom_margin: 2cm
+    left_margin: 2cm
+    right_margin: 2cm
+    show_page_numbering: true
+    show_last_updated_date: true
+  colors:
+    text: rgb(0, 0, 0)
+    name: rgb(0, 0, 0)
+    connections: rgb(0, 0, 0)
+    section_titles: rgb(0, 0, 0)
+    links: rgb(0, 0, 0)
+    last_updated_date_and_page_numbering: rgb(128, 128, 128)
+  text:
+    font_family: Source Sans 3
+    font_size: 10pt
+    leading: 0.6em
+    alignment: justified
+    date_and_location_column_alignment: right
+  links:
+    underline: false
+    use_external_link_icon: true
+  header:
+    name_font_family: Source Sans 3
+    name_font_size: 16pt
+    name_bold: true
+    photo_width: 3.5cm
+    vertical_space_between_name_and_connections: 0.35cm
+    vertical_space_between_connections_and_first_section: 0.6cm
+    horizontal_space_between_connections: 0.5cm
+    connections_font_family: Source Sans 3
+    separator_between_connections: ''
+    use_icons_for_connections: true
+    alignment: center
+  section_titles:
+    type: with-parial-line
+    font_family: Source Sans 3
+    font_size: 1.4em
+    bold: true
+    small_caps: false
+    line_thickness: 0.5pt
+    vertical_space_above: 0.5cm
+    vertical_space_below: 0.3cm
+  entries:
+    date_and_location_width: 4.15cm
+    left_and_right_margin: 0.2cm
+    horizontal_space_between_columns: 0.1cm
+    vertical_space_between_entries: 1.2em
+    allow_page_break_in_sections: true
+    allow_page_break_in_entries: true
+    short_second_row: false
+    show_time_spans_in: []
+  highlights:
+    bullet: •
+    top_margin: 0.25cm
+    left_margin: 0.4cm
+    vertical_space_between_highlights: 0.25cm
+    horizontal_space_between_bullet_and_highlight: 0.5em
+    summary_left_margin: 0.25cm
+  entry_types:
+    one_line_entry:
+      template: '**LABEL:** DETAILS'
+    education_entry:
+      main_column_first_row_template: '**INSTITUTION**, AREA'
+      degree_column_template: '**DEGREE**'
+      degree_column_width: 1cm
+      main_column_second_row_template: |-
+        SUMMARY
+        HIGHLIGHTS
+      date_and_location_column_template: |-
+        LOCATION
+        DATE
+    normal_entry:
+      main_column_first_row_template: '**NAME**'
+      main_column_second_row_template: |-
+        SUMMARY
+        HIGHLIGHTS
+      date_and_location_column_template: |-
+        LOCATION
+        DATE
+    experience_entry:
+      main_column_first_row_template: '**POSITION**, *COMPANY*'
+      main_column_second_row_template: |-
+        SUMMARY
+        HIGHLIGHTS
+      date_and_location_column_template: |-
+        LOCATION
+        DATE
+    publication_entry:
+      main_column_first_row_template: 'TITLE'
+      main_column_second_row_template: |-
+        AUTHORS
+        URL (JOURNAL)
+      main_column_second_row_without_journal_template: |-
+        AUTHORS
+        URL
+      main_column_second_row_without_url_template: |-
+        AUTHORS
+        JOURNAL
+      date_and_location_column_template: DATE
+locale:
+  language: en
+  phone_number_format: national
+  page_numbering_template: NAME - Page PAGE_NUMBER of TOTAL_PAGES
+  last_updated_date_template: Last updated in TODAY
+  date_template: MONTH_ABBREVIATION YEAR
+  month: month
+  months: months
+  year: year
+  years: years
+  present: present
+  to: –
+  abbreviations_for_months:
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - June
+    - July
+    - Aug
+    - Sept
+    - Oct
+    - Nov
+    - Dec
+  full_names_of_months:
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
+rendercv_settings:
+  date: '2025-10-16'
+  render_command:
+  bold_keywords: []
