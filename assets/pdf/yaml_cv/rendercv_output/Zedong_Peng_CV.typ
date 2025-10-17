@@ -452,7 +452,7 @@
 // Print connections:
 #let connections-list = (
   [#box(original-link("mailto:zedongpeng1@gmail.com")[#fa-icon("envelope", size: 0.9em) #h(0.05cm)zedongpeng1\@gmail.com])],
-  [#box(original-link("https://zedong-peng.github.io/")[#fa-icon("link", size: 0.9em) #h(0.05cm)zedong-peng.github.io])],
+  [#box(original-link("https://zedongpeng.com/")[#fa-icon("link", size: 0.9em) #h(0.05cm)zedongpeng.com])],
 )
 #connections(connections-list)
 
@@ -525,7 +525,7 @@ July 2024 – present
 
     #two-col(left-column-width: design-highlights-summary-left-margin, right-column-width: 1fr, left-content: [], right-content: [#v(design-highlights-top-margin);#align(left, [Advised by Yuan Zhou])], column-gutter: 0cm)
 
-#v(-design-text-leading)  #v(design-highlights-top-margin);#highlights([SQL Native Engine \(Gluten\): optimizing CI pipeline.],[LLM framework optimizations: improve Intel devices support for vLLM.],[Building LLM applications: Text to SQL.],)
+#v(-design-text-leading)  #v(design-highlights-top-margin);#highlights([Spark SQL Native Engine \(Gluten\): optimizing CI pipeline.],[LLM framework optimizations: improve Intel devices support for vLLM.],[Building LLM applications: Text to SQL.],)
   ],
   right-content: [
     Shanghai, China

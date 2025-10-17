@@ -1,7 +1,7 @@
 # Zedong Peng's CV
 
 - Email: [zedongpeng1@gmail.com](mailto:zedongpeng1@gmail.com)
-- Website: [zedong-peng.github.io](https://zedong-peng.github.io/)
+- Website: [zedongpeng.com](https://zedongpeng.com/)
 
 
 # Education
@@ -28,7 +28,7 @@
 
 - Nov 2023 – July 2024
 - Shanghai, China
-- SQL Native Engine (Gluten): optimizing CI pipeline.
+- Spark SQL Native Engine (Gluten): optimizing CI pipeline.
 - LLM framework optimizations: improve Intel devices support for vLLM.
 - Building LLM applications: Text to SQL.
 
