@@ -572,6 +572,10 @@ July 2022 – July 2024
 
 
 #one-col-entry(
+  content: [- First-class Postgraduate Academic Scholarship, Shanghai Jiao Tong University, 2025.],
+)
+#v(design-entries-vertical-space-between-entries)
+#one-col-entry(
   content: [- Outstanding Graduate of Shanghai Jiao Tong University, 2024.],
 )
 #v(design-entries-vertical-space-between-entries)
