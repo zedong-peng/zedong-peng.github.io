@@ -46,6 +46,7 @@
 
 # Honors and Awards
 
+- First-class Postgraduate Academic Scholarship, Shanghai Jiao Tong University, 2025.
 - Outstanding Graduate of Shanghai Jiao Tong University, 2024.
 - 2nd Prize, 13th National University Mathematics Competition, 2021.
 - 1st Prize, SJTU "Yunhan Cup" RobotMaster Intramural Competition, 2021.
