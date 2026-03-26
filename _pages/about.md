@@ -31,6 +31,6 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-**Research:**  My target is to build powerful AI models capable of understanding, generating, and align with high-dimensional, multimodal data. I am currently focused on transferable methods for generative modeling and representation learning for EDA and hardware–software co-design, including model architectures, optimization, training objectives, and data efficiency.
+**Research:**  My target is to build powerful AI models capable of understanding, generating, and align with high-dimensional, multimodal data. 
 
-**Previously:** I was a research intern at [National Center of Technology Innovation for EDA](https://www.nctieda.com/en/), and Intel Asia-Pacific Research & Development Ltd.. I obtained my Bachelor's degree in Electronic Engineering from [Shanghai Jiao Tong University](https://www.sjtu.edu.cn), where I worked with [Prof. Liyao Xiang](http://xiangliyao.cn).
+**Previously:** I was a research intern at National Center of Technology Innovation for EDA and Intel Asia-Pacific Research & Development Ltd.. I obtained my Bachelor's degree in Electronic Engineering from [Shanghai Jiao Tong University](https://www.sjtu.edu.cn), where I worked with [Prof. Liyao Xiang](http://xiangliyao.cn).
