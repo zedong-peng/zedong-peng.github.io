@@ -23,7 +23,29 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-a-post-with-plotly-js",
+        },{id: "post-from-ai-coding-assistant-to-research-copilot",
+        
+          title: "From AI Coding Assistant to Research Copilot",
+        
+        description: "How my workflow evolved from trying mainstream AI IDEs in 2024 to treating AI as part of the full research loop in 2026.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/ai-research-workflow/";
+          
+        },
+      },{id: "post-forgehls-and-diffhls-why-i-built-them-and-why-hls-still-feels-like-a-trap",
+        
+          title: "ForgeHLS and DiffHLS: why I built them, and why HLS still feels like...",
+        
+        description: "A personal note on building a large-scale HLS dataset, pushing DiffHLS forward, and why I remain skeptical about HLS as a long-term research direction in 2026.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/forgehls-and-diffhls/";
+          
+        },
+      },{id: "post-a-post-with-plotly-js",
         
           title: "a post with plotly.js",
         
