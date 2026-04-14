@@ -33,4 +33,4 @@ latest_posts:
 
 **Research:**  My target is to build powerful AI models capable of understanding, generating, and align with high-dimensional, multimodal data. 
 
-**Previously:** I was a research intern at National Center of Technology Innovation for EDA and Intel Asia-Pacific Research & Development Ltd.. I obtained my Bachelor's degree in Electronic Engineering from [Shanghai Jiao Tong University](https://www.sjtu.edu.cn), where I worked with [Prof. Liyao Xiang](http://xiangliyao.cn).
+**Previously:** I was a research intern at the National Center of Technology Innovation for EDA and at Intel Asia-Pacific Research & Development Ltd. I obtained my Bachelor's degree in Electronic Engineering from [Shanghai Jiao Tong University](https://www.sjtu.edu.cn), where I worked with [Prof. Liyao Xiang](http://xiangliyao.cn).
