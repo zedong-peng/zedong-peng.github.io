@@ -13,6 +13,8 @@ toc:
 
 On April 14, 2026, I finally decided to write down the real story behind **ForgeHLS** and **DiffHLS**. From the outside, they look like a dataset paper and an algorithm paper. From the inside, they were the result of more than a year of friction, stubbornness, infrastructure work, and repeated doubts about whether HLS was even a direction worth staying in.
 
+For readers outside this area, **HLS (High-Level Synthesis)** is supposed to let you write hardware in a language like C or C++, and then use a toolchain to translate that program into FPGA-oriented RTL such as Verilog or VHDL. In the abstract, that sounds convenient. In practice, it often means writing software-shaped code while constantly worrying about hardware constraints that the source language does not express well.
+
 ## Why HLS caught my attention in 2024
 
 In 2024, the scaling-law story had already shown its force. GPT had demonstrated that once data, compute, and model size cross certain thresholds, capabilities can emerge in ways that smaller systems simply cannot match. That logic was impossible to ignore.
@@ -28,6 +30,10 @@ That question became the starting point of ForgeHLS.
 The difficulty was not conceptual. The difficulty was operational.
 
 HLS is not like collecting plain code from GitHub and calling it a dataset. To build something useful, I had to process designs, normalize sources, generate variants, launch synthesis flows, collect QoR signals, and keep the entire workflow from collapsing under version mismatches and toolchain instability.
+
+Part of the deeper problem is that HLS lives in an awkward semantic gap. C and C++ were designed for programmers, not for expressing precise hardware structure. They contain abstractions that do not map cleanly to RTL, and they hide decisions that hardware designers often need to control directly. Dynamic pointers are an obvious example: they are natural in software, but much harder to realize in synthesizable hardware. Meanwhile, many of the things hardware engineers actually care about such as pipelining, unrolling, partitioning, interface protocols, memory layout, and scheduling are not ordinary C constructs at all. In HLS, those controls re-enter the codebase through pragmas, vendor directives, and domain-specific boilerplate.
+
+That is why HLS can feel worse than either side of the stack. If you want the ergonomics of software, HLS keeps dragging you back toward hardware constraints. If you want the control of hardware design, HLS makes you express that control indirectly through a translation layer. A lot of the work ends up being not "write C and get hardware," but "write C in a very non-idiomatic way, then add tool-specific annotations until the compiler produces something acceptable."
 
 What made it worse was timing. When I started, tools like Cursor and Claude Code were already appearing, but they were nowhere near as capable as they are now in 2026. There was no reliable "agentic coding" setup that could just take over an industrial-scale data construction pipeline. A lot of the work still had to be designed, debugged, and pushed manually.
 
@@ -82,6 +88,8 @@ ForgeHLS and DiffHLS are therefore unavoidably bounded by the environment they w
 The longer I worked on this, the more I felt that HLS occupies an awkward middle ground.
 
 It sits between C/C++ and FPGA implementation, but often inherits the frustrations of both. If someone truly needs top-end hardware performance, they may still prefer direct FPGA design. If someone wants fast-moving practical acceleration in 2026, the center of gravity is overwhelmingly on the GPU side. GPUs are improving quickly, absorbing talent, money, software infrastructure, and industrial attention at a pace that FPGA and HLS simply are not matching.
+
+The most frustrating part is that HLS is often sold as an abstraction win, while in reality it frequently behaves like an abstraction tax. You do not fully get to write normal software, because "normal" software constructs may synthesize badly or not at all. But you also do not get to write hardware directly, because the crucial low-level control is filtered through compiler behavior, pragmas, and tool heuristics. In many projects, that leaves you paying both costs at once.
 
 That does not mean HLS has no value. It has had real commercial and engineering value in some settings. But my personal view, as of April 14, 2026, is that **HLS now feels much closer to a narrow academic niche than to a frontier direction for a graduate student who wants broad impact**.
 
