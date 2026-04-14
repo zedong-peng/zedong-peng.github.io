@@ -12,11 +12,13 @@ toc:
 
 By 2026, I no longer think of AI as a tool that merely helps me write code faster. In my daily work, it has become part of the research loop itself. I use it to discuss ideas, scout baselines, iterate on experiments, prepare weekly reports, revise papers, and sometimes even help me reason through feedback from meetings.
 
+That coupling is already deep enough that I find it hard to describe my current workflow as "research first, AI second." In many weeks, the research process itself is organized around repeated AI-assisted loops.
+
 That was not how it started.
 
 ## When I tried the three mainstream AI IDEs in 2024
 
-At the end of 2024, I deliberately tried three mainstream AI IDE setups in parallel: **Trae**, **Cursor Pro**, and **GitHub Copilot Pro**. My editor at the time was still **VS Code**, so the comparison felt practical rather than theoretical. These were the tools that seemed to represent the main directions of AI-assisted development at that moment.
+At the end of 2024, I deliberately tried three mainstream AI IDE setups in parallel: **Trae**, **Cursor Pro**, and **GitHub Copilot Pro**. My editor at the time was still **VS Code**, so the comparison felt practical rather than theoretical.
 
 I tried Trae partly because one of my senior graduate-school friends, Mingzhe, was working on Trae-related development at ByteDance. That made me curious enough to pay for it and see what it could actually do in serious research engineering work.
 
@@ -32,7 +34,7 @@ At that point, though, my expectation of AI was still fairly primitive: give it 
 
 ## Codex was the first tool that matched that expectation well
 
-After OpenAI released Codex, I had very little reason not to use it. I was already a GPT subscriber, and Codex effectively felt like the most natural next step for the kind of workflow I already wanted.
+After OpenAI released Codex, I had very little reason not to use it. I was already a GPT subscriber, and Codex felt like the most natural next step for the workflow I already wanted.
 
 Codex CLI fit my needs surprisingly well:
 
@@ -40,9 +42,9 @@ Codex CLI fit my needs surprisingly well:
 - It could turn that idea into an implementation draft.
 - I could run the code, inspect the output, and decide the next step.
 
-That sounds basic now, but at the time it solved a real problem. It gave me a direct path from thought to implementation without requiring me to micromanage every line. In practice, that was enough to make it immediately useful.
+That sounds basic now, but it solved a real problem. It gave me a direct path from thought to implementation without requiring me to micromanage every line.
 
-Codex also had an economic advantage that mattered. I never felt quota anxiety using it. Even now, that remains one of its biggest practical strengths for me. A tool that is slightly less magical but always available can be more useful than a stronger tool that constantly forces you to think about burn rate.
+Codex also had an economic advantage that mattered. I never felt quota anxiety using it. A tool that is slightly less magical but always available can be more useful than a stronger tool that constantly forces you to think about burn rate.
 
 ## Claude Code changed the scale of what I delegate
 
@@ -52,7 +54,7 @@ Its single biggest weakness is cost. If Claude Code were much cheaper through of
 
 The reason is not that it writes prettier code. The reason is that it can sustain a longer chain of work without collapsing.
 
-I can now give it a research idea and ask it to investigate the surrounding space: possible benchmarks, nearby SOTA systems, missing comparisons, plausible implementation paths, and concrete follow-up experiments. In my experience, that kind of agentic exploration often produces a broader and more useful first pass than what I would get from manually doing a rushed benchmark scan myself.
+I can now give it a research idea and ask it to investigate the surrounding space: possible benchmarks, nearby SOTA systems, missing comparisons, plausible implementation paths, and concrete follow-up experiments.
 
 That pattern has worked especially well in [`auto-research-single`](https://github.com/zedong-peng/auto-research-single), a small repo I use as a literature-research agent template. It has also been extremely effective for iterative experiment work in [`benchmark-grinder`](https://github.com/zedong-peng/benchmark-grinder), where repeated experiment modification, execution support, result inspection, and next-step refinement matter more than one-shot code generation.
 
@@ -83,6 +85,8 @@ When I have a rough research idea, I often start by talking to AI before I do a 
 
 This does not replace reading papers. It changes the order of operations. Instead of beginning from a blank page, I begin from a partially structured search space.
 
+I have also started to formalize that process into reusable agent skills. One example is my [`autonomous-benchmark-optimizer`](https://github.com/zedong-peng/autoresearch/tree/main/skills/autonomous-benchmark-optimizer) skill, which frames early exploration around a concrete contract: what metric matters, what command defines the benchmark, what files are editable, what must stay frozen, and how results should be logged.
+
 ### 2. Experiment iteration
 
 This is where the gain is largest.
@@ -91,27 +95,42 @@ I can ask an agent to modify an experiment, add a condition, adjust an evaluatio
 
 This is also why I care less now about whether a tool has the single best chat answer, and more about whether it can preserve momentum across multiple rounds of refinement.
 
+Here too, I increasingly rely on reusable skills rather than one-off prompts. In [`benchmark-grinder`](https://github.com/zedong-peng/benchmark-grinder/tree/main/skills/benchmark-grinder), I wrote down the loop I actually want the agent to follow: establish a baseline, isolate one hypothesis, edit only the approved scope, run the benchmark, log the result, keep the change only if it improves the target metric, and continue.
+
+### A concrete example: from meeting feedback to an experiment loop
+
+To make this less abstract, here is a lightly edited English version of a real prompt I used after a group meeting. I kept the structure close to the original, but replaced the real local path with `/path/to/sum.md` and the real API key with `sk-xxxxx`.
+
+```text
+The meeting summary from last week is at /path/to/sum.md.
+
+The advisor's feedback was useful. First determine whether the GrepQA problem is actually valuable. If it is, then identify the insight: in which cases GrepQA improves, why each component is designed the way it is, how it compares with other memory methods, and what other insight can be extracted.
+
+Then, based on the current results, continue designing three modules. These can be updates to existing modules or entirely new ones. Write the ablation experiment code and run the scripts to obtain results. Verify the modules one by one. Remember to use git for version control. If a module does not improve the results, roll it back and move on to the next idea, because the current GrepQA version log is evolving too slowly and contains repeated directions.
+
+After the loop of validating the problem's value, finding insight, and continuing the experiments, update the README. Because there may be new components and changes to older ones, explain again why each component is designed that way. Then write a public-facing blog post in local Markdown, in a style influenced by OpenAI, Anthropic, or Karpathy. If figures or formulas are needed, write scripts to generate them.
+
+API for the experiments:
+GPT-4o-mini OpenRouter key: sk-xxxxx
+```
+
+This prompt is not "please write some code for me." It is a research operating instruction. It links meeting feedback, hypothesis formation, ablation design, version control, rollback rules, documentation updates, and outward-facing writing in one chain.
+
+That is also why I increasingly say AI may partially replace researchers. My point is not that human taste or judgment disappears. My point is that more and more of the day-to-day research machinery is already delegable when the workflow is specified clearly enough.
+
 ### 3. Blog and report delivery
 
 One of the strongest patterns in my workflow is using AI to turn ongoing work into readable deliverables.
 
-I keep a reusable slide template for my weekly EPCC group reports, now published as [`weekly-report-slides-template`](https://github.com/zedong-peng/weekly-report-slides-template). My usual process is to first ask the agent to write a blog-style narrative so I can control the reporting logic at the prose level. After that, I convert the structure into slides based on the template. If there are fresh experiment outputs, I can simply point the agent to the relevant directory and let it pull the needed figures or numbers into the report draft.
-
-That is much more efficient than manually reconstructing the week's logic from scattered experiment folders.
+I keep a reusable slide template for my weekly EPCC group reports, now published as [`weekly-report-slides-template`](https://github.com/zedong-peng/weekly-report-slides-template). My usual process is to first ask the agent to write a blog-style narrative, then convert that structure into slides. If there are fresh experiment outputs, I can point the agent to the relevant directory and let it pull the needed figures or numbers into the report draft.
 
 ### 4. Meeting reflection
 
-During group meetings, I often rely on AI-generated meeting summaries as an additional memory layer. After the meeting, I may discuss the advisor's suggestions with AI, not because it knows better than the advisor, but because it helps me unpack the idea, restate constraints, and identify concrete next actions while the context is still fresh.
-
-That makes the meeting less of a one-shot conversation and more of an input into a continuing research dialogue.
+During group meetings, I often rely on AI-generated meeting summaries as an additional memory layer. After the meeting, I may discuss the advisor's suggestions with AI so I can unpack the idea, restate constraints, and identify concrete next actions while the context is still fresh.
 
 ### 5. Paper writing and LaTeX revision
 
-Paper writing has changed in a similar way.
-
-I have tried using Cursor with GPT and Claude-family models, and I have also used Codex and Claude Code directly for LaTeX paper revision. My overall feeling is that all of them can help meaningfully with academic writing now, especially for restructuring arguments, polishing technical wording, updating experiments, and carrying consistent edits through a draft.
-
-The main practical limitation is not whether AI can help with papers. It clearly can. The limitation is usually cost, quota, or interface friction. Cursor's top-tier quota can disappear quickly under heavy use, which is why I often reserve it for specific moments rather than treating it as the default environment.
+I also use AI for LaTeX revision and paper editing. At this point that part feels almost routine: restructuring arguments, polishing wording, and propagating experiment updates through a draft are all tasks current systems can already handle reasonably well.
 
 ## The stack I actually pay for
 
@@ -128,8 +147,6 @@ This separation matters. My coding stack and my experiment stack overlap, but th
 ## What changed most is not coding speed
 
 If I had to summarize the difference between 2024 and 2026, I would not say that AI made me code faster, although it did. I would say that AI made my research process more externally runnable.
-
-That is the deeper shift.
 
 Parts of the workflow that used to exist only in my head can now be offloaded into an interactive loop:
 
@@ -152,10 +169,10 @@ For a PhD workflow, that reduction is enormous.
 
 The main lesson from the last two years is that the most important AI tools for research are no longer the ones that merely complete code. The important ones are the tools that can carry context across a chain of tasks long enough to help produce an actual research outcome.
 
-That is why my workflow today looks less like "using an AI IDE" and more like working with a small, imperfect, but extremely productive research assistant that happens to live in the terminal.
+That is why my workflow today looks less like "using an AI IDE" and more like working with a small, imperfect, but highly productive research assistant that happens to live in the terminal.
 
-My more personal and less comfortable conclusion is that research itself increasingly looks like a profession that AI will partially replace. I do not mean that human researchers disappear overnight. I mean that more and more of the work that once felt distinctly "ours" now looks automatable: literature mapping, baseline design, experiment iteration, technical writing, and even parts of idea generation.
+My more personal and less comfortable conclusion is that research itself increasingly looks like a profession that AI will partially replace. I do not mean that human researchers disappear overnight. I mean that more and more of the work that once felt distinctly "ours" now looks automatable: literature mapping, baseline design, experiment iteration, technical writing, and even parts of idea generation. I say that not as an outsider speculating about the future, but as someone whose own weekly research loop is already deeply coupled to AI.
 
-What unsettles me is not only the speed. It is the quality. AI is already showing forms of creativity that, at least in my own daily work, often feel stronger than my first instinctive pass. It can propose angles I did not initially see, combine ideas faster than I can, and sustain exploratory loops with a level of patience that humans usually do not have.
+What unsettles me is not only the speed. It is the quality. AI can propose angles I did not initially see, combine ideas faster than I can, and sustain exploratory loops with a level of patience that humans usually do not have.
 
 That makes me think AGI may arrive faster than most of us expected. Maybe not as a dramatic overnight event, but as a steady collapse of tasks that used to define highly skilled intellectual work. From where I stand now, research no longer feels like a safe exception to that trend. It feels like one of the domains already being quietly reorganized by it.
