@@ -2,11 +2,8 @@
 ```
 docker compose up --detach
 
-docker compose exec jekyll bundle
-
-docker compose restart jekyll
-
-# open http://localhost:8080
+# wait until the first build finishes, then open http://localhost:8080
+docker compose logs -f jekyll
 
 docker compose down
 ```
