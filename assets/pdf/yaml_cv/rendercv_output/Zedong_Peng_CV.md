@@ -24,12 +24,12 @@
 - Nanjing, China
 - LLM post training, data construction on domain specific language.
 
-## Intel Asia-Pacific Research & Development Ltd., Machine Learning Intern
+## Intel, Machine Learning Intern
 
 - Nov 2023 – July 2024
 - Shanghai, China
-- Spark SQL Native Engine (Gluten): optimizing CI pipeline.
-- LLM framework optimizations: improve Intel devices support for vLLM.
+- Spark SQL Native Engine [Gluten](https://github.com/apache/gluten): optimizing CI pipeline.
+- LLM framework optimizations: improve Intel devices support for [vLLM](https://vllm.ai).
 - Building LLM applications: Text to SQL.
 
 ## Data Science Institute, Imperial College London, Winter School
@@ -42,7 +42,7 @@
 
 - July 2022 – July 2024
 - Shanghai, China
-- Advanced security-focused machine learning research.
+- Security-focused machine learning research.
 
 # Honors and Awards
 
@@ -53,6 +53,11 @@
 - Liu Yongling Foundation Scholarship, 2021.
 - Advanced Individual in Social Practice of Shanghai Jiao Tong University, 2021.
 # Publications
+
+## DiffHLS: Differential Learning for High-Level Synthesis QoR Prediction with GNNs and LLM Code Embeddings 
+- 2026
+- **Zedong Peng**, Zeju Li, Qiang Xu, Jieru Zhao
+- *IEEE/ACM International Symposium of EDA* (ISEDA)
 
 ## HIPPO: A Hierarchy-Preserving and Noise-Tolerant Pre-HLS Power Modeling Framework for FPGA 
 - 2025
@@ -92,7 +97,7 @@
 
 - Sept 2021 – Jan 2022
 - Shanghai, China
-- Designed and fabricated a competition robot with Arduino-based control and C programming for precise actuation.
+- Designed and fabricated a competition robot with Arduino-based control and won 1st prize.
 
 # Skills
 
