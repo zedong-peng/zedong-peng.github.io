@@ -41,11 +41,11 @@ ninja.data = [{
             window.location.href = "/blog/2026/failure-of-parametric-memory/";
           
         },
-      },{id: "post-from-ai-coding-assistant-to-research-copilot",
+      },{id: "post-ai-as-research-copilot",
         
-          title: "From AI Coding Assistant to Research Copilot",
+          title: "AI as Research Copilot",
         
-        description: "How my workflow evolved from trying mainstream AI IDEs in 2024 to treating AI as part of the full research loop in 2026.",
+        description: "How AI evolved from coding assistant to research partner in my workflow.",
         section: "Posts",
         handler: () => {
           
@@ -71,7 +71,7 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2026/forgehls-and-diffhls/";
+            window.location.href = "/blog/2025/forgehls-and-diffhls/";
           
         },
       },{id: "post-a-post-with-plotly-js",
