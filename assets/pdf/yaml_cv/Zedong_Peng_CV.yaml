@@ -13,7 +13,7 @@ cv:
         start_date: 2024
         end_date: 2027
         location: Shanghai, China
-        summary: Advised by Prof. Jieru Zhao.
+        summary: Advised by [Prof. Jieru Zhao](https://zjru.github.io).
       - institution: Shanghai Jiao Tong University
         area: Electronic Engineering
         degree: B.S.
@@ -28,18 +28,18 @@ cv:
         start_date: 2024-07
         end_date: present
         location: Nanjing, China
-        summary: Advised by Prof. Qiang Xu and Prof. Jieru Zhao.
+        summary: Advised by [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/) and [Prof. Jieru Zhao](https://zjru.github.io).
         highlights:
           - LLM post training, data construction on domain specific language. 
-      - company: Intel Asia-Pacific Research & Development Ltd.
+      - company: Intel
         position: Machine Learning Intern
         start_date: 2023-11
         end_date: 2024-07
         location: Shanghai, China
-        summary: Advised by Yuan Zhou
+        summary: Advised by [Yuan Zhou](https://www.linkedin.com/in/zhouyuan)
         highlights:
-          - 'Spark SQL Native Engine (Gluten): optimizing CI pipeline.'
-          - 'LLM framework optimizations: improve Intel devices support for vLLM.'
+          - 'Spark SQL Native Engine [Gluten](https://github.com/apache/gluten): optimizing CI pipeline.'
+          - 'LLM framework optimizations: improve Intel devices support for [vLLM](https://vllm.ai).'
           - 'Building LLM applications: Text to SQL.'
       - company: Data Science Institute, Imperial College London
         position: Winter School
@@ -53,9 +53,9 @@ cv:
         start_date: 2022-07
         end_date: 2024-07
         location: Shanghai, China
-        summary: Advised by Prof. Liyao Xiang.
+        summary: Advised by [Prof. Liyao Xiang](http://xiangliyao.cn).
         highlights:
-          - Advanced security-focused machine learning research.
+          - Security-focused machine learning research.
     honors_and_awards:
       - bullet: First-class Postgraduate Academic Scholarship, Shanghai Jiao Tong University, 2025.
       - bullet: Outstanding Graduate of Shanghai Jiao Tong University, 2024.
@@ -64,6 +64,14 @@ cv:
       - bullet: Liu Yongling Foundation Scholarship, 2021.
       - bullet: Advanced Individual in Social Practice of Shanghai Jiao Tong University, 2021.
     publications:
+      - title: 'DiffHLS: Differential Learning for High-Level Synthesis QoR Prediction with GNNs and LLM Code Embeddings'
+        authors:
+          - '**Zedong Peng**'
+          - Zeju Li
+          - Qiang Xu
+          - Jieru Zhao
+        journal: '*IEEE/ACM International Symposium of EDA* (ISEDA)'
+        date: 2026
       - title: 'HIPPO: A Hierarchy-Preserving and Noise-Tolerant Pre-HLS Power Modeling Framework for FPGA'
         authors:
           - Zefan Lin
@@ -115,7 +123,7 @@ cv:
         start_date: 2023-11
         end_date: 2024-11
         location: Shanghai, China
-        summary: Advised by Prof. Weiming Zhao and Xiaomi Technology.
+        summary: Advised by [Prof. Weiming Zhao](https://zwm0426.github.io) and [Xiaomi Technology](https://www.mi.com).
         highlights:
           - Implemented algorithms that improved locomotion control and user interaction.
       - name: VR Game "Strange Zoo"
@@ -138,7 +146,7 @@ cv:
         location: Shanghai, China
         summary: SJTU "Yunhan Cup" RobotMaster Intramural Competition champion project.
         highlights:
-          - Designed and fabricated a competition robot with Arduino-based control and C programming for precise actuation.
+          - Designed and fabricated a competition robot with Arduino-based control and won 1st prize.
       # - name: Automatic Tracking Camera
       #   start_date: 2021-02
       #   end_date: 2021-06
@@ -180,9 +188,9 @@ design:
   colors:
     text: rgb(0, 0, 0)
     name: rgb(0, 0, 0)
-    connections: rgb(0, 0, 0)
+    connections: rgb(0, 79, 144)
     section_titles: rgb(0, 0, 0)
-    links: rgb(0, 0, 0)
+    links: rgb(0, 79, 144)
     last_updated_date_and_page_numbering: rgb(128, 128, 128)
   text:
     font_family: Source Sans 3
@@ -192,7 +200,7 @@ design:
     date_and_location_column_alignment: right
   links:
     underline: false
-    use_external_link_icon: true
+    use_external_link_icon: false
   header:
     name_font_family: Source Sans 3
     name_font_size: 16pt
@@ -310,6 +318,6 @@ locale:
     - November
     - December
 rendercv_settings:
-  date: '2025-10-16'
+  date: '2026-03-01'
   render_command:
   bold_keywords: []

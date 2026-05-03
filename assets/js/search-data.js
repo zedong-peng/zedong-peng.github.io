@@ -52,15 +52,15 @@ ninja.data = [{
             window.location.href = "/blog/2026/ai-research-workflow/";
           
         },
-      },{id: "post-forgehls-and-diffhls-why-i-built-them-and-why-hls-still-feels-like-a-trap",
+      },{id: "post-linear-attention-在-gpu-上到底慢在哪",
         
-          title: "ForgeHLS and DiffHLS: why I built them, and why HLS still feels like...",
+          title: "Linear Attention 在 GPU 上到底慢在哪",
         
-        description: "A personal note on building a large-scale HLS dataset, pushing DiffHLS forward, and why I remain skeptical about HLS as a long-term research direction in 2026.",
+        description: "Linear attention 在 GPU 上表现不好是直觉，不是结论。我们做了一组实验，然后被学长推翻了一半。这篇文章记录这个过程。",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2026/forgehls-and-diffhls/";
+            window.location.href = "/blog/2026/linear-attn-gpu-bottleneck-blog/";
           
         },
       },{id: "post-forgehls-and-diffhls-why-i-built-them-and-why-hls-still-feels-like-a-trap",
@@ -226,6 +226,17 @@ ninja.data = [{
         handler: () => {
           
             window.location.href = "/blog/2023/post-bibliography/";
+          
+        },
+      },{id: "post-notes-on-proofs-arguments-and-zero-knowledge",
+        
+          title: "Notes on Proofs, Arguments, and Zero-Knowledge",
+        
+        description: "Tags machine learning, security, privacy, and mobile computing. Guided by Liyao Xiang",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/notes-on-proofs-arguments-and-zero-knowledge/";
           
         },
       },{id: "post-a-post-with-jupyter-notebook",

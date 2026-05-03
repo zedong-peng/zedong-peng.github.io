@@ -3,7 +3,7 @@
 
 #let name = "Zedong Peng"
 #let locale-catalog-page-numbering-style = context { "Zedong Peng - Page " + str(here().page()) + " of " + str(counter(page).final().first()) + "" }
-#let locale-catalog-last-updated-date-style = "Last updated in Oct 2025"
+#let locale-catalog-last-updated-date-style = "Last updated in Mar 2026"
 #let locale-catalog-language = "en"
 #let design-page-size = "a4"
 #let design-section-titles-font-size = 1.4em
@@ -11,8 +11,8 @@
 #let design-colors-section-titles = rgb(0, 0, 0)
 #let design-colors-last-updated-date-and-page-numbering = rgb(128, 128, 128)
 #let design-colors-name = rgb(0, 0, 0)
-#let design-colors-connections = rgb(0, 0, 0)
-#let design-colors-links = rgb(0, 0, 0)
+#let design-colors-connections = rgb(0, 79, 144)
+#let design-colors-links = rgb(0, 79, 144)
 #let design-section-titles-font-family = "Source Sans 3"
 #let design-section-titles-bold = true
 #let design-section-titles-line-thickness = 0.5pt
@@ -21,7 +21,7 @@
 #let design-section-titles-vertical-space-above = 0.5cm
 #let design-section-titles-vertical-space-below = 0.3cm
 #let design-section-titles-small-caps = false
-#let design-links-use-external-link-icon = true
+#let design-links-use-external-link-icon = false
 #let design-text-font-size = 10pt
 #let design-text-leading = 0.6em
 #let design-text-font-family = "Source Sans 3"
@@ -469,7 +469,7 @@
     #strong[Shanghai Jiao Tong University], Computer Science
     #v(-design-text-leading)
 
-    #two-col(left-column-width: design-highlights-summary-left-margin, right-column-width: 1fr, left-content: [], right-content: [#v(design-highlights-top-margin);#align(left, [Advised by Prof. Jieru Zhao.])], column-gutter: 0cm)
+    #two-col(left-column-width: design-highlights-summary-left-margin, right-column-width: 1fr, left-content: [], right-content: [#v(design-highlights-top-margin);#align(left, [Advised by #link("https://zjru.github.io")[Prof. Jieru Zhao].])], column-gutter: 0cm)
   ],
   right-content: [
     Shanghai, China
@@ -506,7 +506,7 @@
     #strong[Research Intern], #emph[National Center of Technology Innovation for EDA]
     #v(-design-text-leading)
 
-    #two-col(left-column-width: design-highlights-summary-left-margin, right-column-width: 1fr, left-content: [], right-content: [#v(design-highlights-top-margin);#align(left, [Advised by Prof. Qiang Xu and Prof. Jieru Zhao.])], column-gutter: 0cm)
+    #two-col(left-column-width: design-highlights-summary-left-margin, right-column-width: 1fr, left-content: [], right-content: [#v(design-highlights-top-margin);#align(left, [Advised by #link("https://cure-lab.github.io/author/qiang-xu-徐强/")[Prof. Qiang Xu] and #link("https://zjru.github.io")[Prof. Jieru Zhao].])], column-gutter: 0cm)
 
 #v(-design-text-leading)  #v(design-highlights-top-margin);#highlights([LLM post training, data construction on domain specific language.],)
   ],
@@ -520,12 +520,12 @@ July 2024 – present
 #v(design-entries-vertical-space-between-entries)
 #two-col-entry(
   left-content: [
-    #strong[Machine Learning Intern], #emph[Intel Asia-Pacific Research & Development Ltd.]
+    #strong[Machine Learning Intern], #emph[Intel]
     #v(-design-text-leading)
 
-    #two-col(left-column-width: design-highlights-summary-left-margin, right-column-width: 1fr, left-content: [], right-content: [#v(design-highlights-top-margin);#align(left, [Advised by Yuan Zhou])], column-gutter: 0cm)
+    #two-col(left-column-width: design-highlights-summary-left-margin, right-column-width: 1fr, left-content: [], right-content: [#v(design-highlights-top-margin);#align(left, [Advised by #link("https://www.linkedin.com/in/zhouyuan")[Yuan Zhou]])], column-gutter: 0cm)
 
-#v(-design-text-leading)  #v(design-highlights-top-margin);#highlights([Spark SQL Native Engine \(Gluten\): optimizing CI pipeline.],[LLM framework optimizations: improve Intel devices support for vLLM.],[Building LLM applications: Text to SQL.],)
+#v(-design-text-leading)  #v(design-highlights-top-margin);#highlights([Spark SQL Native Engine #link("https://github.com/apache/gluten")[Gluten]: optimizing CI pipeline.],[LLM framework optimizations: improve Intel devices support for #link("https://vllm.ai")[vLLM].],[Building LLM applications: Text to SQL.],)
   ],
   right-content: [
     Shanghai, China
@@ -555,9 +555,9 @@ Jan 2024 – Feb 2024
     #strong[Research Intern], #emph[Shanghai Jiao Tong University]
     #v(-design-text-leading)
 
-    #two-col(left-column-width: design-highlights-summary-left-margin, right-column-width: 1fr, left-content: [], right-content: [#v(design-highlights-top-margin);#align(left, [Advised by Prof. Liyao Xiang.])], column-gutter: 0cm)
+    #two-col(left-column-width: design-highlights-summary-left-margin, right-column-width: 1fr, left-content: [], right-content: [#v(design-highlights-top-margin);#align(left, [Advised by #link("http://xiangliyao.cn")[Prof. Liyao Xiang].])], column-gutter: 0cm)
 
-#v(-design-text-leading)  #v(design-highlights-top-margin);#highlights([Advanced security-focused machine learning research.],)
+#v(-design-text-leading)  #v(design-highlights-top-margin);#highlights([Security-focused machine learning research.],)
   ],
   right-content: [
     Shanghai, China
@@ -599,6 +599,21 @@ July 2022 – July 2024
 == Publications
 
 
+#two-col-entry(
+  left-content: [
+    DiffHLS: Differential Learning for High-Level Synthesis QoR Prediction with GNNs and LLM Code Embeddings
+
+  ],
+  right-content: [
+    2026
+  ],
+)
+#one-col-entry(content:[
+  #v(design-highlights-top-margin);#strong[Zedong Peng], Zeju Li, Qiang Xu, Jieru Zhao
+
+#v(design-highlights-top-margin - design-text-leading)#emph[IEEE\/ACM International Symposium of EDA] \(ISEDA\)])
+
+#v(design-entries-vertical-space-between-entries)
 #two-col-entry(
   left-content: [
     HIPPO: A Hierarchy-Preserving and Noise-Tolerant Pre-HLS Power Modeling Framework for FPGA
@@ -668,7 +683,7 @@ July 2022 – July 2024
     #strong[Robotic Dog Development]
     #v(-design-text-leading)
 
-    #two-col(left-column-width: design-highlights-summary-left-margin, right-column-width: 1fr, left-content: [], right-content: [#v(design-highlights-top-margin);#align(left, [Advised by Prof. Weiming Zhao and Xiaomi Technology.])], column-gutter: 0cm)
+    #two-col(left-column-width: design-highlights-summary-left-margin, right-column-width: 1fr, left-content: [], right-content: [#v(design-highlights-top-margin);#align(left, [Advised by #link("https://zwm0426.github.io")[Prof. Weiming Zhao] and #link("https://www.mi.com")[Xiaomi Technology].])], column-gutter: 0cm)
 
 #v(-design-text-leading)  #v(design-highlights-top-margin);#highlights([Implemented algorithms that improved locomotion control and user interaction.],)
   ],
@@ -704,7 +719,7 @@ Sept 2021 – Jan 2022
 
     #two-col(left-column-width: design-highlights-summary-left-margin, right-column-width: 1fr, left-content: [], right-content: [#v(design-highlights-top-margin);#align(left, [SJTU \"Yunhan Cup\" RobotMaster Intramural Competition champion project.])], column-gutter: 0cm)
 
-#v(-design-text-leading)  #v(design-highlights-top-margin);#highlights([Designed and fabricated a competition robot with Arduino-based control and C programming for precise actuation.],)
+#v(-design-text-leading)  #v(design-highlights-top-margin);#highlights([Designed and fabricated a competition robot with Arduino-based control and won 1st prize.],)
   ],
   right-content: [
     Shanghai, China
