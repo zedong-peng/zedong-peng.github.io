@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ForgeHLS and DiffHLS: why I built them, and why HLS still feels like a trap"
-date: 2026-02-01 20:50:00 +0800
+date: 2025-12-01 20:50:00 +0800
 description: "A personal note on building a large-scale HLS dataset, pushing DiffHLS forward, and why I remain skeptical about HLS as a long-term research direction in 2026."
 tags: HLS ForgeHLS DiffHLS EDA LLM FPGA
 categories: research
