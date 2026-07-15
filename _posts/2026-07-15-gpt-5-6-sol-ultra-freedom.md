@@ -52,7 +52,7 @@ toc:
 
 ## 从自用工具到中转站
 
-后来我把这套系统做成了一个中转站，域名就是 [sytoken.com](https://sytoken.com/)，也在校内论坛发过一篇帖子。
+后来我把这套系统做成了一个中转站，域名就是 [sytoken.com](https://sytoken.com/)，也在[校内论坛发过一篇帖子](https://shuiyuan.sjtu.edu.cn/t/topic/478920)。
 
 当时大概开了一个月，用户有几百个，每天也有几百元，有时候几千元的流水。
 
