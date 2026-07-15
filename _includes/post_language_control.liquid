@@ -1,0 +1,52 @@
+{% assign language_post = include.post | default: page %}
+{% assign current_language = language_post.lang | default: site.lang %}
+{% assign translations = '' | split: ',' %}
+{% if language_post.translation_key %}
+  {% assign translations = site.posts | where: 'translation_key', language_post.translation_key %}
+{% endif %}
+
+{% capture language_options %}
+  <i class="ti ti-language" aria-hidden="true"></i>
+  {% if include.links == false or translations.size < 2 %}
+    <span class="post-language-current" lang="{{ current_language }}">
+      {%- if current_language contains 'zh' %}中文{% elsif current_language == 'en' %}EN{% else %}{{ current_language }}{% endif -%}
+    </span>
+  {% else %}
+    {% assign language_order = 'zh-CN,en' | split: ',' %}
+    {% assign rendered_languages = 0 %}
+    {% for ordered_language in language_order %}
+      {% for translation in translations %}
+        {% assign translation_language = translation.lang | default: site.lang %}
+        {% if translation_language == ordered_language %}
+          {% if rendered_languages > 0 %}<span class="post-language-separator" aria-hidden="true">/</span>{% endif %}
+          {% if translation.url == language_post.url %}
+            <span class="post-language-current" lang="{{ translation_language }}" aria-current="page">
+              {%- if translation_language contains 'zh' %}中文{% else %}EN{% endif -%}
+            </span>
+          {% else %}
+            <a
+              class="post-language-link"
+              href="{{ translation.url | relative_url }}"
+              lang="{{ translation_language }}"
+              hreflang="{{ translation_language }}"
+            >
+              {%- if translation_language contains 'zh' %}中文{% else %}EN{% endif -%}
+            </a>
+          {% endif %}
+          {% assign rendered_languages = rendered_languages | plus: 1 %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+{% endcapture %}
+
+{% if include.context == 'article' %}
+  <nav class="post-language-control post-language-control--article" aria-label="Article language">
+    {{ language_options }}
+  </nav>
+{% else %}
+  <span class="post-language-control" role="group" aria-label="Article language">
+    {{ language_options }}
+  </span>
+{% endif %}

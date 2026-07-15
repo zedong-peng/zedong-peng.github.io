@@ -8,7 +8,7 @@ pagination:
   enabled: true
   collection: posts
   permalink: /page/:num/
-  per_page: 5
+  per_page: 20
   sort_field: date
   sort_reverse: true
   trail:
@@ -28,8 +28,6 @@ pagination:
     <h2>{{ site.blog_description }}</h2>
   </div>
   {% endif %}
-
-{% include blog_language_switcher.liquid active_language='all' %}
 
 {% if site.display_tags and site.display_tags.size > 0 or site.display_categories and site.display_categories.size > 0 %}
 
@@ -95,6 +93,8 @@ pagination:
                       {% if post_language contains 'zh' %}{{ read_time }} 分钟阅读{% else %}{{ read_time }} min read{% endif %} &nbsp; &middot; &nbsp;
                       <a href="{{ year | prepend: '/blog/' | relative_url }}">
                         <i class="fa-solid fa-calendar fa-sm"></i> {{ year }} </a>
+                      &nbsp; &middot; &nbsp;
+                      {% include post_language_control.liquid post=post links=false %}
                     </p>
                   </div>
                 </div>
