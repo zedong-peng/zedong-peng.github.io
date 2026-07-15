@@ -2,6 +2,8 @@
 layout: post
 title: "Linear Attention 在 GPU 上到底慢在哪"
 date: 2026-03-01 12:00:00 +0800
+lang: zh-CN
+translation_key: linear-attention-gpu
 description: "Linear attention 在 GPU 上表现不好是直觉，不是结论。我们做了一组实验，然后被学长推翻了一半。这篇文章记录这个过程。"
 tags: linear-attention gpu cuda benchmarking research
 categories: research
@@ -27,11 +29,11 @@ toc:
 
 三条对照线：
 
-| 实现 | 说明 |
-|---|---|
-| FlashAttention (SDPA) | softmax attention 当前最优实现，基线 |
+| 实现                       | 说明                                                             |
+| -------------------------- | ---------------------------------------------------------------- |
+| FlashAttention (SDPA)      | softmax attention 当前最优实现，基线                             |
 | GLA (chunk_gla, FLA 0.4.2) | 带 gating 的 Triton chunk kernel，当前最优 linear attention 实现 |
-| Naive linear attention | `Q(K^T V)` causal recurrence，纯 PyTorch，理论下界 |
+| Naive linear attention     | `Q(K^T V)` causal recurrence，纯 PyTorch，理论下界               |
 
 测试环境：RTX 4090，CUDA 12.2，bf16，H=16，D=128，causal。Shape sweep：B ∈ {1, 4, 16}，T ∈ {2K, 4K, 8K, 16K}。
 
@@ -41,19 +43,19 @@ toc:
 
 ### Latency（prefill，单位 ms）
 
-| impl | B=1 T=4K | B=1 T=16K | B=4 T=16K | B=16 T=4K | B=16 T=16K |
-|---|---:|---:|---:|---:|---:|
-| FlashAttn | 0.54 | 7.17 | 27.98 | 7.09 | 111.68 |
-| GLA | 0.47 | 2.17 | 8.28 | 7.90 | 32.97 |
+| impl      | B=1 T=4K | B=1 T=16K | B=4 T=16K | B=16 T=4K | B=16 T=16K |
+| --------- | -------: | --------: | --------: | --------: | ---------: |
+| FlashAttn |     0.54 |      7.17 |     27.98 |      7.09 |     111.68 |
+| GLA       |     0.47 |      2.17 |      8.28 |      7.90 |      32.97 |
 
 GLA 在长序列下确实更快：T=16K 时约快 **3.3–3.4×**。但在大 batch 短序列（B=16，T=4K）下反而慢 1.1×。
 
 ### Peak Memory（单位 MB）
 
-| impl | B=1 T=4K | B=1 T=16K | B=16 T=16K |
-|---|---:|---:|---:|
-| FlashAttn | 72 | 265 | 4120 |
-| GLA | 168 | 648 | 10248 |
+| impl      | B=1 T=4K | B=1 T=16K | B=16 T=16K |
+| --------- | -------: | --------: | ---------: |
+| FlashAttn |       72 |       265 |       4120 |
+| GLA       |      168 |       648 |      10248 |
 
 GLA 的 peak memory 在所有 shape 下均约为 FlashAttn 的 **2.4–2.5×**。这和直觉相反——GLA 理论上是 O(T) memory，但 chunk-wise 实现需要存储中间 chunk states 和 intra-chunk attention 矩阵，实际 peak memory 反而更高。**"linear attention 更省内存"在 chunk_gla 实现下不成立。**
 
@@ -108,13 +110,13 @@ h ← h · g + k^T v    # h 是 D×D 矩阵，D=128
 
 基于学长的反馈，baseline 需要修正。完整的 baseline 层级是：
 
-| Level | 实现 | 作用 |
-|---|---|---|
-| L0 | naive PyTorch recurrence / `torch.einsum` | 正确性 oracle，small-shape 单元测试 |
-| L1 | `torch.compile` | 最基础自动优化层，证明"自动优化本身不够" |
-| L2 | FLA (flash-linear-attention) | Triton-level 性能参考，社区事实标准 |
-| L3 | **cuLA** | CUDA/CUTLASS 手写内核，当前 GPU 优化上限 |
-| L4 | FlexLinearAttention / Forge | compiler-generated kernel 的近上限参考 |
+| Level | 实现                                      | 作用                                     |
+| ----- | ----------------------------------------- | ---------------------------------------- |
+| L0    | naive PyTorch recurrence / `torch.einsum` | 正确性 oracle，small-shape 单元测试      |
+| L1    | `torch.compile`                           | 最基础自动优化层，证明"自动优化本身不够" |
+| L2    | FLA (flash-linear-attention)              | Triton-level 性能参考，社区事实标准      |
+| L3    | **cuLA**                                  | CUDA/CUTLASS 手写内核，当前 GPU 优化上限 |
+| L4    | FlexLinearAttention / Forge               | compiler-generated kernel 的近上限参考   |
 
 关键修正：**主性能 baseline 从 FLA 升级为 cuLA**。cuLA 专门为 Hopper (SM90) 和 Blackwell (SM10X) 手写 CUDA/CUTLASS 内核，在 Blackwell 上 KDA modular forward 平均 1.45x、Lightning Attention prefill 最高 1.86x 于 FLA Triton 实现。FLA 退为 L2 参考层。
 

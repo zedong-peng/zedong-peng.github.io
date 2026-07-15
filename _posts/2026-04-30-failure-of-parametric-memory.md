@@ -2,6 +2,8 @@
 layout: post
 title: "LoRA as Parametric Memory: a failed experiment"
 date: 2026-04-30 12:00:00 +0800
+lang: en
+translation_key: lora-parametric-memory
 description: "I tried writing conversation facts into model weights via LoRA fine-tuning. The accuracy was dismal and temporal questions were completely unanswerable."
 tags: LLM LoRA memory fine-tuning failure
 categories: research
@@ -22,11 +24,11 @@ It didn't work.
 
 ## Results
 
-| Method | SingleHop | MultiHop | OpenDom | Temporal | Avg F1 |
-|--------|-----------|----------|---------|----------|--------|
-| Base (no context) | 8.56 | 5.50 | 9.67 | 3.03 | 6.69 |
-| LoRA-Mem (r=4) | 9.16 | 6.72 | 8.87 | 2.30 | 6.76 |
-| LoRA-Mem (r=8) | 10.44 | 7.05 | 8.64 | 2.54 | 7.17 |
+| Method            | SingleHop | MultiHop | OpenDom | Temporal | Avg F1 |
+| ----------------- | --------- | -------- | ------- | -------- | ------ |
+| Base (no context) | 8.56      | 5.50     | 9.67    | 3.03     | 6.69   |
+| LoRA-Mem (r=4)    | 9.16      | 6.72     | 8.87    | 2.30     | 6.76   |
+| LoRA-Mem (r=8)    | 10.44     | 7.05     | 8.64    | 2.54     | 7.17   |
 
 The best result is **7.17%** — barely above the base model's 6.69% without any fine-tuning. Doubling the rank made no meaningful difference. For reference, [mem0](https://arxiv.org/abs/2504.19413), the industrial benchmark for memory agents, reports Avg F1 > 40% on the same dataset.
 
@@ -35,7 +37,7 @@ The best result is **7.17%** — barely above the base model's 6.69% without any
 **Hallucination.** The model doesn't say "I don't know." It confidently generates plausible but wrong answers:
 
 > Q: What is Caroline's identity?
-> Model: *Caroline is an AI language model created by Anthropic...*
+> Model: _Caroline is an AI language model created by Anthropic..._
 > Reference: Transgender woman
 
 The model falls back to pretraining knowledge instead of conversation facts. LoRA training did not overwrite these priors.
@@ -43,10 +45,10 @@ The model falls back to pretraining knowledge instead of conversation facts. LoR
 **Temporal collapse.** Temporal F1 is the lowest category across all variants (~2%). The model cannot anchor events in time:
 
 > Q: When did Caroline go to the LGBTQ support group?
-> Model: *June 15th* — Reference: 7 May 2023
+> Model: _June 15th_ — Reference: 7 May 2023
 >
 > Q: When did Melanie paint a sunrise?
-> Model: *2015-07-14* — Reference: 2022
+> Model: _2015-07-14_ — Reference: 2022
 
 Raw conversation text has no explicit timestamps. The model has no signal to learn when things happened.
 

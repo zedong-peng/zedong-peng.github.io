@@ -2,6 +2,8 @@
 layout: post
 title: "我实现了 GPT-5.6-sol Ultra 自由"
 date: 2026-07-15 19:20:00 +0800
+lang: zh-CN
+translation_key: gpt-5-6-sol-ultra-freedom
 description: "为什么我坚持用最强的模型，以及我如何用一台小服务器和 Sub2API 搭出自己的 AI 中转站。"
 tags: AI GPT-5.6-sol Codex Sub2API
 categories: AI

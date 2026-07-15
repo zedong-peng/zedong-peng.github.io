@@ -15,6 +15,8 @@
 {% endif %}
 
 {% capture author_name %}{{ site.first_name }}{% if site.middle_name %} {{ site.middle_name }}{% endif %} {{ site.last_name }}{% endcapture %}
+{% assign page_language = page.lang | default: site.lang %}
+{% assign open_graph_locale = page_language | replace: '-', '_' %}
 
 <!-- Standard metadata -->
 <meta charset="utf-8">
@@ -45,10 +47,8 @@
 {% endif %}
 
 {% assign is_blog_post = false %}
-{% if page.url != '/blog/index.html' and page.url contains '/blog/' %}
-  {% unless page.url contains '/tag/' or page.url contains '/category/' %}
-    {% assign is_blog_post = true %}
-  {% endunless %}
+{% if page.collection == 'posts' %}
+  {% assign is_blog_post = true %}
 {% endif %}
 
 {% if site.serve_og_meta %}
@@ -61,7 +61,7 @@
   {% if page.og_image or site.og_image %}
     <meta property="og:image" content="{% if page.og_image %}{{ page.og_image }}{% else %}{{ site.og_image }}{% endif %}">
   {% endif %}
-  <meta property="og:locale" content="{{ site.lang }}">
+  <meta property="og:locale" content="{{ open_graph_locale }}">
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary">
@@ -234,6 +234,7 @@
         "@type": "{% if is_blog_post %}BlogPosting{% else %}WebSite{% endif %}",
         "description": "{% if page.description %}{{ page.description }}{% else if site.description %}{{ site.description }}{% endif %}",
         "headline": "{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}",
+        "inLanguage": "{{ page_language }}",
         {% if sameaslinks != blank %}
         "sameAs": {{ sameaslinks | jsonify }},
         {% endif %}
