@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-lora-as-parametric-memory-a-failed-experiment",
+        },{id: "post-我实现了-gpt-5-6-sol-ultra-自由",
+        
+          title: "我实现了 GPT-5.6-sol Ultra 自由",
+        
+        description: "为什么我坚持用最强的模型，以及我如何用一台小服务器和 Sub2API 搭出自己的 AI 中转站。",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/gpt-5-6-sol-ultra-freedom/";
+          
+        },
+      },{id: "post-lora-as-parametric-memory-a-failed-experiment",
         
           title: "LoRA as Parametric Memory: a failed experiment",
         
