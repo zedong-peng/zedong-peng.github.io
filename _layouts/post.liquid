@@ -5,6 +5,11 @@ layout: default
 {% assign tags = page.tags | join: '' %}
 {% assign categories = page.categories | join: '' %}
 {% assign url_beginning = page.url | slice: 0, 6 %}
+{% assign page_language = page.lang | default: site.lang %}
+{% assign translations = '' | split: ',' %}
+{% if page.translation_key %}
+  {% assign translations = site.posts | where: 'translation_key', page.translation_key %}
+{% endif %}
 
 {% if page._styles %}
   <!-- Page/Post style -->
@@ -17,9 +22,15 @@ layout: default
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
     <p class="post-meta">
-      Created on {{ page.date | date: '%B %d, %Y' }}
-      {% if page.author %}by {{ page.author }}{% endif %}
-      {% if page.last_updated %}, last updated on {{ page.last_updated | date: '%B %d, %Y' }}{% endif %}
+      {% if page_language contains 'zh' %}
+        发布于 {{ page.date | date: '%Y年%m月%d日' }}
+        {% if page.author %}，作者：{{ page.author }}{% endif %}
+        {% if page.last_updated %}，最后更新于 {{ page.last_updated | date: '%Y年%m月%d日' }}{% endif %}
+      {% else %}
+        Created on {{ page.date | date: '%B %d, %Y' }}
+        {% if page.author %}by {{ page.author }}{% endif %}
+        {% if page.last_updated %}, last updated on {{ page.last_updated | date: '%B %d, %Y' }}{% endif %}
+      {% endif %}
       {% if page.meta %}• {{ page.meta }}{% endif %}
     </p>
     <p class="post-tags">
@@ -56,6 +67,32 @@ layout: default
         {% endfor %}
       {% endif %}
     </p>
+    {% if page.translation_key and translations.size > 1 %}
+      <nav class="post-language-switcher" aria-label="Article language">
+        <div class="btn-group" role="group">
+          {% for translation in translations %}
+            {% assign translation_language = translation.lang | default: site.lang %}
+            <a
+              class="btn btn-sm {% if translation.url == page.url %}btn-primary{% else %}btn-outline-primary{% endif %}"
+              href="{{ translation.url | relative_url }}"
+              lang="{{ translation_language }}"
+              hreflang="{{ translation_language }}"
+              {% if translation.url == page.url %}
+                aria-current="page"
+              {% endif %}
+            >
+              {% if translation_language contains 'zh' %}
+                中文
+              {% elsif translation_language == 'en' %}
+                English
+              {% else %}
+                {{ translation_language }}
+              {% endif %}
+            </a>
+          {% endfor %}
+        </div>
+      </nav>
+    {% endif %}
   </header>
 
   <article class="post-content">

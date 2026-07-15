@@ -68,6 +68,20 @@
 {% endif %}
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url | bust_css_cache }}">
 <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+{% if page.translation_key %}
+  {% assign translations = site.posts | where: 'translation_key', page.translation_key %}
+  {% if translations.size > 1 %}
+    {% for translation in translations %}
+      {% assign translation_language = translation.lang | default: site.lang %}
+      <link rel="alternate" hreflang="{{ translation_language }}" href="{{ translation.url | absolute_url }}">
+    {% endfor %}
+    {% assign default_translation = translations | where: 'lang', site.lang | first %}
+    {% if default_translation == null %}
+      {% assign default_translation = translations | first %}
+    {% endif %}
+    <link rel="alternate" hreflang="x-default" href="{{ default_translation.url | absolute_url }}">
+  {% endif %}
+{% endif %}
 
 {% if site.enable_darkmode %}
   <!-- Dark Mode -->
