@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-how-i-achieved-gpt-5-6-sol-ultra-freedom",
+        },{id: "post-make-sand-think",
+        
+          title: "make sand think",
+        
+        description: "A new riddle from the Sphinx: how can the sand of the desert be made to think like a human?",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/make-sand-think/";
+          
+        },
+      },{id: "post-how-i-achieved-gpt-5-6-sol-ultra-freedom",
         
           title: "How I Achieved GPT-5.6-sol Ultra Freedom",
         
