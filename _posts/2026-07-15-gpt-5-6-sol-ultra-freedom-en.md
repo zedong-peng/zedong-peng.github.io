@@ -7,7 +7,6 @@ translation_key: gpt-5-6-sol-ultra-freedom
 description: "Why I insist on using the strongest models, and how I built my own AI relay with a small server and Sub2API."
 tags: AI GPT-5.6-sol Codex Sub2API
 categories: AI
-hidden: true
 related_posts: false
 toc:
   beginning: true
