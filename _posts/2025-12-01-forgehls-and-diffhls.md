@@ -5,7 +5,6 @@ date: 2025-12-01 20:50:00 +0800
 lang: en
 translation_key: forgehls-diffhls-personal-note
 description: "A personal note on building a large-scale HLS dataset, pushing DiffHLS forward, and why I remain skeptical about HLS as a long-term research direction in 2026."
-tags: HLS ForgeHLS DiffHLS EDA LLM FPGA
 categories: research
 citation: true
 related_posts: false

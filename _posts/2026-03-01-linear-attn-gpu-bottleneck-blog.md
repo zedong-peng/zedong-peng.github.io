@@ -1,148 +1,151 @@
 ---
 layout: post
-title: "Linear Attention 在 GPU 上到底慢在哪"
-date: 2026-03-01 12:00:00 +0800
-lang: zh-CN
+title: "Where Is Linear Attention Actually Slow on GPUs?"
+date: 2026-03-01 12:01:00 +0800
+lang: en
 translation_key: linear-attention-gpu
-description: "Linear attention 在 GPU 上表现不好是直觉，不是结论。我们做了一组实验，然后被学长推翻了一半。这篇文章记录这个过程。"
-tags: linear-attention gpu cuda benchmarking research
+description: "Poor GPU performance for linear attention is an intuition, not a conclusion. We ran experiments, then had half of our interpretation overturned. This post records that process."
 categories: research
 related_posts: false
 toc:
   beginning: true
 ---
 
-# Linear Attention 在 GPU 上慢在哪, 能否开发专用加速器
+# Where Is Linear Attention Slow on GPUs, and Can a Specialized Accelerator Help?
 
-"Linear attention 在 GPU 上表现不好"——这句话在圈子里流传很广，但它是直觉，不是结论。我们决定把它变成一个可以被证伪的问题，做了一组实验，然后被学长推翻了一半。这篇文章记录这个过程。
-
----
-
-## 实验设计
-
-问题拆成两个：
-
-1. FLA 的 chunk-wise Triton kernel 相对于朴素实现优化了多少？
-2. 即使是最优 linear attention，和 FlashAttention 的差距在哪？
-
-在开始之前，需要明确一个术语：LLM 推理分两个阶段——**Prefill**（一次性处理整段输入 prompt，建立 KV cache 或 state）和 **Decode**（每步只处理 1 个新 token，逐步生成）。下面所有实验都是 prefill benchmark，decode 尚未覆盖。这个区分很重要，因为 linear attention 在两个阶段的瓶颈性质不同。
-
-三条对照线：
-
-| 实现                       | 说明                                                             |
-| -------------------------- | ---------------------------------------------------------------- |
-| FlashAttention (SDPA)      | softmax attention 当前最优实现，基线                             |
-| GLA (chunk_gla, FLA 0.4.2) | 带 gating 的 Triton chunk kernel，当前最优 linear attention 实现 |
-| Naive linear attention     | `Q(K^T V)` causal recurrence，纯 PyTorch，理论下界               |
-
-测试环境：RTX 4090，CUDA 12.2，bf16，H=16，D=128，causal。Shape sweep：B ∈ {1, 4, 16}，T ∈ {2K, 4K, 8K, 16K}。
+"Linear attention performs poorly on GPUs" is a common claim, but it is an intuition rather than a conclusion. We decided to turn it into a falsifiable question and ran a set of experiments. A senior colleague then overturned half of our interpretation. This post records that process.
 
 ---
 
-## 实验结果
+## Experimental Design
 
-### Latency（prefill，单位 ms）
+We split the question into two parts:
+
+1. How much does FLA's chunk-wise Triton kernel improve over a naive implementation?
+2. Even with an optimized implementation, where does linear attention fall behind FlashAttention?
+
+First, one term needs clarification. LLM inference has two phases: **prefill**, which processes the entire input prompt at once and constructs a KV cache or state; and **decode**, which processes one new token per step during generation. All experiments below benchmark prefill. Decode is not yet covered. This distinction matters because the bottlenecks of linear attention differ between the two phases.
+
+We used three reference implementations:
+
+| Implementation               | Description                                                                |
+| ---------------------------- | -------------------------------------------------------------------------- |
+| FlashAttention (SDPA)        | State-of-the-art softmax attention implementation; our baseline            |
+| GLA (`chunk_gla`, FLA 0.4.2) | Gated Triton chunk kernel; a leading linear-attention implementation       |
+| Naive linear attention       | Causal `Q(K^T V)` recurrence in pure PyTorch; a theoretical lower baseline |
+
+Test environment: RTX 4090, CUDA 12.2, bf16, H=16, D=128, causal. Shape sweep: B in {1, 4, 16}, T in {2K, 4K, 8K, 16K}.
+
+---
+
+## Results
+
+### Latency (prefill, ms)
 
 | impl      | B=1 T=4K | B=1 T=16K | B=4 T=16K | B=16 T=4K | B=16 T=16K |
 | --------- | -------: | --------: | --------: | --------: | ---------: |
 | FlashAttn |     0.54 |      7.17 |     27.98 |      7.09 |     111.68 |
 | GLA       |     0.47 |      2.17 |      8.28 |      7.90 |      32.97 |
 
-GLA 在长序列下确实更快：T=16K 时约快 **3.3–3.4×**。但在大 batch 短序列（B=16，T=4K）下反而慢 1.1×。
+GLA is indeed faster on long sequences: at T=16K, it is about **3.3-3.4x** faster. With a large batch and shorter sequence (B=16, T=4K), however, it is 1.1x slower.
 
-### Peak Memory（单位 MB）
+### Peak Memory (MB)
 
 | impl      | B=1 T=4K | B=1 T=16K | B=16 T=16K |
 | --------- | -------: | --------: | ---------: |
 | FlashAttn |       72 |       265 |       4120 |
 | GLA       |      168 |       648 |      10248 |
 
-GLA 的 peak memory 在所有 shape 下均约为 FlashAttn 的 **2.4–2.5×**。这和直觉相反——GLA 理论上是 O(T) memory，但 chunk-wise 实现需要存储中间 chunk states 和 intra-chunk attention 矩阵，实际 peak memory 反而更高。**"linear attention 更省内存"在 chunk_gla 实现下不成立。**
+GLA's peak memory is about **2.4-2.5x** that of FlashAttention across all tested shapes. This contradicts the usual intuition. Although GLA has O(T) theoretical memory complexity, the chunk-wise implementation must store intermediate chunk states and intra-chunk attention matrices, leading to higher peak memory in practice. **The claim that "linear attention uses less memory" does not hold for this `chunk_gla` implementation.**
 
-### Kernel Profiling（3 个代表点）
+### Kernel Profiling at Three Representative Points
 
-GLA 的计算分散到 5 个独立 kernel：`chunk_gla_fwd_kernel_o`（35%）、`chunk_fwd_kernel_h`（23%）、`intra_sub_inter`（17%）、`intra_sub_intra`（16%）、`cumsum`（7%）。FlashAttn 同 shape 只有 1 个 kernel。
+GLA distributes its computation across five separate kernels: `chunk_gla_fwd_kernel_o` (35%), `chunk_fwd_kernel_h` (23%), `intra_sub_inter` (17%), `intra_sub_intra` (16%), and `cumsum` (7%). FlashAttention uses only one kernel at the same shape.
 
-`chunk_fwd_kernel_h`（state update / recurrence）稳定占 22–23%，是 GLA 相对于 FlashAttn 的额外开销来源。瓶颈类型是**多 kernel 分散执行 + state update 开销**，不是 launch overhead 或 occupancy 不足。
+`chunk_fwd_kernel_h`, which performs the state update or recurrence, consistently accounts for 22-23% of execution time. This is overhead that GLA has relative to FlashAttention. The observed bottleneck is **execution spread across multiple kernels plus state-update cost**, rather than kernel-launch overhead or insufficient occupancy.
 
 ---
 
-## 学长的反馈：实验方向有误
+## Feedback from a Senior Colleague: We Measured the Wrong Thing
 
-把结果发给学长，得到的回复是：这个实验测的不是真正的瓶颈。
+After seeing the results, a senior colleague pointed out that the experiment did not measure the real bottleneck.
 
-Linear attention 的 state update 是：
+The linear-attention state update is:
 
+```text
+h <- h * g + k^T v    # h is a D x D matrix, D=128
 ```
-h ← h · g + k^T v    # h 是 D×D 矩阵，D=128
-```
 
-这是一个 **128×128 的矩阵乘法**。GPU 的 TensorCore 是为大矩阵设计的，128×128 的小矩阵无法填满计算流水线，大量计算单元空转。更关键的是，recurrence 步与步之间有数据依赖，**无法通过增大 batch 或并行化来补救**。
+This is a **128 x 128 matrix operation**. GPU Tensor Cores are designed for large matrices, and an operation at this size may not fill the compute pipeline, leaving many units idle. More importantly, consecutive recurrence steps have data dependencies, so **increasing the batch size or parallelism cannot necessarily hide the underutilization**.
 
-两个问题叠加：单步计算量太小 → TensorCore 利用率低；步间串行依赖 → 无法并行化填满。
+Two problems may therefore compound each other: each step has too little work to utilize Tensor Cores fully, and sequential dependencies between steps prevent parallel execution from filling the machine.
 
-在 H200/Blackwell 上这个问题更突出：这些卡的 TensorCore 算力占比更高、CUDA core 相对更弱，linear attention 的 recurrence 既用不满 TensorCore 又跑不快，mismatch 更严重。
+The problem may be more pronounced on H200 and Blackwell GPUs. Tensor Core throughput represents a larger share of these architectures' compute capacity, while relative CUDA-core performance is weaker. The linear-attention recurrence may neither utilize the Tensor Cores nor run efficiently elsewhere, making the mismatch more severe.
 
-**4090 上的实验观察到的是 prefill 场景下的 O(T) vs O(T²) 复杂度差异，不是 GPU 利用率问题。** 这个结果本身没错，但没有触及真正的瓶颈。
+**Our RTX 4090 experiment primarily observed the O(T) versus O(T^2) complexity difference during prefill, not GPU utilization.** The result itself is valid, but it does not reach the actual bottleneck.
 
-真正需要测的是：在 H200 上，linear attention 的 TensorCore 利用率是多少？用 `ncu` 的 `sm__pipe_tensor_cycles_active` 指标可以直接看到。
+The right measurement is Tensor Core utilization for linear attention on an H200. The `sm__pipe_tensor_cycles_active` metric in `ncu` can show this directly.
 
-学长还补充了一点：GPU 的 CUDA core / TensorCore 分离设计对 linear attention 不友好，但其实对 softmax attention 也不是天然友好的——FlashAttention 4 就是在解决这个问题。所以不是"GPU 为 softmax 设计所以对 linear 不好"，而是 **GPU 对两者都有 mismatch，只是程度不同**。
+The colleague added one more qualification: the separation between CUDA cores and Tensor Cores is unfriendly to linear attention, but it is not naturally ideal for softmax attention either. FlashAttention 4 also addresses this mismatch. The claim should therefore not be "GPUs are designed for softmax and bad for linear attention." GPUs have architectural mismatches with both, but to different degrees.
 
 ---
 
-## 另一种声音
+## A Different View
 
-同级做加速器的同学提出了不同看法：
+A classmate working on accelerators offered a different interpretation:
 
-> Linear attention 的核心 idea 是把 QK 先算改成先算 KV，把 O(n²d) 变成 O(nd²)，因为 d<<n 所以称为线性。但 d 本身也不小，TensorCore 的 tile 是 4×4×4，理论上应该能跑满。CUDA core 是否真的是瓶颈还不确定——要看具体实现里对 K/V 用了什么非线性变换。直觉上，如果 linear attention 的计算本身没有稀疏性，现有 GPU 架构是能跑的，只是工程上没有实现好。做加速器的价值可能一般——能靠讲故事发论文，但 GPU kernel 一更新可能就没有优势了。
+> The central idea of linear attention is to compute KV before QK, reducing O(n^2 d) to O(n d^2). It is called linear because d is much smaller than n, but d itself is not tiny. Tensor Core tiles are 4 x 4 x 4, so in principle the operation should be able to utilize them. It remains unclear whether CUDA cores are truly the bottleneck; that depends on the nonlinear transformations applied to K and V in the specific implementation. Intuitively, if the linear-attention computation is not sparse, existing GPU architectures should be capable of running it, and the main problem may simply be an immature implementation. A specialized accelerator may have limited practical value: it might support a paper, but a new GPU kernel could erase its advantage.
 
-这个观点和学长的判断存在真实分歧，核心争议是：
+This view genuinely conflicts with the senior colleague's diagnosis. The central questions are:
 
-- D×D state update 到底能不能跑满 TensorCore？（理论上 tile 够大，实践上 recurrence 串行依赖是否导致利用率低？）
-- 加速器的价值是否只是学术上的，还是有真实部署场景？
+- Can the D x D state update actually saturate Tensor Cores? The tile size is theoretically sufficient, but do sequential recurrence dependencies reduce utilization in practice?
+- Is a specialized accelerator useful only as an academic exercise, or does it serve a real deployment need?
 
-**这正是需要在 H200 上用 `ncu` 实测来回答的问题。**
-
----
-
-## 正确的 baseline 和下一步
-
-基于学长的反馈，baseline 需要修正。完整的 baseline 层级是：
-
-| Level | 实现                                      | 作用                                     |
-| ----- | ----------------------------------------- | ---------------------------------------- |
-| L0    | naive PyTorch recurrence / `torch.einsum` | 正确性 oracle，small-shape 单元测试      |
-| L1    | `torch.compile`                           | 最基础自动优化层，证明"自动优化本身不够" |
-| L2    | FLA (flash-linear-attention)              | Triton-level 性能参考，社区事实标准      |
-| L3    | **cuLA**                                  | CUDA/CUTLASS 手写内核，当前 GPU 优化上限 |
-| L4    | FlexLinearAttention / Forge               | compiler-generated kernel 的近上限参考   |
-
-关键修正：**主性能 baseline 从 FLA 升级为 cuLA**。cuLA 专门为 Hopper (SM90) 和 Blackwell (SM10X) 手写 CUDA/CUTLASS 内核，在 Blackwell 上 KDA modular forward 平均 1.45x、Lightning Attention prefill 最高 1.86x 于 FLA Triton 实现。FLA 退为 L2 参考层。
-
-测试平台也需要换：H200 或 Blackwell，不是 4090。测量指标除 latency/memory 外，必须加 `ncu` 的 `sm__pipe_tensor_cycles_active`（TensorCore 利用率）。
-
-如果 `ncu` 数据显示 cuLA 在 H200 上 TensorCore 利用率仍然很低，那么学长的判断成立：问题是结构性的，正确方向是设计专用加速器（DSA），使其计算单元、片上 SRAM 分配和数据流专门针对 D×D 的连续 state update 优化。如果利用率接近上限，那么同学的判断更接近真相：工程问题，不是架构问题。
-
-**如果只选一个 target architecture 做系统论文**，优先级是：
-
-1. **GLA**：gated linear-attention 主线，最贴近"linear attention kernel/runtime"这个标题
-2. **Mamba-2**：SSD / semiseparable 统一后的强系统块，覆盖更广义的 recurrent-state model infrastructure
-
-Griffin / RecurrentGemma 更适合拿来证明 hybrid demand 是真实的，但它们混入了 local attention，不适合作为 kernel abstraction 的第一目标。
+**These questions need direct `ncu` measurements on an H200.**
 
 ---
 
-## 更大的图景
+## Correct Baselines and Next Steps
 
-这个实验之外，还有一个值得单独说的 framing 问题。
+Based on the feedback, the baseline hierarchy needs to be revised:
 
-"Linear attention 会取代 softmax attention"这个 thesis 风险很高。当前证据更支持的说法是：**hybrid recurrent / linear-attention 模型已经成为真实模型设计空间**——Jamba、Kimi Linear、MiniMax-M1、Granite 4.0 都在用某种 hybrid 架构——因此它们需要像 FlashAttention 之于 softmax attention 那样成熟的 kernel / compiler stack。
+| Level | Implementation                            | Purpose                                                                           |
+| ----- | ----------------------------------------- | --------------------------------------------------------------------------------- |
+| L0    | Naive PyTorch recurrence / `torch.einsum` | Correctness oracle and small-shape unit tests                                     |
+| L1    | `torch.compile`                           | Basic automatic optimization, showing that automatic optimization is insufficient |
+| L2    | FLA (flash-linear-attention)              | Triton-level performance reference and community standard                         |
+| L3    | **cuLA**                                  | Handwritten CUDA/CUTLASS kernels and the current upper bound for GPU optimization |
+| L4    | FlexLinearAttention / Forge               | Approximate upper-bound reference for compiler-generated kernels                  |
 
-这个 framing 更稳，因为它不依赖"linear attention 一定更快"这个还没被证明的前提，而是从真实的工业需求出发。
+The key correction is to promote **cuLA to the primary performance baseline**. cuLA provides handwritten CUDA/CUTLASS kernels for Hopper (SM90) and Blackwell (SM10X). On Blackwell, its KDA modular forward pass averages 1.45x the performance of FLA's Triton implementation, while Lightning Attention prefill reaches up to 1.86x. FLA moves down to the L2 reference layer.
 
-以下几个 thesis 风险很高，应该避免：
+The test platform must also change from the RTX 4090 to H200 or Blackwell. In addition to latency and memory, measurements must include the `sm__pipe_tensor_cycles_active` Tensor Core utilization metric from `ncu`.
 
-- "`O(n)` 一定比 FlashAttention 更快"——wall-clock 取决于 state update 的 arithmetic intensity，不由复杂度直接决定
-- "只要把 recurrence 写进 Triton，问题就解决了"——register pressure 和中间 state materialization 是核心瓶颈，不是边角问题
-- "pure linear attention 会自然成为主流生产架构"——当前证据支持的是 hybrid demand，不是 pure replacement story
+If `ncu` shows that cuLA still has low Tensor Core utilization on H200, the senior colleague's diagnosis is supported: the problem is structural. A specialized accelerator would then be a plausible direction, with compute units, on-chip SRAM allocation, and dataflow designed specifically for repeated D x D state updates. If utilization is already near the hardware limit, the classmate's diagnosis is more likely: this is an engineering problem, not an architectural one.
+
+**If only one target architecture can be selected for a systems paper**, the priorities are:
+
+1. **GLA**: the main gated linear-attention family, and the closest match to a "linear-attention kernel/runtime" framing
+2. **Mamba-2**: a strong systems block after the SSD/semiseparable unification, covering the broader recurrent-state-model infrastructure
+
+Griffin and RecurrentGemma are useful evidence that demand for hybrid architectures is real, but both mix in local attention. They are therefore less suitable as the first target for a kernel abstraction.
+
+---
+
+## The Bigger Picture
+
+Beyond this experiment, the framing deserves separate attention.
+
+The thesis that "linear attention will replace softmax attention" is risky. Current evidence supports a narrower claim: **hybrid recurrent and linear-attention models are now a real model-design space**. Jamba, Kimi Linear, MiniMax-M1, and Granite 4.0 all use some form of hybrid architecture. They therefore need a mature kernel and compiler stack analogous to what FlashAttention provides for softmax attention.
+
+This framing is more defensible because it does not depend on the unproven premise that linear attention must be faster. It starts from demonstrated industry demand.
+
+Several risky claims should be avoided:
+
+- "O(n) must be faster than FlashAttention." Wall-clock performance depends on the arithmetic intensity of the state update, not complexity alone.
+- "Writing the recurrence in Triton solves the problem." Register pressure and intermediate-state materialization are central bottlenecks, not minor implementation details.
+- "Pure linear attention will naturally become the dominant production architecture." Current evidence supports demand for hybrid models, not a pure-replacement story.
+
+---
+
+> Translated from the original Chinese with AI assistance.

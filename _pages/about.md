@@ -31,18 +31,10 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-**Research:** I am interested in the development of large language models, their systems optimization and applications.
+**Research:** I am interested in large language model development, systems optimization, and applications.
 
+Recently, inspired by Karpathy's [LLM Wiki](https://github.com/karpathy/llm-wiki), I built my own [Research Wiki](https://github.com/zedong-peng/llmwiki) and several other [AI-native tools](https://github.com/zedong-peng?tab=repositories). My other explorations include [LLM inference on FPGAs](https://github.com/zedong-peng/llama.v), [parametric memory](/blog/2026/failure-of-parametric-memory/), and [linear attention bottlenecks on Blackwell GPUs](/blog/2026/linear-attn-gpu-bottleneck-blog/).
 
-Recently, I was inspired by Karpathy's [LLM Wiki](https://github.com/karpathy/llm-wiki) and build my own [[Research Wiki]](https://github.com/zedong-peng/llmwiki). Bye Zotero :).
-Karpathy also mentioned parametric memory, a concept that I attempted but failed [[blog post]](/blog/2026/failure-of-parametric-memory/).
-A naive system idea [[Blog: linear attn bottleneck on Blackwell GPU]](/blog/2026/linear-attn-gpu-bottleneck-blog/). 
+**Previously:** I was a research intern at the [NCTI for EDA](https://www.nctieda.com) (2025), where I worked with [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/) on the HLS component of LLM4EDA ([blog post](/blog/2025/forgehls-and-diffhls/)). I was also a research intern at [Intel](https://www.intel.com) (2023-2024), where I worked with [Yuan Zhou](https://www.linkedin.com/in/zhouyuan) on [Gluten](https://github.com/apache/gluten) and [vLLM for CPUs](https://vllm.ai).
 
-
-Side interests: [[llama.v]](https://github.com/zedong-peng/llama.v) LLM inference on FPGA. [[benchmark-grinder]](https://github.com/zedong-peng/benchmark-grinder) a skill let your Claude Code autonomously improve your project performance. 
-
-
-**Previously:** I was a research intern at the [NCTI for EDA](https://www.nctieda.com) (2025), where I worked with [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/) on LLM4EDA's HLS part [[blog post]](/blog/2026/forgehls-and-diffhls/). I was a research intern at [Intel](https://www.intel.com) (2023-2024), lead by [Yuan Zhou](https://www.linkedin.com/in/zhouyuan) on [[Gluten]](https://github.com/apache/gluten) and [[vLLM (CPU)]](https://vllm.ai). I obtained my Bachelor's degree (with honors) in Electronic Engineering from [Shanghai Jiao Tong University](https://www.sjtu.edu.cn) (2024), where I worked with [Prof. Liyao Xiang](http://xiangliyao.cn).
-
-
-<span style="color: red;">I consider myself a self-driven and curious researcher, seeking 2026 summer research internship opportunities!</span>
+I received my bachelor's degree with honors in Electronic Engineering from [Shanghai Jiao Tong University](https://www.sjtu.edu.cn) in 2024, where I worked with [Prof. Liyao Xiang](http://xiangliyao.cn).

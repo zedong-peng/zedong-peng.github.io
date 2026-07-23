@@ -1,11 +1,10 @@
 ---
 layout: post
-title: "make sand think"
+title: "Make Sand Think"
 date: 2026-07-23 22:17:00 +0800
 lang: en
-description: "A new riddle from the Sphinx: how can the sand of the desert be made to think like a human?"
-tags: AI LLM Transformer silicon
-categories: AI
+description: "A short, funny story."
+categories: notes
 related_posts: false
 ---
 
