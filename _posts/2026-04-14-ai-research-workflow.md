@@ -5,8 +5,7 @@ date: 2026-04-14 23:35:00 +0800
 lang: en
 translation_key: ai-research-copilot
 description: "How AI evolved from coding assistant to research partner in my workflow."
-tags: AI research-workflow Claude-Code
-categories: research
+categories: notes
 related_posts: false
 ---
 
