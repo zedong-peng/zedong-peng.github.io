@@ -32,9 +32,9 @@ ninja.data = [{
           },
         },{id: "post-make-sand-think",
         
-          title: "make sand think",
+          title: "Make Sand Think",
         
-        description: "A new riddle from the Sphinx: how can the sand of the desert be made to think like a human?",
+        description: "A short, funny story.",
         section: "Posts",
         handler: () => {
           
@@ -49,7 +49,7 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2026/gpt-5-6-sol-ultra-freedom-en/";
+            window.location.href = "/blog/2026/gpt-5-6-sol-ultra-freedom/";
           
         },
       },{id: "post-我实现了-gpt-5-6-sol-ultra-自由",
@@ -60,7 +60,7 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2026/gpt-5-6-sol-ultra-freedom/";
+            window.location.href = "/blog/2026/gpt-5-6-sol-ultra-freedom-zh/";
           
         },
       },{id: "post-lora-as-parametric-memory-a-failed-experiment",
@@ -85,6 +85,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/ai-research-workflow/";
           
         },
+      },{id: "post-where-is-linear-attention-actually-slow-on-gpus",
+        
+          title: "Where Is Linear Attention Actually Slow on GPUs?",
+        
+        description: "Poor GPU performance for linear attention is an intuition, not a conclusion. We ran experiments, then had half of our interpretation overturned. This post records that process.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/linear-attn-gpu-bottleneck-blog/";
+          
+        },
       },{id: "post-linear-attention-在-gpu-上到底慢在哪",
         
           title: "Linear Attention 在 GPU 上到底慢在哪",
@@ -93,7 +104,7 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2026/linear-attn-gpu-bottleneck-blog/";
+            window.location.href = "/blog/2026/linear-attn-gpu-bottleneck-blog-zh/";
           
         },
       },{id: "post-forgehls-and-diffhls-why-i-built-them-and-why-hls-still-feels-like-a-trap",
@@ -265,11 +276,22 @@ ninja.data = [{
         
           title: "Notes on Proofs, Arguments, and Zero-Knowledge",
         
-        description: "Tags machine learning, security, privacy, and mobile computing. Guided by Liyao Xiang",
+        description: "Notes on machine learning, security, privacy, and mobile computing. Guided by Liyao Xiang.",
         section: "Posts",
         handler: () => {
           
             window.location.href = "/blog/2023/notes-on-proofs-arguments-and-zero-knowledge/";
+          
+        },
+      },{id: "post-notes-on-proofs-arguments-and-zero-knowledge",
+        
+          title: "Notes on Proofs, Arguments, and Zero-Knowledge",
+        
+        description: "Tags machine learning, security, privacy, and mobile computing. Guided by Liyao Xiang",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/notes-on-proofs-arguments-and-zero-knowledge-zh/";
           
         },
       },{id: "post-a-post-with-jupyter-notebook",
