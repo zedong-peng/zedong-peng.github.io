@@ -5,7 +5,6 @@ date: 2026-07-15 19:20:00 +0800
 lang: zh-CN
 description: "为什么我坚持用最强的模型，以及我如何用一台小服务器和 Sub2API 搭出自己的 AI 中转站。"
 categories: notes
-hidden: true
 related_posts: false
 toc:
   beginning: true
@@ -52,7 +51,7 @@ toc:
       <td>¥2/M tokens</td>
     </tr>
     <tr>
-      <td>sytoken.org（我自建）</td>
+      <td> <a href="https://sytoken.org/" target="_blank">水源token</a>（我自建）</td>
       <td>约 ¥0.5/M tokens</td>
     </tr>
     <tr>
