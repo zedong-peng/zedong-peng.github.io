@@ -41,17 +41,6 @@ ninja.data = [{
             window.location.href = "/blog/2026/make-sand-think/";
           
         },
-      },{id: "post-how-i-achieved-gpt-5-6-sol-ultra-freedom",
-        
-          title: "How I Achieved GPT-5.6-sol Ultra Freedom",
-        
-        description: "Why I insist on using the strongest models, and how I built my own AI relay with a small server and Sub2API.",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2026/gpt-5-6-sol-ultra-freedom/";
-          
-        },
       },{id: "post-我实现了-gpt-5-6-sol-ultra-自由",
         
           title: "我实现了 GPT-5.6-sol Ultra 自由",
