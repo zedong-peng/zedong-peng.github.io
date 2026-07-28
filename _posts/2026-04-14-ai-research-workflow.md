@@ -6,6 +6,7 @@ lang: en
 translation_key: ai-research-copilot
 description: "How AI evolved from coding assistant to research partner in my workflow."
 categories: notes
+hidden: true
 related_posts: false
 ---
 
