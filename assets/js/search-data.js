@@ -261,6 +261,17 @@ ninja.data = [{
             window.location.href = "/blog/2023/post-bibliography/";
           
         },
+      },{id: "post-探索更大的世界",
+        
+          title: "探索更大的世界",
+        
+        description: "留学申请路上的记录",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2023/exploring-a-bigger-world/";
+          
+        },
       },{id: "post-notes-on-proofs-arguments-and-zero-knowledge",
         
           title: "Notes on Proofs, Arguments, and Zero-Knowledge",
