@@ -92,9 +92,9 @@ _Artificial Analysis Coding Agent Index 与单任务成本，截图于 2026 年 
 
 ## 稳定性怎么保证
 
-我现在在赵杰茹老师的实验室。赵老师还是非常前沿的，给实验室里每个人都配了一个外部第三方中转商的额度，每人每周 50 元。
+我现在在赵杰茹老师的实验室。赵老师还是非常前沿的，给实验室里每个人都配了一个外部第三方中转商的额度，每人每周 600 美元。
 
-我的用量比较大，这 50 元有时候一两天就能跑完，问题是，我本地只有一个工作窗口，它自己不知道应该什么时候换到我的中转站，只会返回503然后停止工作。所以我在 [CC Switch](https://github.com/farion1231/cc-switch) 里打开了「设置 - 路由 - 自动故障转移」，实验室的额度用完后，CC Switch 会自动把后台 API 切到我的中转站；我的中转站也不可用时，再切到 Right Code。同时我还在闲鱼上淘到了400¥一年的cursor pro，能用opus 5,fable 5,gpt5.6，所以平常就不用vscode了，开个cursor，下侧终端跑codex cli， 右侧cursor用opus问问题和plan。
+我的用量比较大，这 600 美元有时候一两天就能跑完，问题是，我本地只有一个工作窗口，它自己不知道应该什么时候换到我的中转站，只会返回503然后停止工作。所以我在 [CC Switch](https://github.com/farion1231/cc-switch) 里打开了「设置 - 路由 - 自动故障转移」，实验室的额度用完后，CC Switch 会自动把后台 API 切到我的中转站；我的中转站也不可用时，再切到 Right Code。同时我还在闲鱼上淘到了400¥一年的cursor pro，能用opus 5,fable 5,gpt5.6，所以平常就不用vscode了，开个cursor，下侧终端跑codex cli， 右侧cursor用opus问问题和plan。
 
 前段时间，还有人在反编译 Claude Code 后发现，它的脚本里有一份第三方 API 域名列表。里面出现了 Right Code、PackyCode 这样的大型中转站，也有 Moonshot、阿里云这样的大公司。这至少说明 Claude Code 会识别一些常见的非官方 API 地址；算是皇军认证中转站了。不过这份列表具体用来做什么，没有进一步研究。
 
