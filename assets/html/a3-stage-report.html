@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<style>body{margin:0}</style>
+<title>A3 回球阶段汇报</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one briefing column (~52rem) on a cool table-blue ground. A before→after chart carries the stage result; answers, deliverables, schedule and next steps follow. Ball orange marks only this stage's models. */
+:root {
+  --bg: #f3f6f8;
+  --surface: #ffffff;
+  --ink: #15212c;
+  --muted: #5b6b78;
+  --rule: #d5dee5;
+  --accent: #1d5a8f;      /* tournament table blue */
+  --accent-soft: #dce8f3;
+  --ball: #d9661c;        /* ball orange: this stage's models */
+  --ball-soft: #fbeadd;
+  --old: #98a8b5;         /* earlier / team models */
+  --good: #2f7d4f;
+  --font-display: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f161d; --surface: #16202a; --ink: #dfe6ec; --muted: #93a3b1; --rule: #2a3742;
+    --accent: #7fb2e5; --accent-soft: #1d2f40; --ball: #f0944f; --ball-soft: #3a2618; --old: #5f7080; --good: #6cc392;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f161d; --surface: #16202a; --ink: #dfe6ec; --muted: #93a3b1; --rule: #2a3742;
+  --accent: #7fb2e5; --accent-soft: #1d2f40; --ball: #f0944f; --ball-soft: #3a2618; --old: #5f7080; --good: #6cc392;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.75;
+  padding-inline: 18px;
+}
+main { max-width: 52rem; margin: 0 auto; padding-block: 40px 72px; display: grid; gap: 52px; }
+section { display: grid; gap: 16px; min-width: 0; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.3; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(1.8rem, 4.4vw, 2.5rem); letter-spacing: 0.01em; }
+h2 { font-size: 1.4rem; padding-top: 8px; border-top: 2px solid var(--ink); }
+h3 { font-size: 1.05rem; }
+p, ul, ol { margin: 0; }
+p, li { max-width: 46em; }
+ul, ol { padding-left: 1.3em; display: grid; gap: 6px; }
+.eyebrow { font-family: var(--font-data); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 1.08rem; }
+.muted { color: var(--muted); }
+code { font-family: var(--font-data); font-size: 0.86em; background: var(--accent-soft); padding: 1px 5px; border-radius: 3px; word-break: break-all; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.caption { font-size: 0.86rem; color: var(--muted); }
+
+header.top { display: grid; gap: 14px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 0.9rem; color: var(--muted); }
+.meta b { font-family: var(--font-data); font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* before → after chart */
+.figure { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 18px 18px 14px; display: grid; gap: 12px; min-width: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 0.86rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.sw { width: 13px; height: 13px; border-radius: 50%; display: inline-block; }
+.sw.b { background: var(--surface); border: 2px solid var(--old); }
+.sw.a { background: var(--ball); }
+.db { display: grid; }
+.db-row { display: grid; grid-template-columns: minmax(0, 17rem) 1fr; gap: 2px 18px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+.db-lab { min-width: 0; }
+.db-lab b { display: block; font-weight: 500; font-size: 0.95rem; line-height: 1.45; }
+.db-lab small { display: block; color: var(--muted); font-size: 0.8rem; line-height: 1.45; }
+.db-track { position: relative; height: 30px; }
+.db-track .g { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px dashed var(--rule); }
+.db-track .link { position: absolute; top: 50%; height: 3px; transform: translateY(-50%); background: linear-gradient(90deg, var(--old), var(--ball)); border-radius: 2px; }
+.db-track .dot { position: absolute; top: 50%; width: 13px; height: 13px; border-radius: 50%; transform: translate(-50%, -50%); }
+.dot.b { background: var(--surface); border: 2px solid var(--old); }
+.dot.a { background: var(--ball); }
+.db-track .v { position: absolute; top: 50%; font-family: var(--font-data); font-size: 0.8rem; white-space: nowrap; font-variant-numeric: tabular-nums; line-height: 1; }
+.v.b { color: var(--muted); transform: translate(calc(-100% - 11px), -50%); }
+.v.a { color: var(--ink); font-weight: 500; transform: translate(11px, -50%); }
+.db-scale { display: grid; grid-template-columns: minmax(0, 17rem) 1fr; gap: 18px; padding-top: 4px; }
+.db-scale .ticks { position: relative; height: 1.3em; font-family: var(--font-data); font-size: 0.72rem; color: var(--muted); }
+.db-scale .ticks span { position: absolute; transform: translateX(-50%); }
+@media (max-width: 600px) {
+  .db-row, .db-scale { grid-template-columns: 1fr; }
+  .db-scale > :first-child { display: none; }
+}
+
+/* three answers */
+.qa { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 18px; display: grid; grid-template-rows: auto auto 1fr; gap: 10px; min-width: 0; }
+.card .k { font-family: var(--font-data); font-size: 1.35rem; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1.3; }
+.card .k small { display: block; font-family: var(--font-body); font-size: 0.76rem; color: var(--muted); letter-spacing: 0.02em; margin-top: 2px; }
+.card p { font-size: 0.93rem; line-height: 1.7; }
+
+/* two models */
+.models { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 14px; }
+.model { background: var(--surface); border: 1px solid var(--rule); border-top: 3px solid var(--ball); border-radius: 6px; padding: 14px 18px 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.model .tag { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.04em; }
+.model .path { font-family: var(--font-data); font-size: 0.95rem; font-weight: 500; word-break: break-all; }
+.model .nums { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 0.85rem; color: var(--muted); }
+.model .nums b { font-family: var(--font-data); font-size: 1.05rem; color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+.model p { font-size: 0.92rem; line-height: 1.7; }
+.files { display: grid; }
+.files div { display: grid; grid-template-columns: minmax(0, 16rem) 1fr; gap: 2px 16px; font-size: 0.9rem; padding: 9px 0; border-bottom: 1px solid var(--rule); }
+.files div:last-child { border-bottom: none; }
+@media (max-width: 560px) { .files div { grid-template-columns: 1fr; } }
+
+/* schedule */
+.tbl { overflow-x: auto; min-width: 0; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; line-height: 1.5; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-weight: 500; color: var(--muted); font-size: 0.82rem; background: var(--bg); }
+tr:last-child td { border-bottom: none; }
+td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.chip { display: inline-block; font-size: 0.76rem; padding: 1px 8px; border-radius: 99px; white-space: nowrap; background: var(--accent-soft); color: var(--accent); }
+.chip.extra { background: var(--ball-soft); color: var(--ball); }
+
+/* next steps */
+.next { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 28px; }
+.next > div { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.steps { counter-reset: s; list-style: none; padding: 0; display: grid; gap: 10px; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 1.8rem 1fr; gap: 10px; font-size: 0.93rem; line-height: 1.7; }
+.steps li::before { content: counter(s); font-family: var(--font-data); font-weight: 500; font-size: 0.82rem; color: var(--surface); background: var(--accent); width: 1.6rem; height: 1.6rem; border-radius: 50%; display: grid; place-items: center; margin-top: 2px; }
+.plain { font-size: 0.93rem; line-height: 1.7; }
+
+.asks { list-style: none; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.asks li { padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 0.93rem; max-width: none; }
+footer.end { display: grid; gap: 10px; font-size: 0.9rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 18px; }
+footer.end p { max-width: 46em; }
+</style>
+
+<main>
+  <header class="top">
+    <div class="eyebrow">A3 人形机器人乒乓球 · 第一阶段汇报 · 2026-10-07</div>
+    <h1>A3 回球阶段汇报</h1>
+    <p class="lede">这一阶段回答了三个问题：回球为什么上不了台，规划器和落点是不是瓶颈，学习和解析各该管哪一段。结论都来自仿真。现在有两个能上真机的模型：一个接口不变，换文件就能上；另一个要先打预测器补丁，在带旋转、按真实预测时间线的仿真里比现在的接口高约 20 个百分点。</p>
+    <div class="meta">
+      <span>周期 <b>10-03 – 10-05</b></span>
+      <span>训练约 <b>70</b> 次</span>
+      <span>评测约 <b>700</b> 组</span>
+      <span>代码和模型 <code>8-4090:~/zedong-opus</code></span>
+    </div>
+  </header>
+
+  <section aria-labelledby="s-chart">
+    <h2 id="s-chart">一张图看这个阶段</h2>
+    <p>纵向从上到下，仿真越来越接近真机。每一行都是同一批来球、同一个条件下，之前的模型和这个阶段的模型的回球上台率。</p>
+    <div class="figure">
+      <div class="legend">
+        <span><i class="sw b"></i>之前：团队现有模型，或上一版</span>
+        <span><i class="sw a"></i>这个阶段的模型</span>
+      </div>
+      <div class="db" id="db"></div>
+      <div class="db-scale"><div></div><div class="ticks" id="db-ticks"></div></div>
+      <div class="caption">回球上台率（%），横轴从 20% 开始。每个点 6000 拍，都是训练时没见过的来球。最后一行取电机延迟 0–40 ms、读数延迟 0–20 ms、增益 ×0.8–1.2 各条件里的最低值：TLDO15L 最低在电机 40 ms，TLDO15PLAG 最低在增益 ×0.8。</div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-qa">
+    <h2 id="s-qa">三个问题的回答</h2>
+    <div class="qa">
+      <div class="card">
+        <h3>回球为什么上不了台？</h3>
+        <div class="k">78 → 99.7%<small>团队 290k → B，不带旋转的仿真</small></div>
+        <p>训练用的成功判定和真正的目标对不上。环境判定的击球成功率是 91.8%，回球上台率只有 78%。失败几乎全部来自拍面法向：环境允许偏 30°，能上台的只有约 10°。训练时加上回球落点和上台两项奖励，接口不变，上台率到 99.7%（两个种子）。</p>
+      </div>
+      <div class="card">
+        <h3>规划器和落点是不是瓶颈？</h3>
+        <div class="k">80 → 98%<small>HOPE 规划 → 策略直接看来球，带旋转的仿真</small></div>
+        <p>球一带旋转、胶皮有摩擦，瓶颈就到了规划器。HOPE 不考虑旋转，执行器再好也只有约 80%。让策略直接看来球特征和学出来的旋转估计，到 98%。按真实预测器的时间线（准确的击球点要到弹地后才有），是 95.5%。规划器的拍速可以不要，只给击球点和击球时间。</p>
+      </div>
+      <div class="card">
+        <h3>学习还是解析？</h3>
+        <div class="k">95.5 对 94.6%<small>直接学习 对 混合路线，真实时间线</small></div>
+        <p>理想条件下两者打平（98.0 对 98.1%），感知一变差，直接学习更稳。把解析规划的结果当作额外输入，直接学习也不再加分。真正起作用的都是学出来的部分：监督学习的旋转估计，和用回球结果训练的执行器。建议的结构：预测器（解析几何拟合）→ 旋转估计（监督学习）→ 策略（强化学习）。</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-risk">
+    <h2 id="s-risk">上真机最大的风险：延迟和增益误差</h2>
+    <p>团队的 A3 训练配置里执行器没有延迟。所有模型，包括团队的 290k，都在电机延迟 10–20 ms 之间断崖：290k 在 20 ms 时从 78% 掉到 41%。从编码器、IMU 到策略的读数延迟更伤，同样晚 20 ms，放在读数端比放在电机端多掉约 4 个百分点。</p>
+    <ul>
+      <li><strong>训练时随机化可以解决。</strong>电机延迟 0–40 ms、读数延迟 0–20 ms、增益误差（所有关节一个公共倍数 ×0.8–1.25，再各自 ×0.9–1.1）。新接口的 TLDO15PLAG 在这些条件下最低 92.6%，代价是完全没有延迟时低约 1 个百分点。真机上的延迟不会是 0。</li>
+      <li><strong>现在接口的 BA</strong> 加了电机延迟和增益误差训练：不带旋转的仿真里电机 40 ms 时 99.4%，增益 ×0.8 时 99.0%。它在读数延迟下还没测过，下个阶段先测。</li>
+      <li><strong>真机的延迟和增益可以几分钟测出来。</strong>机器人吊着或站稳，发一段 20 s 的手臂多频正弦，记录目标和关节角，交给 <code>fit_actuator.py</code>。用已知参数的仿真记录核对过 5 组：延迟每组都对，增益最多差一档（0.05–0.1）。</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="s-deliver">
+    <h2 id="s-deliver">交付物</h2>
+    <div class="models">
+      <div class="model">
+        <div class="tag">现在的接口 · 换文件就能上</div>
+        <div class="path">deploy/BA_s2_297999</div>
+        <div class="nums"><span>不带旋转 <b>99.85%</b></span><span>电机 40 ms <b>99.4%</b></span></div>
+        <p>接口和团队 290k 逐字相同，只换 <code>policy.onnx</code>。球带旋转时，上限受 HOPE 规划器限制（约 75–80%）。</p>
+      </div>
+      <div class="model">
+        <div class="tag">新接口 · 先打预测器补丁</div>
+        <div class="path">deploy/TLDO15PLAG_s1_307998</div>
+        <div class="nums"><span>带旋转、真实时间线 <b>94.2%</b></span><span>延迟和增益误差下最低 <b>92.6%</b></span></div>
+        <p>策略多看来球特征和在线旋转估计，附带旋转估计器的 ONNX。观测怎么逐项构建，见 <code>deploy/README.md</code> 和 <code>obs_reference.py</code>。</p>
+      </div>
+    </div>
+    <div class="files">
+      <div><code>deploy/predictor_patch/</code><span>预测器 C++ 补丁，只改 <code>hit_plane_predictor</code>，不改原有输出。在 915 个球上和仿真复现对比：击球点差 2.1 mm 以内。ROS 节点发布特征这一步还没做。</span></div>
+      <div><code>deploy/actuator_test/</code><span>测电机延迟和增益用的手臂激励（20 s，50 Hz，<code>excitation.csv</code>），配合 <code>ballinloop/fit_actuator.py</code>。</span></div>
+      <div><code>ballinloop/obs_reference.py</code><span>真机观测构建的参考实现，和训练环境逐项对过（最大差 3e-6）。</span></div>
+      <div><code>deploy/README.md</code><span>部署说明：观测构建、预测器补丁、坐标系、延迟怎么测。</span></div>
+      <div><code>ballinloop/RESULTS-TW.md</code><span>全部实验的结果和设置；<code>HOWTO.md</code> 说明怎么复现。</span></div>
+      <div><span>团队报告 v6</span><span>完整的表格、图和分析：<a href="a3-report.html">A3 乒乓回球研究</a></span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-plan">
+    <h2 id="s-plan">进度：一个月的仿真计划已经做完</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>计划</th><th>内容</th><th>完成</th></tr></thead>
+      <tbody>
+        <tr><td><span class="chip">第 1 周</span></td><td>带旋转和胶皮摩擦的球模型，误差预算：哪种失配最伤上台率</td><td class="d">10-03</td></tr>
+        <tr><td><span class="chip">第 2 周</span></td><td>学会处理失配，学习和解析两种路线对比</td><td class="d">10-04</td></tr>
+        <tr><td><span class="chip">第 3 周</span></td><td>瞄准、击球时机误差、感知噪声、物理参数随机化</td><td class="d">10-04</td></tr>
+        <tr><td><span class="chip">第 4 周</span></td><td>可部署模型、真机验证方案、报告</td><td class="d">10-05</td></tr>
+        <tr><td><span class="chip extra">计划外</span></td><td>逐行复现部署的预测器，按真实时间线训练和评测；预测器 C++ 补丁</td><td class="d">10-04</td></tr>
+        <tr><td><span class="chip extra">计划外</span></td><td>电机延迟、读数延迟、增益误差的鲁棒训练；测真机延迟和增益的工具</td><td class="d">10-05</td></tr>
+      </tbody>
+    </table></div>
+    <p>剩下的不确定性，大多要靠真机数据来定：真实的延迟和增益、来球的旋转、胶皮参数、动捕噪声。下个阶段的重心是真机验证，以及用真机数据修正仿真。</p>
+  </section>
+
+  <section aria-labelledby="s-next">
+    <h2 id="s-next">下个阶段</h2>
+    <div class="next">
+      <div>
+        <h3>需要真机配合，按这个顺序</h3>
+        <ol class="steps">
+          <li><div>上 BA，和 290k 交替打，同一批来球各 50 球以上，记录上台、下网、出边线。</div></li>
+          <li><div>用 <code>actuator_test</code> 测电机延迟和增益，几分钟。</div></li>
+          <li><div>打球时录动捕：每拍击球前后各约 0.3 s 的球位置，以及规划器的输出。</div></li>
+          <li><div>用时间戳测两段感知延迟：动捕到策略，编码器和 IMU 到策略。</div></li>
+          <li><div>打预测器补丁，<code>min_fit_points</code> 改成 15；标定球拍安装角（2° 以内）和站位。</div></li>
+          <li><div>上 TLDO15PLAG。</div></li>
+        </ol>
+      </div>
+      <div>
+        <h3>仿真这边接着做</h3>
+        <ul class="plain">
+          <li>BA 在读数延迟下的评测；不够稳就按 TLDO15PLAG 的做法补训练。</li>
+          <li>真机测出延迟和增益后，按实测范围收窄随机化再微调，约 1.5 小时。</li>
+          <li>用录到的动捕数据标定胶皮、旋转和动捕噪声，重做误差预算，找出仿真和真机差得最多的一环。</li>
+          <li>两拍之间等得更久时保持准备姿态。训练里最长约 0.5 s，真机上要先确认。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-ask">
+    <h2 id="s-ask">需要团队回答的问题</h2>
+    <ul class="asks">
+      <li>真机上的来球是发球机还是人打的？旋转大概多大？旋转小的话，HOPE 规划器本身够用，提升主要来自 BA。</li>
+      <li>真机上现在跑的是 290k 还是 <code>deploy_robust</code> 的模型？电机延迟和跟踪增益测过吗？</li>
+      <li>机器人相对球台站在哪里？训练里站在球台近端后 0.5 m、中线上。预测器配置里 <code>landing_point</code> 的 y = −0.279 是有意偏向一侧吗？</li>
+      <li>从动捕采样到策略拿到观测，总延迟大概多少？</li>
+    </ul>
+  </section>
+
+  <footer class="end">
+    <p><strong>局限。</strong>所有数字来自仿真。胶皮、马格努斯、台面参数取自文献，没有在 A3 上辨识过；为此做了参数扫描和随机化，但真机上的绝对数字一定不同，只能看相对好坏。</p>
+    <p>完整的实验、表格和设置见团队报告 <a href="a3-report.html">A3 乒乓回球研究（v6）</a>。</p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  // Before → after chart. b: earlier model, a: this stage's model, in % return-on-table.
+  var LO = 20, HI = 100, SPAN = 86;   // keep the right 14% of each track free for the value label
+  function pos(v) { return SPAN * (v - LO) / (HI - LO); }
+  var rows = [
+    { cond: "不带旋转（HOPE 物理模型）", who: "团队 290k → BA", b: 78.2, a: 99.85, at: "99.85" },
+    { cond: "不带旋转，电机延迟 20 ms", who: "团队 290k → BA", b: 40.7, a: 99.5 },
+    { cond: "带旋转和胶皮摩擦，理想感知", who: "HOPE 规划 + B 执行器 → 策略直接看来球特征和旋转估计", b: 80.4, a: 98.0 },
+    { cond: "带旋转，真实预测时间线", who: "B 配 HOPE（现在的接口）→ TLDO15PLAG（新接口）", b: 75.1, a: 94.2 },
+    { cond: "同上，再加最差的延迟或增益误差", who: "上一版 TLDO15L → TLDO15PLAG", b: 30.8, a: 92.6 }
+  ];
+  var box = document.getElementById("db");
+  function div(cls, parent) { var d = document.createElement("div"); if (cls) d.className = cls; parent.appendChild(d); return d; }
+  rows.forEach(function (r) {
+    var row = div("db-row", box);
+    var lab = div("db-lab", row);
+    var b = document.createElement("b"); b.textContent = r.cond; lab.appendChild(b);
+    var s = document.createElement("small"); s.textContent = r.who; lab.appendChild(s);
+    var tr = div("db-track", row);
+    [20, 40, 60, 80, 100].forEach(function (t) { div("g", tr).style.left = pos(t) + "%"; });
+    var link = div("link", tr);
+    link.style.left = pos(r.b) + "%"; link.style.width = (pos(r.a) - pos(r.b)) + "%";
+    div("dot b", tr).style.left = pos(r.b) + "%";
+    div("dot a", tr).style.left = pos(r.a) + "%";
+    var vb = div("v b", tr); vb.style.left = pos(r.b) + "%"; vb.textContent = r.b.toFixed(1);
+    var va = div("v a", tr); va.style.left = pos(r.a) + "%"; va.textContent = r.at || r.a.toFixed(1);
+    row.setAttribute("aria-label", r.cond + "：" + r.who + "，" + r.b + "% 到 " + (r.at || r.a) + "%");
+  });
+  var ticks = document.getElementById("db-ticks");
+  [20, 40, 60, 80, 100].forEach(function (t) {
+    var sp = document.createElement("span"); sp.textContent = t + "%"; sp.style.left = pos(t) + "%"; ticks.appendChild(sp);
+  });
+})();
+</script>
+
+</html>
