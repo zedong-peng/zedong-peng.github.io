@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<style>body{margin:0}</style>
+<title>A3 乒乓回球研究</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (~46em) on a cool table-blue ground; tables and the two charts may run wider inside their own scrollers. */
+:root {
+  --bg: #f3f6f8;
+  --surface: #ffffff;
+  --ink: #15212c;
+  --muted: #5b6b78;
+  --rule: #d5dee5;
+  --accent: #1d5a8f;      /* tournament table blue */
+  --accent-soft: #dce8f3;
+  --ball: #d9661c;        /* ball orange: used only to mark the recommended / best value */
+  --good: #2f7d4f;
+  --bar: #8fb0cc;
+  --font-display: "Noto Serif SC", "Songti SC", "STSong", serif;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f161d; --surface: #16202a; --ink: #dfe6ec; --muted: #93a3b1; --rule: #2a3742;
+    --accent: #7fb2e5; --accent-soft: #1d2f40; --ball: #f0944f; --good: #6cc392; --bar: #3f6787;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f161d; --surface: #16202a; --ink: #dfe6ec; --muted: #93a3b1; --rule: #2a3742;
+  --accent: #7fb2e5; --accent-soft: #1d2f40; --ball: #f0944f; --good: #6cc392; --bar: #3f6787;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.75;
+  padding: 0 18px;
+}
+main { max-width: 50rem; margin: 0 auto; padding-block: 40px 72px; display: grid; gap: 44px; }
+section { display: grid; gap: 14px; min-width: 0; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.3; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(1.9rem, 4.6vw, 2.6rem); letter-spacing: 0.01em; }
+h2 { font-size: 1.45rem; padding-top: 6px; border-top: 2px solid var(--ink); }
+h3 { font-size: 1.1rem; margin-top: 6px; }
+p, ul, ol { margin: 0; max-width: 46em; }
+ul, ol { padding-left: 1.3em; display: grid; gap: 6px; }
+.eyebrow { font-family: var(--font-data); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: 1.08rem; color: var(--ink); }
+.muted { color: var(--muted); }
+.num, td.n, th.n { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+strong { font-weight: 700; }
+.hi { color: var(--ball); font-weight: 700; }
+code { font-family: var(--font-data); font-size: 0.88em; background: var(--accent-soft); padding: 1px 5px; border-radius: 3px; word-break: break-all; }
+
+header.top { display: grid; gap: 12px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.9rem; color: var(--muted); }
+
+.findings { list-style: none; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.findings li { display: grid; grid-template-columns: 7.5rem 1fr; gap: 4px 18px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.findings .k { font-family: var(--font-data); font-size: 1.15rem; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1.5; }
+.findings .k small { display: block; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; }
+@media (max-width: 560px) { .findings li { grid-template-columns: 1fr; } }
+
+.todo { counter-reset: t; list-style: none; padding: 0; display: grid; gap: 10px; }
+.todo li { counter-increment: t; display: grid; grid-template-columns: 2rem 1fr; gap: 10px; align-items: start; }
+.todo li::before { content: counter(t); font-family: var(--font-data); font-weight: 500; color: var(--surface); background: var(--accent); width: 1.7rem; height: 1.7rem; border-radius: 50%; display: grid; place-items: center; font-size: 0.85rem; margin-top: 2px; }
+
+.tbl { overflow-x: auto; min-width: 0; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; line-height: 1.5; }
+th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-weight: 500; color: var(--muted); font-size: 0.82rem; background: var(--bg); }
+td.n, th.n { text-align: right; white-space: nowrap; }
+tr:last-child td { border-bottom: none; }
+tr.pick td { background: var(--accent-soft); }
+.caption { font-size: 0.86rem; color: var(--muted); }
+
+.figure { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 16px 16px 12px; display: grid; gap: 10px; min-width: 0; }
+.bars { display: grid; gap: 9px; }
+.bar-row { display: grid; grid-template-columns: minmax(0, 15rem) 1fr; gap: 4px 14px; align-items: center; font-size: 0.88rem; }
+.bar-row .lab { line-height: 1.35; }
+.bar-track { position: relative; height: 22px; }
+.bar { height: 100%; background: var(--bar); border-radius: 2px; display: flex; align-items: center; justify-content: flex-end; }
+.bar span { font-family: var(--font-data); font-size: 0.8rem; padding: 0 6px; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; transform: translateX(100%); }
+.bar.ref { background: transparent; border: 1px dashed var(--muted); }
+.bar.pick { background: var(--ball); }
+.scale { display: grid; grid-template-columns: minmax(0, 15rem) 1fr; gap: 14px; font-family: var(--font-data); font-size: 0.72rem; color: var(--muted); }
+.scale .ticks { position: relative; height: 1.2em; border-top: 1px solid var(--rule); }
+.scale .ticks span { position: absolute; transform: translateX(-50%); top: 2px; }
+@media (max-width: 560px) {
+  .bar-row, .scale { grid-template-columns: 1fr; }
+  .scale > :first-child { display: none; }
+}
+.svgwrap { overflow-x: auto; }
+.svgwrap svg { display: block; min-width: 560px; width: 100%; height: auto; }
+svg text { font-family: var(--font-body); fill: var(--ink); }
+svg .mono { font-family: var(--font-data); fill: var(--muted); font-size: 11px; }
+svg .axis { stroke: var(--rule); stroke-width: 1; }
+svg .grid { stroke: var(--rule); stroke-width: 1; stroke-dasharray: 2 4; }
+svg .range { stroke: var(--accent); stroke-width: 6; stroke-linecap: round; opacity: 0.45; }
+svg .range.alt { stroke: var(--ball); }
+svg .dot { fill: var(--accent); }
+svg .dot.alt { fill: var(--ball); }
+svg .tick { stroke: var(--ink); stroke-width: 2; }
+svg .ln { fill: none; stroke-width: 2.5; stroke-linejoin: round; }
+svg .ln.old { stroke: var(--accent); }
+svg .ln.fix { stroke: var(--muted); stroke-dasharray: 6 4; }
+svg .ln.pick { stroke: var(--ball); }
+svg .pt.old { fill: var(--accent); }
+svg .pt.fix { fill: var(--muted); }
+svg .pt.pick { fill: var(--ball); }
+svg .ln.pla { stroke: var(--muted); }
+svg .pt.pla { fill: var(--muted); }
+
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 14px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.panel h3 { margin: 0; font-size: 1rem; }
+.files { display: grid; gap: 8px; }
+.files div { display: grid; grid-template-columns: minmax(0, 17rem) 1fr; gap: 2px 14px; font-size: 0.9rem; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
+.files div:last-child { border-bottom: none; }
+@media (max-width: 560px) { .files div { grid-template-columns: 1fr; } }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<main>
+  <header class="top">
+    <div class="eyebrow">A3 人形机器人乒乓球 · 仿真研究进展</div>
+    <h1>A3 乒乓回球研究</h1>
+    <p class="lede">回球上不了台，瓶颈在哪里？在旋转、胶皮摩擦、真实感知和电机延迟下，学习的方法和解析的方法各自能做到多少？哪些东西现在就能上真机？</p>
+    <div class="meta"><span>2026-10-05</span><span>全部结果来自仿真，每个数字是 6000 拍的回球上台率</span><span>代码和模型：<code>8-4090:~/zedong-opus</code></span></div>
+  </header>
+
+  <section aria-labelledby="s-summary">
+    <h2 id="s-summary">结论</h2>
+    <ol class="findings">
+      <li><div class="k">78 → 99.7%<small>HOPE 物理模型里</small></div>
+        <div><strong>原模型的失败几乎全部来自拍面法向。</strong>环境的成功判定允许 30°，真正能上台的容差约 10°。训练时加上“回球落点”和“上台”两项奖励，接口不变，上台率从 78% 到 99.7%。再加电机延迟训练的版本（BA）可以直接替换现在的 <code>policy.onnx</code>。</div></li>
+      <li><div class="k">80 → 98%<small>带旋转和胶皮摩擦</small></div>
+        <div><strong>球一旦带旋转、胶皮有摩擦，瓶颈就从执行器变成规划器。</strong>HOPE 不考虑旋转，再好的执行器也只有约 80%。让策略看到来球特征和学出来的旋转估计，可以到 98%。</div></li>
+      <li><div class="k">88 → 95.5%<small>真实预测时间线</small></div>
+        <div><strong>以前的训练（包括现有模型）都假设挥拍开始就知道准确的击球点。</strong>按部署的预测器逐行复现，准确的预测要到弹地后才有（击球前 0.06–0.34 s），这时只有 88%。弹地后继续拟合、在线更新旋转估计，再把 <code>min_fit_points</code> 改成 15，可以到 94.7%；旋转估计再加上弹地前的来球飞行（v2），95.5%。</div></li>
+      <li><div class="k">学习更稳<small>学习 vs 解析</small></div>
+        <div>理想条件下，“学到的旋转估计 + 解析规划 + 学习的执行器”和直接学习打平（98.1% 对 98.0%）。感知一变差（噪声变大、真实时间线），直接学习更稳。把解析规划的结果当作额外输入给直接学习的策略，也不再加分。解析部分留在它可靠的地方：预测器的几何拟合。</div></li>
+      <li><div class="k">74 → 95%<small>电机延迟 20 ms</small></div>
+        <div><strong>所有模型都在 10–20 ms 的电机延迟之间断崖，包括团队现在的 290k。</strong>团队的 A3 训练配置里执行器没有延迟。训练时随机加 0–40 ms 延迟、±20% 的 PD 增益误差，20 ms 时回到 95%；B 模型这样处理后，40 ms 下仍有 99.4%。</div></li>
+      <li><div class="k">最差 92.6%<small>各种延迟和增益误差</small></div>
+        <div><strong>编码器到策略的读数延迟比电机延迟更伤</strong>：同样晚 20 ms，放在读数端只剩 90.7%。训练时把读数延迟也随机化，并让增益误差各关节同向（电机整体偏软），新候选 TLDO15PLAG 在电机延迟 0–40 ms、读数延迟 0–20 ms、增益 ×0.8–1.2 下最低 92.6%，原来是 87.3%。另外做了一个测真机延迟和增益的小工具，20 s 的手臂动作就够。</div></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="s-todo">
+    <h2 id="s-todo">建议先做的事</h2>
+    <ol class="todo">
+      <li><div><strong>先上 B 模型的延迟鲁棒版</strong>（<code>deploy/BA_s2_297999</code>），和原 290k 交替对比，同一批来球各打 50 球以上，记录上台、下网、出边线。接口完全不变。</div></li>
+      <li><div><strong>测电机延迟和增益</strong>：机器人吊着或站稳，以 50 Hz 发 <code>deploy/actuator_test/excitation.csv</code> 里 20 s 的手臂动作（±0.2 rad），记录发出的目标和读到的关节角，交给 <code>fit_actuator.py</code>，几分钟出结果（工具已在仿真里核对过）。拟合出的延迟在 30 ms 以内、增益在 ×0.8–1.25 以内，现有模型就够；超出时按实测范围微调，约 1.5 小时。</div></li>
+      <li><div><strong>对比时顺便录动捕数据</strong>：每拍击球前后各约 0.3 s 的球位置（360 Hz），以及规划器的输出。用这些数据可以标定胶皮参数、动捕噪声，直接测出真实的拍面误差和预测误差。</div></li>
+      <li><div><strong>测两段感知延迟。</strong>从动捕到策略：每晚 20 ms 掉 1–1.5 个百分点，训练补不回来。从编码器、IMU 到策略：用时间戳单独测，尽量压到 10 ms 以内（见第五节）。</div></li>
+      <li><div><strong>预测器</strong>：打上 <code>deploy/predictor_patch</code> 的补丁（发布来球特征，C++ 已和仿真复现逐项对过），<code>min_fit_points</code> 改成 15。补丁不改原有输出。</div></li>
+      <li><div><strong>标定</strong>：球拍安装角（2° 以内，拿不准时宁可让拍面略朝上）、机器人相对球台的站位（要和仿真一致）。</div></li>
+      <li><div>以上都就绪后，再上新接口的模型 <code>deploy/TLDO15PLAG_s1_307998</code>：在真实预测时间线上训练，看来球特征和在线旋转估计，训练时加了电机延迟、读数延迟和增益误差。观测怎么逐项构建，见 <code>deploy/README.md</code> 和 <code>obs_reference.py</code>。</div></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="s-1">
+    <h2 id="s-1">一、成功判定和目标对不上</h2>
+    <p>先在和 HOPE 规划器完全一致的物理模型里测原模型（290k）：来球、规划、执行都用真实流程，只是没有旋转和摩擦。环境判定的击球成功率是 91.8%，但回球上台率只有 78.2%。误差归因显示，只把拍面法向换成理想值，上台率就到 99.95%。位置和速度都不是瓶颈。</p>
+    <div class="tbl"><table>
+      <thead><tr><th>模型（各 6000 拍，训练中没见过的来球）</th><th class="n">上台率</th><th class="n">正手 / 反手</th><th class="n">法向偏差 p50 / p90</th></tr></thead>
+      <tbody>
+        <tr><td>原 290k</td><td class="n">78.1%</td><td class="n">69.6 / 83.3%</td><td class="n">7.6° / 14.5°</td></tr>
+        <tr><td>A：原奖励，换成真实来球命令继续训练 6000 次（两个种子）</td><td class="n">80.0 / 78.7%</td><td class="n">69.0 / 86.7%</td><td class="n">7.0° / 13.9°</td></tr>
+        <tr class="pick"><td><strong>B：再加落点和上台奖励</strong>（两个种子）</td><td class="n"><strong>99.7 / 99.8%</strong></td><td class="n">99.3 / 100%</td><td class="n">2.1° / 6.6°</td></tr>
+      </tbody>
+    </table></div>
+    <p>B 模型对球拍安装角的余量：俯仰偏 ±4° 时上台率仍在 98–99%，偏 +6° 降到 93%。偏航方向余量更大。</p>
+  </section>
+
+  <section aria-labelledby="s-2">
+    <h2 id="s-2">二、旋转和胶皮摩擦：规划器成了瓶颈</h2>
+    <p>在 HOPE 的模型上加了马格努斯力、带摩擦的台面反弹和胶皮切向摩擦（参数取自文献，<code>spinball.py</code>），对方击球带 0–300 rad/s 的随机旋转。三样都关掉时它和 HOPE 完全一致。</p>
+    <div class="tbl"><table>
+      <thead><tr><th>规划器</th><th class="n">理想执行器</th><th class="n">B 执行器</th></tr></thead>
+      <tbody>
+        <tr><td>HOPE（部署中的）</td><td class="n">78.9%</td><td class="n">80.4%</td></tr>
+        <tr><td>用真实物理求解，旋转用最小二乘估计</td><td class="n">91.7%</td><td class="n">92.0%</td></tr>
+        <tr><td>同上，旋转用学出来的估计器（输入弹地前后速度等）</td><td class="n">98.3%</td><td class="n">96.3%</td></tr>
+        <tr><td>同上，知道真实旋转</td><td class="n">99.5%</td><td class="n">97.4%</td></tr>
+      </tbody>
+    </table></div>
+    <p>B 执行器的上台率基本等于规划器在理想执行下的上限。在这个世界里用结果奖励继续训练，只改变策略能看到什么（各两个种子）：</p>
+    <div class="tbl"><table>
+      <thead><tr><th>策略能看到的</th><th class="n">上台率</th><th class="n">≥ 200 rad/s 的球</th></tr></thead>
+      <tbody>
+        <tr><td>只有 HOPE 命令（B 继续训练）</td><td class="n">87.2 / 86.4%</td><td class="n">53–54%</td></tr>
+        <tr><td>+ 来球特征（带噪声）</td><td class="n">95.2 / 94.8%</td><td class="n">81–83%</td></tr>
+        <tr class="pick"><td><strong>+ 监督学习得到的旋转估计</strong></td><td class="n"><strong>98.0 / 98.1%</strong></td><td class="n">92%</td></tr>
+        <tr><td>混合：学到的旋转 → 考虑旋转的解析规划 → 执行器</td><td class="n">98.1 / 98.1%</td><td class="n">92%</td></tr>
+        <tr><td>上界：看到真实旋转</td><td class="n">99.9 / 99.9%</td><td class="n">99%</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><strong>物理参数未知时</strong>（胶皮、马格努斯系数、台面摩擦和恢复系数每个球随机）：按标称参数做解析规划，配理想执行器只有 91.5%。直接学习 94.9 / 94.6%。混合路线的执行器也在随机化世界里训练后是 96.2 / 96.6%：执行器学会了补偿规划器的系统误差。</li>
+      <li><strong>动捕噪声变大时</strong>，只在标准噪声下训练过的旋转估计器会给出“自信但错误”的估计。噪声 4 倍时，混合路线掉到 70%，比 HOPE 还差。估计器和策略训练时都随机化噪声（0.5–4 倍），4 倍噪声下仍有 90%，标准噪声下只损失 0.8 个百分点。</li>
+      <li><strong>规划器的拍速可以不要。</strong>规划器只给击球点和击球时间，策略自己根据目标落点决定怎么打，上台率不降（96.1% 对 95.6%）。横向瞄准斜率 0.72–0.77，落点误差 p50 为 0.25–0.27 m；知道真实旋转时横向斜率 0.95，所以瞄准误差主要来自侧旋估计。</li>
+      <li><strong>击球时机误差影响很小</strong>：σ = 10 ms 时几乎不变。击球区间里拍面每 10 ms 只转约 0.9°。</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="s-3">
+    <h2 id="s-3">三、真实感知：预测器什么时候才知道击球点</h2>
+    <p>按 <code>hit_plane_predictor.cpp</code> 逐行复现了部署的预测器（360 Hz 动捕、每轴 1 mm 噪声、31 点二次拟合、弹地清空缓存），在带旋转的来球上记录它在击球前每个控制周期给出的预测。挥拍在击球前 0.86 s 就开始了：</p>
+    <div class="figure">
+      <div class="svgwrap"><svg id="timeline" viewBox="0 0 720 236" role="img" aria-label="预测到达时间：第一个预测在击球前 0.4 到 0.8 秒，弹地后的预测在击球前 0.06 到 0.34 秒"></svg></div>
+      <div class="caption">横条是 p90–p10，圆点是中位数。弹地前的预测误差主要来自 HOPE 用常数系数处理台面反弹、又不考虑旋转。</div>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>距击球</th><th class="n">击球点误差 p50 / p90</th><th class="n">时间误差 p90</th><th class="n">理想执行器按此预测击球</th></tr></thead>
+      <tbody>
+        <tr><td class="num">0.6 s</td><td class="n">7.8 / 17.6 cm</td><td class="n">111 ms</td><td class="n">25%</td></tr>
+        <tr><td class="num">0.4 s</td><td class="n">4.5 / 12.8 cm</td><td class="n">94 ms</td><td class="n">58%</td></tr>
+        <tr><td class="num">0.2 s</td><td class="n">1.5 / 3.5 cm</td><td class="n">15 ms</td><td class="n">80%</td></tr>
+        <tr><td class="num">0</td><td class="n">0.1 / 0.1 cm</td><td class="n">0.3 ms</td><td class="n">79%（HOPE 上限）</td></tr>
+      </tbody>
+    </table></div>
+    <p>还发现一个问题：仿真里“击球点的来球速度”这项特征包含了弹地后整段飞行的马格努斯弯曲，相当于提前泄露了旋转。换成真机算得出的特征后，旋转估计误差的中位数从 37 rad/s 变成 49 rad/s。</p>
+    <p>把真实感知逐项换进来（随机物理参数、随机目标落点、带旋转的同一分布来球）：</p>
+    <div class="figure">
+      <div class="bars" id="ladder"></div>
+      <div class="scale"><div></div><div class="ticks" id="ladder-ticks"></div></div>
+      <div class="caption">横轴从 70% 开始。虚线框是上界和对照，橙色是部署候选。各项每个 6000 拍，都没有电机延迟和读数延迟。h、i 在这里低 0.2、1.3 个百分点，换来延迟和增益误差下的稳定：真机上的延迟不会是 0，读数 5 ms + 电机 10 ms 时 i 为 95.5%，各种延迟和增益误差下最低 92.6%（g 最低 30.8%，见第五节）。</div>
+    </div>
+    <ul>
+      <li><strong>弹地后的飞行本身带着旋转信息。</strong>跟踪器用弹地以来的全部点做二次拟合，交给一个在线旋转估计器，误差从 39 rad/s（弹地后 0.1 s）降到 10 rad/s（0.3 s 以后）。同一个策略不重新训练，88.1% → 93.7%，是这一部分最大的一步。</li>
+      <li><strong>弹地后的预测必须有。</strong>只给弹地前的预测时只有 66%。</li>
+      <li><strong><code>min_fit_points</code> 从 31 改成 15</strong>，弹地后第一个预测提前约 40 ms，同一时刻的误差不变：+0.8 个百分点。只是改一个配置参数。</li>
+      <li><strong>弹地前的来球飞行也带着旋转信息</strong>：马格努斯力在弹地前已经让轨迹弯了零点几秒。旋转估计 v2 把这段的拟合也作为输入，策略做决定的时候（弹地前后 0.2 s）误差降到原来的 1/2–1/4，不重新训练 +0.6–0.9 个百分点；用 v2 重新训练没有更好。</li>
+      <li><strong>学出来的预测器</strong>把弹地前的误差大约减半，但有了在线旋转估计后只多 0.6 个百分点。预测器本身已经不是主要瓶颈。</li>
+      <li><strong>在时间线上训练</strong>比不上时间线、同样多训练的对照高 0.7–1.2 个百分点，比起点只高 0–0.7。起点的策略本来就会按不断更新的预测修正挥拍。</li>
+      <li><strong>动捕噪声</strong>从每轴 1 mm 增到 2 / 3 mm：93.7% → 93.1% / 92.0%，退化平缓。</li>
+    </ul>
+    <h3>感知延迟比噪声要紧</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>预测、旋转估计和特征整体推迟</th><th class="n">0</th><th class="n">20 ms</th><th class="n">40 ms</th><th class="n">60 ms</th></tr></thead>
+      <tbody>
+        <tr><td>训练时无延迟（TLDO15，两个种子平均）</td><td class="n">94.6%</td><td class="n">93.6%</td><td class="n">91.9%</td><td class="n">90.5%</td></tr>
+        <tr class="pick"><td>训练时随机延迟 0–60 ms（TLDO15L 种子 1，部署候选）</td><td class="n">94.7%</td><td class="n">93.8%</td><td class="n">92.7%</td><td class="n">91.2%</td></tr>
+      </tbody>
+    </table></div>
+    <p>加延迟训练只多出 0–0.8 个百分点，还在种子间的差别之内。损失来自信息本身来晚了：准确的预测只在击球前约 0.2 s 才到，每晚 20 ms，修正挥拍的时间就少一截。</p>
+    <h3>球拍安装角要标定到 2° 以内</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>部署候选，拍面整体偏转（策略看不到）</th><th class="n">−4°</th><th class="n">−2°</th><th class="n">0</th><th class="n">+2°</th><th class="n">+4°</th></tr></thead>
+      <tbody>
+        <tr><td>俯仰（+ 为拍面朝下）</td><td class="n">94.7%</td><td class="n">94.8%</td><td class="n">94.7%</td><td class="n">93.4%</td><td class="n">90.4%</td></tr>
+        <tr><td>偏航</td><td class="n">92.8%</td><td class="n">—</td><td class="n">94.7%</td><td class="n">—</td><td class="n">92.7%</td></tr>
+      </tbody>
+    </table></div>
+    <p>拍面朝下的误差直接变成下网（+4° 时 2.3% → 7.6%）；朝上 4° 以内几乎不掉。偏航误差变成出边线。余量比 B 模型在无旋转世界里小（B 俯仰 +4° 仍有 99.1%），因为来球带旋转、目标落点随机。</p>
+  </section>
+
+  <section aria-labelledby="s-4">
+    <h2 id="s-4">四、学习还是解析</h2>
+    <p>三条路线在四种条件下的上台率。每一行里各路线用同一批评测来球、相当的训练迭代数；“/”分隔两个种子。</p>
+    <div class="tbl"><table>
+      <thead><tr><th>条件</th><th class="n">HOPE（全解析）+ 学习的执行器</th><th class="n">混合：学到的旋转 + 解析规划 + 学习的执行器</th><th class="n">直接学习：策略看特征和旋转估计</th></tr></thead>
+      <tbody>
+        <tr><td>理想感知，物理参数已知</td><td class="n">87.2 / 86.4%</td><td class="n">98.1 / 98.1%</td><td class="n">98.0 / 98.1%</td></tr>
+        <tr><td>物理参数未知（每个球随机）</td><td class="n">88.1%</td><td class="n"><strong>96.2 / 96.6%</strong></td><td class="n">94.9 / 94.6%</td></tr>
+        <tr><td>动捕噪声 4 倍，估计器只在标准噪声下训练</td><td class="n">约 79%</td><td class="n">70.4%</td><td class="n">73.4%（噪声随机化训练后 90.4%）</td></tr>
+        <tr><td>真实预测时间线，固定目标，都在时间线上训练</td><td class="n">—</td><td class="n">94.6 / 94.4%（训练前 91.4%）</td><td class="n"><strong>95.5 / 95.6%</strong></td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li>没有一条路线处处最好。混合路线在物理参数未知时更好；直接学习在感知变差时更稳。在时间线上，解析规划器在击球前最后一段时间里随着估计变化改拍速，执行器要专门训练才跟得上（训练后 91.4% → 94.6 / 94.4%，两个种子都仍低约 1 个百分点）；直接学习的策略自己决定怎么用变化的估计。</li>
+      <li><strong>解析规划当输入也不加分。</strong>给直接学习的策略多加 3 维输入：考虑旋转的解析规划器在每个控制周期算出的拍速。其余和 TLDO15 完全相同，结果 94.5 / 94.4%，对照 94.5 / 94.7%。策略用了这个输入（对应的第一层权重从 0 长到和旋转估计相当），但规划器的输入策略本来就都看得到，它算的东西策略自己也能算。</li>
+      <li>两条好路线里，真正起作用的都是学出来的部分：监督学习的旋转估计，加上用结果奖励训练的执行器。解析部分留在它可靠的地方：预测器对球的几何拟合。在有标签的地方（仿真里旋转已知）用监督学习，比让强化学习从奖励里自己摸索快好几倍。</li>
+      <li>建议的结构：预测器（解析，加特征补丁）→ 旋转估计（监督学习，噪声随机化）→ 策略（强化学习，直接看预测、特征和估计，规划器不再给拍速）。部署候选 TLDO15L 就是这个结构。</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="s-5m">
+    <h2 id="s-5m">五、延迟和增益误差：上真机最大的风险</h2>
+    <p>团队的 A3 训练配置用的是不带延迟的隐式 PD 执行器，增益随机化也关着；我们之前的模型全都在这个设置下训练。团队另有一个 <code>deploy_robust</code> 任务，训练时让关节目标晚 0–40 ms，说明真机上的延迟在这个量级。评测时用团队的 <code>DelayedImplicitActuator</code> 让关节目标晚到，或者把所有关节的增益乘一个倍数，策略都看不到。</p>
+    <div class="figure">
+      <div class="svgwrap"><svg id="delay" viewBox="0 0 720 300" role="img" aria-label="上台率随电机延迟的变化：不加延迟训练的模型在 10 到 20 毫秒之间断崖，随机延迟训练的模型到 30 毫秒仍在 93% 以上，再加读数延迟和同向增益误差训练的模型到 40 毫秒仍有 92.7%"></svg></div>
+      <div class="caption">真实预测时间线、带旋转的来球、v2 旋转估计，每点 6000 拍，种子 1。固定 20 ms 训练的结果见下表。</div>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>关节目标延迟</th><th class="n">0</th><th class="n">10 ms</th><th class="n">20 ms</th><th class="n">30 ms</th><th class="n">40 ms</th><th class="n">PD ×0.8</th><th class="n">PD ×1.2</th></tr></thead>
+      <tbody>
+        <tr><td>TLDO15L（上一个部署候选，不加电机延迟训练）</td><td class="n">95.5%</td><td class="n">91.8%</td><td class="n">73.5%</td><td class="n">—</td><td class="n">30.8%</td><td class="n">93.2%</td><td class="n">93.8%</td></tr>
+        <tr><td>固定 20 ms 训练（303k）</td><td class="n">91.0%</td><td class="n">92.4%</td><td class="n">93.8%</td><td class="n">—</td><td class="n">77.9%</td><td class="n">—</td><td class="n">—</td></tr>
+        <tr><td>随机 0–40 ms + 各关节增益 ×0.8–1.25（TLDO15PLA，两个种子）</td><td class="n">95.3 / 94.8%</td><td class="n">96.2 / 95.9%</td><td class="n">94.6 / 95.2%</td><td class="n">93.2 / 94.1%</td><td class="n">87.3 / 87.8%</td><td class="n">91.0 / 91.0%</td><td class="n">93.2 / 93.7%</td></tr>
+        <tr class="pick"><td><strong>再加读数延迟、同向增益误差（TLDO15PLAG，见下；10、30 ms 只测了种子 1）</strong></td><td class="n">94.2 / 93.8%</td><td class="n">95.7%</td><td class="n"><strong>94.6 / 94.6%</strong></td><td class="n">94.6%</td><td class="n"><strong>92.7 / 92.2%</strong></td><td class="n"><strong>92.6 / 91.3%</strong></td><td class="n">94.1 / 94.0%</td></tr>
+      </tbody>
+    </table></div>
+    <p>现在接口的模型在 HOPE 世界里（无旋转、理想感知）也一样：</p>
+    <div class="tbl"><table>
+      <thead><tr><th>关节目标延迟</th><th class="n">0</th><th class="n">10 ms</th><th class="n">20 ms</th><th class="n">40 ms</th></tr></thead>
+      <tbody>
+        <tr><td>团队原 290k</td><td class="n">78.2%</td><td class="n">69.4%</td><td class="n">40.7%</td><td class="n">—</td></tr>
+        <tr><td>原 290k，环境自己的成功判定</td><td class="n">91.8%</td><td class="n">41.5%</td><td class="n">2.0%</td><td class="n">—</td></tr>
+        <tr><td>B</td><td class="n">99.7%</td><td class="n">99.8%</td><td class="n">74.3%</td><td class="n">26.9%</td></tr>
+        <tr class="pick"><td><strong>BA：B 加同样的随机化，多训 3000 次迭代（两个种子）</strong></td><td class="n">99.65 / 99.85%</td><td class="n">99.8 / 99.9%</td><td class="n"><strong>99.4 / 99.5%</strong></td><td class="n">99.2 / 99.4%</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><strong>延迟是悬崖，不是斜坡。</strong>挥拍是一个快速、按时间走的动作，20 ms 差不多就是整个击球时间的容差。如果 290k 在真机上的表现和仿真接近，真机的总延迟应该在 10 ms 以内；否则延迟可能就是真机上打不好的主要原因之一。</li>
+      <li><strong>不重新训练补不了。</strong>延迟已知时让策略提前出手（把“到击球的时间”减去延迟），反而更差（20 ms 时 73.5% → 66.9%）。延迟不只是让动作整体晚一点：策略按看到的关节状态不断修正，延迟让这个反馈过冲，多出来的是出底线。</li>
+      <li><strong>随机延迟比“测准了再训练”好。</strong>固定 20 ms 训练在每一档都不如随机 0–40 ms，20 ms 这一档也是。真机延迟只需要测出大致范围。</li>
+      <li><strong>增益偏软曾是剩下的弱点。</strong>TLDO15PLA 在所有关节 ×0.8 时只有 91%，多出来的是下网。给策略看最近 4 帧关节和动作没有用，每一项都持平或略差。原因是训练时各关节增益各自随机，“所有关节同时偏软”几乎遇不到：同一个模型按训练分布随机抽增益时是 93.9%。真机上的增益误差更可能同向（同型号电机的力矩常数一起偏），改成每个仿真环境一个公共倍数 ×0.8–1.25、再乘各关节 ×0.9–1.1 以后，×0.8 时为 92.6%。HOPE 世界里的 BA 在 ×0.8 时本来就只差约 1 个百分点（99.0%）。</li>
+    </ul>
+    <h3>读数延迟比电机延迟更伤</h3>
+    <p>另一段延迟在感知端：从编码器、IMU 采样到策略拿到本体观测（机身角速度、重力方向、关节角和角速度）。同样晚 20 ms，放在执行端 TLDO15PLA 还有 94.6%，放在读数端只有 90.7%；不加延迟训练的 TLDO15L 读数晚 10 ms 就掉到 88.1%。多出来的几乎都是出底线：策略以为关节还落在后面，打得过猛。训练时也随机加 0–20 ms 读数延迟（TLDO15PLAO），再改成同向的增益误差（TLDO15PLAG）：</p>
+    <div class="tbl"><table>
+      <thead><tr><th>上台率（两个种子）</th><th class="n">无延迟</th><th class="n">读数 5 + 电机 10 ms</th><th class="n">读数 20 ms</th><th class="n">读数 10 + 电机 20 ms</th><th class="n">电机 40 ms</th><th class="n">增益 ×0.8</th></tr></thead>
+      <tbody>
+        <tr><td>TLDO15PLA（只加电机延迟）</td><td class="n">95.3 / 94.8%</td><td class="n">95.7 / 95.7%</td><td class="n">90.7 / 91.8%</td><td class="n">91.4 / 91.5%</td><td class="n">87.3 / 87.8%</td><td class="n">91.0 / 91.0%</td></tr>
+        <tr><td>TLDO15PLAO（+ 读数延迟）</td><td class="n">93.5 / 93.1%</td><td class="n">95.7 / 95.0%</td><td class="n">94.4 / 94.3%</td><td class="n">94.5 / 94.1%</td><td class="n">93.1 / 92.1%</td><td class="n">88.1 / 85.2%</td></tr>
+        <tr class="pick"><td><strong>TLDO15PLAG（+ 读数延迟 + 同向增益误差，部署候选）</strong></td><td class="n">94.2 / 93.8%</td><td class="n">95.5 / 95.6%</td><td class="n"><strong>94.5 / 94.1%</strong></td><td class="n"><strong>94.2 / 94.3%</strong></td><td class="n">92.7 / 92.2%</td><td class="n"><strong>92.6 / 91.3%</strong></td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><strong>只看当前一帧的策略分不出延迟有多大</strong>，只能按训练范围的平均来补。所以完全没有延迟时，加了读数延迟训练的模型反而低 1–2 个百分点（拍速不足、下网）。真机上延迟不会是 0：读数 5 ms + 电机 10 ms 时三者已经一样。</li>
+      <li><strong>TLDO15PLAG 是最稳的一个</strong>：表里各条件下最差 92.6%，TLDO15PLA 最差 87.3%。接口和 TLDO15PLA、TLDO15L 逐字相同，只换模型文件。</li>
+      <li><strong>延迟和增益可以直接测。</strong>机器人吊着或站稳，发一段 20 s 的手臂多频正弦（<code>deploy/actuator_test/</code>），记录目标和关节角；<code>fit_actuator.py</code> 在仿真里按不同延迟和增益回放，找出最像的一组。用已知参数的仿真记录核对过：连杆质量随机 ±10% 时，延迟每次都对，增益最多差一档（0.05–0.1）。测出的是电机延迟和读数延迟之和，读数延迟本身要用时间戳另测。</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="s-5">
+    <h2 id="s-5">交付物</h2>
+    <div class="files">
+      <div><code>deploy/BA_s2_297999/</code><span>现在就能上的模型，训练时加了电机延迟和增益误差：<code>policy.onnx</code> / <code>policy.pt</code> / <code>deploy.yaml</code>，接口和原 290k 逐字相同。不加延迟训练的 B 模型在 <code>deploy/B_s1_outcome_295999/</code>。</span></div>
+      <div><code>deploy/TLDO15PLAG_s1_307998/</code><span>新接口的研究候选，训练时加了电机延迟、读数延迟和同向增益误差：策略、旋转估计器（ONNX，含 v2 <code>spin_online2.onnx</code>）、观测常数 <code>obs_constants.json</code>。接口和 <code>TLDO15PLA_s1_305999</code>、<code>TLDO15L_s1_305999</code> 逐字相同，后两个留作对照。导出结果已和检查点逐项核对。</span></div>
+      <div><code>deploy/actuator_test/</code><span>测真机电机延迟和增益用的手臂激励（<code>excitation.csv</code> / <code>.npz</code>，20 s，50 Hz），配合 <code>ballinloop/fit_actuator.py</code> 拟合，步骤见 <code>deploy/README.md</code>。</span></div>
+      <div><code>deploy/README.md</code><span>部署说明：观测怎么逐项构建、预测器补丁、坐标系、电机延迟怎么测、需要确认的问题。</span></div>
+      <div><code>deploy/predictor_patch/</code><span>预测器补丁（只改 <code>hit_plane_predictor</code>），编译测试程序和对比脚本。在 915 个球上和仿真复现对比：击球点差 2.1 mm 以内，弹地时刻差 3 µs。ROS 节点发布特征这一步还没做。</span></div>
+      <div><code>ballinloop/obs_reference.py</code><span>真机观测构建的参考实现，和训练环境逐项对过（最大差 3e-6）。</span></div>
+      <div><code>ballinloop/RESULTS-TW.md</code><span>全部实验的结果和设置；<code>HOWTO.md</code> 说明怎么复现。</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-6">
+    <h2 id="s-6">需要团队回答的问题</h2>
+    <div class="cols">
+      <div class="panel"><h3>来球</h3><p>真机上的来球是发球机还是人打的？旋转大概多大？如果旋转小，HOPE 规划器本身够用，提升主要来自 B 模型。</p></div>
+      <div class="panel"><h3>站位和坐标系</h3><p>机器人相对球台站在哪里？训练里原地站位在球台近端后 0.5 m、中线上。预测器配置里 <code>landing_point</code> 的 y = −0.279 是有意偏向一侧吗？</p></div>
+      <div class="panel"><h3>预测器常数</h3><p>重力 9.794 × 62/63 ≈ 9.64 的来历。另外 <code>table_z</code> 被当作反弹时的球心高度，少了一个球半径（约 2 ms 的偏差，顺手可改）。</p></div>
+      <div class="panel"><h3>感知</h3><p>实际的动捕噪声；从动捕采样到策略拿到观测的总延迟；从编码器、IMU 采样到策略拿到本体观测的延迟。</p></div>
+      <div class="panel"><h3>电机</h3><p>真机上现在跑的是 290k 还是 <code>deploy_robust</code> 的模型？关节目标从策略到电机出力的实际延迟和跟踪增益，有没有测过？没测过的话，用 <code>deploy/actuator_test/</code> 测一次只要几分钟。</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-7">
+    <h2 id="s-7">局限</h2>
+    <ul>
+      <li>所有数字都来自仿真。胶皮、马格努斯、台面参数取自文献，没有在 A3 上辨识过；为此做了参数扫描和随机化，但真机上的绝对数字一定会不同，只能看相对好坏。</li>
+      <li>接触按刚体平板计算。电机延迟、读数延迟和增益误差做了随机化（第五节）；关节摩擦、力矩饱和、拍子振动等只在 IsaacLab 本身的范围内。测量工具测出的是电机延迟和读数延迟之和，两段各占多少要靠时间戳确定；它也不辨识连杆质量，只报告重力下垂和模型的差别。</li>
+      <li>两拍之间“没有预测”的等待，训练里最长约 0.5 s。真机上等待更久时，策略能否稳稳保持准备姿态，需要先在真机上确认。</li>
+    </ul>
+  </section>
+</main>
+
+<script>
+(function () {
+  // Realistic-perception ladder (section 3). kind: "" normal, "ref" upper bound / comparison, "pick" deploy candidate.
+  var LO = 70, HI = 100;
+  var rows = [
+    ["对照：B 模型配 HOPE，真实时间线（现在就能上的接口）", 75.1, "ref"],
+    ["a. 挥拍开始就知道真实击球点，理想特征（以前的设定）", 92.9, ""],
+    ["b. 真实预测时间线，理想特征", 91.3, ""],
+    ["c. + 真机算得出的特征", 88.1, ""],
+    ["d. + 在线旋转估计", 93.7, ""],
+    ["e. + min_fit_points = 15", 94.5, ""],
+    ["f. + 在时间线上训练，随机感知延迟（TLDO15L）", 94.7, ""],
+    ["g. + 旋转估计 v2：加上弹地前的来球飞行", 95.5, ""],
+    ["h. + 训练时随机电机延迟（TLDO15PLA）", 95.3, ""],
+    ["i. + 读数延迟、同向的增益误差（TLDO15PLAG，部署候选）", 94.2, "pick"],
+    ["上界：时间线（31 点），看到真实旋转，不重新训练", 95.3, "ref"]
+  ];
+  var box = document.getElementById("ladder");
+  rows.forEach(function (r) {
+    var row = document.createElement("div"); row.className = "bar-row";
+    var lab = document.createElement("div"); lab.className = "lab"; lab.textContent = r[0];
+    var track = document.createElement("div"); track.className = "bar-track";
+    var bar = document.createElement("div"); bar.className = "bar" + (r[2] ? " " + r[2] : "");
+    bar.style.width = (100 * (r[1] - LO) / (HI - LO) * 0.86) + "%";
+    var v = document.createElement("span"); v.textContent = r[1].toFixed(1) + "%";
+    bar.appendChild(v); track.appendChild(bar); row.appendChild(lab); row.appendChild(track); box.appendChild(row);
+  });
+  var ticks = document.getElementById("ladder-ticks");
+  [70, 80, 90, 100].forEach(function (t) {
+    var s = document.createElement("span"); s.textContent = t + "%";
+    s.style.left = (100 * (t - LO) / (HI - LO) * 0.86) + "%"; ticks.appendChild(s);
+  });
+
+  // Motor delay (section 5): return-on-table vs joint-target delay.
+  (function () {
+    var svg = document.getElementById("delay"), NS = "http://www.w3.org/2000/svg";
+    var X0 = 64, X1 = 515, Y0 = 262, Y1 = 18, YLO = 20, YHI = 100;
+    function x(d) { return X0 + (X1 - X0) * d / 40; }
+    function y(v) { return Y0 - (Y0 - Y1) * (v - YLO) / (YHI - YLO); }
+    function el(name, attrs, text) {
+      var e = document.createElementNS(NS, name);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      if (text != null) e.textContent = text;
+      svg.appendChild(e); return e;
+    }
+    [20, 40, 60, 80, 100].forEach(function (v) {
+      el("line", { x1: X0, x2: X1, y1: y(v), y2: y(v), "class": "grid" });
+      el("text", { x: X0 - 10, y: y(v) + 4, "text-anchor": "end", "class": "mono" }, v + "%");
+    });
+    [0, 10, 20, 30, 40].forEach(function (d) {
+      el("text", { x: x(d), y: Y0 + 20, "text-anchor": "middle", "class": "mono" }, d + " ms");
+    });
+    el("line", { x1: X0, x2: X1, y1: Y0, y2: Y0, "class": "axis" });
+    var series = [
+      { k: "old", label: "不加电机延迟训练", pts: [[0, 95.5], [5, 95.0], [10, 91.8], [20, 73.5], [40, 30.8]] },
+      { k: "pla", label: "随机 0–40 ms 训练", pts: [[0, 95.3], [10, 96.2], [20, 94.6], [30, 93.2], [40, 87.3]] },
+      { k: "pick", label: "+ 读数延迟、同向增益", pts: [[0, 94.2], [10, 95.7], [20, 94.6], [30, 94.6], [40, 92.7]] }
+    ];
+    series.forEach(function (s) {
+      el("polyline", { points: s.pts.map(function (p) { return x(p[0]) + "," + y(p[1]); }).join(" "), "class": "ln " + s.k });
+      s.pts.forEach(function (p) { el("circle", { cx: x(p[0]), cy: y(p[1]), r: 3.5, "class": "pt " + s.k }); });
+      var last = s.pts[s.pts.length - 1];
+      el("text", { x: x(last[0]) + 12, y: y(last[1]) + 4, "font-size": 13 }, s.label + " " + last[1].toFixed(1) + "%");
+    });
+  })();
+
+  // Predictor timeline (section 3): seconds before the strike, left = earlier.
+  var svg = document.getElementById("timeline"), NS = "http://www.w3.org/2000/svg";
+  var X0 = 210, X1 = 700, T0 = 0.9;
+  function x(t) { return X0 + (X1 - X0) * (T0 - t) / T0; }
+  function el(name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    svg.appendChild(e); return e;
+  }
+  var axisY = 196;
+  [0.8, 0.6, 0.4, 0.2, 0].forEach(function (t) {
+    el("line", { x1: x(t), x2: x(t), y1: 18, y2: axisY, "class": "grid" });
+    el("text", { x: x(t), y: axisY + 18, "text-anchor": "middle", "class": "mono" }, t === 0 ? "击球" : t.toFixed(1) + " s");
+  });
+  el("line", { x1: X0, x2: X1, y1: axisY, y2: axisY, "class": "axis" });
+  el("text", { x: X0 - 12, y: axisY + 18, "text-anchor": "end", "class": "mono" }, "距击球");
+  var lanes = [
+    { y: 38, label: "挥拍开始", tick: 0.86 },
+    { y: 78, label: "第一个预测到达", lo: 0.4, mid: 0.6, hi: 0.8 },
+    { y: 118, label: "弹地后的预测（31 点）", lo: 0.06, mid: 0.20, hi: 0.34 },
+    { y: 158, label: "弹地后的预测（15 点）", lo: 0.10, mid: 0.24, hi: 0.38, alt: true }
+  ];
+  lanes.forEach(function (l) {
+    el("text", { x: 0, y: l.y + 5, "font-size": 13 }, l.label);
+    if (l.tick != null) {
+      el("line", { x1: x(l.tick), x2: x(l.tick), y1: l.y - 10, y2: l.y + 10, "class": "tick" });
+      el("text", { x: x(l.tick) + 8, y: l.y + 4, "class": "mono" }, "0.86 s");
+      return;
+    }
+    el("line", { x1: x(l.hi), x2: x(l.lo), y1: l.y, y2: l.y, "class": "range" + (l.alt ? " alt" : "") });
+    el("circle", { cx: x(l.mid), cy: l.y, r: 5.5, "class": "dot" + (l.alt ? " alt" : "") });
+    el("text", { x: x(l.lo) + 10, y: l.y + 4, "class": "mono" }, l.hi.toFixed(2) + "–" + l.lo.toFixed(2) + " s");
+  });
+})();
+</script>
+
+</html>
