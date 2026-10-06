@@ -1,0 +1,78 @@
+{% comment %}
+  A self-contained HTML article (page.embed) shown under the site navbar and above the footer. The frame takes the
+  article's full height so the window scrolls as on any other page; in-page links scroll the window, other links open
+  in the top window, and the site's light/dark setting is passed into the article.
+{% endcomment %}
+{% assign document_language = page.lang | default: site.lang %}
+<!doctype html>
+<html lang="{{ document_language }}">
+  <head>
+    {% include head.liquid %}
+    <style>
+      .embed-frame {
+        display: block;
+        width: 100%;
+        min-height: 100vh;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %}">
+    {% include header.liquid %}
+
+    <div role="main">
+      <iframe id="embed-frame" class="embed-frame" src="{{ page.embed | relative_url }}" title="{{ page.title }}"></iframe>
+      <noscript><p class="container"><a href="{{ page.embed | relative_url }}">{{ page.title }}</a></p></noscript>
+    </div>
+
+    {% include footer.liquid %}
+    {% include scripts.liquid %}
+    <script>
+      (() => {
+        const frame = document.getElementById("embed-frame");
+        const navOffset = () => (document.getElementById("navbar") || {}).offsetHeight || 0;
+        const fit = (doc) => {
+          frame.style.height = doc.documentElement.scrollHeight + "px";
+        };
+        const scrollToId = (doc, id, smooth) => {
+          const el = id && doc.getElementById(decodeURIComponent(id));
+          if (!el) return false;
+          const y = frame.getBoundingClientRect().top + el.getBoundingClientRect().top + window.scrollY - navOffset() - 12;
+          window.scrollTo({ top: y, behavior: smooth ? "smooth" : "auto" });
+          return true;
+        };
+        const syncTheme = (doc) => {
+          const t = document.documentElement.getAttribute("data-theme");
+          if (t) doc.documentElement.setAttribute("data-theme", t);
+        };
+        frame.addEventListener("load", () => {
+          let doc;
+          try {
+            doc = frame.contentDocument;
+          } catch (e) {
+            return;
+          }
+          if (!doc) return;
+          syncTheme(doc);
+          new MutationObserver(() => syncTheme(doc)).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+          fit(doc);
+          new ResizeObserver(() => fit(doc)).observe(doc.body);
+          doc.addEventListener("click", (ev) => {
+            const a = ev.target.closest && ev.target.closest("a[href]");
+            if (!a) return;
+            const href = a.getAttribute("href");
+            if (href.startsWith("#")) {
+              if (scrollToId(doc, href.slice(1), true)) {
+                ev.preventDefault();
+                history.replaceState(null, "", href);
+              }
+            } else if (!a.target) {
+              a.target = "_top";
+            }
+          });
+          if (location.hash) setTimeout(() => scrollToId(doc, location.hash.slice(1), false), 50);
+        });
+      })();
+    </script>
+  </body>
+</html>
