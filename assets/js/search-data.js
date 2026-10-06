@@ -34,7 +34,7 @@ ninja.data = [{
         
           title: "Qwen3.8-27B on One RTX 4090",
         
-        description: "245 tokens per second on the official weights, 322 with better ones, against 200 for vLLM and 98 for llama.cpp on the same card: batch-1 speculative decoding with interactive figures from real traces.",
+        description: "245 tokens per second on the official weights, 322 with better ones, against 200 for vLLM and 102 for llama.cpp on the same card: batch-1 speculative decoding with interactive figures from real traces.",
         section: "Posts",
         handler: () => {
           
