@@ -38,7 +38,7 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/assets/html/qwen38-4090-decode.html";
+            window.location.href = "/blog/2026/qwen38-4090-decode/";
           
         },
       },{id: "post-make-sand-think",
