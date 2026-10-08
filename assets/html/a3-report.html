@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<style>body{margin:0}</style>
 <title>A3 乒乓回球研究</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -187,20 +186,127 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
 
 <main>
   <header class="top">
-    <div class="eyebrow">A3 人形机器人乒乓球 · 仿真研究 · 第一阶段汇报</div>
+    <div class="eyebrow">A3 人形机器人乒乓球 · 仿真研究 · 阶段汇报</div>
     <h1>A3 乒乓回球研究</h1>
-    <p class="lede">这一阶段回答了三个问题：回球为什么上不了台，规划器和落点是不是瓶颈，学习和解析各该管哪一段。现在有两个能上真机的模型：一个接口不变，换文件就能上；另一个要先打预测器补丁，在带旋转、按真实预测时间线的仿真里比现在的接口高约 20 个百分点。前半部分是汇报，后半部分是各项实验的详细结果。</p>
+    <p class="lede">第二阶段把击球空间放大：机器人前后左右移动去击球，击球速度方向放开，训练时随机化电机延迟、读数延迟、增益、力矩上限和转子惯量。最大空间、全部随机化下，击球成功率 80.6%，6000 拍摔倒 1 次，碰桌的挥拍不到 1%。第一阶段回答了回球为什么上不了台、规划器是不是瓶颈、学习和解析各管哪一段，留下两个能上真机的模型。第二阶段在前，第一阶段在后；每段先汇报，详细结果在后半部分。</p>
     <div class="meta">
-      <span>2026-10-07</span>
-      <span>周期 <b>10-03 – 10-05</b></span>
-      <span>训练约 <b>70</b> 次，评测约 <b>700</b> 组</span>
-      <span>全部结果来自仿真，每个数字是 6000 拍的回球上台率</span>
+      <span>2026-10-09</span>
+      <span>周期 <b>10-03 – 10-09</b></span>
+      <span>训练约 <b>90</b> 次，评测约 <b>830</b> 组</span>
+      <span>全部结果来自仿真，每个数字 6000 拍：第一阶段是回球上台率，第二阶段是击球成功率</span>
       <span>代码和模型 <code>8-4090:~/zedong-opus</code></span>
     </div>
   </header>
 
+  <div class="part">
+    <div class="eyebrow">第二阶段 · 更大的击球空间 · 10-07 – 10-09</div>
+    <p>要求：机器人前后左右移动去击球，击球空间比团队 XYMove 大；近台也要打得好、不碰桌；击球速度方向更多样；训练时加力矩、增益、延迟的随机化；不摔倒。最大空间里 80% 就算很高。</p>
+  </div>
+
+  <section aria-labelledby="s-x1">
+    <h2 id="s-x1">一张图看第二阶段</h2>
+    <p>每一行是同一组击球目标、同一个条件下，团队 XYMove-SwingBalanced 299999 和这个阶段的模型的击球成功率。</p>
+    <div class="figure">
+      <div class="legend">
+        <span><i class="sw b"></i>团队 299999</span>
+        <span><i class="sw a"></i>这个阶段的模型（XYNDTHQT_s2 322000）</span>
+      </div>
+      <div class="db" id="db2"></div>
+      <div class="db-scale"><div></div><div class="ticks" id="db2-ticks"></div></div>
+      <div class="caption">击球成功率（%），横轴从 0 开始，每个点 6000 拍，确定性评测。成功沿用团队的判定：击球那一步拍面位置差 5 cm 以内、速度差 0.5 m/s 以内、法向偏差 30° 以内。团队原设定：拍面目标 x 0.20–0.55 m、y −0.70–0.50 m，团队的速度范围。最大空间：x −0.10–0.75 m（球台近端在 0.50 m）、y −1.0–0.8 m，速度 0.5–2.5 m/s，偏角 ±35°、仰角 −20–45°。全部随机化：电机延迟 0–40 ms、读数延迟 0–20 ms、增益 ×0.8–1.25（每个关节再 ×0.9–1.1）、力矩上限 ×0.8–1.0、转子惯量 ×0.8–1.2。</div>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>最大空间</th><th class="n">团队 299999</th><th class="n">这个阶段</th></tr></thead>
+      <tbody>
+        <tr><td>全部随机化：成功率</td><td class="n">12.2%</td><td class="n hi">80.6%</td></tr>
+        <tr><td>全部随机化：摔倒（每 6000 拍）</td><td class="n">758</td><td class="n hi">1</td></tr>
+        <tr><td>全部随机化：碰桌的挥拍</td><td class="n">25.7%</td><td class="n hi">0.6%</td></tr>
+        <tr><td>不加随机化：成功率 / 摔倒 / 碰桌</td><td class="n">60.2% / 384 / 18.9%</td><td class="n">87.6% / 0 / 0.02%</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section aria-labelledby="s-x2">
+    <h2 id="s-x2">怎么做到的</h2>
+    <ul class="findings">
+      <li><div class="k">20 ms<small>奖励晚一步</small></div><div>团队任务先算奖励、后更新指令，奖励用的是新状态和上一步的距击球时间。策略于是学会在观测说“现在击球”之后再晚一个控制步才到目标：拍面位置都对，快拍总是晚。修正后，不加随机化的最大空间只多训练 1000 次迭代就从 69% 到 92.8%。团队现有模型在真机上多半也晚 20 ms 击球。</div></li>
+      <li><div class="k">先大后稳<small>训练顺序</small></div><div>一步到位加全部随机化，课程卡在第 3 档。先不加随机化把空间练到最大，再加随机化，摔倒和碰桌少得多。</div></li>
+      <li><div class="k">+6<small>历史观测</small></div><div>电机延迟策略看不到，只能从关节怎么跟随指令推出来。策略多看最近 6 帧的关节角和动作，评价网络直接看真实的延迟和增益。同起点、同种子对比多 6 个点，电机延迟的代价从 15 个点降到 3 个点。</div></li>
+      <li><div class="k">+7–9<small>探索噪声减半</small></div><div>训练时动作噪声太大，击球精度的梯度很嘈杂。噪声减半，两个种子各多 7 和 9 个点。再减半就探索不够，反而下降。</div></li>
+      <li><div class="k">碰桌 ÷3<small>碰桌惩罚 ×10</small></div><div>碰桌的挥拍减到约三分之一，成功率不变。</div></li>
+      <li><div class="k">没用<small>试过的其他做法</small></div><div>各组执行器共用一个延迟（更像真机）训练，没有更好；把延迟范围收窄到 10–30 ms，只在收窄的范围内更好。</div></li>
+    </ul>
+    <div class="figure">
+      <div class="bars" id="xy-ladder"></div>
+      <div class="scale"><div></div><div class="ticks" id="xy-ladder-ticks"></div></div>
+      <div class="caption">最大空间、全部随机化下的击球成功率，每一步在上一步之上。虚线框是对照，橙色是部署候选。每一步也多训练了一些迭代，同起点、同迭代数的对比见第六节。</div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-x3">
+    <h2 id="s-x3">还弱在哪里：长延迟和增益整体偏软</h2>
+    <p>部署候选在最大空间、其余随机化照旧时，把电机延迟固定在一个值（所有执行器组相同），或把所有关节增益同时放大缩小：</p>
+    <div class="tbl"><table>
+      <thead><tr><th>条件</th><th class="n">成功率</th><th class="n">摔倒 / 6000 拍</th></tr></thead>
+      <tbody>
+        <tr><td>电机延迟 0 ms</td><td class="n">84.4%</td><td class="n">0</td></tr>
+        <tr><td>电机延迟 10 ms</td><td class="n">87.2%</td><td class="n">0</td></tr>
+        <tr><td>电机延迟 20 ms</td><td class="n">84.5%</td><td class="n">2</td></tr>
+        <tr><td>电机延迟 30 ms</td><td class="n">76.6%</td><td class="n">6</td></tr>
+        <tr><td>电机延迟 40 ms</td><td class="n">58.7%</td><td class="n">32</td></tr>
+        <tr><td>所有关节增益 ×0.8，不加其他随机化</td><td class="n">78.2%</td><td class="n">2</td></tr>
+        <tr><td>所有关节增益 ×1.25，不加其他随机化</td><td class="n">87.3%</td><td class="n">0</td></tr>
+      </tbody>
+    </table></div>
+    <p>训练时每组执行器各抽各的延迟，所有组同时到 40 ms 很少见到，所以这一档掉得最多。真机的延迟和增益测出来之后（第一阶段的激励工具可以直接用），按实测范围再微调一次即可。</p>
+  </section>
+
+  <section aria-labelledby="s-x4">
+    <h2 id="s-x4">第二阶段交付物</h2>
+    <div class="models">
+      <div class="model">
+        <div class="tag">团队 XYMove 接口，加两项观测</div>
+        <div class="path">deploy/XYNDTHQT_s2_322000</div>
+        <div class="nums"><span>最大空间、全部随机化 <b>80.6%</b></span><span>团队原设定 <b>98.0%</b></span></div>
+        <p>动作、PD、默认关节角、motion 文件和团队 XYMove 相同。观测在团队的 104 维后面加了两项：基座相对原地站位的 xy（2 维），以及最近 6 帧的关节角和动作（各 6 × 29 维，旧的在前，含当前帧，重置后用当前值填满），共 454 维。导出的 <code>policy.onnx</code> / <code>policy.pt</code> 已和检查点核对。</p>
+      </div>
+    </div>
+    <ul>
+      <li><strong>击球时机。</strong>这个模型在 <code>time_to_strike</code> 到 0 的那一步击球，团队模型会晚一步。真机流程里如果为团队模型做过时间补偿，换模型时要去掉。</li>
+      <li><strong>基座位置。</strong>需要动捕或里程计给出基座相对原地站位的位置（球台近端在前方 0.50 m）。团队的 <code>active_station_error_xy</code> 本来也要用到它。</li>
+      <li><strong>站位规则不变。</strong>正反手、x 方向的基座补偿和团队 XYMove 一致（固定区 x 0.30–0.40 m、y −0.60–0.30 m），只是目标可以出现在更大的范围里。</li>
+    </ul>
+    <div class="files">
+      <div><code>xyspace/</code><span>任务（<code>ZO-A3-XYSpace</code>、<code>ZO-A3-XYSpace-H</code>）、训练和评测脚本；<code>README.md</code> 里有每个实验的设置和全部数字。</span></div>
+      <div><code>xyspace/final_eval.sh</code><span>一个存档的全套评测：团队原设定、固定电机延迟 0–40 ms、各项随机化、增益整体偏软偏硬。</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-x5">
+    <h2 id="s-x5">要告诉团队的</h2>
+    <div class="cols">
+      <div class="panel"><h3>奖励晚一步</h3><p>IsaacLab 每步先算奖励，再更新指令。团队的奖励于是拿新状态配上一步的 <code>time_to_strike</code>，策略学会晚一个控制步击球。修正方法：在奖励阶段把距击球时间先减一个步长（<code>xyspace/xy_tasks.py</code> 的 <code>XY_FIX_TIMING</code>）。</p></div>
+      <div class="panel"><h3>部署配置的默认关节角</h3><p>团队 XYMove 部署件的 <code>deploy.yaml</code> 里，默认关节角带着 0 号环境的标定随机偏移（±0.01 rad，左右不对称）。在训练分布之内，影响很小，但应该用标称值。</p></div>
+      <div class="panel"><h3>成功率怎么看</h3><p>TensorBoard 里的击球成功率带着探索噪声，比确定性评测低约 20 个点（团队 65k：49% 对 77%）。挑模型要用确定性评测。</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s-x6">
+    <h2 id="s-x6">第二阶段下一步</h2>
+    <ol class="todo">
+      <li><div><strong>测真机电机延迟和增益</strong>（<code>deploy/actuator_test/</code>，几分钟）。延迟超过 30 ms 或增益整体偏软时，按实测范围微调。</div></li>
+      <li><div><strong>真机上逐步放大空间</strong>：先固定区，再前后、左右，最后台面上方；记录有没有碰桌、摔倒，以及击球时机和拍面误差。</div></li>
+      <li><div><strong>仿真接着做</strong>：最快的一档速度（2–2.5 m/s）和台面上方的目标最弱；长延迟和增益整体偏软时掉得多。训练还在继续，选出更好的存档就更新这里。</div></li>
+    </ol>
+  </section>
+
+  <div class="part">
+    <div class="eyebrow">第一阶段 · 回球上台 · 10-03 – 10-05</div>
+    <p>下面是第一阶段的汇报和详细结果，第六节是第二阶段的详细结果。</p>
+  </div>
+
   <section aria-labelledby="s-chart">
-    <h2 id="s-chart">一张图看这个阶段</h2>
+    <h2 id="s-chart">一张图看第一阶段</h2>
     <p>纵向从上到下，仿真越来越接近真机。每一行都是同一批来球、同一个条件下，之前的模型和这个阶段的模型的回球上台率。</p>
     <div class="figure">
       <div class="legend">
@@ -319,7 +425,7 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
 
   <div class="part">
     <div class="eyebrow">详细结果</div>
-    <p>下面五节是上面结论背后的实验、表格和设置。</p>
+    <p>一至五节是第一阶段结论背后的实验、表格和设置，第六节是第二阶段的对照实验。</p>
   </div>
 
   <section aria-labelledby="s-1">
@@ -488,11 +594,61 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     </ul>
   </section>
 
+  <section aria-labelledby="s-x7">
+    <h2 id="s-x7">六、更大击球空间：对照实验</h2>
+    <p>任务 <code>ZO-A3-XYSpace</code> 继承团队 XYMove-SwingBalanced：课程在团队的 4 档之外再放大 3 档；场景里加了球台碰撞体，碰桌和摔倒都有惩罚；速度目标按速度、偏角、仰角抽，拍面法向跟着速度方向；策略多看基座相对球台的位置。每一行都是同一个起点、同一个种子、同样多的迭代，只差这一项改动。</p>
+    <div class="tbl"><table>
+      <thead><tr><th>改动</th><th>对照 → 改后</th><th class="n">全部随机化</th><th class="n">不加随机化</th></tr></thead>
+      <tbody>
+        <tr><td>奖励时序修正（不加随机化训练）</td><td>XYN → XYNT</td><td class="n">—</td><td class="n">69 → 92.8%</td></tr>
+        <tr><td>奖励时序修正（加随机化训练）</td><td>XYND → XYNDT</td><td class="n">41.8 → 51.3%</td><td class="n">58.2 → 58.3%</td></tr>
+        <tr><td>历史观测、特权评价网络</td><td>XYNDT → XYNDTH</td><td class="n">60.7 → 66.8%</td><td class="n">68.1 → 73.2%</td></tr>
+        <tr><td>探索噪声减半，种子 3</td><td>XYNDTH → XYNDTHQ</td><td class="n">71.9 → 78.4%</td><td class="n">80.0 → 84.5%</td></tr>
+        <tr><td>探索噪声减半，种子 2</td><td>XYNDTH → XYNDTHQ</td><td class="n">66.8 → 75.8%</td><td class="n">76.1 → 84.3%</td></tr>
+        <tr><td>噪声再减半，不要熵奖励</td><td>XYNDTHQ → XYNDTHQQ</td><td class="n">80.2 → 77.9%</td><td class="n">87.7 → 85.2%</td></tr>
+        <tr><td>碰桌惩罚 ×10（碰桌 1.6 → 0.6%）</td><td>XYNDTHQ → XYNDTHQT</td><td class="n">80.2 → 79.6%</td><td class="n">85.6 → 87.0%</td></tr>
+        <tr><td>各组执行器共用一个延迟</td><td>XYNDTH → XYNDTHC</td><td class="n">71.5 → 69.0%</td><td class="n">78.0 → 77.0%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="caption">两处例外：第一行的 69% 是 XYN 训练结束时的数字，XYNT 在它之上多训练了 1000 次迭代；XYND 的起点比 XYNDT 早 2000 次迭代。延迟收窄到 10–30 ms 训练（XYNDTN）：在自己的范围内 69.3%，在 0–40 ms 下 60.9%，同时期的 XYNDT 是 60.7%。</p>
+
+    <h3>随机化的代价：只加其中一项</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>只加这一项</th><th class="n">XYA（一步到位）</th><th class="n">XYNDTH</th><th class="n">部署候选</th></tr></thead>
+      <tbody>
+        <tr><td>不加</td><td class="n">56.3%</td><td class="n">78.0%</td><td class="n">87.6%</td></tr>
+        <tr><td>电机延迟 0–40 ms</td><td class="n">40.9%</td><td class="n">75.3%</td><td class="n">85.0%</td></tr>
+        <tr><td>读数延迟 0–20 ms</td><td class="n">66.7%</td><td class="n">80.0%</td><td class="n">87.0%</td></tr>
+        <tr><td>增益</td><td class="n">55.0%</td><td class="n">74.4%</td><td class="n">84.4%</td></tr>
+        <tr><td>力矩上限</td><td class="n">57.8%</td><td class="n">78.4%</td><td class="n">88.4%</td></tr>
+        <tr><td>转子惯量</td><td class="n">58.3%</td><td class="n">78.3%</td><td class="n">87.4%</td></tr>
+        <tr><td>全部</td><td class="n">约 43%</td><td class="n">71.5%</td><td class="n">80.6%</td></tr>
+      </tbody>
+    </table></div>
+    <p>没有历史观测时，代价几乎全在电机延迟。加了历史观测，电机延迟和增益各掉 3 个点左右，读数延迟、力矩上限和转子惯量几乎没有代价。</p>
+
+    <h3>分区域</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>击球目标</th><th class="n">团队 299999<br>不加随机化</th><th class="n">部署候选<br>不加随机化</th><th class="n">部署候选<br>全部随机化</th><th class="n">碰桌<br>全部随机化</th></tr></thead>
+      <tbody>
+        <tr><td>向后：x &lt; 0.30 m</td><td class="n">61.2%</td><td class="n">87.1%</td><td class="n">79.0%</td><td class="n">0.1%</td></tr>
+        <tr><td>固定区：x 0.30–0.40 m</td><td class="n">70.3%</td><td class="n">95.2%</td><td class="n">90.9%</td><td class="n">0.3%</td></tr>
+        <tr><td>向前：x 0.40–0.50 m</td><td class="n">64.9%</td><td class="n">92.2%</td><td class="n">89.3%</td><td class="n">0.2%</td></tr>
+        <tr><td>台面上方：x ≥ 0.50 m</td><td class="n">57.6%</td><td class="n">83.5%</td><td class="n">75.5%</td><td class="n">1.7%</td></tr>
+        <tr><td>正手外侧：y &lt; −0.60 m</td><td class="n">64.5%</td><td class="n">87.1%</td><td class="n">81.0%</td><td class="n">0.5%</td></tr>
+        <tr><td>中间：y −0.60–0.30 m</td><td class="n">63.8%</td><td class="n">88.7%</td><td class="n">81.3%</td><td class="n">0.5%</td></tr>
+        <tr><td>反手外侧：y &gt; 0.30 m</td><td class="n">54.1%</td><td class="n">86.0%</td><td class="n">78.5%</td><td class="n">1.0%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="caption">按击到的拍计，不含击球前摔倒的。全部随机化下按拍速分：0.5–1.0 m/s 81.5%，1.0–1.5 m/s 83.4%，1.5–2.0 m/s 80.5%，2.0–2.5 m/s 77.1%。</p>
+  </section>
+
   <section aria-labelledby="s-7">
     <h2 id="s-7">局限</h2>
     <ul>
       <li>所有数字都来自仿真。胶皮、马格努斯、台面参数取自文献，没有在 A3 上辨识过；为此做了参数扫描和随机化，但真机上的绝对数字一定会不同，只能看相对好坏。</li>
       <li>接触按刚体平板计算。电机延迟、读数延迟和增益误差做了随机化（第五节）；关节摩擦、力矩饱和、拍子振动等只在 IsaacLab 本身的范围内。测量工具测出的是电机延迟和读数延迟之和，两段各占多少要靠时间戳确定；它也不辨识连杆质量，只报告重力下垂和模型的差别。</li>
+      <li>第二阶段的成功沿用团队的击球判定（拍面位置、速度、法向），没有模拟球，也没有回球上台率；击球目标在空间里均匀抽，真实来球的分布会不同。</li>
       <li>两拍之间“没有预测”的等待，训练里最长约 0.5 s。真机上等待更久时，策略能否稳稳保持准备姿态，需要先在真机上确认。</li>
     </ul>
   </section>
@@ -631,6 +787,68 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     el("line", { x1: x(l.hi), x2: x(l.lo), y1: l.y, y2: l.y, "class": "range" + (l.alt ? " alt" : "") });
     el("circle", { cx: x(l.mid), cy: l.y, r: 5.5, "class": "dot" + (l.alt ? " alt" : "") });
     el("text", { x: x(l.lo) + 10, y: l.y + 4, "class": "mono" }, l.hi.toFixed(2) + "–" + l.lo.toFixed(2) + " s");
+  });
+})();
+
+(function () {
+  // Stage 2 before → after chart: team 299999 vs this stage's model, strike success (%), axis from 0.
+  var LO = 0, HI = 100, SPAN = 86;
+  function pos(v) { return SPAN * (v - LO) / (HI - LO); }
+  var rows = [
+    { cond: "团队原设定", who: "原空间、原速度范围", b: 79.6, a: 98.0 },
+    { cond: "团队原设定，全部随机化", who: "电机和读数延迟、增益、力矩、惯量", b: 18.9, a: 95.6 },
+    { cond: "最大空间，速度方向放开", who: "前后左右移动，含台面上方", b: 60.2, a: 87.6 },
+    { cond: "最大空间，全部随机化", who: "这个阶段的目标条件", b: 12.2, a: 80.6 }
+  ];
+  var box = document.getElementById("db2");
+  function div(cls, parent) { var d = document.createElement("div"); if (cls) d.className = cls; parent.appendChild(d); return d; }
+  rows.forEach(function (r) {
+    var row = div("db-row", box);
+    var lab = div("db-lab", row);
+    var b = document.createElement("b"); b.textContent = r.cond; lab.appendChild(b);
+    var s = document.createElement("small"); s.textContent = r.who; lab.appendChild(s);
+    var tr = div("db-track", row);
+    [0, 20, 40, 60, 80, 100].forEach(function (t) { div("g", tr).style.left = pos(t) + "%"; });
+    var link = div("link", tr);
+    link.style.left = pos(r.b) + "%"; link.style.width = (pos(r.a) - pos(r.b)) + "%";
+    div("dot b", tr).style.left = pos(r.b) + "%";
+    div("dot a", tr).style.left = pos(r.a) + "%";
+    var vb = div("v b", tr); vb.style.left = pos(r.b) + "%"; vb.textContent = r.b.toFixed(1);
+    var va = div("v a", tr); va.style.left = pos(r.a) + "%"; va.textContent = r.a.toFixed(1);
+    row.setAttribute("aria-label", r.cond + "：团队 299999 " + r.b + "%，这个阶段 " + r.a + "%");
+  });
+  var ticks = document.getElementById("db2-ticks");
+  [0, 20, 40, 60, 80, 100].forEach(function (t) {
+    var sp = document.createElement("span"); sp.textContent = t + "%"; sp.style.left = pos(t) + "%"; ticks.appendChild(sp);
+  });
+})();
+
+(function () {
+  // Stage 2 ladder: largest space, full randomization. kind: "" step, "ref" comparison, "pick" deploy candidate.
+  var LO = 0, HI = 100;
+  var rows = [
+    ["团队 299999", 12.2, "ref"],
+    ["先不加随机化练大空间，再加随机化（XYND）", 41.8, ""],
+    ["+ 奖励时序修正（XYNDT）", 63.2, ""],
+    ["+ 历史观测、特权评价网络（XYNDTH）", 71.5, ""],
+    ["+ 探索噪声减半（XYNDTHQ）", 80.2, ""],
+    ["+ 碰桌惩罚 ×10（XYNDTHQT，部署候选）", 80.6, "pick"],
+    ["对照：部署候选不加随机化", 87.6, "ref"]
+  ];
+  var box = document.getElementById("xy-ladder");
+  rows.forEach(function (r) {
+    var row = document.createElement("div"); row.className = "bar-row";
+    var lab = document.createElement("div"); lab.className = "lab"; lab.textContent = r[0];
+    var track = document.createElement("div"); track.className = "bar-track";
+    var bar = document.createElement("div"); bar.className = "bar" + (r[2] ? " " + r[2] : "");
+    bar.style.width = (100 * (r[1] - LO) / (HI - LO) * 0.86) + "%";
+    var v = document.createElement("span"); v.textContent = r[1].toFixed(1) + "%";
+    bar.appendChild(v); track.appendChild(bar); row.appendChild(lab); row.appendChild(track); box.appendChild(row);
+  });
+  var ticks = document.getElementById("xy-ladder-ticks");
+  [0, 20, 40, 60, 80, 100].forEach(function (t) {
+    var s = document.createElement("span"); s.textContent = t + "%";
+    s.style.left = (100 * (t - LO) / (HI - LO) * 0.86) + "%"; ticks.appendChild(s);
   });
 })();
 </script>
