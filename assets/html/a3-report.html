@@ -622,6 +622,19 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     </table></div>
     <p class="caption">三处例外：第一行的 69% 是 XYN 训练结束时的数字，XYNT 在它之上多训练了 1000 次迭代；XYND 的起点比 XYNDT 早 2000 次迭代；最后一行两边都训练到约 34 万次迭代，XYNDTHQTBLLR 前 2000 次没加补弱点随机化，后 2000 次每次 96 步。延迟收窄到 10–30 ms 训练（XYNDTN）：在自己的范围内 69.3%，在 0–40 ms 下 60.9%，同时期的 XYNDT 是 60.7%。共用延迟和放宽增益范围的两组，电机延迟 40 ms 时 62.4 → 65.1%、67.2 → 69.4%，增益整体 ×0.8 时 79.5 → 82.3%、83.6 → 85.2%。</p>
 
+    <h3>换种子复现</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>最大空间</th><th class="n">种子 2<br>322000 → 339999</th><th class="n">种子 3<br>327999 → 331998</th></tr></thead>
+      <tbody>
+        <tr><td>全部随机化</td><td class="n">80.6 → 89.8%</td><td class="n">80.6 → 87.7%</td></tr>
+        <tr><td>不加随机化</td><td class="n">87.6 → 93.6%</td><td class="n">87.3 → 92.7%</td></tr>
+        <tr><td>电机延迟 40 ms</td><td class="n">58.7 → 75.7%</td><td class="n">62.7 → 73.8%</td></tr>
+        <tr><td>所有关节增益 ×0.8</td><td class="n">78.2 → 89.3%</td><td class="n">77.9 → 87.5%</td></tr>
+        <tr><td>团队原设定，全部随机化</td><td class="n">95.6 → 98.1%</td><td class="n">96.0 → 97.7%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="caption">起点都是 XYNDTHQT（4096 环境 × 24 步）。种子 2 依次加 8192 环境、48 步、补弱点随机化，共约 18000 次迭代；种子 3 一次全加上，只训练 4000 次迭代。大批量带来的提升在另一个种子上同样出现，弱点项也一起变好。</p>
+
     <h3>随机化的代价：只加其中一项</h3>
     <div class="tbl"><table>
       <thead><tr><th>只加这一项</th><th class="n">XYA（一步到位）</th><th class="n">XYNDTH</th><th class="n">部署候选</th></tr></thead>
