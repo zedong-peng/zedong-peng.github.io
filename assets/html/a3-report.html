@@ -189,11 +189,11 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
   <header class="top">
     <div class="eyebrow">A3 人形机器人乒乓球 · 仿真研究 · 阶段汇报</div>
     <h1>A3 乒乓回球研究</h1>
-    <p class="lede">第二阶段把击球空间放大：机器人前后左右移动去击球，击球速度方向放开，训练时随机化电机延迟、读数延迟、增益、力矩上限和转子惯量。最大空间、全部随机化下，击球成功率 86.4%，6000 拍摔倒 3 次，碰桌的挥拍不到 1%。第一阶段回答了回球为什么上不了台、规划器是不是瓶颈、学习和解析各管哪一段，留下两个能上真机的模型。第二阶段在前，第一阶段在后；每段先汇报，详细结果在后半部分。</p>
+    <p class="lede">第二阶段把击球空间放大：机器人前后左右移动去击球，击球速度方向放开，训练时随机化电机延迟、读数延迟、增益、力矩上限和转子惯量。最大空间、全部随机化下，击球成功率 89.8%，6000 拍没有摔倒，碰桌的挥拍 0.3%。第一阶段回答了回球为什么上不了台、规划器是不是瓶颈、学习和解析各管哪一段，留下两个能上真机的模型。第二阶段在前，第一阶段在后；每段先汇报，详细结果在后半部分。</p>
     <div class="meta">
       <span>2026-10-09</span>
       <span>周期 <b>10-03 – 10-09</b></span>
-      <span>训练约 <b>95</b> 次，评测约 <b>960</b> 组</span>
+      <span>训练约 <b>100</b> 次，评测约 <b>1000</b> 组</span>
       <span>全部结果来自仿真，每个数字 6000 拍：第一阶段是回球上台率，第二阶段是击球成功率</span>
       <span>代码和模型 <code>8-4090:~/zedong-opus</code></span>
     </div>
@@ -210,7 +210,7 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     <div class="figure">
       <div class="legend">
         <span><i class="sw b"></i>团队 299999</span>
-        <span><i class="sw a"></i>这个阶段的模型（XYNDTHQTB_s2 333998）</span>
+        <span><i class="sw a"></i>这个阶段的模型（XYNDTHQTBLR_s2 339999）</span>
       </div>
       <div class="db" id="db2"></div>
       <div class="db-scale"><div></div><div class="ticks" id="db2-ticks"></div></div>
@@ -219,10 +219,10 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     <div class="tbl"><table>
       <thead><tr><th>最大空间</th><th class="n">团队 299999</th><th class="n">这个阶段</th></tr></thead>
       <tbody>
-        <tr><td>全部随机化：成功率</td><td class="n">12.2%</td><td class="n hi">86.4%</td></tr>
-        <tr><td>全部随机化：摔倒（每 6000 拍）</td><td class="n">758</td><td class="n hi">3</td></tr>
-        <tr><td>全部随机化：碰桌的挥拍</td><td class="n">25.7%</td><td class="n hi">0.6%</td></tr>
-        <tr><td>不加随机化：成功率 / 摔倒 / 碰桌</td><td class="n">60.2% / 384 / 18.9%</td><td class="n">91.6% / 0 / 0.07%</td></tr>
+        <tr><td>全部随机化：成功率</td><td class="n">12.2%</td><td class="n hi">89.8%</td></tr>
+        <tr><td>全部随机化：摔倒（每 6000 拍）</td><td class="n">758</td><td class="n hi">0</td></tr>
+        <tr><td>全部随机化：碰桌的挥拍</td><td class="n">25.7%</td><td class="n hi">0.3%</td></tr>
+        <tr><td>不加随机化：成功率 / 摔倒 / 碰桌</td><td class="n">60.2% / 384 / 18.9%</td><td class="n">93.6% / 0 / 0.05%</td></tr>
       </tbody>
     </table></div>
   </section>
@@ -236,7 +236,9 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
       <li><div class="k">+7–9<small>探索噪声减半</small></div><div>训练时动作噪声太大，击球精度的梯度很嘈杂。噪声减半，两个种子各多 7 和 9 个点。再减半就探索不够，反而下降。</div></li>
       <li><div class="k">碰桌 ÷3<small>碰桌惩罚 ×10</small></div><div>碰桌的挥拍减到约三分之一，成功率不变。</div></li>
       <li><div class="k">+4<small>环境数翻倍</small></div><div>并行环境从 4096 加到 8192，每次更新的样本翻倍，梯度更稳。同样多的迭代多 4 个点，每一项评测都更好，长延迟和增益偏软时也是。</div></li>
-      <li><div class="k">没用<small>试过的其他做法</small></div><div>各组执行器共用一个延迟（更像真机）训练，没有更好；把延迟范围收窄到 10–30 ms，只在收窄的范围内更好。一半回合共用延迟、增益范围放宽，平均没变，只在 40 ms 和增益 ×0.8 时各多 3 个点，正在和 8192 个环境一起试。</div></li>
+      <li><div class="k">+3<small>每次更新 48 步</small></div><div>每个环境每次更新采 48 步，原来是 24 步，样本又翻一倍。同样的 24 步再多训练已经不涨，样本量是这一阶段后半段最有效的旋钮。</div></li>
+      <li><div class="k">最坏 +3<small>补最坏情况</small></div><div>一半回合让所有执行器组共用一个延迟，增益整体随机的范围放宽。平均成功率不变，所有组都 40 ms、所有关节增益 ×0.8 这类最坏情况各多约 3 个点，摔倒更少。</div></li>
+      <li><div class="k">没用<small>试过的其他做法</small></div><div>各组执行器共用一个延迟（更像真机）训练，没有更好；把延迟范围收窄到 10–30 ms，只在收窄的范围内更好。</div></li>
     </ul>
     <div class="figure">
       <div class="bars" id="xy-ladder"></div>
@@ -251,13 +253,13 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     <div class="tbl"><table>
       <thead><tr><th>条件</th><th class="n">成功率</th><th class="n">摔倒 / 6000 拍</th></tr></thead>
       <tbody>
-        <tr><td>电机延迟 0 ms</td><td class="n">87.4%</td><td class="n">0</td></tr>
-        <tr><td>电机延迟 10 ms</td><td class="n">90.9%</td><td class="n">0</td></tr>
-        <tr><td>电机延迟 20 ms</td><td class="n">88.7%</td><td class="n">1</td></tr>
-        <tr><td>电机延迟 30 ms</td><td class="n">83.9%</td><td class="n">4</td></tr>
-        <tr><td>电机延迟 40 ms</td><td class="n">67.7%</td><td class="n">14</td></tr>
-        <tr><td>所有关节增益 ×0.8，不加其他随机化</td><td class="n">85.2%</td><td class="n">1</td></tr>
-        <tr><td>所有关节增益 ×1.25，不加其他随机化</td><td class="n">91.6%</td><td class="n">0</td></tr>
+        <tr><td>电机延迟 0 ms</td><td class="n">92.4%</td><td class="n">0</td></tr>
+        <tr><td>电机延迟 10 ms</td><td class="n">93.5%</td><td class="n">0</td></tr>
+        <tr><td>电机延迟 20 ms</td><td class="n">92.0%</td><td class="n">0</td></tr>
+        <tr><td>电机延迟 30 ms</td><td class="n">87.4%</td><td class="n">1</td></tr>
+        <tr><td>电机延迟 40 ms</td><td class="n">75.7%</td><td class="n">7</td></tr>
+        <tr><td>所有关节增益 ×0.8，不加其他随机化</td><td class="n">89.3%</td><td class="n">0</td></tr>
+        <tr><td>所有关节增益 ×1.25，不加其他随机化</td><td class="n">94.8%</td><td class="n">0</td></tr>
       </tbody>
     </table></div>
     <p>训练时每组执行器各抽各的延迟，所有组同时到 40 ms 很少见到，所以这一档掉得最多。真机的延迟和增益测出来之后（第一阶段的激励工具可以直接用），按实测范围再微调一次即可。</p>
@@ -268,9 +270,9 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     <div class="models">
       <div class="model">
         <div class="tag">团队 XYMove 接口，加两项观测</div>
-        <div class="path">deploy/XYNDTHQTB_s2_333998</div>
-        <div class="nums"><span>最大空间、全部随机化 <b>86.4%</b></span><span>团队原设定 <b>98.5%</b></span></div>
-        <p>动作、PD、默认关节角、motion 文件和团队 XYMove 相同。观测在团队的 104 维后面加了两项：基座相对原地站位的 xy（2 维），以及最近 6 帧的关节角和动作（各 6 × 29 维，旧的在前，含当前帧，重置后用当前值填满），共 454 维。导出的 <code>policy.onnx</code> / <code>policy.pt</code> 已和检查点核对。上一版 <code>deploy/XYNDTHQT_s2_322000</code> 接口相同。</p>
+        <div class="path">deploy/XYNDTHQTBLR_s2_339999</div>
+        <div class="nums"><span>最大空间、全部随机化 <b>89.8%</b></span><span>团队原设定 <b>98.8%</b></span></div>
+        <p>动作、PD、默认关节角、motion 文件和团队 XYMove 相同。观测在团队的 104 维后面加了两项：基座相对原地站位的 xy（2 维），以及最近 6 帧的关节角和动作（各 6 × 29 维，旧的在前，含当前帧，重置后用当前值填满），共 454 维。导出的 <code>policy.onnx</code> / <code>policy.pt</code> 已和检查点核对。之前的 <code>deploy/XYNDTHQT_s2_322000</code>、<code>deploy/XYNDTHQTB_s2_333998</code> 接口相同。</p>
       </div>
     </div>
     <ul>
@@ -298,7 +300,7 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     <ol class="todo">
       <li><div><strong>测真机电机延迟和增益</strong>（<code>deploy/actuator_test/</code>，几分钟）。延迟超过 30 ms 或增益整体偏软时，按实测范围微调。</div></li>
       <li><div><strong>真机上逐步放大空间</strong>：先固定区，再前后、左右，最后台面上方；记录有没有碰桌、摔倒，以及击球时机和拍面误差。</div></li>
-      <li><div><strong>仿真接着做</strong>：最快的一档速度（2–2.5 m/s）和台面上方的目标最弱，长延迟时掉得多。在跑：8192 个环境继续训练、每次更新采 48 步、8192 个环境加补弱点的设置，选出更好的存档就更新这里。</div></li>
+      <li><div><strong>仿真接着做</strong>：最快的一档速度（2–2.5 m/s）和台面上方的目标最弱，所有组都晚 40 ms 时掉得多。另一个种子在用同样的配置复现，结果出来后补在第六节。</div></li>
     </ol>
   </section>
 
@@ -612,21 +614,23 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
         <tr><td>各组执行器共用一个延迟</td><td>XYNDTH → XYNDTHC</td><td class="n">71.5 → 69.0%</td><td class="n">78.0 → 77.0%</td></tr>
         <tr><td>并行环境 4096 → 8192</td><td>XYNDTHQT → XYNDTHQTB</td><td class="n">82.7 → 86.4%</td><td class="n">89.1 → 91.6%</td></tr>
         <tr><td>一半回合共用延迟，增益 ×0.7–1.43</td><td>XYNDTHQT → XYNDTHQTR</td><td class="n">82.7 → 82.4%</td><td class="n">89.1 → 87.9%</td></tr>
+        <tr><td>每次更新 24 → 48 步（8192 环境）</td><td>XYNDTHQTB → XYNDTHQTBL</td><td class="n">85.6 → 88.6%</td><td class="n">91.5 → 93.2%</td></tr>
+        <tr><td>同上的共用延迟和增益范围（8192 环境）</td><td>XYNDTHQTB → XYNDTHQTBR</td><td class="n">85.6 → 85.9%</td><td class="n">91.5 → 90.9%</td></tr>
       </tbody>
     </table></div>
-    <p class="caption">两处例外：第一行的 69% 是 XYN 训练结束时的数字，XYNT 在它之上多训练了 1000 次迭代；XYND 的起点比 XYNDT 早 2000 次迭代。延迟收窄到 10–30 ms 训练（XYNDTN）：在自己的范围内 69.3%，在 0–40 ms 下 60.9%，同时期的 XYNDT 是 60.7%。补弱点的 XYNDTHQTR 在电机延迟 40 ms 时 62.4 → 65.1%，增益整体 ×0.8 时 79.5 → 82.3%。</p>
+    <p class="caption">两处例外：第一行的 69% 是 XYN 训练结束时的数字，XYNT 在它之上多训练了 1000 次迭代；XYND 的起点比 XYNDT 早 2000 次迭代。延迟收窄到 10–30 ms 训练（XYNDTN）：在自己的范围内 69.3%，在 0–40 ms 下 60.9%，同时期的 XYNDT 是 60.7%。共用延迟和放宽增益范围的两组，电机延迟 40 ms 时 62.4 → 65.1%、67.2 → 69.4%，增益整体 ×0.8 时 79.5 → 82.3%、83.6 → 85.2%。</p>
 
     <h3>随机化的代价：只加其中一项</h3>
     <div class="tbl"><table>
       <thead><tr><th>只加这一项</th><th class="n">XYA（一步到位）</th><th class="n">XYNDTH</th><th class="n">部署候选</th></tr></thead>
       <tbody>
-        <tr><td>不加</td><td class="n">56.3%</td><td class="n">78.0%</td><td class="n">91.6%</td></tr>
-        <tr><td>电机延迟 0–40 ms</td><td class="n">40.9%</td><td class="n">75.3%</td><td class="n">89.9%</td></tr>
-        <tr><td>读数延迟 0–20 ms</td><td class="n">66.7%</td><td class="n">80.0%</td><td class="n">90.1%</td></tr>
-        <tr><td>增益</td><td class="n">55.0%</td><td class="n">74.4%</td><td class="n">89.6%</td></tr>
-        <tr><td>力矩上限</td><td class="n">57.8%</td><td class="n">78.4%</td><td class="n">92.0%</td></tr>
-        <tr><td>转子惯量</td><td class="n">58.3%</td><td class="n">78.3%</td><td class="n">91.3%</td></tr>
-        <tr><td>全部</td><td class="n">约 43%</td><td class="n">71.5%</td><td class="n">86.4%</td></tr>
+        <tr><td>不加</td><td class="n">56.3%</td><td class="n">78.0%</td><td class="n">93.6%</td></tr>
+        <tr><td>电机延迟 0–40 ms</td><td class="n">40.9%</td><td class="n">75.3%</td><td class="n">91.7%</td></tr>
+        <tr><td>读数延迟 0–20 ms</td><td class="n">66.7%</td><td class="n">80.0%</td><td class="n">94.1%</td></tr>
+        <tr><td>增益</td><td class="n">55.0%</td><td class="n">74.4%</td><td class="n">92.5%</td></tr>
+        <tr><td>力矩上限</td><td class="n">57.8%</td><td class="n">78.4%</td><td class="n">93.7%</td></tr>
+        <tr><td>转子惯量</td><td class="n">58.3%</td><td class="n">78.3%</td><td class="n">93.5%</td></tr>
+        <tr><td>全部</td><td class="n">约 43%</td><td class="n">71.5%</td><td class="n">89.8%</td></tr>
       </tbody>
     </table></div>
     <p>没有历史观测时，代价几乎全在电机延迟。加了历史观测，电机延迟和增益各掉 2–3 个点，读数延迟、力矩上限和转子惯量几乎没有代价。</p>
@@ -635,16 +639,16 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     <div class="tbl"><table>
       <thead><tr><th>击球目标</th><th class="n">团队 299999<br>不加随机化</th><th class="n">部署候选<br>不加随机化</th><th class="n">部署候选<br>全部随机化</th><th class="n">碰桌<br>全部随机化</th></tr></thead>
       <tbody>
-        <tr><td>向后：x &lt; 0.30 m</td><td class="n">61.2%</td><td class="n">89.8%</td><td class="n">85.5%</td><td class="n">0.2%</td></tr>
-        <tr><td>固定区：x 0.30–0.40 m</td><td class="n">70.3%</td><td class="n">97.7%</td><td class="n">94.6%</td><td class="n">0.0%</td></tr>
-        <tr><td>向前：x 0.40–0.50 m</td><td class="n">64.9%</td><td class="n">96.5%</td><td class="n">92.2%</td><td class="n">0.0%</td></tr>
-        <tr><td>台面上方：x ≥ 0.50 m</td><td class="n">57.6%</td><td class="n">90.0%</td><td class="n">82.3%</td><td class="n">1.9%</td></tr>
-        <tr><td>正手外侧：y &lt; −0.60 m</td><td class="n">64.5%</td><td class="n">90.8%</td><td class="n">86.3%</td><td class="n">0.8%</td></tr>
-        <tr><td>中间：y −0.60–0.30 m</td><td class="n">63.8%</td><td class="n">92.0%</td><td class="n">86.7%</td><td class="n">0.4%</td></tr>
-        <tr><td>反手外侧：y &gt; 0.30 m</td><td class="n">54.1%</td><td class="n">91.7%</td><td class="n">85.9%</td><td class="n">1.0%</td></tr>
+        <tr><td>向后：x &lt; 0.30 m</td><td class="n">61.2%</td><td class="n">93.0%</td><td class="n">89.7%</td><td class="n">0.1%</td></tr>
+        <tr><td>固定区：x 0.30–0.40 m</td><td class="n">70.3%</td><td class="n">97.7%</td><td class="n">94.4%</td><td class="n">0.0%</td></tr>
+        <tr><td>向前：x 0.40–0.50 m</td><td class="n">64.9%</td><td class="n">97.3%</td><td class="n">94.9%</td><td class="n">0.3%</td></tr>
+        <tr><td>台面上方：x ≥ 0.50 m</td><td class="n">57.6%</td><td class="n">91.4%</td><td class="n">86.1%</td><td class="n">0.8%</td></tr>
+        <tr><td>正手外侧：y &lt; −0.60 m</td><td class="n">64.5%</td><td class="n">94.2%</td><td class="n">89.8%</td><td class="n">0.1%</td></tr>
+        <tr><td>中间：y −0.60–0.30 m</td><td class="n">63.8%</td><td class="n">94.0%</td><td class="n">90.2%</td><td class="n">0.2%</td></tr>
+        <tr><td>反手外侧：y &gt; 0.30 m</td><td class="n">54.1%</td><td class="n">92.2%</td><td class="n">89.2%</td><td class="n">0.7%</td></tr>
       </tbody>
     </table></div>
-    <p class="caption">按击到的拍计，不含击球前摔倒的。全部随机化下按拍速分：0.5–1.0 m/s 88.1%，1.0–1.5 m/s 89.7%，1.5–2.0 m/s 85.9%，2.0–2.5 m/s 82.0%。</p>
+    <p class="caption">按击到的拍计，不含击球前摔倒的。全部随机化下按拍速分：0.5–1.0 m/s 90.5%，1.0–1.5 m/s 91.8%，1.5–2.0 m/s 89.8%，2.0–2.5 m/s 87.2%。</p>
   </section>
 
   <section aria-labelledby="s-7">
@@ -799,10 +803,10 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
   var LO = 0, HI = 100, SPAN = 86;
   function pos(v) { return SPAN * (v - LO) / (HI - LO); }
   var rows = [
-    { cond: "团队原设定", who: "原空间、原速度范围", b: 79.6, a: 98.5 },
-    { cond: "团队原设定，全部随机化", who: "电机和读数延迟、增益、力矩、惯量", b: 18.9, a: 97.3 },
-    { cond: "最大空间，速度方向放开", who: "前后左右移动，含台面上方", b: 60.2, a: 91.6 },
-    { cond: "最大空间，全部随机化", who: "这个阶段的目标条件", b: 12.2, a: 86.4 }
+    { cond: "团队原设定", who: "原空间、原速度范围", b: 79.6, a: 98.8 },
+    { cond: "团队原设定，全部随机化", who: "电机和读数延迟、增益、力矩、惯量", b: 18.9, a: 98.1 },
+    { cond: "最大空间，速度方向放开", who: "前后左右移动，含台面上方", b: 60.2, a: 93.6 },
+    { cond: "最大空间，全部随机化", who: "这个阶段的目标条件", b: 12.2, a: 89.8 }
   ];
   var box = document.getElementById("db2");
   function div(cls, parent) { var d = document.createElement("div"); if (cls) d.className = cls; parent.appendChild(d); return d; }
@@ -837,8 +841,10 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     ["+ 历史观测、特权评价网络（XYNDTH）", 71.5, ""],
     ["+ 探索噪声减半（XYNDTHQ）", 80.2, ""],
     ["+ 碰桌惩罚 ×10（XYNDTHQT）", 80.6, ""],
-    ["+ 8192 个环境（XYNDTHQTB，部署候选）", 86.4, "pick"],
-    ["对照：部署候选不加随机化", 91.6, "ref"]
+    ["+ 8192 个环境（XYNDTHQTB）", 86.4, ""],
+    ["+ 每次更新 48 步（XYNDTHQTBL）", 87.8, ""],
+    ["+ 补最坏情况的随机化（XYNDTHQTBLR，部署候选）", 89.8, "pick"],
+    ["对照：部署候选不加随机化", 93.6, "ref"]
   ];
   var box = document.getElementById("xy-ladder");
   rows.forEach(function (r) {
