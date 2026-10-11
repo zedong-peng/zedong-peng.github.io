@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-qwen3-8-27b-on-one-rtx-4090",
+        },{id: "post-memorytax-the-bitter-lesson-of-agent-memory",
+        
+          title: "MemoryTax: The Bitter Lesson of Agent Memory",
+        
+        description: "Does agent memory still help once the model can search the raw history itself? Memory systems and coding agents on LoCoMo with three models.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/memorytax/";
+          
+        },
+      },{id: "post-qwen3-8-27b-on-one-rtx-4090",
         
           title: "Qwen3.8-27B on One RTX 4090",
         
