@@ -9,6 +9,7 @@ Personal academic website for Zedong Peng, built with the [al-folio](https://git
 ## Common Commands
 
 ### Local Development (Docker)
+
 ```bash
 docker compose up --detach
 docker compose exec jekyll bundle
@@ -18,6 +19,7 @@ docker compose down
 ```
 
 ### Update CV
+
 ```bash
 cd assets/pdf/yaml_cv
 rendercv render "Zedong_Peng_CV.yaml"
@@ -28,11 +30,13 @@ rendercv render --watch "Zedong_Peng_CV.yaml"
 First-time setup: `pip install "rendercv[full]"`
 
 ### Deployment
+
 Automatic on push to `main` via `.github/workflows/deploy.yml`. No manual deployment needed.
 
 ## Architecture
 
 ### Content Structure
+
 - `_pages/` — Static pages (about, cv, publications, projects, etc.)
 - `_posts/` — Blog posts
 - `_news/` — News/announcements collection
@@ -41,19 +45,24 @@ Automatic on push to `main` via `.github/workflows/deploy.yml`. No manual deploy
 - `assets/pdf/yaml_cv/Zedong_Peng_CV.yaml` — CV source of truth (rendered to PDF by RenderCV)
 
 ### Template System
+
 - `_layouts/` — Liquid layout templates (12 types: about, bib, cv, post, distill, etc.)
 - `_includes/` — Reusable Liquid components
 - `_sass/` — SCSS stylesheets
 
 ### Key Configuration
+
 - `_config.yml` — All site settings, plugin config, enabled features, and third-party library CDN URLs with SRI hashes
 - Jekyll Scholar settings: author name `[Peng, Zedong]`, APA style, grouped by year descending
 
 ### Build Pipeline
+
 GitHub Actions runs: Jekyll build → PurgeCSS → deploy to gh-pages. Image optimization (WebP, multiple widths) happens via jekyll-imagemagick during build.
 
 ### Adding Publications
+
 Edit `_bibliography/papers.bib`. Use custom BibTeX fields for extras: `preview`, `slides`, `code`, `video`, `selected={true}` (shows on about page).
 
 ### Adding News
+
 Create a file in `_news/` as a Markdown or HTML snippet.
