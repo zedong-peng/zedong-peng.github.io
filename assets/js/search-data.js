@@ -56,7 +56,7 @@ ninja.data = [{
         
           title: "Make Sand Think",
         
-        description: "A short, funny story.",
+        description: "A riddle, and an honest answer: how a handful of sand becomes a machine that talks.",
         section: "Posts",
         handler: () => {
           
