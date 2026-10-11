@@ -81,7 +81,7 @@ toc:
 
 两点说明：
 
-- <sup>*</sup>官方订阅那两行是按额度用满折算的。Pro 20x 每月 200 美元，月额度约合 7312 美元，数据来自 [Codex 额度雷达](https://codexradar.com)；Max 20x 每月 200 美元，月额度约合 6468 美元，数据来自 [Claude 额度雷达](https://claudecoderadar.com)。
+- <sup>\*</sup>官方订阅那两行是按额度用满折算的。Pro 20x 每月 200 美元，月额度约合 7312 美元，数据来自 [Codex 额度雷达](https://codexradar.com)；Max 20x 每月 200 美元，月额度约合 6468 美元，数据来自 [Claude 额度雷达](https://claudecoderadar.com)。
 - Claude 还有 awsq 之类的低价渠道，是把 Kiro 的 Claude 模型反代出来用。确实是 Opus 5，但会带上 Kiro 的 system prompt，质量下降多少不好说。这类渠道过不了 [Hvoy AI](https://www.hvoy.ai/) 的原生测试，表里其他渠道都能过。
 
 可以看出，国外的顶级大模型只要走订阅，其实没那么贵。再结合性能来看，自己建站用GPT-5.6-sol是最便宜的一档：
