@@ -189,7 +189,7 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
   <header class="top">
     <div class="eyebrow">A3 人形机器人乒乓球 · 仿真研究 · 阶段汇报</div>
     <h1>A3 乒乓回球研究</h1>
-    <p class="lede">第二阶段把击球空间放大：机器人前后左右移动去击球，击球速度方向放开，训练时随机化电机延迟、读数延迟、增益、力矩上限和转子惯量。最大空间、全部随机化下，击球成功率 91.8%。但真机上策略要等预测器给出击球点：按部署预测器的时间线，团队原有范围里 88.6%，在时间线上训练后 93.4%；最大空间只剩 64%，因为来不及走到位。第一阶段回答了回球为什么上不了台、规划器是不是瓶颈、学习和解析各管哪一段，留下两个能上真机的模型。第二阶段在前，第一阶段在后；每段先汇报，详细结果在后半部分。</p>
+    <p class="lede">第二阶段把击球空间放大：机器人前后左右移动去击球，击球速度方向放开，训练时随机化电机延迟、读数延迟、增益、力矩上限和转子惯量。最大空间、全部随机化下，击球成功率 91.8%。但真机上策略要等预测器给出击球点：按部署预测器的时间线，团队原有范围里 88.6%，在时间线上训练后 94.1%；最大空间只剩 66%，因为来不及走到位。第一阶段回答了回球为什么上不了台、规划器是不是瓶颈、学习和解析各管哪一段，留下两个能上真机的模型。第二阶段在前，第一阶段在后；每段先汇报，详细结果在后半部分。</p>
     <div class="meta">
       <span>2026-10-12</span>
       <span>周期 <b>10-03 – 10-12</b></span>
@@ -270,14 +270,16 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     <h2 id="s-x8">真机预测器：要等它给出击球点</h2>
     <p>上面的数字都假设挥拍一开始（击球前 0.86 s）就知道准确的击球点和时间。部署的预测器（<code>hit_plane_predictor.cpp</code>，第一阶段第三节逐行复现过）在球离击球平面 2.38 m 以内才出预测：第一个预测在击球前 0.40 / 0.58 / 0.80 s（p10 / p50 / p90），之后误差逐步收敛（0.4 s 时击球点 4.5 / 11.9 cm）。按第一阶段的做法评测：预测出现之前，策略看到 0.86 s、先验击球点和原地站位；之后看到预测器当时的输出。</p>
     <div class="tbl"><table>
-      <thead><tr><th>全部随机化</th><th class="n">团队 299999</th><th class="n">部署候选<br>345994</th><th class="n">时间线训练<br>TLB_s2 353992</th></tr></thead>
+      <thead><tr><th>全部随机化</th><th class="n">团队 299999</th><th class="n">部署候选<br>345994</th><th class="n">时间线训练<br>TLBL_s2 355991</th></tr></thead>
       <tbody>
-        <tr><td>团队原设定，目标提前已知</td><td class="n">18.9%</td><td class="n">98.3%</td><td class="n">98.2%</td></tr>
-        <tr><td>团队原设定，预测器时间线</td><td class="n">16.1%</td><td class="n">88.6%</td><td class="n hi">93.4%</td></tr>
-        <tr><td>团队原设定，时间线，max_ahead 3.0 m</td><td class="n">—</td><td class="n">91.3%</td><td class="n hi">94.9%</td></tr>
-        <tr><td>最大空间，目标提前已知</td><td class="n">12.2%</td><td class="n">91.8%</td><td class="n">89.3%</td></tr>
-        <tr><td>最大空间，预测器时间线</td><td class="n">—</td><td class="n">55.3%</td><td class="n hi">64.1%</td></tr>
-        <tr><td>最大空间，时间线，max_ahead 3.0 m</td><td class="n">—</td><td class="n">67.2%</td><td class="n hi">72.5%</td></tr>
+        <tr><td>团队原设定，目标提前已知</td><td class="n">18.9%</td><td class="n">98.3%</td><td class="n">98.0%</td></tr>
+        <tr><td>团队原设定，预测器时间线</td><td class="n">16.1%</td><td class="n">88.6%</td><td class="n hi">94.1%</td></tr>
+        <tr><td>团队原设定，时间线，max_ahead 3.0 m</td><td class="n">—</td><td class="n">91.3%</td><td class="n hi">95.3%</td></tr>
+        <tr><td>最大空间，目标提前已知</td><td class="n">12.2%</td><td class="n">91.8%</td><td class="n">90.7%</td></tr>
+        <tr><td>最大空间，预测器时间线</td><td class="n">—</td><td class="n">55.3%</td><td class="n hi">66.2%</td></tr>
+        <tr><td>最大空间，时间线，max_ahead 3.0 m</td><td class="n">—</td><td class="n">67.2%</td><td class="n hi">76.0%</td></tr>
+        <tr><td>团队原设定，时间线，电机延迟 30 / 40 ms</td><td class="n">—</td><td class="n">88.0 / 77.6%</td><td class="n hi">93.1 / 85.7%</td></tr>
+        <tr><td>团队原设定，时间线，所有关节增益 ×0.8</td><td class="n">—</td><td class="n">89.1%</td><td class="n hi">94.8%</td></tr>
       </tbody>
     </table></div>
     <div class="tbl"><table>
@@ -293,7 +295,7 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     <ul>
       <li><strong>瓶颈是走位。</strong>不用移动的拍不受预测晚的影响；要移动的拍，预测晚了就走不到位（预测在 0.5 s 以内出现时，站位误差中位数 11 cm）。</li>
       <li><strong>预测器的 max_ahead 从 2.38 m 放到 3.0 m</strong>，第一个预测提前约 0.1 s（中位数 0.60 → 0.70 s），同一时刻的误差不变。只改一个参数，最大空间多 12 个点。2.38 m 是不是动捕视场的限制，要团队确认。</li>
-      <li><strong>在时间线上训练</strong>（预测误差和预测出现前的占位值都放进训练）：团队原设定多 5 个点，最大空间多 9 个点；目标提前已知时，团队原设定不变，最大空间少 2.5 个点。用 2.38 m 还是 3.0 m 的数据训练结果一样，两种混着训练再好 1–2 个点。换种子复现：团队原设定 88.7 → 91.2%，最大空间 52.6 → 60.5%。</li>
+      <li><strong>在时间线上训练</strong>（预测误差和预测出现前的占位值都放进训练）：团队原设定多 5.5 个点，最大空间多 11 个点，长延迟和增益偏软时多 5–8 个点；目标提前已知时，团队原设定不变，最大空间少 1 个点。用 2.38 m 还是 3.0 m 的数据训练结果一样，两种混着训练再好 1–2 个点，每次更新 96 步又好 1–2 个点。换种子复现：团队原设定 88.7 → 91.2%，最大空间 52.6 → 60.5%。</li>
       <li><strong>只看预测误差</strong>（假设预测从挥拍开始就有）：代价几乎全来自击球前 0.2 s 以前的误差；带误差训练几乎没用；在预测器输出上加一个小网络修正击球点和时间（<code>ballinloop/pred_fix.py</code>），全部随机化下 85.3 → 87.6%。这个修正是在仿真的球物理上学的，真机要用实测轨迹重新标定。</li>
     </ul>
   </section>
@@ -303,8 +305,8 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     <div class="models">
       <div class="model">
         <div class="tag">接真机预测器用（推荐）</div>
-        <div class="path">deploy/TLB_s2_353992</div>
-        <div class="nums"><span>团队原设定、时间线、全部随机化 <b>93.4%</b></span><span>目标提前已知 <b>98.2%</b></span></div>
+        <div class="path">deploy/TLBL_s2_355991</div>
+        <div class="nums"><span>团队原设定、时间线、全部随机化 <b>94.1%</b></span><span>目标提前已知 <b>98.0%</b></span></div>
         <p>在部署预测器的时间线上训练过（max_ahead 2.38 m 和 3.0 m 两种设置混合）。需要部署流程照训练的约定喂观测：第一个预测出现之前，<code>time_to_strike</code> 给 0.86 s，击球点给先验 (0.35, −0.10, 1.00) m（相对原地站位），击球速度给 (1.5, 0, 0.3) m/s，站位误差按原地站位算；之后给预测器当时的输出。</p>
       </div>
       <div class="model">
@@ -331,7 +333,7 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
       <div class="panel"><h3>奖励晚一步</h3><p>IsaacLab 每步先算奖励，再更新指令。团队的奖励于是拿新状态配上一步的 <code>time_to_strike</code>，策略学会晚一个控制步击球。修正方法：在奖励阶段把距击球时间先减一个步长（<code>xyspace/xy_tasks.py</code> 的 <code>XY_FIX_TIMING</code>）。</p></div>
       <div class="panel"><h3>部署配置的默认关节角</h3><p>团队 XYMove 部署件的 <code>deploy.yaml</code> 里，默认关节角带着 0 号环境的标定随机偏移（±0.01 rad，左右不对称）。在训练分布之内，影响很小，但应该用标称值。</p></div>
       <div class="panel"><h3>预测器的 max_ahead</h3><p>球离击球平面超过 2.38 m 不出预测，第一个预测的中位数在击球前 0.58 s，而挥拍按 0.86 s 设计，要移动的拍来不及走到位。放到 3.0 m 能提前约 0.1 s；如果是动捕视场的限制，就要在策略这边接受。</p></div>
-      <div class="panel"><h3>预测出现之前给策略什么</h3><p>团队现在的部署代码只有虚拟目标，接真球时要定下来。我们的约定见上面的交付物；按这个约定训练过的模型在时间线上多 5–9 个点。</p></div>
+      <div class="panel"><h3>预测出现之前给策略什么</h3><p>团队现在的部署代码只有虚拟目标，接真球时要定下来。我们的约定见上面的交付物；按这个约定训练过的模型在时间线上多 5–11 个点。</p></div>
       <div class="panel"><h3>成功率怎么看</h3><p>TensorBoard 里的击球成功率带着探索噪声，比确定性评测低约 20 个点（团队 65k：49% 对 77%）。挑模型要用确定性评测。</p></div>
     </div>
   </section>
@@ -339,10 +341,10 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
   <section aria-labelledby="s-x6">
     <h2 id="s-x6">第二阶段下一步</h2>
     <ol class="todo">
-      <li><div><strong>和团队定下预测器接口</strong>：max_ahead 能不能放到 3.0 m；预测出现之前给策略什么（按我们的约定就可以直接用 TLB_s2_353992）。</div></li>
+      <li><div><strong>和团队定下预测器接口</strong>：max_ahead 能不能放到 3.0 m；预测出现之前给策略什么（按我们的约定就可以直接用 TLBL_s2_355991）。</div></li>
       <li><div><strong>测真机电机延迟和增益</strong>（<code>deploy/actuator_test/</code>，几分钟）。延迟超过 30 ms 或增益整体偏软时，按实测范围微调。</div></li>
       <li><div><strong>真机上逐步放大空间</strong>：先固定区，再前后、左右，最后台面上方；记录有没有碰桌、摔倒，以及击球时机和拍面误差。</div></li>
-      <li><div><strong>仿真接着做</strong>：时间线训练还在慢慢涨（每次更新 96 步的版本在跑）；最大空间的瓶颈是预测晚时走不到位。</div></li>
+      <li><div><strong>仿真接着做</strong>：时间线训练还在慢慢涨（接着训练的版本在跑）；最大空间的瓶颈是预测晚时走不到位。</div></li>
     </ol>
   </section>
 
