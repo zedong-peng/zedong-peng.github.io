@@ -189,18 +189,18 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
   <header class="top">
     <div class="eyebrow">A3 人形机器人乒乓球 · 仿真研究 · 阶段汇报</div>
     <h1>A3 乒乓回球研究</h1>
-    <p class="lede">第二阶段把击球空间放大：机器人前后左右移动去击球，击球速度方向放开，训练时随机化电机延迟、读数延迟、增益、力矩上限和转子惯量。最大空间、全部随机化下，击球成功率 91.8%。但真机上策略要等预测器给出击球点：按部署预测器的时间线，团队原有范围里 88.6%，在时间线上训练后 94.1%；最大空间只剩 66%，因为来不及走到位。第一阶段回答了回球为什么上不了台、规划器是不是瓶颈、学习和解析各管哪一段，留下两个能上真机的模型。第二阶段在前，第一阶段在后；每段先汇报，详细结果在后半部分。</p>
+    <p class="lede">第二阶段把击球空间放大：机器人前后左右移动去击球，击球速度方向放开，训练时随机化电机延迟、读数延迟、增益、力矩上限和转子惯量。最大空间、全部随机化下，击球成功率 91.8%。但真机上策略要等预测器给出击球点：按部署预测器的时间线，团队原有范围里 88.6%，在时间线上训练后 94.1%；最大空间只剩 66%，因为来不及走到位。最新发现：团队 MuJoCo 模型里的关节摩擦和阻尼，IsaacLab 里没有；按那组数值，不带摩擦训练的模型在团队原设定里从 98% 掉到 43%，带摩擦训练后回到 97%。真机摩擦有多大要实测，测法和挥拍测试的材料已经备好。第一阶段回答了回球为什么上不了台、规划器是不是瓶颈、学习和解析各管哪一段，留下两个能上真机的模型。第二阶段在前，第一阶段在后；每段先汇报，详细结果在后半部分。</p>
     <div class="meta">
-      <span>2026-10-12</span>
-      <span>周期 <b>10-03 – 10-12</b></span>
-      <span>训练约 <b>120</b> 次，评测约 <b>1300</b> 组</span>
+      <span>2026-10-14</span>
+      <span>周期 <b>10-03 – 10-14</b></span>
+      <span>训练约 <b>125</b> 次，评测约 <b>1400</b> 组</span>
       <span>全部结果来自仿真，每个数字 6000 拍：第一阶段是回球上台率，第二阶段是击球成功率</span>
       <span>代码和模型 <code>8-4090:~/zedong-opus</code></span>
     </div>
   </header>
 
   <div class="part">
-    <div class="eyebrow">第二阶段 · 更大的击球空间 · 10-07 – 10-12</div>
+    <div class="eyebrow">第二阶段 · 更大的击球空间 · 10-07 – 10-14</div>
     <p>要求：机器人前后左右移动去击球，击球空间比团队 XYMove 大；近台也要打得好、不碰桌；击球速度方向更多样；训练时加力矩、增益、延迟的随机化；不摔倒。最大空间里 80% 就算很高。</p>
   </div>
 
@@ -300,20 +300,54 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     </ul>
   </section>
 
+  <section aria-labelledby="s-x9">
+    <h2 id="s-x9">关节摩擦：IsaacLab 里缺的一块</h2>
+    <p>团队部署用的 MuJoCo 模型 <code>a3_pingpong.xml</code> 给每个关节配了库仑摩擦和黏性阻尼：手臂摩擦 0.1–0.63 N·m、阻尼 1–1.5 N·m·s/rad，腰腿更大。URDF 里没有这些，所以 IsaacLab 训练的关节没有摩擦。我们在 MuJoCo 里照团队的部署流程复现了虚拟击球控制器：1 kHz 的 PD、50 Hz 的策略、同样的目标和计时。把摩擦和阻尼一起乘一个倍数：</p>
+    <div class="tbl"><table>
+      <thead><tr><th>MuJoCo，团队虚拟目标<br>摩擦和阻尼（MJCF 数值的倍数）</th><th class="n">×0</th><th class="n">×0.5</th><th class="n">×1</th><th class="n">×1.5</th><th class="n">×2</th><th class="n">×1，电机<br>延迟 20 ms</th><th class="n">×1，电机<br>延迟 40 ms</th></tr></thead>
+      <tbody>
+        <tr><td>团队现在的模型</td><td class="n">97.9%</td><td class="n">97.3%</td><td class="n">88.5%</td><td class="n">53.7%</td><td class="n">27.5%</td><td class="n">65.2%</td><td class="n">11.5%</td></tr>
+        <tr><td>TLBL_s2 355991，不带摩擦训练</td><td class="n">95.4%</td><td class="n">90.0%</td><td class="n">64.4%</td><td class="n">33.9%</td><td class="n">20.4%</td><td class="n">62.6%</td><td class="n">59.4%</td></tr>
+        <tr><td>TLBLP_s2 357000，带摩擦训练</td><td class="n">96.7%</td><td class="n">96.1%</td><td class="n hi">93.5%</td><td class="n hi">87.4%</td><td class="n hi">74.6%</td><td class="n hi">91.3%</td><td class="n hi">86.0%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="caption">每格 1000 拍，固定站位，不加其他随机化。团队模型在 ×1.5、×2 和 40 ms 时每 1000 拍摔倒 12–15 次，另外两个模型没有摔倒。</p>
+    <div class="tbl"><table>
+      <thead><tr><th>IsaacLab，团队原设定，全部随机化</th><th class="n">TLBL_s2 355991<br>不带摩擦训练</th><th class="n">TLBLP_s2 357000<br>带摩擦训练</th></tr></thead>
+      <tbody>
+        <tr><td>没有摩擦，目标提前已知</td><td class="n">98.0%</td><td class="n">83.7%</td></tr>
+        <tr><td>没有摩擦，预测器时间线</td><td class="n">94.1%</td><td class="n">75.9%</td></tr>
+        <tr><td>摩擦 ×1，目标提前已知</td><td class="n">43.1%</td><td class="n hi">97.3%</td></tr>
+        <tr><td>摩擦 ×1，预测器时间线</td><td class="n">36.4%</td><td class="n hi">91.5%</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><strong>两个仿真器结论一致。</strong>不带摩擦训练的模型，加上 MJCF 数值的摩擦就掉一大截，击球那一步的位置和速度都对不上。团队现在的模型掉得少，但到 ×1.5 也只剩一半。</li>
+      <li><strong>带摩擦训练能补回来。</strong>从 TLBL_s2 接着训练 2000 次，每个环境的摩擦和阻尼乘 ×0.25–1.75，每个关节再乘 ×0.8–1.25（<code>xyspace/xy_tasks.py</code> 的 <code>XY_PASSIVE</code>）。策略靠 6 帧历史推断摩擦，有摩擦时回到 97.3%，长延迟时也稳。代价是完全没有摩擦时降到 83.7%，那在它的训练范围之外。</li>
+      <li><strong>真机的摩擦要实测。</strong>用哪个模型取决于真机摩擦有多大。测法见下文“请真机帮忙做的两件事”：不挥拍，十几分钟。正在训练摩擦范围 ×0–2 的版本，目标是一个模型两头都好。</li>
+    </ul>
+  </section>
+
   <section aria-labelledby="s-x4">
     <h2 id="s-x4">第二阶段交付物</h2>
     <div class="models">
       <div class="model">
-        <div class="tag">接真机预测器用（推荐）</div>
+        <div class="tag">真机挥拍先测这个（带关节摩擦训练）</div>
+        <div class="path">deploy/TLBLP_s2_357000</div>
+        <div class="nums"><span>团队原设定、摩擦 ×1、全部随机化 <b>97.3%</b></span><span>加预测器时间线 <b>91.5%</b></span><span>MuJoCo 虚拟目标 <b>93.5%</b></span></div>
+        <p>TLBL_s2 355991 带关节摩擦接着训练 2000 次，部署约定和 TLBL_s2 相同。真机摩擦很小时不如 TLBL_s2（见上一节）。</p>
+      </div>
+      <div class="model">
+        <div class="tag">接真机预测器用，真机摩擦很小时</div>
         <div class="path">deploy/TLBL_s2_355991</div>
         <div class="nums"><span>团队原设定、时间线、全部随机化 <b>94.1%</b></span><span>目标提前已知 <b>98.0%</b></span></div>
         <p>在部署预测器的时间线上训练过（max_ahead 2.38 m 和 3.0 m 两种设置混合）。需要部署流程照训练的约定喂观测：第一个预测出现之前，<code>time_to_strike</code> 给 0.86 s，击球点给先验 (0.35, −0.10, 1.00) m（相对原地站位），击球速度给 (1.5, 0, 0.3) m/s，站位误差按原地站位算；之后给预测器当时的输出。</p>
       </div>
       <div class="model">
-        <div class="tag">目标提前 0.86 s 已知时（如团队现在的虚拟击球控制器）</div>
+        <div class="tag">目标提前 0.86 s 已知时，真机摩擦很小时</div>
         <div class="path">deploy/XYNDTHQTBLLRXC_s2_345994</div>
         <div class="nums"><span>最大空间、全部随机化 <b>91.8%</b></span><span>团队原设定 <b>98.9%</b></span></div>
-        <p>两个模型接口相同：动作、PD、默认关节角、motion 文件和团队 XYMove 相同；观测在团队的 104 维后面加了基座相对原地站位的 xy（2 维）和最近 6 帧的关节角和动作（各 6 × 29 维，旧的在前，含当前帧，重置后用当前值填满），共 454 维。导出的 <code>policy.onnx</code> / <code>policy.pt</code> 已和检查点核对。</p>
+        <p>三个模型接口相同：动作、PD、默认关节角、motion 文件和团队 XYMove 相同；观测在团队的 104 维后面加了基座相对原地站位的 xy（2 维）和最近 6 帧的关节角和动作（各 6 × 29 维，旧的在前，含当前帧，重置后用当前值填满），共 454 维。导出的 <code>policy.onnx</code> / <code>policy.pt</code> 已和检查点核对。</p>
       </div>
     </div>
     <ul>
@@ -324,12 +358,16 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     <div class="files">
       <div><code>xyspace/</code><span>任务（<code>ZO-A3-XYSpace</code>、<code>ZO-A3-XYSpace-H</code>）、训练和评测脚本；<code>README.md</code> 里有每个实验的设置和全部数字。</span></div>
       <div><code>xyspace/final_eval.sh</code><span>一个存档的全套评测：团队原设定、固定电机延迟 0–40 ms、各项随机化、增益整体偏软偏硬。</span></div>
+      <div><code>deploy/REAL_ROBOT.md</code><span>真机测试材料：执行器测量和虚拟目标挥拍的步骤、要发回的数据、请团队确认的问题。</span></div>
+      <div><code>deploy/controller_xyspace/</code><span>团队虚拟击球控制器的 454 维版本（diff 和完整文件），每个控制周期写一行 CSV 日志。</span></div>
+      <div><code>deploy/sim2sim/</code><span>MuJoCo 里复现的部署流程（<code>sim2sim.py</code>）和真机日志的离线打分（<code>score_log.py</code>）。</span></div>
     </div>
   </section>
 
   <section aria-labelledby="s-x5">
     <h2 id="s-x5">要告诉团队的</h2>
     <div class="cols">
+      <div class="panel"><h3>关节摩擦</h3><p><code>a3_pingpong.xml</code> 里的关节摩擦和阻尼，URDF 和 IsaacLab 里没有。按这组数值，团队现在的模型在 MuJoCo 虚拟击球上 97.9% → 88.5%，×1.5 时 53.7%。这组数值是实测的还是估的？训练时可以按它随机化（<code>XY_PASSIVE</code>）。</p></div>
       <div class="panel"><h3>奖励晚一步</h3><p>IsaacLab 每步先算奖励，再更新指令。团队的奖励于是拿新状态配上一步的 <code>time_to_strike</code>，策略学会晚一个控制步击球。修正方法：在奖励阶段把距击球时间先减一个步长（<code>xyspace/xy_tasks.py</code> 的 <code>XY_FIX_TIMING</code>）。</p></div>
       <div class="panel"><h3>部署配置的默认关节角</h3><p>团队 XYMove 部署件的 <code>deploy.yaml</code> 里，默认关节角带着 0 号环境的标定随机偏移（±0.01 rad，左右不对称）。在训练分布之内，影响很小，但应该用标称值。</p></div>
       <div class="panel"><h3>预测器的 max_ahead</h3><p>球离击球平面超过 2.38 m 不出预测，第一个预测的中位数在击球前 0.58 s，而挥拍按 0.86 s 设计，要移动的拍来不及走到位。放到 3.0 m 能提前约 0.1 s；如果是动捕视场的限制，就要在策略这边接受。</p></div>
@@ -339,13 +377,13 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
   </section>
 
   <section aria-labelledby="s-x6">
-    <h2 id="s-x6">第二阶段下一步</h2>
+    <h2 id="s-x6">请真机帮忙做的两件事</h2>
+    <p>步骤和文件都在 <code>deploy/REAL_ROBOT.md</code>。</p>
     <ol class="todo">
-      <li><div><strong>和团队定下预测器接口</strong>：max_ahead 能不能放到 3.0 m；预测出现之前给策略什么（按我们的约定就可以直接用 TLBL_s2_355991）。</div></li>
-      <li><div><strong>测真机电机延迟和增益</strong>（<code>deploy/actuator_test/</code>，几分钟）。延迟超过 30 ms 或增益整体偏软时，按实测范围微调。</div></li>
-      <li><div><strong>真机上逐步放大空间</strong>：先固定区，再前后、左右，最后台面上方；记录有没有碰桌、摔倒，以及击球时机和拍面误差。</div></li>
-      <li><div><strong>仿真接着做</strong>：时间线训练还在慢慢涨（接着训练的版本在跑）；最大空间的瓶颈是预测晚时走不到位。</div></li>
+      <li><div><strong>测执行器：延迟、增益、关节摩擦</strong>（不挥拍，十几分钟）。机器人吊着或站稳，以 50 Hz 下发 <code>deploy/actuator_test/excitation.csv</code>（只有手臂在默认姿态附近小幅摆动），每个周期记录读到的关节角、速度和发出的目标，连做两遍发回。拟合工具在仿真里用已知参数核对过：四组里摩擦倍数都找对，延迟最多差 5 ms，增益最多差一档。</div></li>
+      <li><div><strong>虚拟目标挥拍</strong>（固定区，不接球）。在团队环境里编译 <code>deploy/controller_xyspace</code>，先在团队的 MuJoCo 仿真里跑通，再上真机（挂保护绳）。TLBLP_s2_357000 和 TLBL_s2_355991 各跑约 100 拍，团队现在的模型作对照。发回控制器写的 CSV 和视频，我们离线按团队的判定打分，并看击球早晚。打分工具在仿真日志上核对过，300 拍里只差 1 拍。</div></li>
     </ol>
+    <p>仿真这边：摩擦 ×0–2 的版本在训练，约 8 小时；最大空间在摩擦下的评测在跑。真机测出摩擦、延迟和增益后，按实测范围再微调一次。</p>
   </section>
 
   <div class="part">
@@ -714,7 +752,7 @@ td.d { font-family: var(--font-data); font-variant-numeric: tabular-nums; white-
     <h2 id="s-7">局限</h2>
     <ul>
       <li>所有数字都来自仿真。胶皮、马格努斯、台面参数取自文献，没有在 A3 上辨识过；为此做了参数扫描和随机化，但真机上的绝对数字一定会不同，只能看相对好坏。</li>
-      <li>接触按刚体平板计算。电机延迟、读数延迟和增益误差做了随机化（第五节）；关节摩擦、力矩饱和、拍子振动等只在 IsaacLab 本身的范围内。测量工具测出的是电机延迟和读数延迟之和，两段各占多少要靠时间戳确定；它也不辨识连杆质量，只报告重力下垂和模型的差别。</li>
+      <li>接触按刚体平板计算。电机延迟、读数延迟和增益误差做了随机化（第五节）；关节摩擦按团队 MuJoCo 模型的数值做了随机化（第二阶段），真机的数值还没测；力矩饱和、拍子振动等只在 IsaacLab 本身的范围内。测量工具测出的是电机延迟和读数延迟之和，两段各占多少要靠时间戳确定；它也不辨识连杆质量，只报告重力下垂和模型的差别。</li>
       <li>第二阶段的成功沿用团队的击球判定（拍面位置、速度、法向），没有模拟球，也没有回球上台率；击球目标在空间里均匀抽，真实来球的分布会不同。时间线评测用的是第一阶段在仿真里复现的预测器（动捕 1 mm 噪声、随机球物理），不是真机记录；没有模拟击球速度的预测误差。</li>
       <li>两拍之间“没有预测”的等待，训练里最长约 0.5 s。真机上等待更久时，策略能否稳稳保持准备姿态，需要先在真机上确认。</li>
     </ul>
