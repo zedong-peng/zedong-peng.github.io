@@ -30,11 +30,11 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-不挂梯子-用手机指挥-claude-code",
+        },{id: "post-把家里的笔记本分给朋友用-claude-code",
         
-          title: "不挂梯子，用手机指挥 Claude Code",
+          title: "把家里的笔记本分给朋友用 Claude Code",
         
-        description: "一台海外小机器，加 Tailscale 和 T3 Code，让朋友们不用梯子就能在手机和电脑上用 Claude Code。",
+        description: "家人家里一台海外笔记本，环境干净。用 Tailscale 和 T3 Code 分给身边的朋友，手机、电脑、网页都能用 Claude Code。",
         section: "Posts",
         handler: () => {
           
