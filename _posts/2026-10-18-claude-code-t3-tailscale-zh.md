@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "不挂梯子，用手机指挥 Claude Code"
-date: 2026-10-18 20:00:00 +0800
+date: 2026-10-18 12:00:00 +0800
 lang: zh-CN
 description: "一台海外小机器，加 Tailscale 和 T3 Code，让朋友们不用梯子就能在手机和电脑上用 Claude Code。"
 categories: notes
