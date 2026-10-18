@@ -62,12 +62,9 @@
       start: {
         q: '你想用哪家的 AI？',
         opts: [
-          { t: '国产模型', end: '用 <a href="https://opencode.ai/go">OpenCode Go</a> 就行。' },
-          {
-            t: 'OpenAI',
-            end: '找个每月十块钱左右的梯子，先在 <a href="https://ip.net.coffee/gpt/">ip.net.coffee/gpt</a> 测一下纯净度。OpenAI 不怎么封号，够用了。',
-          },
-          { t: 'Claude（推荐）', next: 'know' },
+          { t: '国产模型', key: 'ai', val: 'cn', next: 'ssh' },
+          { t: 'OpenAI', key: 'ai', val: 'openai', next: 'ssh' },
+          { t: 'Claude（推荐）', key: 'ai', val: 'claude', next: 'know' },
         ],
       },
       know: {
@@ -104,9 +101,21 @@
     };
 
     function plan(s) {
-      var steps = ['我把这台电脑的 Tailscale 节点 share 给你。', '我在上面给你建一个 Linux 用户，你自己 ssh 进去。'];
-      if (s.ssh) steps.push('启动用户级 Tailscale，连回你自己的机器（下文第 3 步）。');
-      if (s.t3) steps.push('启动 T3 Code（下文第 2 步）。');
+      var mine = s.ai === 'claude';
+      var steps = {
+        cn: ['用 <a href="https://opencode.ai/go">OpenCode Go</a>。'],
+        openai: [
+          '找个每月十块钱左右的梯子，先在 <a href="https://ip.net.coffee/gpt/">ip.net.coffee/gpt</a> 测一下纯净度。OpenAI 不怎么封号，够用了。',
+        ],
+        claude: ['我把这台电脑的 Tailscale 节点 share 给你。', '我在上面给你建一个 Linux 用户，你自己 ssh 进去。'],
+      }[s.ai];
+      if (s.ssh)
+        steps.push(
+          mine
+            ? '启动用户级 Tailscale，连回你自己的机器（下文第 3 步）。'
+            : '你的电脑和工作环境都装上 Tailscale，配好 SSH 密钥，AI 就能直接 ssh 过去。'
+        );
+      if (s.t3) steps.push(mine ? '启动 T3 Code（下文第 2 步）。' : '在你的电脑上启动 T3 Code，手机、电脑、网页都能看进度。');
       return '你要做这几件事：<ol><li>' + steps.join('</li><li>') + '</li></ol>';
     }
 
