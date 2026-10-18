@@ -1,6 +1,99 @@
 <!DOCTYPE html> <html lang="zh-CN"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> 把海外家里的笔记本分给朋友用 Claude Code | Zedong Peng </title> <meta name="author" content="Zedong Peng"> <meta name="description" content="海外家里的一台笔记本，环境干净。用 Tailscale 和 T3 Code 分给身边的朋友，手机、电脑、网页都能用 Claude Code。"> <meta name="keywords" content="Zedong Peng, machine learning, AI"> <link rel="stylesheet" href="/assets/css/bootstrap.min.css?a4b3f509e79c54a512b890d73235ef04"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" href="/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://zedongpeng.com/blog/2026/claude-code-t3-tailscale-zh/"> <script src="/assets/js/theme.js?a81d82887dd692e91686b43de4542f18"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
     initTheme();
-  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Zedong</span> Peng </a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">posts </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">cv </a> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="ti ti-sun-moon" id="light-toggle-system"></i> <i class="ti ti-moon-filled" id="light-toggle-dark"></i> <i class="ti ti-sun-filled" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">把海外家里的笔记本分给朋友用 Claude Code</h1> <p class="post-meta"> 发布于 2026年10月18日 </p> <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/category/notes"> <i class="fa-solid fa-tag fa-sm"></i> notes</a> </p> <nav class="post-language-control post-language-control--article" aria-label="Article language"> <i class="ti ti-language" aria-hidden="true"></i> <span class="post-language-current" lang="zh-CN">中文</span> </nav> </header> <article class="post-content"> <div id="markdown-content"> <p>海外家里有一台笔记本，环境干净，我用它跑 Claude Code。身边的朋友有需要，我就分给他们用，用不用他们自己定。这台机器硬盘只剩十几个 G，所以它只当入口，重活都交给各人自己的服务器。</p> <h2 id="1-共享这台机器">1. 共享这台机器</h2> <p>给朋友建一个没有 sudo 的普通账号，把自己的家目录锁死：</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>adduser friend
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Zedong</span> Peng </a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">posts </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">cv </a> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="ti ti-sun-moon" id="light-toggle-system"></i> <i class="ti ti-moon-filled" id="light-toggle-dark"></i> <i class="ti ti-sun-filled" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">把海外家里的笔记本分给朋友用 Claude Code</h1> <p class="post-meta"> 发布于 2026年10月18日 </p> <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/category/notes"> <i class="fa-solid fa-tag fa-sm"></i> notes</a> </p> <nav class="post-language-control post-language-control--article" aria-label="Article language"> <i class="ti ti-language" aria-hidden="true"></i> <span class="post-language-current" lang="zh-CN">中文</span> </nav> </header> <article class="post-content"> <div id="markdown-content"> <p>海外家里有一台笔记本，环境干净，我用它跑 Claude Code。身边的朋友有需要，我就分给他们用，用不用他们自己定。这台机器硬盘只剩十几个 G，所以它只当入口，重活都交给各人自己的服务器。</p> <p>先选一下你的情况：</p> <div class="ai-picker" id="ai-picker"> <noscript> 国产模型：用 OpenCode Go。OpenAI：每月十块左右的梯子，先测纯净度。Claude：认识我就找我开账号，不认识就找每月一百块左右的家宽梯子。 </noscript> </div> <style>.ai-picker{border:1px solid var(--global-divider-color);border-radius:8px;padding:1rem 1.25rem;margin:1.5rem 0}.ai-picker .ap-trail{margin:0 0 .75rem;font-size:.9rem;color:var(--global-text-color-light)}.ai-picker .ap-trail:empty{display:none}.ai-picker .ap-trail span{cursor:pointer}.ai-picker .ap-trail span:hover{color:var(--global-theme-color)}.ai-picker .ap-q{font-weight:600;margin-bottom:.75rem}.ai-picker .ap-opts{display:flex;flex-wrap:wrap;gap:.5rem}.ai-picker button{border:1px solid var(--global-theme-color);border-radius:6px;background:transparent;color:var(--global-theme-color);padding:.35rem .9rem;cursor:pointer}.ai-picker button:hover{background:var(--global-theme-color);color:var(--global-hover-text-color)}.ai-picker .ap-end{margin-bottom:.75rem}.ai-picker .ap-end ol{margin:.5rem 0 0;padding-left:1.25rem}</style> <script>
+  (function () {
+    var root = document.getElementById('ai-picker');
+    var nodes = {
+      start: {
+        q: '你想用哪家的 AI？',
+        opts: [
+          { t: '国产模型', end: '用 <a href="https://opencode.ai/go">OpenCode Go</a> 就行。' },
+          {
+            t: 'OpenAI',
+            end: '找个每月十块钱左右的梯子，先在 <a href="https://ip.net.coffee/gpt/">ip.net.coffee/gpt</a> 测一下纯净度。OpenAI 不怎么封号，够用了。',
+          },
+          { t: 'Claude（推荐）', next: 'know' },
+        ],
+      },
+      know: {
+        q: '你认识我吗？能接受用我海外家里的电脑吗？它的硬盘不大。',
+        opts: [
+          {
+            t: '不认识，或不想用',
+            end: '找个每月一百块左右的家宽梯子，先在 <a href="https://ip.net.coffee/claude/">ip.net.coffee/claude</a> 测一下纯净度，然后自己搞定。',
+          },
+          { t: '认识，也能接受', next: 'client' },
+        ],
+      },
+      client: {
+        q: '你用 Claude Desktop 还是 Claude Code？',
+        opts: [
+          { t: 'Claude Desktop', end: '我给你开<a href="https://uuyc.163.com/">网易 UU 远程</a>，直接用那台电脑的桌面。' },
+          { t: 'Claude Code', next: 'ssh' },
+        ],
+      },
+      ssh: {
+        q: '你需要 ssh 到自己的工作环境吗？比如实验室的 GPU 服务器，或者自己的电脑。',
+        opts: [
+          { t: '需要', b: '要 ssh', key: 'ssh', val: true, next: 'multi' },
+          { t: '不需要', b: '不 ssh', key: 'ssh', val: false, next: 'multi' },
+        ],
+      },
+      multi: {
+        q: '你需要在手机、电脑、网页上都能看到 AI 的进度吗？',
+        opts: [
+          { t: '需要', b: '要多端', key: 't3', val: true, end: plan },
+          { t: '不需要', b: '不要多端', key: 't3', val: false, end: plan },
+        ],
+      },
+    };
+
+    function plan(s) {
+      var steps = ['我把这台电脑的 Tailscale 节点 share 给你。', '我在上面给你建一个 Linux 用户，你自己 ssh 进去。'];
+      if (s.ssh) steps.push('启动用户级 Tailscale，连回你自己的机器（下文第 3 步）。');
+      if (s.t3) steps.push('启动 T3 Code（下文第 2 步）。');
+      return '你要做这几件事：<ol><li>' + steps.join('</li><li>') + '</li></ol>';
+    }
+
+    var path = [];
+
+    function render() {
+      var state = {};
+      var id = 'start';
+      var end = null;
+      var html = '<div class="ap-trail">';
+      path.forEach(function (i, n) {
+        var o = nodes[id].opts[i];
+        html += (n ? ' › ' : '') + '<span data-n="' + n + '">' + (o.b || o.t) + '</span>';
+        if (o.key) state[o.key] = o.val;
+        if (o.end) end = typeof o.end === 'function' ? o.end(state) : o.end;
+        else id = o.next;
+      });
+      html += '</div>';
+      if (end) {
+        html += '<div class="ap-end">' + end + '</div><button data-reset="1">重新选</button>';
+      } else {
+        html += '<div class="ap-q">' + nodes[id].q + '</div><div class="ap-opts">';
+        nodes[id].opts.forEach(function (o, i) {
+          html += '<button data-i="' + i + '">' + o.t + '</button>';
+        });
+        html += '</div>';
+      }
+      root.innerHTML = html;
+    }
+
+    root.addEventListener('click', function (e) {
+      var el = e.target.closest('[data-i],[data-n],[data-reset]');
+      if (!el) return;
+      if (el.dataset.i !== undefined) path.push(+el.dataset.i);
+      else if (el.dataset.n !== undefined) path = path.slice(0, +el.dataset.n);
+      else path = [];
+      render();
+    });
+
+    render();
+  })();
+</script> <h2 id="1-共享这台机器">1. 共享这台机器</h2> <p>给朋友建一个没有 sudo 的普通账号，把自己的家目录锁死：</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>adduser friend
 <span class="nb">chmod </span>700 /home/me
 </code></pre></div></div> <p>然后在 Tailscale 控制台对这台机器点 Share，把链接发给朋友。对方接受后只能看到这一台机器，看不到你的其他设备。</p> <h2 id="2-用-t3-code-当界面">2. 用 T3 Code 当界面</h2> <p>T3 Code 可以同时接入 Claude Code、OpenCode 和 Codex 的订阅，在同一个界面里切换。它和 Claude Code 都跑在海外机器上。朋友开着 Tailscale，手机或电脑浏览器打开 T3 Code 就能用，不需要梯子。两端的会话是同步的，在电脑上开的任务，路上用手机接着看、接着批。</p> <p>配置好之后，手机、电脑或网页端直接启动 T3 Code 就行。</p> <h2 id="3-重活回到自己的机器">3. 重活回到自己的机器</h2> <p>朋友在海外机器上跑一个用户态 Tailscale，不用 root，状态都放在自己的家目录里：</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tailscaled <span class="nt">--tun</span><span class="o">=</span>userspace-networking <span class="se">\</span>
   <span class="nt">--state</span><span class="o">=</span><span class="nv">$HOME</span>/.tailscale/state <span class="nt">--socket</span><span class="o">=</span><span class="nv">$HOME</span>/.tailscale/sock &amp;

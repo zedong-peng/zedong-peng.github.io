@@ -1,4 +1,97 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://zedongpeng.com/feed.xml" rel="self" type="application/atom+xml"/><link href="https://zedongpeng.com/" rel="alternate" type="text/html" hreflang="en"/><updated>2026-10-18T21:04:57+08:00</updated><id>https://zedongpeng.com/feed.xml</id><title type="html">blank</title><subtitle>The personal website of Zedong Peng.</subtitle><entry xml:lang="zh-CN"><title type="html">把海外家里的笔记本分给朋友用 Claude Code</title><link href="https://zedongpeng.com/blog/2026/claude-code-t3-tailscale-zh/" rel="alternate" type="text/html" title="把海外家里的笔记本分给朋友用 Claude Code"/><published>2026-10-18T12:00:00+08:00</published><updated>2026-10-18T12:00:00+08:00</updated><id>https://zedongpeng.com/blog/2026/claude-code-t3-tailscale-zh</id><content type="html" xml:base="https://zedongpeng.com/blog/2026/claude-code-t3-tailscale-zh/"><![CDATA[<p>海外家里有一台笔记本，环境干净，我用它跑 Claude Code。身边的朋友有需要，我就分给他们用，用不用他们自己定。这台机器硬盘只剩十几个 G，所以它只当入口，重活都交给各人自己的服务器。</p> <h2 id="1-共享这台机器">1. 共享这台机器</h2> <p>给朋友建一个没有 sudo 的普通账号，把自己的家目录锁死：</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>adduser friend
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://zedongpeng.com/feed.xml" rel="self" type="application/atom+xml"/><link href="https://zedongpeng.com/" rel="alternate" type="text/html" hreflang="en"/><updated>2026-10-18T23:11:01+08:00</updated><id>https://zedongpeng.com/feed.xml</id><title type="html">blank</title><subtitle>The personal website of Zedong Peng.</subtitle><entry xml:lang="zh-CN"><title type="html">把海外家里的笔记本分给朋友用 Claude Code</title><link href="https://zedongpeng.com/blog/2026/claude-code-t3-tailscale-zh/" rel="alternate" type="text/html" title="把海外家里的笔记本分给朋友用 Claude Code"/><published>2026-10-18T12:00:00+08:00</published><updated>2026-10-18T12:00:00+08:00</updated><id>https://zedongpeng.com/blog/2026/claude-code-t3-tailscale-zh</id><content type="html" xml:base="https://zedongpeng.com/blog/2026/claude-code-t3-tailscale-zh/"><![CDATA[<p>海外家里有一台笔记本，环境干净，我用它跑 Claude Code。身边的朋友有需要，我就分给他们用，用不用他们自己定。这台机器硬盘只剩十几个 G，所以它只当入口，重活都交给各人自己的服务器。</p> <p>先选一下你的情况：</p> <div class="ai-picker" id="ai-picker"> <noscript> 国产模型：用 OpenCode Go。OpenAI：每月十块左右的梯子，先测纯净度。Claude：认识我就找我开账号，不认识就找每月一百块左右的家宽梯子。 </noscript> </div> <style>.ai-picker{border:1px solid var(--global-divider-color);border-radius:8px;padding:1rem 1.25rem;margin:1.5rem 0}.ai-picker .ap-trail{margin:0 0 .75rem;font-size:.9rem;color:var(--global-text-color-light)}.ai-picker .ap-trail:empty{display:none}.ai-picker .ap-trail span{cursor:pointer}.ai-picker .ap-trail span:hover{color:var(--global-theme-color)}.ai-picker .ap-q{font-weight:600;margin-bottom:.75rem}.ai-picker .ap-opts{display:flex;flex-wrap:wrap;gap:.5rem}.ai-picker button{border:1px solid var(--global-theme-color);border-radius:6px;background:transparent;color:var(--global-theme-color);padding:.35rem .9rem;cursor:pointer}.ai-picker button:hover{background:var(--global-theme-color);color:var(--global-hover-text-color)}.ai-picker .ap-end{margin-bottom:.75rem}.ai-picker .ap-end ol{margin:.5rem 0 0;padding-left:1.25rem}</style> <script>
+  (function () {
+    var root = document.getElementById('ai-picker');
+    var nodes = {
+      start: {
+        q: '你想用哪家的 AI？',
+        opts: [
+          { t: '国产模型', end: '用 <a href="https://opencode.ai/go">OpenCode Go</a> 就行。' },
+          {
+            t: 'OpenAI',
+            end: '找个每月十块钱左右的梯子，先在 <a href="https://ip.net.coffee/gpt/">ip.net.coffee/gpt</a> 测一下纯净度。OpenAI 不怎么封号，够用了。',
+          },
+          { t: 'Claude（推荐）', next: 'know' },
+        ],
+      },
+      know: {
+        q: '你认识我吗？能接受用我海外家里的电脑吗？它的硬盘不大。',
+        opts: [
+          {
+            t: '不认识，或不想用',
+            end: '找个每月一百块左右的家宽梯子，先在 <a href="https://ip.net.coffee/claude/">ip.net.coffee/claude</a> 测一下纯净度，然后自己搞定。',
+          },
+          { t: '认识，也能接受', next: 'client' },
+        ],
+      },
+      client: {
+        q: '你用 Claude Desktop 还是 Claude Code？',
+        opts: [
+          { t: 'Claude Desktop', end: '我给你开<a href="https://uuyc.163.com/">网易 UU 远程</a>，直接用那台电脑的桌面。' },
+          { t: 'Claude Code', next: 'ssh' },
+        ],
+      },
+      ssh: {
+        q: '你需要 ssh 到自己的工作环境吗？比如实验室的 GPU 服务器，或者自己的电脑。',
+        opts: [
+          { t: '需要', b: '要 ssh', key: 'ssh', val: true, next: 'multi' },
+          { t: '不需要', b: '不 ssh', key: 'ssh', val: false, next: 'multi' },
+        ],
+      },
+      multi: {
+        q: '你需要在手机、电脑、网页上都能看到 AI 的进度吗？',
+        opts: [
+          { t: '需要', b: '要多端', key: 't3', val: true, end: plan },
+          { t: '不需要', b: '不要多端', key: 't3', val: false, end: plan },
+        ],
+      },
+    };
+
+    function plan(s) {
+      var steps = ['我把这台电脑的 Tailscale 节点 share 给你。', '我在上面给你建一个 Linux 用户，你自己 ssh 进去。'];
+      if (s.ssh) steps.push('启动用户级 Tailscale，连回你自己的机器（下文第 3 步）。');
+      if (s.t3) steps.push('启动 T3 Code（下文第 2 步）。');
+      return '你要做这几件事：<ol><li>' + steps.join('</li><li>') + '</li></ol>';
+    }
+
+    var path = [];
+
+    function render() {
+      var state = {};
+      var id = 'start';
+      var end = null;
+      var html = '<div class="ap-trail">';
+      path.forEach(function (i, n) {
+        var o = nodes[id].opts[i];
+        html += (n ? ' › ' : '') + '<span data-n="' + n + '">' + (o.b || o.t) + '</span>';
+        if (o.key) state[o.key] = o.val;
+        if (o.end) end = typeof o.end === 'function' ? o.end(state) : o.end;
+        else id = o.next;
+      });
+      html += '</div>';
+      if (end) {
+        html += '<div class="ap-end">' + end + '</div><button data-reset="1">重新选</button>';
+      } else {
+        html += '<div class="ap-q">' + nodes[id].q + '</div><div class="ap-opts">';
+        nodes[id].opts.forEach(function (o, i) {
+          html += '<button data-i="' + i + '">' + o.t + '</button>';
+        });
+        html += '</div>';
+      }
+      root.innerHTML = html;
+    }
+
+    root.addEventListener('click', function (e) {
+      var el = e.target.closest('[data-i],[data-n],[data-reset]');
+      if (!el) return;
+      if (el.dataset.i !== undefined) path.push(+el.dataset.i);
+      else if (el.dataset.n !== undefined) path = path.slice(0, +el.dataset.n);
+      else path = [];
+      render();
+    });
+
+    render();
+  })();
+</script> <h2 id="1-共享这台机器">1. 共享这台机器</h2> <p>给朋友建一个没有 sudo 的普通账号，把自己的家目录锁死：</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>adduser friend
 <span class="nb">chmod </span>700 /home/me
 </code></pre></div></div> <p>然后在 Tailscale 控制台对这台机器点 Share，把链接发给朋友。对方接受后只能看到这一台机器，看不到你的其他设备。</p> <h2 id="2-用-t3-code-当界面">2. 用 T3 Code 当界面</h2> <p>T3 Code 可以同时接入 Claude Code、OpenCode 和 Codex 的订阅，在同一个界面里切换。它和 Claude Code 都跑在海外机器上。朋友开着 Tailscale，手机或电脑浏览器打开 T3 Code 就能用，不需要梯子。两端的会话是同步的，在电脑上开的任务，路上用手机接着看、接着批。</p> <p>配置好之后，手机、电脑或网页端直接启动 T3 Code 就行。</p> <h2 id="3-重活回到自己的机器">3. 重活回到自己的机器</h2> <p>朋友在海外机器上跑一个用户态 Tailscale，不用 root，状态都放在自己的家目录里：</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tailscaled <span class="nt">--tun</span><span class="o">=</span>userspace-networking <span class="se">\</span>
   <span class="nt">--state</span><span class="o">=</span><span class="nv">$HOME</span>/.tailscale/state <span class="nt">--socket</span><span class="o">=</span><span class="nv">$HOME</span>/.tailscale/sock &amp;
