@@ -25,6 +25,8 @@ chmod 700 /home/me
 
 T3 Code 可以同时接入 Claude Code、OpenCode 和 Codex 的订阅，在同一个界面里切换。它和 Claude Code 都跑在海外机器上。朋友开着 Tailscale，手机或电脑浏览器打开 T3 Code 就能用，不需要梯子。两端的会话是同步的，在电脑上开的任务，路上用手机接着看、接着批。
 
+配置好之后，手机、电脑或网页端直接启动 T3 Code 就行。
+
 ## 3. 重活回到自己的机器
 
 朋友在海外机器上跑一个用户态 Tailscale，不用 root，状态都放在自己的家目录里：
