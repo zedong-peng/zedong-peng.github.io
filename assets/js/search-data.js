@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-memorytax-the-bitter-lesson-of-agent-memory",
+        },{id: "post-不挂梯子-用手机指挥-claude-code",
+        
+          title: "不挂梯子，用手机指挥 Claude Code",
+        
+        description: "一台海外小机器，加 Tailscale 和 T3 Code，让朋友们不用梯子就能在手机和电脑上用 Claude Code。",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/claude-code-t3-tailscale-zh/";
+          
+        },
+      },{id: "post-memorytax-the-bitter-lesson-of-agent-memory",
         
           title: "MemoryTax: The Bitter Lesson of Agent Memory",
         
