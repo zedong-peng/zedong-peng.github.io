@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "把家里的笔记本分给朋友用 Claude Code"
+title: "把海外家里的笔记本分给朋友用 Claude Code"
 date: 2026-10-18 12:00:00 +0800
 lang: zh-CN
 description: "海外家里的一台笔记本，环境干净。用 Tailscale 和 T3 Code 分给身边的朋友，手机、电脑、网页都能用 Claude Code。"
