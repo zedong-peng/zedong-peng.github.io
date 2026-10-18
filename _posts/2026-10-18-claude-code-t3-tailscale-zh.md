@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "不挂梯子，用手机指挥 Claude Code"
+title: "把家里的笔记本分给朋友用 Claude Code"
 date: 2026-10-18 12:00:00 +0800
 lang: zh-CN
-description: "一台海外小机器，加 Tailscale 和 T3 Code，让朋友们不用梯子就能在手机和电脑上用 Claude Code。"
+description: "家人家里一台海外笔记本，环境干净。用 Tailscale 和 T3 Code 分给身边的朋友，手机、电脑、网页都能用 Claude Code。"
 categories: notes
 related_posts: false
 ---
 
-我有一台海外机器，IP 干净，跑 Claude 不会被风控，但硬盘只剩十几个 G。我的做法是让它只当入口，重活都交给各人自己的服务器。
+家人家里有一台笔记本，在海外，环境干净，我用它跑 Claude Code。身边的朋友有需要，我就分给他们用，用不用他们自己定。这台机器硬盘只剩十几个 G，所以它只当入口，重活都交给各人自己的服务器。
 
 ## 1. 共享这台机器
 
