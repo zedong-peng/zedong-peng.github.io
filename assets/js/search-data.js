@@ -41,6 +41,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/managing-a-team-of-ai-agents/";
           
         },
+      },{id: "post-how-to-make-your-own-homepage",
+        
+          title: "How to Make Your Own Homepage",
+        
+        description: "A domain from Cloudflare, the al-folio template and free hosting on GitHub Pages: how this site is put together, step by step.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/how-to-make-your-own-homepage/";
+          
+        },
       },{id: "post-把海外家里的笔记本分给朋友用-claude-code",
         
           title: "把海外家里的笔记本分给朋友用 Claude Code",
