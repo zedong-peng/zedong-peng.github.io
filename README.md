@@ -11,26 +11,4 @@ docker compose down
 
 ## how to update cv
 
-use https://docs.rendercv.com/user_guide/ as yaml_cv engine
-
-first time:
-
-```
-pip install "rendercv[full]"
-
-rendercv new "Your Full Name"
-```
-
-for update:
-
-```
-cd assets/pdf/yaml_cv
-
-rendercv render "Zedong_Peng_CV.yaml"
-```
-
-or
-
-```
-rendercv render --watch "Zedong_Peng_CV.yaml"
-```
+Edit `_data/cv.yml` (publications come from `_bibliography/papers.bib`). The page `/cv/` renders it, and the deploy workflow prints that page to `/assets/pdf/Zedong_Peng_CV.pdf`.

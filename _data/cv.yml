@@ -1,57 +1,119 @@
-- title: Education
-  type: time_table
-  contents:
-    - title: M.S. in Computer Science
-      institution: Shanghai Jiao Tong University, Shanghai, China
-      year: 2024 – 2027
-      description:
-        - Advised by Prof. Jieru Zhao.
-        - '<a href="/assets/pdf/Zedong_Peng_MS_Transcript.pdf">M.S. Transcript.pdf</a>'
-    - title: B.S. in Electronic Engineering
-      institution: Shanghai Jiao Tong University, Shanghai, China
-      year: 2020 – 2024
-      description:
-        - Outstanding Graduate.
-        - '<a href="/assets/pdf/Zedong_Peng_BS_Transcript.pdf">B.S. Transcript.pdf</a>'
+# The CV at /cv/ (_layouts/cv.liquid). The page, its schema.org data and the PDF, which the deploy
+# workflow prints from the page, all come from this file; publications come from _bibliography/papers.bib.
+# Text fields take inline markdown.
+name: Zedong Peng
+alternate_name: 彭则栋
+affiliation: Shanghai Jiao Tong University
+updated: 2026-10-20
+summary: M.S. student in Computer Science at Shanghai Jiao Tong University, interested in large language model development, systems optimization, and applications.
+email: zedongpeng1@gmail.com
+website: https://zedongpeng.com
+links:
+  - label: GitHub
+    url: https://github.com/zedong-peng
+  - label: Google Scholar
+    url: https://scholar.google.com/citations?user=t4pdXJEAAAAJ
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/zedong-peng
 
-- title: Experience
-  type: time_table
-  contents:
-    - title: Research Intern
-      institution: National Center of Technology Innovation for EDA, Nanjing, China
-      year: 2024 – present
-      description:
-        - Advised by Prof. Qiang Xu and Prof. Jieru Zhao.
-    - title: Machine Learning Intern
-      institution: Intel Asia-Pacific Research & Development Ltd., Shanghai, China
-      year: 2023 – 2024
-      description:
-        - Advised by Yuan Zhou.
-    - title: Winter School
-      institution: Data Science Institute, Imperial College London, London, UK
-      year: Winter 2024
-      # description:
-      #   - Applied vector representations to analyze COVID-19 textual datasets.
-    # - title: Research Intern
-    #   institution: Cooperative Medianet Innovation Center, SJTU
-    #   year: 2023
-    #   description:
-    #     - Explored long-tail multi-label learning with Prof. Jiangchao Yao.
-    - title: Research Intern
-      institution: Shanghai Jiao Tong University, Shanghai, China
-      year: 2022 – 2024
-      description:
-        - Advised by Prof. Liyao Xiang.
+sections:
+  - title: Education
+    entries:
+      - title: M.S. in Computer Science
+        org: Shanghai Jiao Tong University
+        place: Shanghai, China
+        dates: 2024 – 2027 (expected)
+        summary: Advised by [Prof. Jieru Zhao](https://zjru.github.io) and [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/). [Transcript](/assets/pdf/Zedong_Peng_MS_Transcript.pdf)
+      - title: B.S. in Electronic Engineering
+        org: Shanghai Jiao Tong University
+        place: Shanghai, China
+        dates: 2020 – 2024
+        summary: Outstanding Graduate. [Transcript](/assets/pdf/Zedong_Peng_BS_Transcript.pdf)
 
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 2024
-      items:
-        - Outstanding Graduate, Shanghai Jiao Tong University
-    - year: 2021
-      items:
-        - 2nd Prize, 13th National University Mathematics Competition
-        - 1st Prize, SJTU “Yunhan Cup” RobotMaster Intramural Competition
-        - Liu Yongling Foundation Scholarship
-        - Advanced Individual in Summer Social Practice of SJTU
+  - title: Experience
+    entries:
+      - title: Research Intern
+        org: National Center of Technology Innovation for EDA
+        place: Nanjing, China
+        dates: July 2024 – 2025
+        summary: Advised by [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/) and [Prof. Jieru Zhao](https://zjru.github.io).
+        highlights:
+          - "The HLS part of LLM4EDA: LLM post-training and data construction for a domain-specific language ([blog post](/blog/2025/forgehls-and-diffhls/))."
+      - title: Machine Learning Intern
+        org: Intel
+        place: Shanghai, China
+        dates: Nov 2023 – July 2024
+        summary: Advised by [Yuan Zhou](https://www.linkedin.com/in/zhouyuan).
+        highlights:
+          - "Spark SQL native engine [Gluten](https://github.com/apache/gluten): optimizing the CI pipeline."
+          - "LLM framework optimization: Intel device support for [vLLM](https://vllm.ai)."
+          - "LLM applications: text to SQL."
+      - title: Winter School
+        org: Data Science Institute, Imperial College London
+        place: London, UK
+        dates: Jan 2024 – Feb 2024
+        highlights:
+          - Applied vector representations to analyze language features in COVID-19 text.
+      - title: Research Intern
+        org: Shanghai Jiao Tong University
+        place: Shanghai, China
+        dates: July 2022 – July 2024
+        summary: Advised by [Prof. Liyao Xiang](http://xiangliyao.cn).
+        highlights:
+          - Security-focused machine learning research.
+
+  - title: Recent Work
+    entries:
+      - title: "[MemoryTax: The Bitter Lesson of Agent Memory](/blog/2026/memorytax/)"
+        dates: Oct 2026
+        summary: Does agent memory still help once the model can search the raw history itself? Memory systems and coding agents on LoCoMo, with three models.
+      - title: "[llama.cpp on an FPGA](/blog/2026/llama-cpp-on-an-fpga/)"
+        dates: In progress
+        summary: A llama.cpp backend that runs LLM inference on an AMD Alveo U280 FPGA card; twelve models from four families run on it. The code is private for now.
+
+  - title: Publications
+    bibliography: true
+
+  - title: Honors and Awards
+    compact: true
+    entries:
+      - title: First-class Postgraduate Academic Scholarship, Shanghai Jiao Tong University
+        dates: "2025"
+      - title: Outstanding Graduate, Shanghai Jiao Tong University
+        dates: "2024"
+      - title: 2nd Prize, 13th National University Mathematics Competition
+        dates: "2021"
+      - title: 1st Prize, SJTU "Yunhan Cup" RobotMaster Intramural Competition
+        dates: "2021"
+      - title: Liu Yongling Foundation Scholarship
+        dates: "2021"
+      - title: Advanced Individual in Social Practice, Shanghai Jiao Tong University
+        dates: "2021"
+
+  - title: Projects
+    entries:
+      - title: Robotic Dog Development
+        place: Shanghai, China
+        dates: Nov 2023 – Nov 2024
+        summary: Advised by [Prof. Weiming Zhao](https://zwm0426.github.io) and [Xiaomi Technology](https://www.mi.com).
+        highlights:
+          - Implemented algorithms that improved locomotion control and user interaction.
+      - title: VR Game "Strange Zoo"
+        place: Shanghai, China
+        dates: Sept 2021 – Jan 2022
+        summary: Original VR adventure puzzle game for the course CS085, VR & AR Design Practice.
+        highlights:
+          - Built interactive gameplay mechanics in Unity3D with C# and Microsoft VR tooling.
+      - title: Robot Cart Design and Control
+        place: Shanghai, China
+        dates: Sept 2021 – Jan 2022
+        summary: Champion project of the SJTU "Yunhan Cup" RobotMaster Intramural Competition.
+        highlights:
+          - Designed and built a competition robot with Arduino-based control; won 1st prize.
+
+  - title: Skills
+    pairs:
+      - label: Programming
+        value: C++, Python, SQL, Verilog, Shell, Docker, MATLAB
+      - label: Languages
+        value: Chinese (native), English (CET-6, 481), German (A1)
