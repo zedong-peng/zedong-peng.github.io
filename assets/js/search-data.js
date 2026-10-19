@@ -41,15 +41,15 @@ ninja.data = [{
             window.location.href = "/blog/2026/managing-a-team-of-ai-agents/";
           
         },
-      },{id: "post-how-to-make-your-own-homepage",
+      },{id: "post-llama-cpp-on-an-fpga-work-in-progress",
         
-          title: "How to Make Your Own Homepage",
+          title: "llama.cpp on an FPGA: Work in Progress",
         
-        description: "A domain from Cloudflare, the al-folio template and free hosting on GitHub Pages: how this site is put together, step by step.",
+        description: "A llama.cpp backend that runs LLM inference on an AMD Alveo U280 FPGA card, and how fast it decodes today.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2026/how-to-make-your-own-homepage/";
+            window.location.href = "/blog/2026/llama-cpp-on-an-fpga/";
           
         },
       },{id: "post-把海外家里的笔记本分给朋友用-claude-code",
@@ -160,6 +160,17 @@ ninja.data = [{
         handler: () => {
           
             window.location.href = "/blog/2025/forgehls-and-diffhls/";
+          
+        },
+      },{id: "post-how-to-make-your-own-homepage",
+        
+          title: "How to Make Your Own Homepage",
+        
+        description: "A domain from Cloudflare, the al-folio template and free hosting on GitHub Pages: how this site is put together, step by step.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/how-to-make-your-own-homepage/";
           
         },
       },{id: "post-a-post-with-plotly-js",
