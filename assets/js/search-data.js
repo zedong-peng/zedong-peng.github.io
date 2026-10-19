@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-how-i-manage-a-team-of-ai-agents",
+        },{id: "post-llmwiki-a-literature-library-for-research-agents",
+        
+          title: "llmwiki: A Literature Library for Research Agents",
+        
+        description: "How my coding agents keep the papers they read: one folder per reference, a citation and a reading note, and two public skills to build your own.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/llmwiki/";
+          
+        },
+      },{id: "post-how-i-manage-a-team-of-ai-agents",
         
           title: "How I Manage a Team of AI Agents",
         
