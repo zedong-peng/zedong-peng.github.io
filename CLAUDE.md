@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal academic website for Zedong Peng, built with the [al-folio](https://github.com/alshedivat/al-folio) Jekyll template. Deployed to https://zedonpeng.com via GitHub Actions → gh-pages branch.
+Personal academic website for Zedong Peng, built with the [al-folio](https://github.com/alshedivat/al-folio) Jekyll template. Deployed to https://zedongpeng.com via GitHub Actions → gh-pages branch.
 
 ## Common Commands
 
