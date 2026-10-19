@@ -4,7 +4,7 @@ title: 探索更大的世界
 date: 2023-07-09T02:56:26.988Z
 lang: zh-CN
 description: 留学申请路上的记录
-categories: notes
+categories: life
 thumbnail: assets/img/blog/study-abroad-louvre.jpg
 related_posts: false
 toc:

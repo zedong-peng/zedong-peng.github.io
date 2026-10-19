@@ -4,7 +4,7 @@ title: "我实现了 GPT-5.6-sol Ultra 自由"
 date: 2026-07-15 19:20:00 +0800
 lang: zh-CN
 description: "为什么我坚持用最强的模型，以及我如何用一台小服务器和 Sub2API 搭出自己的 AI 中转站。"
-categories: notes
+categories: life
 related_posts: false
 toc:
   beginning: true

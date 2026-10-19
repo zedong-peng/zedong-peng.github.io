@@ -1,0 +1,55 @@
+<div class="agent-prompt">
+  <div class="agent-prompt-head">
+    <span>Prompt for your AI agent</span>
+    <button type="button" class="agent-prompt-copy" aria-label="Copy prompt"><i class="fa-solid fa-clipboard"></i> Copy</button>
+  </div>
+  <p class="agent-prompt-text">{{ page.agent_prompt | strip | escape | newline_to_br }}</p>
+</div>
+<style>
+  .agent-prompt {
+    border: 1px solid var(--global-theme-color);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem 0.9rem;
+    margin: 0 0 1.5rem;
+  }
+  .agent-prompt-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.75;
+  }
+  .agent-prompt-copy {
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.2rem 0.7rem;
+    background: var(--global-theme-color);
+    color: #fff;
+    font-size: 0.85rem;
+    text-transform: none;
+    letter-spacing: 0;
+    cursor: pointer;
+  }
+  .agent-prompt-text {
+    margin: 0;
+    font-family: var(--bs-font-monospace, monospace);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+</style>
+<script>
+  document.querySelectorAll('.agent-prompt-copy').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var text = button.closest('.agent-prompt').querySelector('.agent-prompt-text').innerText.trim();
+      navigator.clipboard.writeText(text).then(function () {
+        button.innerHTML = '<i class="fa-solid fa-clipboard-check"></i> Copied';
+        setTimeout(function () {
+          button.innerHTML = '<i class="fa-solid fa-clipboard"></i> Copy';
+        }, 2000);
+      });
+    });
+  });
+</script>

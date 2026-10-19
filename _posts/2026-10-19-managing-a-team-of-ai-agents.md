@@ -4,7 +4,7 @@ title: "How I Manage a Team of AI Agents"
 date: 2026-10-19 12:00:00 +0800
 lang: en
 description: "A CEO, four specialists named after people whose work fits the job, and a few habits of ordinary management that mattered more than the technology."
-categories: notes
+categories: life
 related_posts: false
 ---
 

@@ -1,14 +1,16 @@
 ---
 layout: post
 title: "How to Make Your Own Homepage"
-date: 2026-10-19 12:00:00 +0800
+date: 2025-10-18 12:00:00 +0800
 lang: en
 description: "A domain from Cloudflare, the al-folio template and free hosting on GitHub Pages: how this site is put together, step by step."
-categories: notes
+categories: life
 related_posts: false
+agent_prompt: |
+  Read https://zedongpeng.com/blog/2025/how-to-make-your-own-homepage/ and build me a personal homepage with a blog the same way: the al-folio template, hosted on GitHub Pages, on my own domain. Ask me for what only I can give you: my name, photo, papers, CV and the domain I want. For steps that need my GitHub or Cloudflare account, tell me exactly what to click. Do the rest yourself, and show me the site running locally before we publish it.
 ---
 
-This site is the kind of homepage many researchers keep: an about page, a list of papers, a CV and a blog. It costs me about ten dollars a year, and all of that is the domain name. The template and the hosting are free. This post walks through how it is put together, using this site as the example, so you can build your own.
+This site is the kind of homepage many researchers keep: an about page, a list of papers, a CV and a blog. It costs me about ten dollars a year, and all of that is the domain name. The template and the hosting are free. This post walks through how it is put together, using this site as the example, so you can build your own. If you use an AI coding agent, give it the prompt above; the rest of this post is the same walk-through, for people.
 
 There are three parts:
 
@@ -98,18 +100,18 @@ What I changed on this site:
 - **Papers.** Each paper is a BibTeX entry, the format reference managers export. Extra fields become buttons and badges: `pdf=` and `arxiv=` add links under the entry, and `abbr=` puts the venue in a small box beside it.
 - **CV.** The CV page is built from `_data/cv.yml`. For a PDF version I use [RenderCV](https://github.com/rendercv/rendercv), which turns a YAML file into a typeset PDF, and link it at the top of the CV page.
 
-A blog post is a Markdown file in `_posts/` whose name starts with the date, like `2026-10-19-how-to-make-your-own-homepage.md`. It begins with a short header:
+A blog post is a Markdown file in `_posts/` whose name starts with the date, like `2025-10-18-how-to-make-your-own-homepage.md`. It begins with a short header:
 
 ```yaml
 ---
 layout: post
 title: "How to Make Your Own Homepage"
-date: 2026-10-19 12:00:00 +0800
+date: 2025-10-18 12:00:00 +0800
 description: "A domain from Cloudflare, the al-folio template and free hosting on GitHub Pages."
 ---
 ```
 
-The text goes below it, and the post appears at `/blog/2026/how-to-make-your-own-homepage/`.
+The text goes below it, and the post appears at `/blog/2025/how-to-make-your-own-homepage/`.
 
 ## Publish with a push
 
@@ -137,9 +139,9 @@ Then, on GitHub:
 2. Once it's ready, tick **Enforce HTTPS**.
 3. In `_config.yml`, change `url` to your domain, for example `url: https://zedongpeng.com`, and keep `baseurl:` empty.
 
-`www.zedongpeng.com` now redirects to `zedongpeng.com`. Saving the custom domain also writes a small file named `CNAME` into `gh-pages`. Mine has survived every deploy since, but if your custom domain goes blank after a deploy, al-folio's FAQ says to add the same file to `main`.
+`www.zedongpeng.com` now redirects to `zedongpeng.com`. Saving the custom domain also writes a small file named `CNAME` into `gh-pages`. Mine has survived every deploy so far, but if your custom domain goes blank after a deploy, al-folio's FAQ says to add the same file to `main`.
 
-Check step 3 carefully. For nine months my `url` read `https://zedonpeng.com`, one letter short, and nothing looked wrong: links between pages are relative, so the site worked. But the template uses `url` for the addresses that only machines read: the canonical link in each page's header, which tells search engines a page's real address, the sitemap and the RSS feed. All of them pointed at a domain I don't own. After changing `url`, open your live site's page source and search for "canonical".
+Check the spelling in step 3 letter by letter. A typo there breaks nothing you can see, because links between pages are relative, so the site works. But the template uses `url` for the addresses that only machines read: the canonical link in each page's header, which tells search engines a page's real address, the sitemap and the RSS feed. With a typo, all of them point at a domain you don't own. After changing `url`, open your live site's page source and search for "canonical".
 
 ## Preview before you push
 
@@ -153,11 +155,11 @@ Then open `http://localhost:8080`. The page reloads as you edit.
 
 Two things caught me out:
 
-- **Posts dated in the future don't appear.** Jekyll compares the date with the moment the build runs. I once dated a post 8 pm and pushed it at 5 pm the same day, and it stayed missing until I moved the date back. Give each date a time and an offset, and set `timezone:` in `_config.yml`.
+- **Posts dated in the future don't appear.** Jekyll compares the date with the moment the build runs, so a post dated this evening and pushed this afternoon stays missing until the date is moved back. Give each date a time and an offset, and set `timezone:` in `_config.yml`.
 - **A red cross on a commit is usually the formatting check.** The template runs [Prettier](https://prettier.io), a code formatter, on every push and fails if a file isn't formatted its way. The site still deploys, but it's worth fixing.
 
-## Let an AI agent do the edits
+## Keep a note for your agent
 
-The repository also has a `CLAUDE.md` file: a short note on how the site is laid out and how to publish. With it, an AI coding agent such as Claude Code can make changes without being told the layout each time. This post was written and published that way, and [How I Manage a Team of AI Agents](/blog/2026/managing-a-team-of-ai-agents/) describes the setup.
+If an agent builds your site, ask it to leave a `CLAUDE.md` (or `AGENTS.md`) file in the repository: a short note on where things live and how to publish. The next time you want a change, the agent reads the note instead of working out the layout again.
 
 The source for this site is [public on GitHub](https://github.com/zedong-peng/zedong-peng.github.io), if you want to see any of the files above.

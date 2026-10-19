@@ -5,7 +5,7 @@ title: posts
 nav: true
 nav_order: 1
 pagination:
-  enabled: true
+  enabled: false
   collection: posts
   permalink: /page/:num/
   per_page: 20
@@ -46,7 +46,7 @@ pagination:
       {% endif %}
       {% for category in site.display_categories %}
         <li>
-          <i class="fa-solid fa-tag fa-sm"></i> <a href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}">{{ category }}</a>
+          <i class="fa-solid fa-tag fa-sm"></i> <a href="#{{ category | slugify }}">{{ category }}</a>
         </li>
         {% unless forloop.last %}
           <p>&bull;</p>
@@ -109,16 +109,21 @@ pagination:
 
 {% endif %}
 
-{% if page.pagination.enabled %}
-{% assign postlist = paginator.posts | where_exp: "post", "post.hidden != true" %}
-{% else %}
-{% assign postlist = visible_posts %}
-{% endif %}
+{% for category in site.display_categories %}
+{% assign section_posts = visible_posts | where_exp: "post", "post.categories contains category" %}
 
-{% include blog_post_list.liquid posts=postlist show_language=true %}
+<h2 class="blog-section" id="{{ category | slugify }}">{{ category | capitalize }}</h2>
 
-{% if page.pagination.enabled %}
-{% include pagination.liquid %}
-{% endif %}
+{% include blog_post_list.liquid posts=section_posts show_language=true %}
+{% endfor %}
+
+<style>
+  .blog-section {
+    margin: 2.5rem 0 0.5rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--global-divider-color);
+    font-size: 1.6rem;
+  }
+</style>
 
 </div>
