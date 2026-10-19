@@ -98,6 +98,15 @@ jobs:
         run: |
           npm install -g purgecss
           purgecss -c purgecss.config.js
+      - name: Print CV to PDF 🖨️
+        run: |
+          python3 -m http.server 4000 --directory _site >/dev/null 2>&1 &
+          server=$!
+          sleep 2
+          google-chrome --headless=new --no-sandbox --disable-gpu --no-pdf-header-footer --virtual-time-budget=15000 \
+            --print-to-pdf=_site/assets/pdf/Zedong_Peng_CV.pdf http://localhost:4000/cv/
+          kill $server
+          test -s _site/assets/pdf/Zedong_Peng_CV.pdf
       - name: Deploy 🚀
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4
