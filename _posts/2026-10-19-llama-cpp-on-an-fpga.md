@@ -33,7 +33,7 @@ The card works as an ordinary llama.cpp backend: models come from the usual GGUF
 | GPT-2 Medium | 0.27      | 403  | 64  | 940      |
 | GPT-2 Large  | 0.55      | 219  | 47  | 583      |
 
-`llama-bench` with its default settings (tg128: 128 tokens generated from an empty context), version 1.1.0, October 2026. All models are 4-bit quantized. CPU is the same host's two Xeon Gold 5218, 32 cores. Qwen3 4B's FPGA number comes from a later build of the same version.
+Measured with `llama-bench`'s default settings (tg128: 128 tokens generated from an empty context), version 1.1.0, October 2026. All models are 4-bit quantized. CPU is the same host's two Xeon Gold 5218, 32 cores. Qwen3 4B's FPGA number comes from a later build of the same version.
 
 Decoding Llama 3.1 8B, the card reads 224 GB of weights a second, against the memory's rated 460 GB/s. An RTX 4090 is still faster on every model; its memory is rated at 1,008 GB/s. Reading the prompt (prefill) is also still slower on the card than on the CPU; this work is about decode.
 
