@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://zedongpeng.com/feed.xml" rel="self" type="application/atom+xml"/><link href="https://zedongpeng.com/" rel="alternate" type="text/html" hreflang="en"/><updated>2026-10-19T12:31:44+08:00</updated><id>https://zedongpeng.com/feed.xml</id><title type="html">blank</title><subtitle>The personal website of Zedong Peng.</subtitle><entry xml:lang="zh-CN"><title type="html">把海外家里的笔记本分给朋友用 Claude Code</title><link href="https://zedongpeng.com/blog/2026/claude-code-t3-tailscale-zh/" rel="alternate" type="text/html" title="把海外家里的笔记本分给朋友用 Claude Code"/><published>2026-10-18T12:00:00+08:00</published><updated>2026-10-18T12:00:00+08:00</updated><id>https://zedongpeng.com/blog/2026/claude-code-t3-tailscale-zh</id><content type="html" xml:base="https://zedongpeng.com/blog/2026/claude-code-t3-tailscale-zh/"><![CDATA[<p>海外家里有一台笔记本，环境干净，我用它跑 Claude Code。身边的朋友有需要，我就分给他们用，用不用他们自己定。这台机器硬盘只剩十几个 G，所以它只当入口，重活都交给各人自己的服务器。</p> <p>先选一下你的情况：</p> <div class="ai-picker" id="ai-picker"> <noscript> 国产模型：用 OpenCode Go。OpenAI：每月十块左右的梯子，先测纯净度。Claude：认识我就找我开账号，不认识就找每月一百块左右的家宽梯子。 </noscript> </div> <style>.ai-picker{border:1px solid var(--global-divider-color);border-radius:8px;padding:1rem 1.25rem;margin:1.5rem 0}.ai-picker .ap-trail{margin:0 0 .75rem;font-size:.9rem;color:var(--global-text-color-light)}.ai-picker .ap-trail:empty{display:none}.ai-picker .ap-trail span{cursor:pointer}.ai-picker .ap-trail span:hover{color:var(--global-theme-color)}.ai-picker .ap-q{font-weight:600;margin-bottom:.75rem}.ai-picker .ap-opts{display:flex;flex-wrap:wrap;gap:.5rem}.ai-picker button{border:1px solid var(--global-theme-color);border-radius:6px;background:transparent;color:var(--global-theme-color);padding:.35rem .9rem;cursor:pointer}.ai-picker button:hover,.ai-picker button.on{background:var(--global-theme-color);color:var(--global-hover-text-color)}.ai-picker button:disabled{opacity:.4;cursor:default}.ai-picker .ap-end{margin-bottom:.75rem}.ai-picker .ap-end ol{margin:.5rem 0 0;padding-left:1.25rem}</style> <script>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://zedongpeng.com/feed.xml" rel="self" type="application/atom+xml"/><link href="https://zedongpeng.com/" rel="alternate" type="text/html" hreflang="en"/><updated>2026-10-19T12:40:27+08:00</updated><id>https://zedongpeng.com/feed.xml</id><title type="html">blank</title><subtitle>The personal website of Zedong Peng.</subtitle><entry xml:lang="zh-CN"><title type="html">把海外家里的笔记本分给朋友用 Claude Code</title><link href="https://zedongpeng.com/blog/2026/claude-code-t3-tailscale-zh/" rel="alternate" type="text/html" title="把海外家里的笔记本分给朋友用 Claude Code"/><published>2026-10-18T12:00:00+08:00</published><updated>2026-10-18T12:00:00+08:00</updated><id>https://zedongpeng.com/blog/2026/claude-code-t3-tailscale-zh</id><content type="html" xml:base="https://zedongpeng.com/blog/2026/claude-code-t3-tailscale-zh/"><![CDATA[<p>海外家里有一台笔记本，环境干净，我用它跑 Claude Code。身边的朋友有需要，我就分给他们用，用不用他们自己定。这台机器硬盘只剩十几个 G，所以它只当入口，重活都交给各人自己的服务器。</p> <p>先选一下你的情况：</p> <div class="ai-picker" id="ai-picker"> <noscript> 国产模型：用 OpenCode Go。OpenAI：每月十块左右的梯子，先测纯净度。Claude：认识我就找我开账号，不认识就找每月一百块左右的家宽梯子。 </noscript> </div> <style>.ai-picker{border:1px solid var(--global-divider-color);border-radius:8px;padding:1rem 1.25rem;margin:1.5rem 0}.ai-picker .ap-trail{margin:0 0 .75rem;font-size:.9rem;color:var(--global-text-color-light)}.ai-picker .ap-trail:empty{display:none}.ai-picker .ap-trail span{cursor:pointer}.ai-picker .ap-trail span:hover{color:var(--global-theme-color)}.ai-picker .ap-q{font-weight:600;margin-bottom:.75rem}.ai-picker .ap-opts{display:flex;flex-wrap:wrap;gap:.5rem}.ai-picker button{border:1px solid var(--global-theme-color);border-radius:6px;background:transparent;color:var(--global-theme-color);padding:.35rem .9rem;cursor:pointer}.ai-picker button:hover,.ai-picker button.on{background:var(--global-theme-color);color:var(--global-hover-text-color)}.ai-picker button:disabled{opacity:.4;cursor:default}.ai-picker .ap-end{margin-bottom:.75rem}.ai-picker .ap-end ol{margin:.5rem 0 0;padding-left:1.25rem}</style> <script>
   (function () {
     var root = document.getElementById('ai-picker');
     var short = { cn: '国产', openai: 'OpenAI', claude: 'Claude' };
@@ -11,6 +11,13 @@
     function agents(s) {
       return (s.ai || []).filter(function (p) {
         return !(p === 'claude' && s.client === 'desktop');
+      });
+    }
+
+    // AIs that run on the reader's own computer.
+    function local(s) {
+      return agents(s).filter(function (p) {
+        return !(p === 'claude' && mine(s));
       });
     }
 
@@ -69,17 +76,26 @@
           [false, '不需要', '不要多端'],
         ],
       },
+      {
+        id: 'unify',
+        when: function (s) {
+          return s.multi === true && local(s).length > 1;
+        },
+        q: '你电脑上这几家 AI，想放在一个界面里统一管理吗？',
+        opts: [
+          [true, '想', '统一管理'],
+          [false, '不用，各用各的', '各用各的'],
+        ],
+      },
     ];
 
     function plan(s) {
       var me = mine(s);
-      var local = agents(s).filter(function (p) {
-        return !(p === 'claude' && me);
-      });
+      var own = local(s);
       var steps = [];
       if (s.client === 'desktop') steps.push('Claude：我给你开<a href="https://uuyc.163.com/">网易 UU 远程</a>，直接用那台电脑的桌面。');
       if (me) steps.push('Claude：我把这台电脑的 Tailscale 节点 share 给你，再给你建一个 Linux 用户，你自己 ssh 进去。');
-      local.forEach(function (p) {
+      own.forEach(function (p) {
         if (p === 'cn') steps.push('国产模型：用 <a href="https://opencode.ai/go">OpenCode Go</a>。');
         if (p === 'openai')
           steps.push(
@@ -91,13 +107,18 @@
           );
       });
       if (s.ssh && me) steps.push('在我这台电脑上启动用户级 Tailscale，连回你自己的机器（下文第 3 步）。');
-      if (s.ssh && local.length) steps.push('你的电脑和工作环境都装上 Tailscale，配好 SSH 密钥，你电脑上的 AI 就能直接 ssh 过去。');
+      if (s.ssh && own.length) steps.push('你的电脑和工作环境都装上 Tailscale，配好 SSH 密钥，你电脑上的 AI 就能直接 ssh 过去。');
       if (s.multi && me) steps.push('在我这台电脑上启动 T3 Code（下文第 2 步）。手机直接开 Claude App 要挂梯子，T3 Code 走 Tailscale 不用。');
-      if (s.multi && local.length > 1) steps.push('在你的电脑上启动 T3 Code，几家 AI 放在一个界面里，手机、电脑、网页都能看进度。');
-      else if (s.multi && local[0] === 'cn') steps.push('电脑上跑 <code>opencode web</code>，手机装 Tailscale 打开网页就能看。');
-      else if (s.multi && local[0] === 'openai')
-        steps.push('用 Codex App 自带的远程，手机上的 ChatGPT App 就能接着看。Codex App 要跑在 Mac 或 Windows 上。');
-      else if (s.multi && local[0] === 'claude') steps.push('用 Claude Code 自带的 Remote Control，手机上的 Claude App 也要挂梯子。');
+      var native = {
+        cn: '国产模型：电脑上跑 <code>opencode web</code>，手机装 Tailscale 打开网页就能看。',
+        openai: 'OpenAI：用 Codex App 自带的远程，手机上的 ChatGPT App 就能接着看。Codex App 要跑在 Mac 或 Windows 上。',
+        claude: 'Claude：用 Claude Code 自带的 Remote Control，手机上的 Claude App 也要挂梯子。',
+      };
+      if (s.unify) steps.push('在你的电脑上启动 T3 Code，几家 AI 放在一个界面里，手机、电脑、网页都能看进度。');
+      else if (s.multi)
+        own.forEach(function (p) {
+          steps.push(native[p]);
+        });
       return '你要做这几件事：<ol><li>' + steps.join('</li><li>') + '</li></ol>';
     }
 
