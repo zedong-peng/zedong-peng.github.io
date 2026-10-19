@@ -1,6 +1,7 @@
 <div class="ai-picker" id="ai-picker">
   <noscript>
-    国产模型：用 OpenCode Go。OpenAI：每月十块左右的梯子，先测纯净度。Claude：认识我就找我开账号，不认识就找每月一百块左右的家宽梯子。
+    国产模型：用 OpenCode Go。OpenAI：每月十块左右的梯子，先测纯净度。Claude：认识我就找我开账号，不认识就找每月一百块左右的家宽梯子。订阅：OpenCode
+    Go 可以用支付宝或微信；OpenAI 和 Claude 用苹果 App Store 礼品卡、Google Pay 或国外银行卡，港卡不行。
   </noscript>
 </div>
 
@@ -192,6 +193,17 @@
           steps.push(native[p]);
         });
       }
+      var pay = [];
+      if (s.ai.indexOf('cn') >= 0) pay.push('OpenCode Go 可以用支付宝或微信');
+      var intl = s.ai
+        .filter(function (p) {
+          return p !== 'cn';
+        })
+        .map(function (p) {
+          return short[p];
+        });
+      if (intl.length) pay.push(intl.join(' 和 ') + ' 用苹果 App Store 礼品卡、Google Pay 或国外银行卡，港卡不行');
+      steps.push('订阅：' + pay.join('；') + '。');
       return '你要做这几件事：<ol><li>' + steps.join('</li><li>') + '</li></ol>';
     }
 
