@@ -25,7 +25,7 @@ ninja.data = [{
           },
         },{id: "nav-cv",
           title: "cv",
-          description: "For more details, check out [CV.pdf](/assets/pdf/yaml_cv/rendercv_output/Zedong_Peng_CV.pdf).",
+          description: "CV of Zedong Peng: education, experience, recent work, publications, honors, projects and skills. PDF: https://zedongpeng.com/assets/pdf/Zedong_Peng_CV.pdf",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";

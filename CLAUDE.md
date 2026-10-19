@@ -20,14 +20,7 @@ docker compose down
 
 ### Update CV
 
-```bash
-cd assets/pdf/yaml_cv
-rendercv render "Zedong_Peng_CV.yaml"
-# or with live reload:
-rendercv render --watch "Zedong_Peng_CV.yaml"
-```
-
-First-time setup: `pip install "rendercv[full]"`
+Edit `_data/cv.yml`; publications come from `_bibliography/papers.bib`. `_layouts/cv.liquid` renders `/cv/`, and the deploy workflow prints that page to `/assets/pdf/Zedong_Peng_CV.pdf`.
 
 ### Deployment
 
@@ -42,7 +35,7 @@ Automatic on push to `main` via `.github/workflows/deploy.yml`. No manual deploy
 - `_news/` — News/announcements collection
 - `_projects/` — Project entries
 - `_bibliography/papers.bib` — All publications in BibTeX format (rendered by jekyll-scholar)
-- `assets/pdf/yaml_cv/Zedong_Peng_CV.yaml` — CV source of truth (rendered to PDF by RenderCV)
+- `_data/cv.yml` — CV source of truth (the `/cv/` page; its PDF is printed from the page on deploy)
 
 ### Template System
 
