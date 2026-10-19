@@ -74,6 +74,9 @@ layout: default
       <hr>
     {% endif %}
     <div id="markdown-content">
+      {% if page.agent_prompt %}
+        {% include agent_prompt.liquid %}
+      {% endif %}
       {{ content }}
     </div>
   </article>

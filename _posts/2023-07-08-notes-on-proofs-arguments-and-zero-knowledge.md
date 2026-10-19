@@ -5,7 +5,7 @@ date: 2023-07-08 15:15:48
 lang: en
 translation_key: zero-knowledge-notes
 description: Notes on machine learning, security, privacy, and mobile computing. Guided by Liyao Xiang.
-categories: notes
+categories: life
 featured: false
 ---
 

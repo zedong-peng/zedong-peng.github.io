@@ -5,7 +5,7 @@ date: 2026-04-14 23:35:00 +0800
 lang: en
 translation_key: ai-research-copilot
 description: "How AI evolved from coding assistant to research partner in my workflow."
-categories: notes
+categories: life
 hidden: true
 related_posts: false
 ---
