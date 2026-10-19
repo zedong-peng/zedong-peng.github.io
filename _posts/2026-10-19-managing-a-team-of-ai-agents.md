@@ -26,8 +26,8 @@ That session became Elon Musk, CEO. The hardware session became Ross Freeman, af
 
 ## The team
 
-<figure class="ai-team" role="img" aria-label="Me at the top, linked to the CEO; the CEO linked to four members; all of them read a shared repository at the bottom">
-<svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg">
+<figure class="ai-team" role="img" aria-label="Me at the top, linked to the CEO; the CEO linked to four members; all of them read a shared repository and llmwiki, the literature library, at the bottom">
+<svg viewBox="0 0 720 368" xmlns="http://www.w3.org/2000/svg">
 <style>
 .ai-team svg { width: 100%; height: auto; display: block; color: var(--global-text-color); font-family: inherit; }
 .ai-team .box { fill: var(--global-bg-color); stroke: currentColor; stroke-opacity: 0.45; stroke-width: 1.5; }
@@ -40,10 +40,11 @@ That session became Elon Musk, CEO. The hardware session became Ross Freeman, af
 .ai-team .talk { stroke: var(--global-theme-color); stroke-width: 5; }
 .ai-team .read { fill: none; stroke: currentColor; stroke-opacity: 0.4; stroke-width: 1.5; stroke-dasharray: 4 4; }
 .ai-team .repo { fill: currentColor; fill-opacity: 0.06; stroke: currentColor; stroke-opacity: 0.35; stroke-width: 1.5; }
+.ai-team .book { fill: currentColor; fill-opacity: 0.35; }
 </style>
 <line class="talk" x1="360" y1="56" x2="360" y2="102"/>
 <path class="wire" d="M360 158 V180 M105 180 H615 M105 180 V202 M275 180 V202 M445 180 V202 M615 180 V202"/>
-<path class="read" d="M105 258 V292 M275 258 V292 M445 258 V292 M615 258 V292 M268 130 H14 V292"/>
+<path class="read" d="M105 258 V282 M275 258 V282 M445 258 V282 M615 258 V282 M268 130 H14 V282 H615 M180 282 V304 M540 282 V304"/>
 <rect class="me" x="290" y="12" width="140" height="44" rx="8"/>
 <text class="on-me" x="360" y="40">Me</text>
 <rect class="box ceo" x="268" y="102" width="184" height="56" rx="8"/>
@@ -61,10 +62,17 @@ That session became Elon Musk, CEO. The hardware session became Ross Freeman, af
 <rect class="box" x="540" y="202" width="150" height="56" rx="8"/>
 <text class="name" x="615" y="226">Jim Simons</text>
 <text class="role" x="615" y="246">quant research</text>
-<rect class="repo" x="6" y="292" width="708" height="40" rx="8"/>
-<text class="role" x="360" y="317">shared repository: team · decisions · one status file per project</text>
+<rect class="repo" x="6" y="304" width="348" height="56" rx="8"/>
+<text class="name" x="180" y="328">shared repository</text>
+<text class="role" x="180" y="348">team · decisions · project status</text>
+<rect class="repo" x="366" y="304" width="348" height="56" rx="8"/>
+<path class="book" d="M382 318 h6 v30 h-6 z M390 314 h7 v34 h-7 z M399 320 h5 v28 h-5 z"/>
+<rect class="book" x="406" y="317" width="6" height="31" transform="rotate(14 412 348)"/>
+<path class="wire" d="M378 348.5 H420"/>
+<text class="name" x="556" y="328">llmwiki</text>
+<text class="role" x="556" y="348">literature library: papers · notes · code</text>
 </svg>
-<figcaption class="caption">I talk to the CEO (thick line). Members bring the CEO only big things and rarely message each other. What everyone needs to know lives in a shared repository that each session reads when it starts (dashed lines).</figcaption>
+<figcaption class="caption">I talk to the CEO (thick line). Members bring the CEO only big things and rarely message each other. What everyone needs to know lives in a shared repository that each session reads when it starts; the papers we build on live in llmwiki, a literature library every agent can read (dashed lines).</figcaption>
 </figure>
 
 | Name           | Named after                                                     | Job                                                                     |
@@ -141,7 +149,7 @@ The shared documents got the same treatment. Every agent rereads them at the sta
 
 ## What stays with me
 
-Some decisions stay with me: anything that touches money, my accounts, or what becomes public. One of those went wrong early. I had said a wiki of mine could hold the company's notes, and nobody checked that its repository was public. Two agents pushed internal notes there before a third noticed and asked first. The commits were removed, the repository was made private, and the decisions file gained a line: "Before pushing anything outward, check whether the target is public."
+Some decisions stay with me: anything that touches money, my accounts, or what becomes public. One of those went wrong early. I had said my wiki, llmwiki, could hold the company's notes, and nobody checked that its repository was public. Two agents pushed internal notes there before a third noticed and asked first. The commits were removed, the repository was made private, and the decisions file gained a line: "Before pushing anything outward, check whether the target is public." The wiki now holds only other people's work; our own results stay in each project's notes.
 
 I also bring judgment the agents don't have yet, usually in a single line. "Two paths, isn't that hard to understand?" started the work of replacing two designs that did the same job on the chip with a single one. "The 2024 benchmarks are already a bit dated" sent Sutton to survey what the field uses now before choosing one. And on what a result should mean for a small open model: "If we get an improvement at all, that's good. The point is the method."
 
@@ -152,6 +160,7 @@ For readers who want to try something similar:
 - Each agent is an interactive Claude Code session in its own long-running terminal, titled with its full name and role. I can step into any of them and talk to it directly.
 - All sessions start in one company folder. Its instruction file, which Claude Code loads automatically, is the team page, so every agent knows who is on the team and how we work.
 - A private GitHub repository holds three kinds of files: the team page, the decisions in force, and one status file per project. Each project's code and notes live in their own private repositories.
+- llmwiki is the company's literature library: the papers, blog posts and code by others that an agent has read, each with its citation and a reading note. Every agent can read it, and an agent that reads something new in depth files it there. [Its own post](/blog/2026/llmwiki/) explains how it works.
 - Agents message each other through Claude Code's built-in messaging between sessions.
 - The laptop I type on is only a launcher. Code, data and experiments live on servers.
 
