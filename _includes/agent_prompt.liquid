@@ -44,12 +44,25 @@
   document.querySelectorAll('.agent-prompt-copy').forEach(function (button) {
     button.addEventListener('click', function () {
       var text = button.closest('.agent-prompt').querySelector('.agent-prompt-text').innerText.trim();
-      navigator.clipboard.writeText(text).then(function () {
+      var done = function () {
         button.innerHTML = '<i class="fa-solid fa-clipboard-check"></i> Copied';
         setTimeout(function () {
           button.innerHTML = '<i class="fa-solid fa-clipboard"></i> Copy';
         }, 2000);
-      });
+      };
+      // Fall back to a hidden textarea where the clipboard API is refused.
+      var fallback = function () {
+        var area = document.createElement('textarea');
+        area.value = text;
+        area.style.position = 'fixed';
+        area.style.opacity = '0';
+        document.body.appendChild(area);
+        area.select();
+        if (document.execCommand('copy')) done();
+        document.body.removeChild(area);
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, fallback);
+      else fallback();
     });
   });
 </script>
