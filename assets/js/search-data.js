@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-把海外家里的笔记本分给朋友用-claude-code",
+        },{id: "post-how-i-manage-a-team-of-ai-agents",
+        
+          title: "How I Manage a Team of AI Agents",
+        
+        description: "A CEO, four specialists named after people whose work fits the job, and a few habits of ordinary management that mattered more than the technology.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/managing-a-team-of-ai-agents/";
+          
+        },
+      },{id: "post-把海外家里的笔记本分给朋友用-claude-code",
         
           title: "把海外家里的笔记本分给朋友用 Claude Code",
         
