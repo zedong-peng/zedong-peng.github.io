@@ -5,7 +5,7 @@
     var root = document.getElementById('ai-picker');
     var short = { cn: '国产', openai: 'OpenAI', claude: 'Claude' };
 
-    // A Linux account on my machine. It only serves Claude; other AIs run on the reader's own computer.
+    // A Linux account on my machine, for Claude Code. The reader may install other AIs there too.
     function mine(s) {
       return s.client === 'code';
     }
@@ -16,8 +16,9 @@
       });
     }
 
-    // AIs that run on the reader's own computer.
+    // AIs that run on the reader's own computer. Managed together with Claude, they all move to my machine.
     function local(s) {
+      if (mine(s) && s.unify) return [];
       return agents(s).filter(function (p) {
         return !(p === 'claude' && mine(s));
       });
@@ -81,9 +82,9 @@
       {
         id: 'unify',
         when: function (s) {
-          return s.multi === true && local(s).length > 1;
+          return agents(s).length > 1;
         },
-        q: '你电脑上这几家 AI，想放在一个界面里统一管理吗？',
+        q: '这几家 AI，想放在一个界面里统一管理吗？',
         opts: [
           [true, '想', '统一管理'],
           [false, '不用，各用各的', '各用各的'],
@@ -97,6 +98,10 @@
       var steps = [];
       if (s.client === 'desktop') steps.push('Claude：我给你开<a href="https://uuyc.163.com/">网易 UU 远程</a>，直接用那台电脑的桌面。');
       if (me) steps.push('Claude：我把这台电脑的 Tailscale 节点 share 给你，再给你建一个 Linux 用户，你自己 ssh 进去。');
+      if (me && s.unify) {
+        if (s.ai.indexOf('cn') >= 0) steps.push('国产模型：也在这台电脑上用 <a href="https://opencode.ai/go">OpenCode Go</a>。');
+        if (s.ai.indexOf('openai') >= 0) steps.push('OpenAI：Codex 也装在这台电脑上，它在海外，不用梯子。');
+      }
       own.forEach(function (p) {
         if (p === 'cn') steps.push('国产模型：用 <a href="https://opencode.ai/go">OpenCode Go</a>。');
         if (p === 'openai')
@@ -110,17 +115,23 @@
       });
       if (s.ssh && me) steps.push('在我这台电脑上启动用户级 Tailscale，连回你自己的机器（下文第 3 步）。');
       if (s.ssh && own.length) steps.push('你的电脑和工作环境都装上 Tailscale，配好 SSH 密钥，你电脑上的 AI 就能直接 ssh 过去。');
-      if (s.multi && me) steps.push('在我这台电脑上启动 T3 Code（下文第 2 步）。手机直接开 Claude App 要挂梯子，T3 Code 走 Tailscale 不用。');
       var native = {
         cn: '国产模型：电脑上跑 <code>opencode web</code>，手机装 Tailscale 打开网页就能看。',
         openai: 'OpenAI：用 Codex App 自带的远程，手机上的 ChatGPT App 就能接着看。Codex App 要跑在 Mac 或 Windows 上。',
         claude: 'Claude：用 Claude Code 自带的 Remote Control，手机上的 Claude App 也要挂梯子。',
       };
-      if (s.unify) steps.push('在你的电脑上启动 T3 Code，几家 AI 放在一个界面里，手机、电脑、网页都能看进度。');
-      else if (s.multi)
+      if (s.unify)
+        steps.push(
+          (me ? '在我这台电脑上启动 T3 Code（下文第 2 步）' : '在你的电脑上启动 T3 Code') +
+            '，几家 AI 放在一个界面里' +
+            (s.multi ? '，手机、电脑、网页都能看进度。' : '。')
+        );
+      else if (s.multi) {
+        if (me) steps.push('Claude：在我这台电脑上启动 T3 Code（下文第 2 步）。手机直接开 Claude App 要挂梯子，T3 Code 走 Tailscale 不用。');
         own.forEach(function (p) {
           steps.push(native[p]);
         });
+      }
       return '你要做这几件事：<ol><li>' + steps.join('</li><li>') + '</li></ol>';
     }
 
