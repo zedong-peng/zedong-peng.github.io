@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-llmwiki-a-literature-library-for-research-agents",
+        },{id: "post-where-experience-goes",
+        
+          title: "Where Experience Goes",
+        
+        description: "Long context, agent memory, parametric memory, test-time training, continual learning and self-improving agents are one problem under many names: learning from experience after training has ended. Each picks a place to keep an experience and a rule for writing it there. The rule is the hard part, and it should be learned.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/where-experience-goes/";
+          
+        },
+      },{id: "post-llmwiki-a-literature-library-for-research-agents",
         
           title: "llmwiki: A Literature Library for Research Agents",
         
