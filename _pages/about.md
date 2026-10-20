@@ -6,7 +6,7 @@ subtitle: ""
 
 subtitle: |+
   (彭 则栋) <br><br>
-  M.S. student in Computer Science, 2024 - 2027 (expected), <br>
+  M.Eng. student in Electronic and Information Engineering, School of Computer Science, 2024 - 2027 (expected), <br>
   advised by <a href="https://zjru.github.io">Prof. Jieru Zhao</a> and <a href="https://cure-lab.github.io/author/qiang-xu-徐强/">Prof. Qiang Xu</a>, <br>
   <a href="https://www.sjtu.edu.cn">Shanghai Jiao Tong University (SJTU)</a>. <br>
   
