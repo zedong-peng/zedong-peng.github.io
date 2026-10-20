@@ -3,7 +3,7 @@ layout: post
 title: "How I Manage a Team of AI Agents"
 date: 2026-10-19 12:00:00 +0800
 lang: en
-description: "A CEO, four specialists named after people whose work fits the job, and a few habits of ordinary management that mattered more than the technology."
+description: "A CEO, seven specialists named after people whose work fits the job, and a few habits of ordinary management that mattered more than the technology."
 categories: life
 related_posts: false
 ---
@@ -26,15 +26,15 @@ That session became Elon Musk, CEO. The hardware session became Ross Freeman, af
 
 ## The team
 
-<figure class="ai-team" role="img" aria-label="Me at the top, linked to the CEO; the CEO linked to four members; all of them read a shared repository and llmwiki, the literature library, at the bottom">
-<svg viewBox="0 0 720 368" xmlns="http://www.w3.org/2000/svg">
+<figure class="ai-team" role="img" aria-label="Me at the top, linked to the CEO; the CEO linked to seven members, four in one row and three in a second; a dashed line runs from the CEO past the members down to a shared repository and llmwiki, the literature library, at the bottom">
+<svg viewBox="0 0 720 424" xmlns="http://www.w3.org/2000/svg">
 <style>
 .ai-team svg { width: 100%; height: auto; display: block; color: var(--global-text-color); font-family: inherit; }
 .ai-team .box { fill: var(--global-bg-color); stroke: currentColor; stroke-opacity: 0.45; stroke-width: 1.5; }
 .ai-team .ceo { stroke: var(--global-theme-color); stroke-opacity: 1; stroke-width: 2.5; }
 .ai-team .me { fill: var(--global-theme-color); }
-.ai-team .name { fill: currentColor; font-size: 17px; font-weight: 600; text-anchor: middle; }
-.ai-team .role { fill: currentColor; fill-opacity: 0.7; font-size: 13.5px; text-anchor: middle; }
+.ai-team .name { fill: currentColor; font-size: 14px; font-weight: 600; text-anchor: middle; }
+.ai-team .role { fill: currentColor; fill-opacity: 0.7; font-size: 11.5px; text-anchor: middle; }
 .ai-team .on-me { fill: #fff; font-size: 17px; font-weight: 600; text-anchor: middle; }
 .ai-team .wire { fill: none; stroke: currentColor; stroke-opacity: 0.45; stroke-width: 1.5; }
 .ai-team .talk { stroke: var(--global-theme-color); stroke-width: 5; }
@@ -42,46 +42,58 @@ That session became Elon Musk, CEO. The hardware session became Ross Freeman, af
 .ai-team .repo { fill: currentColor; fill-opacity: 0.06; stroke: currentColor; stroke-opacity: 0.35; stroke-width: 1.5; }
 .ai-team .book { fill: currentColor; fill-opacity: 0.35; }
 </style>
-<line class="talk" x1="360" y1="56" x2="360" y2="102"/>
-<path class="wire" d="M360 158 V180 M105 180 H615 M105 180 V202 M275 180 V202 M445 180 V202 M615 180 V202"/>
-<path class="read" d="M105 258 V282 M275 258 V282 M445 258 V282 M615 258 V282 M268 130 H14 V282 H615 M180 282 V304 M540 282 V304"/>
+<line class="talk" x1="360" y1="56" x2="360" y2="92"/>
 <rect class="me" x="290" y="12" width="140" height="44" rx="8"/>
 <text class="on-me" x="360" y="40">Me</text>
-<rect class="box ceo" x="268" y="102" width="184" height="56" rx="8"/>
-<text class="name" x="360" y="126">Elon Musk</text>
-<text class="role" x="360" y="146">CEO</text>
-<rect class="box" x="30" y="202" width="150" height="56" rx="8"/>
-<text class="name" x="105" y="226">Ross Freeman</text>
-<text class="role" x="105" y="246">FPGA backend</text>
-<rect class="box" x="200" y="202" width="150" height="56" rx="8"/>
-<text class="name" x="275" y="226">Chris Olah</text>
-<text class="role" x="275" y="246">writing</text>
-<rect class="box" x="370" y="202" width="150" height="56" rx="8"/>
-<text class="name" x="445" y="226">Richard Sutton</text>
-<text class="role" x="445" y="246">models that learn</text>
-<rect class="box" x="540" y="202" width="150" height="56" rx="8"/>
-<text class="name" x="615" y="226">Jim Simons</text>
-<text class="role" x="615" y="246">quant research</text>
-<rect class="repo" x="6" y="304" width="348" height="56" rx="8"/>
-<text class="name" x="180" y="328">shared repository</text>
-<text class="role" x="180" y="348">team · decisions · project status</text>
-<rect class="repo" x="366" y="304" width="348" height="56" rx="8"/>
-<path class="book" d="M382 318 h6 v30 h-6 z M390 314 h7 v34 h-7 z M399 320 h5 v28 h-5 z"/>
-<rect class="book" x="406" y="317" width="6" height="31" transform="rotate(14 412 348)"/>
-<path class="wire" d="M378 348.5 H420"/>
-<text class="name" x="556" y="328">llmwiki</text>
-<text class="role" x="556" y="348">literature library: papers · notes · code</text>
+<rect class="box ceo" x="268" y="92" width="184" height="56" rx="8"/>
+<text class="name" x="360" y="116" style="font-size:17px">Elon Musk</text>
+<text class="role" x="360" y="136" style="font-size:13.5px">CEO</text>
+<path class="wire" d="M360 148 V170 M105 170 H615 M105 170 V190 M275 170 V190 M445 170 V190 M615 170 V190 M190 170 V280 M360 170 V280 M530 170 V280"/>
+<path class="read" d="M268 130 H14 V348 H700 M180 348 V360 M540 348 V360"/>
+<rect class="box" x="30" y="190" width="150" height="56" rx="8"/>
+<text class="name" x="105" y="214">Ross Freeman</text>
+<text class="role" x="105" y="234">FPGA backend</text>
+<rect class="box" x="200" y="190" width="150" height="56" rx="8"/>
+<text class="name" x="275" y="214">Chris Olah</text>
+<text class="role" x="275" y="234">writing</text>
+<rect class="box" x="370" y="190" width="150" height="56" rx="8"/>
+<text class="name" x="445" y="214">Richard Sutton</text>
+<text class="role" x="445" y="234">models that learn</text>
+<rect class="box" x="540" y="190" width="150" height="56" rx="8"/>
+<text class="name" x="615" y="214">Jim Simons</text>
+<text class="role" x="615" y="234">quant research</text>
+<rect class="box" x="115" y="280" width="150" height="56" rx="8"/>
+<text class="name" x="190" y="304">John Schulman</text>
+<text class="role" x="190" y="324">learning from feedback</text>
+<rect class="box" x="285" y="280" width="150" height="56" rx="8"/>
+<text class="name" x="360" y="304">Rodney Brooks</text>
+<text class="role" x="360" y="324">embodied</text>
+<rect class="box" x="455" y="280" width="150" height="56" rx="8"/>
+<text class="name" x="530" y="304">Richard Hamming</text>
+<text class="role" x="530" y="324">life plan</text>
+<rect class="repo" x="6" y="360" width="348" height="56" rx="8"/>
+<text class="name" x="180" y="384">shared repository</text>
+<text class="role" x="180" y="404">team · decisions · project status</text>
+<rect class="repo" x="366" y="360" width="348" height="56" rx="8"/>
+<path class="book" d="M382 374 h6 v30 h-6 z M390 370 h7 v34 h-7 z M399 376 h5 v28 h-5 z"/>
+<rect class="book" x="406" y="373" width="6" height="31" transform="rotate(14 412 404)"/>
+<path class="wire" d="M378 404.5 H420"/>
+<text class="name" x="556" y="384">llmwiki</text>
+<text class="role" x="556" y="404">literature library: papers · notes · code</text>
 </svg>
-<figcaption class="caption">I talk to the CEO (thick line). Members bring the CEO only big things and rarely message each other. What everyone needs to know lives in a shared repository that each session reads when it starts; the papers we build on live in llmwiki, a literature library every agent can read (dashed lines).</figcaption>
+<figcaption class="caption">I talk to the CEO (thick line). Members bring the CEO only big things and rarely message each other. What everyone needs to know lives in a shared repository that each session reads when it starts; the papers we build on live in llmwiki, a literature library every agent can read (dashed lines). Six of the seven work the terminal; the CEO and the member on my life plan run in T3 Code.</figcaption>
 </figure>
 
-| Name           | Named after                                                     | Job                                                                     |
-| -------------- | --------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Elon Musk      | builds companies from first principles, bets big                | CEO: direction, decisions, resources, blockers                          |
-| Ross Freeman   | inventor of the FPGA                                            | chief designer of the FPGA backend: hardware, builds, tests on the card |
-| Chris Olah     | clear visual explanations of how neural networks work           | writing: the project's report page and posts on this blog               |
-| Richard Sutton | father of reinforcement learning, author of "The Bitter Lesson" | research on models that learn from their own experience                 |
-| Jim Simons     | mathematician who founded Renaissance Technologies              | quantitative trading research                                           |
+| Name            | Named after                                                     | Job                                                                                     |
+| --------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Elon Musk       | builds companies from first principles, bets big                | CEO: direction, decisions, resources, blockers                                           |
+| Ross Freeman    | inventor of the FPGA                                            | chief designer of the FPGA backend: hardware, builds, tests on the card                   |
+| Chris Olah      | clear visual explanations of how neural networks work           | writing: the project's report page and posts on this blog                                 |
+| Richard Sutton  | father of reinforcement learning, author of "The Bitter Lesson" | research on models that learn from their own experience                                   |
+| Jim Simons      | mathematician who founded Renaissance Technologies              | quantitative trading research                                                             |
+| John Schulman   | OpenAI co-founder, PPO, led RLHF and ChatGPT                    | research on learning from feedback: is correcting an agent in words a kind of RL           |
+| Rodney Brooks   | roboticist, behavior-based robots, "Elephants Don't Play Chess" | research on embodied intelligence: a table-tennis robot                                   |
+| Richard Hamming | "You and Your Research": work on the important problems         | my life plan: the US PhD application, and the main line of my career                      |
 
 A name works like a one-word style guide: it tells the agent how to approach the work without a list of rules. When I wanted the writer to work differently, the CEO renamed it. It joined as Knuth, after Donald Knuth's idea that a program should read like an explanation, and became Olah the same day, when I asked for more figures and a style learned from Anthropic's own writing.
 
@@ -93,6 +105,8 @@ Adding an agent costs one message, and so does removing one. Two early hires spl
 
 The lesson went into the team page: one long-lived session per role, and one owner for each body of facts. One-off searches, audits and parallel attempts are helpers an agent starts inside its own role, not new hires.
 
+Hiring then went the other way as lines opened: one on models that learn from feedback, one on embodied intelligence, and my life plan. Each came in on one message, the same way Simons did.
+
 ## A hire is one message
 
 Everything a new member needs fits in the message that starts its session. Here is the one Jim Simons received, shortened ("the user" is me):
@@ -103,7 +117,7 @@ It has a persona, a goal without a number, hard limits where money or exposure i
 
 ## Goals, not targets
 
-The CEO's first instinct was a good manager's: set measurable targets. It proposed two numbers for Freeman, a generation speed for the flagship model at a long context and a time limit for reading in a long prompt, and asked whether to send them. I said:
+The CEO's first instinct is a good manager's: set measurable targets. It proposed two numbers for Freeman, a generation speed for the flagship model at a long context and a time limit for reading in a long prompt, and asked whether to send them. I said:
 
 > "Don't send them. Don't let targets break our ideals."
 
@@ -147,6 +161,20 @@ The shared documents got the same treatment. Every agent rereads them at the sta
 
 > "Company documents shouldn't keep a long history of changes, or every session will read a pile of irrelevant things like personnel changes. Let git track the changes; the files should show only the latest, for the agents to read."
 
+## Two ways to run one
+
+The CEO runs in T3 Code, an app that puts the same coding agent behind a desktop window and, through remote access, a phone. I run the company from my phone: open the CEO's thread, read what it has done, answer, close it. The member on my life plan is also a T3 Code thread. Everyone else runs the terminal version in a tmux session.
+
+The two are not priced the same. T3 Code hands the model the host app's own tools as well, described in the system prompt, so every request carries more text. In our use the same work costs about one and a half times as many tokens as the command-line version. For the one agent I reach for all day that is worth it; for six workers running unattended it is not, so they stay in the terminal.
+
+## The session that outlives its cache
+
+Claude Code caches a session's context for an hour, and the next message reads that cache at a small fraction of the price. A session idle for longer loses it, and its next message reprocesses the whole conversation at full price. For an agent that sits between two jobs overnight, that is most of what it costs.
+
+Claude Code now compacts an idle session before the hour runs out: past 200K tokens, about 54 minutes idle, it summarizes, so the next message starts from a short history. The built-in version covers the interactive terminal. Background conversations — the ones a terminal keeps running behind the current one — and SDK-hosted sessions, which is what T3 Code runs, were left out, and those are exactly the sessions that sit idle longest.
+
+So I wrote a plugin for it. On a completed turn it starts a 50-minute timer if the session is one of these; when the timer fires it compacts, provided the context holds at least 200K tokens. A new turn cancels the timer, a subagent's turn never starts it, and a timer that fires more than two minutes late means the machine slept and the cache is already cold, so it does nothing. T3 Code sessions count only when they are not interactive: a terminal session opened from inside T3 Code inherits its entry point but is covered already.
+
 ## What stays with me
 
 Some decisions stay with me: anything that touches money, my accounts, or what becomes public. One of those went wrong early. I had said my wiki, llmwiki, could hold the company's notes, and nobody checked that its repository was public. Two agents pushed internal notes there before a third noticed and asked first. The commits were removed, the repository was made private, and the decisions file gained a line: "Before pushing anything outward, check whether the target is public." The wiki now holds only other people's work; our own results stay in each project's notes.
@@ -157,7 +185,7 @@ I also bring judgment the agents don't have yet, usually in a single line. "Two 
 
 For readers who want to try something similar:
 
-- Each agent is an interactive Claude Code session in its own long-running terminal, titled with its full name and role. I can step into any of them and talk to it directly.
+- Each agent is an interactive Claude Code session, titled with its full name and role: six in their own tmux sessions, two as T3 Code threads. I can step into any of them and talk to it directly, from a terminal or from my phone.
 - All sessions start in one company folder. Its instruction file, which Claude Code loads automatically, is the team page, so every agent knows who is on the team and how we work.
 - A private GitHub repository holds three kinds of files: the team page, the decisions in force, and one status file per project. Each project's code and notes live in their own private repositories.
 - llmwiki is the company's literature library: the papers, blog posts and code by others that an agent has read, each with its citation and a reading note. Every agent can read it, and an agent that reads something new in depth files it there. [Its own post](/blog/2026/llmwiki/) explains how it works.
@@ -168,4 +196,4 @@ For readers who want to try something similar:
 
 Most of this is advice you would give about managing people: one owner per job, a goal worth having instead of a number, reasons instead of rules, room to try and fail, few meetings, and the state written down. With agents the last one matters most, because a session knows only what it is given when it starts.
 
-_This post went through the company too. I asked the CEO for "a simple blog post about how I manage AI"; the CEO passed it to Olah, the writer, who wrote it from the company's files and the session logs._
+_This post went through the company too. I asked the CEO for "a simple blog post about how I manage AI"; the CEO passed it to Olah, the writer, who wrote it from the company's files and the session logs. The parts on T3 Code and on idle compaction were added after that._
