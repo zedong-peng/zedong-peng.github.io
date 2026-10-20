@@ -17,38 +17,37 @@ layout: default
     line-height: 1.45;
   }
   .cv-head {
-    text-align: center;
-    margin-bottom: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.2rem 1.5rem;
   }
   .cv-head h1 {
-    font-size: 2rem;
+    font-size: 1.6em;
     font-weight: 700;
-    margin: 0 0 0.35rem;
-  }
-  .cv-head p {
-    margin: 0 0 0.35rem;
+    margin: 0 auto 0 0;
   }
   .cv-contact {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 0.2rem 1.2rem;
+    margin: 0;
   }
-  .cv-meta,
-  .cv-updated {
-    font-size: 0.85rem;
-    color: var(--global-text-color-light);
+  .cv-pdf {
+    white-space: nowrap;
   }
   .cv-updated {
     margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--global-text-color-light);
   }
   .cv h2 {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    font-size: 1.3rem;
+    font-size: 1.1em;
     font-weight: 700;
-    margin: 1.3rem 0 0.6rem;
+    margin: 1rem 0 0.4rem;
   }
   .cv h2::after {
     content: '';
@@ -101,6 +100,10 @@ layout: default
     margin-bottom: 0.25rem;
   }
   @media (max-width: 576px) {
+    .cv-contact {
+      order: 1;
+      flex-basis: 100%;
+    }
     .cv-entry {
       flex-direction: column;
       gap: 0;
@@ -140,7 +143,7 @@ layout: default
     body > header,
     body > footer,
     #back-to-top,
-    .cv-meta {
+    .cv-pdf {
       display: none !important;
     }
     .cv {
@@ -168,9 +171,7 @@ layout: default
       <a href="mailto:{{ cv.email }}">{{ cv.email }}</a>
       <a href="{{ cv.website }}">{{ cv.website | remove: 'https://' }}</a>
     </p>
-    <p class="cv-meta">
-      <a href="{{ site.url }}/assets/pdf/Zedong_Peng_CV.pdf" download><i class="fa-solid fa-file-pdf"></i> Download PDF</a>
-    </p>
+    <a class="cv-pdf" href="{{ site.url }}/assets/pdf/Zedong_Peng_CV.pdf" download><i class="fa-solid fa-file-pdf"></i> PDF</a>
   </header>
 
   {% for section in cv.sections %}
