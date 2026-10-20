@@ -76,13 +76,13 @@ ninja.data = [{
         },
       },{id: "post-memorytax-the-bitter-lesson-of-agent-memory",
         
-          title: "MemoryTax: The Bitter Lesson of Agent Memory",
+          title: 'MemoryTax: The Bitter Lesson of Agent Memory <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
         
         description: "Does agent memory still help once the model can search the raw history itself? Memory systems and coding agents on LoCoMo with three models.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2026/memorytax/";
+            window.open("https://zedongpeng.com/memorytax/", "_blank");
           
         },
       },{id: "post-qwen3-8-27b-on-one-rtx-4090",
