@@ -56,7 +56,7 @@ ninja.data = [{
         
           title: "How I Manage a Team of AI Agents",
         
-        description: "A CEO, four specialists named after people whose work fits the job, and a few habits of ordinary management that mattered more than the technology.",
+        description: "A CEO, seven specialists named after people whose work fits the job, and a few habits of ordinary management that mattered more than the technology.",
         section: "Posts",
         handler: () => {
           
