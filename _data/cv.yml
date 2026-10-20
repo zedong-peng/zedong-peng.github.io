@@ -67,7 +67,7 @@ sections:
 
   - title: Projects
     entries:
-      - title: "[llama.cpp on an FPGA](/blog/2026/llama-cpp-on-an-fpga/)"
+      - title: "[llama.cpp FPGA backend](/blog/2026/llama-cpp-on-an-fpga/)"
         dates: In progress
         summary: A llama.cpp backend that runs LLM inference on an AMD Alveo U280 FPGA card; twelve models from four families run on it. The code is private for now.
       - title: "[MemoryTax: The Bitter Lesson of Agent Memory](https://zedongpeng.com/memorytax/)"
