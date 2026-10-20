@@ -62,17 +62,23 @@ sections:
         highlights:
           - Security-focused machine learning research.
 
-  - title: Recent Work
+  - title: Publications
+    bibliography: true
+
+  - title: Projects
     entries:
-      - title: "[MemoryTax: The Bitter Lesson of Agent Memory](/blog/2026/memorytax/)"
-        dates: Oct 2026
-        summary: Does agent memory still help once the model can search the raw history itself? Memory systems and coding agents on LoCoMo, with three models.
       - title: "[llama.cpp on an FPGA](/blog/2026/llama-cpp-on-an-fpga/)"
         dates: In progress
         summary: A llama.cpp backend that runs LLM inference on an AMD Alveo U280 FPGA card; twelve models from four families run on it. The code is private for now.
-
-  - title: Publications
-    bibliography: true
+      - title: "[MemoryTax: The Bitter Lesson of Agent Memory](/blog/2026/memorytax/)"
+        dates: Oct 2026
+        summary: Does agent memory still help once the model can search the raw history itself? Memory systems and coding agents on LoCoMo, with three models.
+      - title: Robotic Dog Development
+        place: Shanghai, China
+        dates: Nov 2023 – Nov 2024
+        summary: Advised by [Prof. Weiming Zhao](https://zwm0426.github.io) and [Xiaomi Technology](https://www.mi.com).
+        highlights:
+          - Implemented algorithms that improved locomotion control and user interaction.
 
   - title: Honors and Awards
     compact: true
@@ -89,27 +95,6 @@ sections:
         dates: "2021"
       - title: Advanced Individual in Social Practice, Shanghai Jiao Tong University
         dates: "2021"
-
-  - title: Projects
-    entries:
-      - title: Robotic Dog Development
-        place: Shanghai, China
-        dates: Nov 2023 – Nov 2024
-        summary: Advised by [Prof. Weiming Zhao](https://zwm0426.github.io) and [Xiaomi Technology](https://www.mi.com).
-        highlights:
-          - Implemented algorithms that improved locomotion control and user interaction.
-      - title: VR Game "Strange Zoo"
-        place: Shanghai, China
-        dates: Sept 2021 – Jan 2022
-        summary: Original VR adventure puzzle game for the course CS085, VR & AR Design Practice.
-        highlights:
-          - Built interactive gameplay mechanics in Unity3D with C# and Microsoft VR tooling.
-      - title: Robot Cart Design and Control
-        place: Shanghai, China
-        dates: Sept 2021 – Jan 2022
-        summary: Champion project of the SJTU "Yunhan Cup" RobotMaster Intramural Competition.
-        highlights:
-          - Designed and built a competition robot with Arduino-based control; won 1st prize.
 
   - title: Skills
     pairs:
