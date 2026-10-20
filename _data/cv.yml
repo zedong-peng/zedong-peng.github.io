@@ -70,9 +70,9 @@ sections:
       - title: "[llama.cpp on an FPGA](/blog/2026/llama-cpp-on-an-fpga/)"
         dates: In progress
         summary: A llama.cpp backend that runs LLM inference on an AMD Alveo U280 FPGA card; twelve models from four families run on it. The code is private for now.
-      - title: "[MemoryTax: The Bitter Lesson of Agent Memory](/blog/2026/memorytax/)"
+      - title: "[MemoryTax: The Bitter Lesson of Agent Memory](https://zedongpeng.com/memorytax/)"
         dates: Oct 2026
-        summary: Does agent memory still help once the model can search the raw history itself? Memory systems and coding agents on LoCoMo, with three models.
+        summary: Does agent memory still help once the model can search the raw history itself? Memory systems and coding agents on LoCoMo, with three models. [Code and data](https://github.com/zedong-peng/memorytax).
       - title: Robotic Dog Development
         place: Shanghai, China
         dates: Nov 2023 – Nov 2024
