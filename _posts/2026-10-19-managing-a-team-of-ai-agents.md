@@ -49,7 +49,7 @@ That session became Elon Musk, CEO. The hardware session became Ross Freeman, af
 <text class="name" x="360" y="116" style="font-size:17px">Elon Musk</text>
 <text class="role" x="360" y="136" style="font-size:13.5px">CEO</text>
 <path class="wire" d="M360 148 V170 M105 170 H615 M105 170 V190 M275 170 V190 M445 170 V190 M615 170 V190 M190 170 V280 M360 170 V280 M530 170 V280"/>
-<path class="read" d="M268 130 H14 V348 H700 M180 348 V360 M540 348 V360"/>
+<path class="read" d="M268 130 H14 V348 H540 M180 348 V360 M540 348 V360"/>
 <rect class="box" x="30" y="190" width="150" height="56" rx="8"/>
 <text class="name" x="105" y="214">Ross Freeman</text>
 <text class="role" x="105" y="234">FPGA backend</text>
