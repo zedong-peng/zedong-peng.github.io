@@ -5,9 +5,9 @@ name: Zedong Peng
 alternate_name: 彭则栋
 affiliation: Shanghai Jiao Tong University
 updated: 2026-10-20
-summary: M.S. student in Computer Science at Shanghai Jiao Tong University, interested in large language model development, systems optimization, and applications.
 email: zedongpeng1@gmail.com
 website: https://zedongpeng.com
+# Profiles: in the page's schema.org data only (sameAs), not shown.
 links:
   - label: GitHub
     url: https://github.com/zedong-peng
