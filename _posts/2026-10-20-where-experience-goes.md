@@ -4,7 +4,7 @@ title: "Where Experience Goes"
 date: 2026-10-20 12:00:00 +0800
 lang: en
 description: "Long context, agent memory, parametric memory, test-time training, continual learning and self-improving agents are one problem under many names: learning from experience after training has ended. Each picks a place to keep an experience and a rule for writing it there. The rule is the hard part, and it should be learned."
-categories: research
+categories: life
 related_posts: false
 ---
 
