@@ -34,12 +34,13 @@ layout: default
     justify-content: center;
     gap: 0.2rem 1.2rem;
   }
-  .cv-meta {
+  .cv-meta,
+  .cv-updated {
     font-size: 0.85rem;
     color: var(--global-text-color-light);
   }
-  .cv-meta a {
-    margin-left: 1rem;
+  .cv-updated {
+    margin-top: 1.5rem;
   }
   .cv h2 {
     display: flex;
@@ -139,7 +140,7 @@ layout: default
     body > header,
     body > footer,
     #back-to-top,
-    .cv-meta a {
+    .cv-meta {
       display: none !important;
     }
     .cv {
@@ -166,13 +167,8 @@ layout: default
     <p class="cv-contact">
       <a href="mailto:{{ cv.email }}">{{ cv.email }}</a>
       <a href="{{ cv.website }}">{{ cv.website | remove: 'https://' }}</a>
-      {% for link in cv.links %}
-        <a href="{{ link.url }}">{{ link.label }}</a>
-      {% endfor %}
     </p>
-    <p>{{ cv.summary }}</p>
     <p class="cv-meta">
-      Updated {{ cv.updated | date: '%B %Y' }}
       <a href="{{ site.url }}/assets/pdf/Zedong_Peng_CV.pdf" download><i class="fa-solid fa-file-pdf"></i> Download PDF</a>
     </p>
   </header>
@@ -225,6 +221,7 @@ layout: default
       {% endif %}
     </section>
   {% endfor %}
+  <p class="cv-updated">Updated {{ cv.updated | date: '%B %Y' }}</p>
 </article>
 
 <script type="application/ld+json">
@@ -233,7 +230,6 @@ layout: default
     "@type": "Person",
     "name": {{ cv.name | jsonify }},
     "alternateName": {{ cv.alternate_name | jsonify }},
-    "description": {{ cv.summary | jsonify }},
     "url": {{ cv.website | jsonify }},
     "email": {{ cv.email | jsonify }},
     "affiliation": { "@type": "CollegeOrUniversity", "name": {{ cv.affiliation | jsonify }} },
