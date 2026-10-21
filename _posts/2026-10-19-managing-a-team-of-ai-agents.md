@@ -84,16 +84,16 @@ That session became Elon Musk, CEO. The hardware session became Ross Freeman, af
 <figcaption class="caption">I talk to the CEO (thick line). Members bring the CEO only big things and rarely message each other. What everyone needs to know lives in a shared repository that each session reads when it starts; the papers we build on live in llmwiki, a literature library every agent can read (dashed lines). Six of the seven work the terminal; the CEO and the member on my life plan run in T3 Code.</figcaption>
 </figure>
 
-| Name            | Named after                                                     | Job                                                                                     |
-| --------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| Elon Musk       | builds companies from first principles, bets big                | CEO: direction, decisions, resources, blockers                                           |
-| Ross Freeman    | inventor of the FPGA                                            | chief designer of the FPGA backend: hardware, builds, tests on the card                   |
-| Chris Olah      | clear visual explanations of how neural networks work           | writing: the project's report page and posts on this blog                                 |
-| Richard Sutton  | father of reinforcement learning, author of "The Bitter Lesson" | research on models that learn from their own experience                                   |
-| Jim Simons      | mathematician who founded Renaissance Technologies              | quantitative trading research                                                             |
-| John Schulman   | OpenAI co-founder, PPO, led RLHF and ChatGPT                    | research on learning from feedback: is correcting an agent in words a kind of RL           |
-| Rodney Brooks   | roboticist, behavior-based robots, "Elephants Don't Play Chess" | research on embodied intelligence: a table-tennis robot                                   |
-| Richard Hamming | "You and Your Research": work on the important problems         | my life plan: the US PhD application, and the main line of my career                      |
+| Name            | Named after                                                     | Job                                                                              |
+| --------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Elon Musk       | builds companies from first principles, bets big                | CEO: direction, decisions, resources, blockers                                   |
+| Ross Freeman    | inventor of the FPGA                                            | chief designer of the FPGA backend: hardware, builds, tests on the card          |
+| Chris Olah      | clear visual explanations of how neural networks work           | writing: the project's report page and posts on this blog                        |
+| Richard Sutton  | father of reinforcement learning, author of "The Bitter Lesson" | research on models that learn from their own experience                          |
+| Jim Simons      | mathematician who founded Renaissance Technologies              | quantitative trading research                                                    |
+| John Schulman   | OpenAI co-founder, PPO, led RLHF and ChatGPT                    | research on learning from feedback: is correcting an agent in words a kind of RL |
+| Rodney Brooks   | roboticist, behavior-based robots, "Elephants Don't Play Chess" | research on embodied intelligence: a table-tennis robot                          |
+| Richard Hamming | "You and Your Research": work on the important problems         | my life plan: the US PhD application, and the main line of my career             |
 
 A name works like a one-word style guide: it tells the agent how to approach the work without a list of rules. When I wanted the writer to work differently, the CEO renamed it. It joined as Knuth, after Donald Knuth's idea that a program should read like an explanation, and became Olah the same day, when I asked for more figures and a style learned from Anthropic's own writing.
 
