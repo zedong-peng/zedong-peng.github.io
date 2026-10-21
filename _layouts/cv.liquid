@@ -89,6 +89,14 @@ layout: default
   .cv-main p {
     margin: 0.1rem 0 0;
   }
+  .cv a.cv-link {
+    font-size: 0.9em;
+    color: var(--global-text-color-light);
+    text-decoration: none;
+  }
+  .cv a.cv-link:hover {
+    color: var(--global-theme-color);
+  }
   .cv section > p {
     margin: 0 0 0.25rem;
   }
@@ -199,6 +207,8 @@ layout: default
                 {%- if entry.org -%}
                   , <em>{{ entry.org }}</em>
                 {%- endif %}
+                {%- for link in entry.links %} <a class="cv-link" href="{% if link.url contains '://' %}{{ link.url }}{% else %}{{ site.url }}{{ link.url }}{% endif %}">[{{ link.label }}]</a>
+                {%- endfor -%}
               </h3>
               {% if entry.summary %}
                 {{ entry.summary | markdownify | replace: 'href="/', absolute }}

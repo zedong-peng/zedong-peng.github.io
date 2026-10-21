@@ -20,7 +20,7 @@ docker compose down
 
 ### Update CV
 
-Edit `_data/cv.yml`; publications come from `_bibliography/papers.bib`. `_layouts/cv.liquid` renders `/cv/`, and the deploy workflow prints that page to `/assets/pdf/Zedong_Peng_CV.pdf`.
+Edit `_data/cv.yml`; publications come from `_bibliography/papers.bib`. `_layouts/cv.liquid` renders `/cv/`, and the deploy workflow prints that page to `/assets/pdf/Zedong_Peng_CV.pdf`. Entry links use bracketed labels, never link the title: a CV entry takes a `links:` list of `label`/`url` pairs (rendered as `[label]` after the title), and a publication gets `[paper] [arxiv] [pdf] [code] [data] [slides] [video]` from its BibTeX fields. Bracketed labels are for entry-level resources only; names inside a summary or highlight stay natural prose links.
 
 ### Deployment
 
@@ -30,7 +30,7 @@ Automatic on push to `main` via `.github/workflows/deploy.yml`. No manual deploy
 
 ### Content Structure
 
-- `_pages/` — Static pages (about, cv, publications, projects, etc.)
+- `_pages/` — Static pages (about, cv, projects, etc.); `/publications/` is only a redirect stub to `/cv/`
 - `_posts/` — Blog posts
 - `_news/` — News/announcements collection
 - `_projects/` — Project entries

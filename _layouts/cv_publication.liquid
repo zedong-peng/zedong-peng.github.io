@@ -1,21 +1,28 @@
 ---
 ---
 {% comment %} One publication on the CV page (_layouts/cv.liquid), rendered by jekyll-scholar. {% endcomment %}
+{% comment %} Every resource is a bracketed label after the title, in a fixed order: [paper] [arxiv] [pdf] [code] [data]
+  [slides] [video]. The title itself is not a link. Publication URLs are absolute so that they work in the PDF, which the
+  deploy workflow prints from this page. {% endcomment %}
+{% assign base = site.url %}
 {% if entry.website %}
-  {% assign link = entry.website %}
+  {% assign paper_url = entry.website %}
 {% elsif entry.arxiv %}
-  {% assign link = entry.arxiv | prepend: 'https://arxiv.org/abs/' %}
+  {% assign paper_url = entry.arxiv | prepend: 'https://arxiv.org/abs/' %}
 {% else %}
-  {% assign link = null %}
+  {% assign paper_url = null %}
 {% endif %}
 <div class="cv-entry">
   <div class="cv-main">
     <h3>
-      {% if link -%}
-        <a href="{{ link }}">{{ entry.title }}</a>
-      {%- else -%}
-        {{- entry.title -}}
-      {%- endif %}
+      <b>{{ entry.title }}</b>
+      {%- if paper_url %} <a class="cv-link" href="{{ paper_url }}">[paper]</a>{% endif -%}
+      {%- if entry.website and entry.arxiv %} <a class="cv-link" href="{{ entry.arxiv | prepend: 'https://arxiv.org/abs/' }}">[arxiv]</a>{% endif -%}
+      {%- if entry.pdf %} <a class="cv-link" href="{{ entry.pdf | prepend: '/assets/pdf/' | prepend: base }}">[pdf]</a>{% endif -%}
+      {%- if entry.code %} <a class="cv-link" href="{{ entry.code }}">[code]</a>{% endif -%}
+      {%- if entry.data %} <a class="cv-link" href="{{ entry.data }}">[data]</a>{% endif -%}
+      {%- if entry.slides %} <a class="cv-link" href="{{ entry.slides }}">[slides]</a>{% endif -%}
+      {%- if entry.video %} <a class="cv-link" href="{{ entry.video }}">[video]</a>{% endif %}
     </h3>
     <p>
       {% for author in entry.author_array -%}

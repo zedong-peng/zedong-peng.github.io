@@ -1,20 +1,21 @@
 ---
-layout: page
+layout: null
 permalink: /publications/
-title: publications
-description:
-nav: true
-nav_order: 2
+nav: false
+sitemap: false
 ---
-
-<!-- _pages/publications.md -->
-
-<!-- Bibsearch Feature -->
-
-<!-- {% include bib_search.liquid %} -->
-
-<div class="publications">
-
-{% bibliography %}
-
-</div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Publications — Zedong Peng</title>
+    <link rel="canonical" href="{{ site.url }}/cv/" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content="0; url={{ site.url }}/cv/" />
+  </head>
+  <body>
+    <p>
+      Publications are listed on the <a href="{{ site.url }}/cv/">CV</a>.
+    </p>
+  </body>
+</html>

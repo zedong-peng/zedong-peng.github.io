@@ -95,7 +95,7 @@ al-folio keeps the content apart from the layout. You edit a handful of text fil
 
 What I changed on this site:
 
-- **Fewer pages.** The demo comes with projects, repositories, teaching and more. I kept four: about, posts, publications and CV. To hide a page, set `nav: false` at the top of its file in `_pages/`.
+- **Fewer pages.** The demo comes with projects, repositories, teaching and more. I kept four: about, posts, publications and CV. To hide a page, set `nav: false` at the top of its file in `_pages/`. (Publications have since moved onto the CV; `/publications/` now just redirects there.)
 - **Color.** One line in `_sass/_themes.scss`, `--global-theme-color`, turns the links and accents from the default cyan to purple. It appears once for the light theme and once for the dark.
 - **Papers.** Each paper is a BibTeX entry, the format reference managers export. Extra fields become buttons and badges: `pdf=` and `arxiv=` add links under the entry, and `abbr=` puts the venue in a small box beside it.
 - **CV.** The CV page is built from `_data/cv.yml`. For a PDF version I use [RenderCV](https://github.com/rendercv/rendercv), which turns a YAML file into a typeset PDF, and link it at the top of the CV page.
