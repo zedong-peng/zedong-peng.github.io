@@ -16,13 +16,6 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "nav-life",
-          title: "life",
-          description: "Everyday things, including how much AI I actually use.",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/life/";
-          },
         },{id: "nav-cv",
           title: "cv",
           description: "CV of Zedong Peng: education, experience, recent work, publications, honors, projects and skills. PDF: https://zedongpeng.com/assets/pdf/Zedong_Peng_CV.pdf",
@@ -30,7 +23,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-where-experience-goes",
+        },{id: "post-how-much-ai-i-actually-use",
+        
+          title: "How Much AI I Actually Use",
+        
+        description: "Token usage across my three machines, counted from local logs each day and priced at API list rates. The chart updates itself; this post is the explanation.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/ai-usage/";
+          
+        },
+      },{id: "post-where-experience-goes",
         
           title: "Where Experience Goes",
         
