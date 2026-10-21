@@ -16,13 +16,6 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
-        },{id: "nav-projects",
-          title: "projects",
-          description: "Things I build and write the numbers for.",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/projects/";
-          },
         },{id: "nav-cv",
           title: "cv",
           description: "CV of Zedong Peng: education, experience, recent work, publications, honors, projects and skills. PDF: https://zedongpeng.com/assets/pdf/Zedong_Peng_CV.pdf",
