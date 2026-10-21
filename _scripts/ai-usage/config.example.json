@@ -1,0 +1,24 @@
+{
+  "_comment": "Copy to ~/.config/ai-usage/config.json. `output` is a file inside the blog repo; `repo` is the checkout the daily run commits to. Backends on the same machine must not read the same tool: python reads claude-code, codex, opencode and cursor; ccusage reads the same logs plus more. Use `tools` to split them.",
+  "output": "~/Projects/Workspace/zedong-peng.github.io/assets/ai-usage/data.json",
+  "repo": "~/Projects/Workspace/zedong-peng.github.io",
+  "hosts": [
+    {
+      "name": "mac",
+      "backends": [
+        {"type": "ccusage", "version": "20.0.37", "tools": ["claude-code", "codex", "opencode", "gemini"]},
+        {"type": "python", "tools": ["cursor"]}
+      ]
+    },
+    {
+      "name": "au-linux",
+      "ssh": "au-linux",
+      "backends": [{"type": "python"}]
+    },
+    {
+      "name": "fpga",
+      "ssh": "fpga-tailscale",
+      "backends": [{"type": "python"}]
+    }
+  ]
+}
