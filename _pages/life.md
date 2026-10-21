@@ -33,7 +33,8 @@ nav_order: 2
     <span id="au-hosts"></span>
   </p>
 
-  <noscript><p class="au-footnote">The chart needs JavaScript.</p></noscript>
+<noscript><p class="au-footnote">The chart needs JavaScript.</p></noscript>
+
 </div>
 
 <script defer src="{{ '/assets/js/ai-usage.js' | relative_url }}"></script>
