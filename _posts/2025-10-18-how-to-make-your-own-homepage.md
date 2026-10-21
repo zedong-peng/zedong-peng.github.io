@@ -156,7 +156,6 @@ Then open `http://localhost:8080`. The page reloads as you edit.
 Two things caught me out:
 
 - **Posts dated in the future don't appear.** Jekyll compares the date with the moment the build runs, so a post dated this evening and pushed this afternoon stays missing until the date is moved back. Give each date a time and an offset, and set `timezone:` in `_config.yml`.
-- **A red cross on a commit is usually the formatting check.** The template runs [Prettier](https://prettier.io), a code formatter, on every push and fails if a file isn't formatted its way. The site still deploys, but it's worth fixing.
 
 ## Keep a note for your agent
 
