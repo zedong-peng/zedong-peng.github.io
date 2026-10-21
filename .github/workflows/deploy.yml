@@ -80,6 +80,23 @@ jobs:
           valueFile: "_config.yml"
           propertyPath: "giscus.repo"
           value: ${{ github.repository }}
+      - name: Build the tokendust board 🧾
+        # The tool is its own repo; build it here so scan.py and the board cannot
+        # drift from the source. A failed fetch fails the deploy on purpose.
+        run: |
+          repo=$(python3 -c "import yaml;print(yaml.safe_load(open('_data/tokendust.yml'))['repo'])")
+          ref=$(python3 -c "import yaml;print(yaml.safe_load(open('_data/tokendust.yml'))['ref'])")
+          curl -fsSL "https://raw.githubusercontent.com/$repo/$ref/scan.py" -o assets/tokendust/scan.py
+          mkdir -p .tokendust-build
+          for file in page.html prices.json build.py vendor/qrcode.js; do
+            mkdir -p ".tokendust-build/$(dirname $file)"
+            curl -fsSL "https://raw.githubusercontent.com/$repo/$ref/$file" -o ".tokendust-build/$file"
+          done
+          python3 .tokendust-build/build.py
+          head -6 _pages/tokendust.html > .tokendust-build/front.txt
+          cat .tokendust-build/front.txt .tokendust-build/index.html > _pages/tokendust.html
+          python3 -c "import ast;ast.parse(open('assets/tokendust/scan.py').read())"
+          grep -q "tokendust" _pages/tokendust.html
       - name: Install and Build 🔧
         run: |
           sudo apt-get update && sudo apt-get install -y imagemagick
