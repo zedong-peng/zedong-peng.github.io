@@ -44,7 +44,7 @@ sections:
         dates: July 2024 – 2025
         summary: Advised by [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/) and [Prof. Jieru Zhao](https://zjru.github.io).
         highlights:
-          - "The HLS part of LLM4EDA: LLM post-training and data construction for a domain-specific language ([blog post](/blog/2025/forgehls-and-diffhls/))."
+          - "The HLS part of LLM4EDA: LLM post-training and data construction for a domain-specific language."
       - title: Machine Learning Intern
         org: Intel
         place: Shanghai, China
