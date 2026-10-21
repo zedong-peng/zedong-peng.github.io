@@ -110,6 +110,22 @@ jobs:
           pip3 install --upgrade nbconvert
           export JEKYLL_ENV=production
           bundle exec jekyll build
+      - name: Build the oneshot gallery 🖼️
+        # Same rule as tokendust: the gallery is its own repo, built here so the
+        # page and the archive cannot drift. A failed fetch fails the deploy.
+        env:
+          REPO: zedong-peng/oneshot
+          REF: main
+        run: |
+          mkdir -p .oneshot-build
+          curl -fsSL "https://github.com/$REPO/archive/refs/heads/$REF.tar.gz" | tar -xz -C .oneshot-build --strip-components=1
+          python3 .oneshot-build/build.py
+          test -f .oneshot-build/site/index.html
+          mkdir -p _site/oneshot
+          cp -a .oneshot-build/site/. _site/oneshot/
+          test -f _site/oneshot/app.js
+          test -f _site/oneshot/style.css
+          test -d _site/oneshot/previews
       - name: Purge unused CSS 🧹
         run: |
           npm install -g purgecss

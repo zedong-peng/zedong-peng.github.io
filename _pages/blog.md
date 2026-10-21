@@ -121,6 +121,10 @@ pagination:
 
 <ul class="td-sites">
   <li>
+    <a href="/oneshot/"><b>oneshot</b></a>
+    <span>One prompt, one attempt, every model. Raw outputs from the same task, side by side.</span>
+  </li>
+  <li>
     <a href="/tokendust/"><b>tokendust</b></a>
     <span>Count the tokens your own agents used and get a share card. The tool behind <a href="/blog/2026/ai-usage/">How Much AI I Actually Use</a>.</span>
   </li>
