@@ -1,6 +1,6 @@
 """Aggregate local AI tool token usage into per-day rows.
 
-Reads Claude Code, Codex and OpenCode logs on this machine, plus the Cursor
+Reads Claude Code, Codex, OpenCode and pi logs on this machine, plus the Cursor
 account's usage events when Cursor is signed in here, and prints JSON to
 stdout. Only daily totals per tool and model leave the machine: no prompts,
 paths, project names or session ids. Python 3.8+, standard library only, so it
@@ -225,6 +225,48 @@ def opencode_db(totals, path, since_ms):
         database.close()
 
 
+def pi_sessions(totals):
+    """Pi keeps one JSONL per session; every completed assistant message has usage.
+
+    A fork copies its parent's entries into a new session file, so the provider's
+    response id identifies one request across files. Entries without one fall
+    back to the reply timestamp, model, and total token count.
+    """
+    base = os.environ.get("PI_CODING_AGENT_SESSION_DIR") or os.path.join(
+        os.environ.get("PI_CODING_AGENT_DIR") or os.path.join(HOME, ".pi", "agent"), "sessions")
+    seen = set()
+    for path in sorted(glob.glob(os.path.join(base, "**", "*.jsonl"), recursive=True)):
+        with open(path, encoding="utf-8", errors="replace") as handle:
+            for line in handle:
+                if '"usage"' not in line:
+                    continue
+                try:
+                    entry = json.loads(line)
+                    message = entry["message"]
+                    usage = message["usage"]
+                except (ValueError, KeyError, TypeError):
+                    continue
+                if entry.get("type") != "message" or message.get("role") != "assistant":
+                    continue
+                model = message.get("model")
+                values = (count(usage.get("input")), count(usage.get("cacheRead")),
+                          count(usage.get("cacheWrite")), count(usage.get("output")))
+                if not model or not any(values):
+                    continue
+                key = message.get("responseId") or (message.get("timestamp"), model,
+                                                    usage.get("totalTokens"))
+                if key in seen:
+                    continue
+                seen.add(key)
+                try:
+                    day = day_of(entry.get("timestamp") or message["timestamp"])
+                except (ValueError, TypeError):
+                    continue
+                cost = (usage.get("cost") or {}).get("total")
+                totals.add(day, "pi", model, *values,
+                           cost if isinstance(cost, (int, float)) and cost > 0 else None)
+
+
 CURSOR_EVENTS = "https://cursor.com/api/dashboard/get-filtered-usage-events"
 
 
@@ -304,7 +346,7 @@ def main():
     parser.add_argument("--host", default=os.uname().nodename)
     parser.add_argument("--days", type=int, default=400)
     parser.add_argument("--tools", default="",
-                        help="comma-separated subset of claude-code,codex,opencode,cursor; "
+                        help="comma-separated subset of claude-code,codex,opencode,pi,cursor; "
                              "lets another backend read the rest without double counting")
     args = parser.parse_args()
     now = datetime.now(TZ)
@@ -314,7 +356,8 @@ def main():
     since_ms = int((now - timedelta(days=args.days)).timestamp() * 1000)
     wanted = {tool.strip() for tool in args.tools.split(",") if tool.strip()}
     for name, collect in (("claude-code", claude_code), ("codex", codex),
-                          ("opencode", lambda t: opencode(t, since_ms)), ("cursor", lambda t: cursor(t, since_ms))):
+                          ("opencode", lambda t: opencode(t, since_ms)), ("pi", pi_sessions),
+                          ("cursor", lambda t: cursor(t, since_ms))):
         if wanted and name not in wanted:
             continue
         try:

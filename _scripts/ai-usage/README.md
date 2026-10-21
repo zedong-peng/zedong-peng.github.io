@@ -22,8 +22,8 @@ git, and needs no server.
 
 | Type | Reads | Needs | Notes |
 | --- | --- | --- | --- |
-| `python` | Claude Code, Codex, OpenCode logs; Cursor's dashboard | Python 3.8+ | Default. Nothing installed remotely: `ai_tokens.py` is piped to `python3 -` |
-| `ccusage` | The same logs, plus Gemini CLI, Copilot, Qwen, Kimi, pi and others | Node 18+ | Runs `npx ccusage daily --json --by-agent`; pin `version` |
+| `python` | Claude Code, Codex, OpenCode and pi logs; Cursor's dashboard | Python 3.8+ | Default. Nothing installed remotely: `ai_tokens.py` is piped to `python3 -` |
+| `ccusage` | Claude Code, Codex, OpenCode logs, plus Gemini CLI, Copilot, Qwen and Kimi | Node 18+ | Runs `npx ccusage daily --json --by-agent`; pin `version` |
 
 Both read the same Claude Code and Codex logs, so **give each backend a `tools`
 filter on a machine that has both**. Otherwise the merge keeps the larger of the
@@ -69,8 +69,8 @@ safe and the import can be repeated after moving machines.
 ## Counting rules
 
 - One request counted once: Claude Code dedupes by message id + request id, Codex
-  by cumulative snapshot, and sub-agent replays are dropped (same rules as
-  ccusage).
+  by cumulative snapshot, pi by provider response id (a fork copies its parent's
+  entries), and sub-agent replays are dropped (same rules as ccusage).
 - `input` is uncached input; `cache_read` and `cache_write` are separate.
 - Cursor has no local token counts; its dashboard keeps about 3.5 months and is
   per account, so only the mac reads it.
