@@ -20,7 +20,7 @@ usd = sum(row[8] or 0 for row in rows)
 print("rows", len(rows), "machines", data.get("machines"), "stale", data.get("stale_machines"))
 for host in data.get("hosts") or []:
     print("  %-10s %14s tokens%s" % (host["name"], "{:,}".format(host["tokens"]), "  STALE" if host.get("stale") else ""))
-for error in data.get("errors") or []:
+for error in data.get("_errors") or data.get("errors") or []:
     print("  error:", error)
 print("range", dates[0], "->", dates[-1])
 print("total tokens", "{:,}".format(tokens), "list price", "$" + "{:,}".format(round(usd)))
