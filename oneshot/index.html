@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A pelican riding a bicycle · oneshot</title>
+<meta name="description" content="34 runs of one prompt across models, efforts, providers and harnesses. One attempt each, raw output.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="oneshot">
+<meta property="og:title" content="A pelican riding a bicycle · oneshot">
+<meta property="og:description" content="34 runs of one prompt across models, efforts, providers and harnesses. One attempt each, raw output.">
+<meta property="og:url" content="https://zedongpeng.com/oneshot/">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://zedongpeng.com/oneshot/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23171814'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23f6f4ee'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23d2452a'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#runs">Skip to attempts</a>
+
+<header class="site-head">
+  <a class="brand" href="./" aria-label="oneshot home">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-name">oneshot</span>
+  </a>
+  <p class="tagline">one prompt · one attempt · every model</p>
+  <nav aria-label="Site">
+    <a href="#runs">Attempts</a>
+    <a href="#method">Method</a>
+    <a href="https://github.com/zedong-peng/oneshot" rel="noopener">GitHub ↗</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="task-title">
+    <div class="hero-copy">
+      <p class="kicker">A one-shot benchmark</p>
+      <h1 id="task-title">One prompt. One attempt.</h1>
+      <p class="lede" id="task-summary"></p>
+      <div class="task-switch" id="task-switch" hidden></div>
+    </div>
+    <dl class="stats" id="stats" aria-label="Benchmark totals"></dl>
+  </section>
+
+  <section class="prompt-card" aria-labelledby="prompt-heading">
+    <div class="prompt-copy">
+      <p class="kicker" id="prompt-heading">The prompt</p>
+      <blockquote id="prompt-text"></blockquote>
+      <details class="prompt-original">
+        <summary>Original prompt and translation</summary>
+        <pre id="prompt-original"></pre>
+        <p id="prompt-en"></p>
+      </details>
+    </div>
+    <button class="button ghost" id="copy-prompt" type="button">Copy prompt</button>
+  </section>
+
+  <section class="runs" id="runs" aria-labelledby="runs-title">
+    <div class="runs-head">
+      <div class="runs-title">
+        <p class="kicker">Contact sheet</p>
+        <h2 id="runs-title">Attempts <span id="run-count"></span></h2>
+      </div>
+      <div class="toolbar" role="search">
+        <label class="field search">
+          <span>Search</span>
+          <input id="filter-search" type="search" placeholder="model, provider, harness…" autocomplete="off">
+        </label>
+        <label class="field">
+          <span>Lab</span>
+          <select id="filter-lab"><option value="">All labs</option></select>
+        </label>
+        <label class="field">
+          <span>Provider</span>
+          <select id="filter-provider"><option value="">All providers</option></select>
+        </label>
+        <label class="field">
+          <span>Harness</span>
+          <select id="filter-harness"><option value="">All harnesses</option></select>
+        </label>
+        <label class="field">
+          <span>Effort</span>
+          <select id="filter-effort"><option value="">All efforts</option></select>
+        </label>
+        <label class="field">
+          <span>Status</span>
+          <select id="filter-status">
+            <option value="">All attempts</option>
+            <option value="measured">Measured</option>
+            <option value="submitted">Submitted only</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Sort</span>
+          <select id="sort">
+            <option value="config">Config</option>
+            <option value="model">Model</option>
+            <option value="lab">Lab</option>
+            <option value="provider">Provider</option>
+            <option value="effort">Effort, strongest first</option>
+            <option value="newest">Newest measured</option>
+            <option value="output">Most output tokens</option>
+          </select>
+        </label>
+        <button class="button ghost compact" id="clear-filters" type="button">Clear</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden>No attempts match these filters.</p>
+  </section>
+
+  <section class="method" id="method" aria-labelledby="method-title">
+    <div>
+      <p class="kicker">Method</p>
+      <h2 id="method-title">One attempt, shown raw.</h2>
+    </div>
+    <div class="method-copy">
+      <p>Each run starts in an empty directory with the prompt above. The model gets one attempt and
+      no retries. It writes one HTML file; the file is shown unedited inside a sandboxed frame.</p>
+      <p>Measurements come from the harness event stream: wall time, tokens, and list-price cost.
+      Output tokens include reasoning. Input tokens include uncached input, cache reads and cache
+      writes. A run without a measurement was submitted from the original archive.</p>
+      <p>This is a contact sheet, not a leaderboard. One sample per configuration says what happened
+      once, not what a model can do. A different provider, effort or harness is a different run.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <span><strong>oneshot</strong> · one prompt, one attempt, every model</span>
+  <span><a href="https://zedongpeng.com/">Zedong Peng</a> · <a href="https://github.com/zedong-peng/oneshot">source</a></span>
+</footer>
+
+<dialog id="viewer" aria-labelledby="viewer-title">
+  <div class="viewer-head">
+    <div>
+      <p class="kicker" id="viewer-kicker"></p>
+      <h2 id="viewer-title"></h2>
+    </div>
+    <button class="button ghost compact" id="viewer-close" type="button">Close</button>
+  </div>
+  <div class="viewer-body">
+    <div class="viewer-frame" id="viewer-frame-wrap">
+      <iframe id="viewer-frame" title="Artwork preview" sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe>
+      <div class="viewer-missing" id="viewer-missing" hidden>No artwork file.</div>
+    </div>
+    <aside class="viewer-meta" aria-label="Run details">
+      <dl id="viewer-metrics"></dl>
+      <p class="viewer-note" id="viewer-note"></p>
+      <div class="viewer-links">
+        <a id="viewer-share" href="#">Share page ↗</a>
+        <button class="button ghost compact" id="copy-link" type="button">Copy link</button>
+      </div>
+    </aside>
+  </div>
+</dialog>
+
+<script id="runs-data" type="application/json">{"brand":{"name":"oneshot","tagline":"one prompt, one attempt, every model","home":"https://zedongpeng.com/oneshot/","url":"zedongpeng.com/oneshot","repo":"https://github.com/zedong-peng/oneshot","author":"Zedong Peng","author_url":"https://zedongpeng.com/"},"tasks":[{"id":"pelican-bicycle","title":"A pelican riding a bicycle","summary":"An animated SVG pelican on a bicycle, in one HTML file.","prompt":"不要联网 不查看本地其他文件，创建一个 HTML，内容是 SVG 绘制一个鹈鹕骑自行车的 2D 动画","prompt_en":"No internet, don't look at other local files. Create an HTML file whose content is an SVG 2D animation of a pelican riding a bicycle."}],"runs":[{"id":"claude-fable-5-1-xhigh-claude-max5x-claude-code","task":"pelican-bicycle","model":"claude-fable-5.1","effort":"xhigh","provider":"claude-max5x","harness":"claude-code","lab":"Anthropic","bytes":39528,"sha":"bf74ce03c395215bda880d7986a3c1011ba1c9103a73500be42fa0e30deb04ec","flags":[],"run":null},{"id":"claude-haiku-5-5-max-opencode-go-opencode","task":"pelican-bicycle","model":"claude-haiku-5-5","effort":"max","provider":"opencode-go","harness":"opencode","lab":"Anthropic","bytes":null,"sha":null,"flags":[],"run":{"status":"no-file","error":null,"duration_s":577.8,"steps":1,"cost_usd":0.064813,"started_at":"2026-10-21T21:45:55Z","harness_version":"1.19.3","variant":"max","model_name":"Claude Haiku 5.5","finish":"length","output_tokens":128000,"reasoning_tokens":128000,"input_tokens":6502}},{"id":"claude-opus-5-xhigh-4router-net-cheapclaude-claude-code-01","task":"pelican-bicycle","model":"claude-opus-5","effort":"xhigh","provider":"4router.net-cheapclaude","harness":"claude-code","lab":"Anthropic","bytes":11377,"sha":"93ea61ebf7e1ef80f98d701a29127659c483fc2acac4feade3c0f7d5ea0b7f12","flags":[],"run":null},{"id":"claude-opus-5-5-xhigh-claude-max5x-claude-code","task":"pelican-bicycle","model":"claude-opus-5.5","effort":"xhigh","provider":"claude-max5x","harness":"claude-code","lab":"Anthropic","bytes":25572,"sha":"a6b39b26dbf67cfc494c436ed6db7f53f2d567ce23ac9512ea7b472afc0afa92","flags":[],"run":null},{"id":"deepseek-flash-max-deepseek-api-opencode","task":"pelican-bicycle","model":"deepseek-flash","effort":"max","provider":"deepseek-api","harness":"opencode","lab":"DeepSeek","bytes":27805,"sha":"744c9e05c59a71901b995265cb76eff25bd0d5bdbbf2951eae60be3cffa07020","flags":[],"run":{"status":"ok","error":null,"duration_s":373.4,"steps":6,"cost_usd":0.051152,"started_at":"2026-10-21T20:10:21Z","harness_version":"1.19.3","variant":"max","model_name":"DeepSeek V4.1 Flash","finish":"stop","output_tokens":79856,"reasoning_tokens":68624,"input_tokens":424380}},{"id":"deepseek-v4-1-flash-max-deepseek-api-claude-code","task":"pelican-bicycle","model":"deepseek-v4.1-flash","effort":"max","provider":"deepseek-api","harness":"claude-code","lab":"DeepSeek","bytes":20389,"sha":"ad3184984a9039fc0e7daf2ae362a34a94fc07c2059ef6423527967dac76f946","flags":[],"run":null},{"id":"deepseek-v4-1-flash-max-deepseek-api-codex","task":"pelican-bicycle","model":"deepseek-v4.1-flash","effort":"max","provider":"deepseek-api","harness":"codex","lab":"DeepSeek","bytes":16520,"sha":"ae8205857b8673b1d3fd141f85f870166522cce395542e2c0e001e41b0f31869","flags":[],"run":null},{"id":"deepseek-v4-1-flash-max-deepseek-api-dsh","task":"pelican-bicycle","model":"deepseek-v4.1-flash","effort":"max","provider":"deepseek-api","harness":"dsh","lab":"DeepSeek","bytes":21451,"sha":"9aec8707292b8ee28a7a49c48269adcad906598c19b2691c5f93d24f7d082c06","flags":[],"run":null},{"id":"deepseek-v4-1-flash-max-deepseek-api-opencode","task":"pelican-bicycle","model":"deepseek-v4.1-flash","effort":"max","provider":"deepseek-api","harness":"opencode","lab":"DeepSeek","bytes":14439,"sha":"bf66cdfa49e11c478b37fbf8d4e6ed6a226f222abd56a2bbd31f79b08c8f8178","flags":[],"run":null},{"id":"deepseek-v4-1-flash-max-deepseek-api-pi-01","task":"pelican-bicycle","model":"deepseek-v4.1-flash","effort":"max","provider":"deepseek-api","harness":"pi","lab":"DeepSeek","bytes":20767,"sha":"3c7e7f34a25bb6b55ef0162076b2f62446f0074a424ee75d8c00592a590e27fb","flags":[],"run":null},{"id":"deepseek-v4-1-flash-max-opencode-go-claude-code","task":"pelican-bicycle","model":"deepseek-v4.1-flash","effort":"max","provider":"opencode-go","harness":"claude-code","lab":"DeepSeek","bytes":21289,"sha":"e136c5870f7092290c89cedd845ff33b710642384eeafc70dca7433793cf02e5","flags":[],"run":null},{"id":"deepseek-v4-1-flash-max-opencode-go-codex","task":"pelican-bicycle","model":"deepseek-v4.1-flash","effort":"max","provider":"opencode-go","harness":"codex","lab":"DeepSeek","bytes":22463,"sha":"a9eeb81c8fc42fd266bf79945a7497f06aaa16e3adf89ea9fe18181577220992","flags":[],"run":null},{"id":"deepseek-v4-1-flash-max-opencode-go-opencode","task":"pelican-bicycle","model":"deepseek-v4.1-flash","effort":"max","provider":"opencode-go","harness":"opencode","lab":"DeepSeek","bytes":27851,"sha":"bc734e6cc954bd1b0115b8f244323f4d3632435c5443da1f87e720277c0547a6","flags":[],"run":{"status":"ok","error":null,"duration_s":440.0,"steps":9,"cost_usd":0.075968,"started_at":"2026-10-21T21:45:55Z","harness_version":"1.19.3","variant":"max","model_name":"DeepSeek V4.1 Flash","finish":"stop","output_tokens":83203,"reasoning_tokens":70488,"input_tokens":672391}},{"id":"deepseek-v4-1-flash-max-opencode-go-opencode-02","task":"pelican-bicycle","model":"deepseek-v4.1-flash","effort":"max","provider":"opencode-go","harness":"opencode","lab":"DeepSeek","bytes":13407,"sha":"f086268aa12324ac3e61eebd78cb46d1dcde398681b054caa3ea78bd0815afa8","flags":[],"run":null},{"id":"deepseek-v4-1-flash-max-opencode-go-pi-01","task":"pelican-bicycle","model":"deepseek-v4.1-flash","effort":"max","provider":"opencode-go","harness":"pi","lab":"DeepSeek","bytes":20276,"sha":"b03ab19cfd32b17e6cbbbe7dfc7713285218bfd468941e5851e81cb4ee3a740e","flags":[],"run":null},{"id":"gpt-5-6-luna-max-opencode-go-opencode","task":"pelican-bicycle","model":"gpt-5.6-luna","effort":"max","provider":"opencode-go","harness":"opencode","lab":"OpenAI","bytes":13332,"sha":"53e3a5448f3e541f643a79f6147d30ff4a30e214843d025e7bd0015532c80f7e","flags":[],"run":{"status":"ok","error":null,"duration_s":70.1,"steps":2,"cost_usd":0.009968,"started_at":"2026-10-21T21:45:55Z","harness_version":"1.19.3","variant":"max","model_name":"GPT-5.6 Luna","finish":"stop","output_tokens":6228,"reasoning_tokens":663,"input_tokens":13324}},{"id":"gpt-5-6-sol-max-openai-plus-codex","task":"pelican-bicycle","model":"gpt-5.6-sol","effort":"max","provider":"openai-plus","harness":"codex","lab":"OpenAI","bytes":15950,"sha":"e561b4c0f3ca5248ab3b6d036beeaf9730046dba1bc419d4873ff85a72f22d0b","flags":[],"run":null},{"id":"gpt-5-6-sol-max-rightapi-codex","task":"pelican-bicycle","model":"gpt-5.6-sol","effort":"max","provider":"rightapi.ai","harness":"codex","lab":"OpenAI","bytes":11513,"sha":"cefb6a54acdc01f42c061ca2f7435efdbab94f56cf4a3b3409e4f7a4f862c00c","flags":[],"run":null},{"id":"gpt-5-6-sol-max-xmapi-codex-01","task":"pelican-bicycle","model":"gpt-5.6-sol","effort":"max","provider":"xmapi.site","harness":"codex","lab":"OpenAI","bytes":14044,"sha":"a96b72f2f67fdcdb038e7013466f78fede9471b9f399514cd2bdce3267c48363","flags":[],"run":null},{"id":"gpt-5-6-sol-xhigh-openai-plus-codex","task":"pelican-bicycle","model":"gpt-5.6-sol","effort":"xhigh","provider":"openai-plus","harness":"codex","lab":"OpenAI","bytes":14413,"sha":"f98dc9a46df26563cedb8a609549775875f9c9303016fb1d1930f51580d67e4c","flags":[],"run":null},{"id":"gpt-5-6-sol-xhigh-xmapi-codex-01","task":"pelican-bicycle","model":"gpt-5.6-sol","effort":"xhigh","provider":"xmapi.site","harness":"codex","lab":"OpenAI","bytes":13607,"sha":"c029ef7ab12ef963fa41fc5e245bfb2710f345d05a731a6b23e3c60e7184b4d7","flags":[],"run":null},{"id":"gpt-5-6-sol-xhigh-zlab-anycoding-codex-01","task":"pelican-bicycle","model":"gpt-5.6-sol","effort":"xhigh","provider":"zlab(anycoding)","harness":"codex","lab":"OpenAI","bytes":10117,"sha":"746533b6aa4a786df28b1306ab7380867ec11767326116cd7ee39618552bbf0c","flags":[],"run":null},{"id":"gpt-6-astra-max-openai-plus-codex","task":"pelican-bicycle","model":"gpt-6-astra","effort":"max","provider":"openai-plus","harness":"codex","lab":"OpenAI","bytes":32856,"sha":"9ae3eb200175938bc72423fbc6443b9594660e96edc7f067fd8daa91a860701f","flags":[],"run":null},{"id":"gpt-6-astra-max-rightapi-codex","task":"pelican-bicycle","model":"gpt-6-astra","effort":"max","provider":"rightapi.ai","harness":"codex","lab":"OpenAI","bytes":13352,"sha":"e230177004794a5ee7a1a2f2b81fe799477c1858733b678e65ff7a5afbf1428d","flags":[],"run":null},{"id":"gpt-6-astra-max-xmapi-codex-02","task":"pelican-bicycle","model":"gpt-6-astra","effort":"max","provider":"xmapi.site","harness":"codex","lab":"OpenAI","bytes":28070,"sha":"9651491738fd1b575bdf7f2e97bfe90e2c5dfc832adad07b541481c6c5c2b3d7","flags":[],"run":null},{"id":"gpt-6-astra-max-zlab-anycoding-codex-01","task":"pelican-bicycle","model":"gpt-6-astra","effort":"max","provider":"zlab(anycoding)","harness":"codex","lab":"OpenAI","bytes":13730,"sha":"ecb3dfe3d7e67738a826d831766897ba8e5caeb9ffb933ee33b56a958a1c2f3c","flags":[],"run":null},{"id":"gpt-6-astra-medium-openai-plus-codex","task":"pelican-bicycle","model":"gpt-6-astra","effort":"medium","provider":"openai-plus","harness":"codex","lab":"OpenAI","bytes":13316,"sha":"3a705ee74f4453adc03196c95025dc2357292478c441da9d0bc7d89097fd0eea","flags":[],"run":null},{"id":"gpt-6-astra-medium-zlab-fengchao-api-codex","task":"pelican-bicycle","model":"gpt-6-astra","effort":"medium","provider":"zlab(fengchao-api.com)","harness":"codex","lab":"OpenAI","bytes":10279,"sha":"0d8964f676cc87e9eb4d2fb47ea9f5b4c490ffe2162188152694a1d64187e6aa","flags":[],"run":null},{"id":"gpt-6-astra-xhigh-xmapi-codex","task":"pelican-bicycle","model":"gpt-6-astra","effort":"xhigh","provider":"xmapi.site","harness":"codex","lab":"OpenAI","bytes":12439,"sha":"c2504ba5fc747e08566a6f131fbb2201c01586121a9a524fbc15d8e0ed5355e5","flags":[],"run":null},{"id":"grok-4-6-xhigh-cursor-cursor-01","task":"pelican-bicycle","model":"grok-4.6","effort":"xhigh","provider":"cursor","harness":"cursor","lab":"xAI","bytes":20374,"sha":"b275f1244cdda7410d8307c3b0958009fcfb1709991a3ebcbf87023316ed42d5","flags":[],"run":null},{"id":"kimi-k3-max-opencode-go-opencode","task":"pelican-bicycle","model":"kimi-k3","effort":"max","provider":"opencode-go","harness":"opencode","lab":"Moonshot AI","bytes":14186,"sha":"79a624b75ba061ce7831dcb70cb8edbffaf0c64902b6f0df862fd6185edf7cfe","flags":[],"run":{"status":"ok","error":null,"duration_s":759.9,"steps":6,"cost_usd":0.786577,"started_at":"2026-10-21T21:45:55Z","harness_version":"1.19.3","variant":"max","model_name":"Kimi K3","finish":"stop","output_tokens":37940,"reasoning_tokens":31911,"input_tokens":213497}},{"id":"muse-spark-1-3-contributor-xhigh-opencode-go-opencode","task":"pelican-bicycle","model":"muse-spark-1.3-contributor","effort":"xhigh","provider":"opencode-go","harness":"opencode","lab":"Meta","bytes":16771,"sha":"89562d47381b3c13f59cf96f3ad2b01e529bc5c18576e27e28386bf5ec79d92c","flags":[],"run":null},{"id":"muse-spark-1-3-contributor-xhigh-opencode-go-opencode-01","task":"pelican-bicycle","model":"muse-spark-1.3-contributor","effort":"xhigh","provider":"opencode-go","harness":"opencode","lab":"Meta","bytes":15034,"sha":"b816e5a4fe4efc8bce91a376b36b559f27ef11b426dd9b89b74a46284431ec94","flags":[],"run":{"status":"ok","error":null,"duration_s":89.4,"steps":2,"cost_usd":0.002894,"started_at":"2026-10-21T21:41:43Z","harness_version":"1.19.3","variant":"xhigh","model_name":"Muse Spark 1.3 Contributor","finish":"stop","output_tokens":8099,"reasoning_tokens":2194,"input_tokens":17354}},{"id":"muse-spark-1-3-contributor-xhigh-opencode-go-pi-01","task":"pelican-bicycle","model":"muse-spark-1.3-contributor","effort":"xhigh","provider":"opencode-go","harness":"pi","lab":"Meta","bytes":23337,"sha":"6f7adcacef4541973becb004040920655cfe0316bbd0cc342a8782a29d0a8daa","flags":[],"run":null}]}</script>
+<script src="app.js" defer></script>
+</body>
+</html>
