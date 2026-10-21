@@ -6,8 +6,8 @@ shape, so adding a machine or a backend is a config line, not new code.
 Backends
   python   pipes ai_tokens.py to python3 on the machine (over ssh, or locally).
            Standard library only, nothing is installed remotely; reads Claude
-           Code, Codex, OpenCode logs and the Cursor account. Works on any host
-           with Python 3.8+.
+           Code, Codex, OpenCode and pi logs and the Cursor account. Works on
+           any host with Python 3.8+.
   ccusage  runs `npx ccusage daily --json --by-agent` locally or over ssh and
            maps its per-agent output. Needs Node 18+; use `tools` to keep it
            from overlapping with the python backend on the same machine (both
