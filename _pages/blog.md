@@ -117,6 +117,49 @@ pagination:
 {% include blog_post_list.liquid posts=section_posts show_language=true %}
 {% endfor %}
 
+<h2 class="blog-section" id="websites">websites</h2>
+
+<ul class="td-sites">
+  <li>
+    <a href="/tokendust/"><b>tokendust</b></a>
+    <span>Count the tokens your own agents used and get a share card. The tool behind <a href="/blog/2026/ai-usage/">How Much AI I Actually Use</a>.</span>
+  </li>
+  <li>
+    <a href="https://sytoken.org/ai-board/"><b>AI 使用实况</b></a>
+    <span>每日 AI 用量、花费与笔记的公开记录（中文）。</span>
+  </li>
+  <li>
+    <a href="/memorytax/"><b>MemoryTax</b></a>
+    <span>What agent memory actually buys once the model can read the raw history. Paper, code and data.</span>
+  </li>
+</ul>
+
+<style>
+  .td-sites {
+    margin: 0.6rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .td-sites li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--global-divider-color);
+    font-size: 14.5px;
+  }
+  .td-sites li:last-child { border-bottom: 0; }
+  .td-sites b { font-weight: 600; }
+  .td-sites a { color: var(--global-text-color); text-decoration: none; }
+  .td-sites a:hover { color: var(--global-theme-color); }
+  .td-sites span {
+    color: var(--global-text-color-light);
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .td-sites span a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+</style>
+
 <style>
   .blog-section {
     margin: 2.5rem 0 0.5rem;
