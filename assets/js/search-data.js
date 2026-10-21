@@ -16,6 +16,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
+        },{id: "nav-life",
+          title: "life",
+          description: "Everyday things, including how much AI I actually use.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/life/";
+          },
         },{id: "nav-cv",
           title: "cv",
           description: "CV of Zedong Peng: education, experience, recent work, publications, honors, projects and skills. PDF: https://zedongpeng.com/assets/pdf/Zedong_Peng_CV.pdf",
