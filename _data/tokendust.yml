@@ -1,5 +1,0 @@
-# Where the /tokendust/ board and its scanner come from.
-# The deploy workflow builds index.html here, so the tokendust repo stays the
-# only source of truth; `ref` pins a commit once a release settles.
-repo: zedong-peng/tokendust
-ref: main
