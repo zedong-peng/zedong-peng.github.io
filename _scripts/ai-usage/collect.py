@@ -248,14 +248,16 @@ def build(config, timeout):
 
     combined = {}
     machines = []
+    errors = []
     for result in results:
         tokens = 0
         for key, value in result["rows"].items():
             combined[key] = value if key not in combined else [a + b for a, b in zip(
                 combined[key][:5], value[:5])] + [None]
             tokens += sum(value[1:5])
-        machines.append({"name": result["name"], "tokens": tokens, "stale": result["stale"],
-                         "errors": result["errors"]})
+        machines.append({"name": result["name"], "tokens": tokens, "stale": result["stale"]})
+        # Diagnostic text can carry local paths; it stays out of the published file.
+        errors.extend("%s: %s" % (result["name"], error) for error in result["errors"])
 
     rows = []
     for key, value in sorted(combined.items()):
@@ -275,7 +277,8 @@ def build(config, timeout):
         "machines": len(results),
         "stale_machines": sum(1 for result in results if result["stale"]),
         "hosts": [{key: machine[key] for key in ("name", "tokens", "stale")} for machine in machines],
-        "errors": [error for result in results for error in result["errors"]],
+        # Errors are returned to the caller for the log, never written to disk.
+        "_errors": errors,
     }
 
 
@@ -287,9 +290,15 @@ def model_name(raw):
 
 # ---------------------------------------------------------------- publish
 
+def public(snapshot):
+    """Drop private fields (leading underscore) before anything reaches disk or stdout."""
+    return {key: value for key, value in snapshot.items() if not key.startswith("_")}
+
+
 def publish(config, snapshot):
     output = os.path.expanduser(config["output"])
     old = read_json(output)
+    snapshot = public(snapshot)
     write_json(output, snapshot, ensure_ascii=False, separators=(",", ":"))
     changed = old is None or old.get("rows") != snapshot["rows"] or old.get("updated_at") != snapshot["updated_at"]
     if not changed:
@@ -407,20 +416,21 @@ def main():
         for machine in snapshot["hosts"]:
             print("%-12s %12s tokens%s" % (machine["name"], "{:,}".format(machine["tokens"]),
                                           "  (stale)" if machine["stale"] else ""))
-        for error in snapshot["errors"]:
+        for error in snapshot["_errors"]:
             print("  error: %s" % error, file=sys.stderr)
         return
     if args.json:
-        json.dump(snapshot, sys.stdout, ensure_ascii=False, separators=(",", ":"))
+        json.dump(public(snapshot), sys.stdout, ensure_ascii=False, separators=(",", ":"))
         sys.stdout.write("\n")
         return
     if args.publish:
         publish(config, snapshot)  # compares before writing, then commits what changed
     else:
-        write_json(output, snapshot, ensure_ascii=False, separators=(",", ":"))
+        public_snapshot = public(snapshot)
+        write_json(output, public_snapshot, ensure_ascii=False, separators=(",", ":"))
         print("%d rows, %d machines, %d stale -> %s" % (
-            len(snapshot["rows"]), snapshot["machines"], snapshot["stale_machines"], output))
-    for error in snapshot["errors"]:
+            len(public_snapshot["rows"]), public_snapshot["machines"], public_snapshot["stale_machines"], output))
+    for error in snapshot["_errors"]:
         print("  error: %s" % error, file=sys.stderr)
 
 
