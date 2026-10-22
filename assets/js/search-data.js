@@ -16,6 +16,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
+        },{id: "nav-qwen3-8-27b-rtx-4090",
+          title: "Qwen3.8-27B / RTX 4090",
+          description: "Single-GPU inference speed, with configurations and evidence.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/qwen38-4090/";
+          },
         },{id: "nav-cv",
           title: "cv",
           description: "CV of Zedong Peng: education, experience, recent work, publications, honors, projects and skills. PDF: https://zedongpeng.com/assets/pdf/Zedong_Peng_CV.pdf",
