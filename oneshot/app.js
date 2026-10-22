@@ -1,4 +1,4 @@
-/* oneshot board: render the runs embedded by build.py. No dependencies. */
+/* OneShotBench board: render the runs embedded by build.py. No dependencies. */
 (function (global) {
   "use strict";
 
