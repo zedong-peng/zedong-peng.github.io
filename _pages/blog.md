@@ -121,8 +121,8 @@ pagination:
 
 <ul class="td-sites">
   <li>
-    <a href="/oneshot/"><b>OneShotBench</b></a>
-    <span>OneShotBench: a single-attempt benchmark for generative coding. One prompt, one attempt, every model; raw outputs side by side.</span>
+    <a href="/zp-coding/"><b>ZP-Coding</b></a>
+    <span>ZP-Coding v0.1: a single-attempt benchmark for generative coding agents. One prompt, one attempt, every model; raw outputs side by side.</span>
   </li>
   <li>
     <a href="/tokendust/"><b>tokendust</b></a>
