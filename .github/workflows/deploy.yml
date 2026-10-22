@@ -110,6 +110,25 @@ jobs:
           pip3 install --upgrade nbconvert
           export JEKYLL_ENV=production
           bundle exec jekyll build
+      - name: Build the Qwen3.8-4090 leaderboard 📈
+        # The leaderboard is built as a standalone static site from its own repo.
+        # It is not a Jekyll page: the blog only serves the output.
+        env:
+          REPO: zedong-peng/qwen38-4090-inference
+          REF: main
+        run: |
+          mkdir -p .qwen38-build
+          curl -fsSL "https://github.com/$REPO/archive/refs/heads/$REF.tar.gz" | tar -xz -C .qwen38-build --strip-components=1
+          python3 .qwen38-build/tools/build_site.py --output .qwen38-build/dist
+          test -f .qwen38-build/dist/benchmarks/qwen38-4090/index.html
+          mkdir -p _site/benchmarks/qwen38-4090
+          cp -a .qwen38-build/dist/benchmarks/qwen38-4090/. _site/benchmarks/qwen38-4090/
+          mkdir -p _site/assets
+          cp -a .qwen38-build/dist/assets/. _site/assets/
+          test -f _site/assets/css/qwen38-4090-leaderboard.css
+          test -f _site/assets/js/qwen38-4090-leaderboard.js
+          test -s _site/assets/benchmarks/qwen38-4090/results.json
+          test -s _site/assets/benchmarks/qwen38-4090/samples.json
       - name: Build the ZP-Coding site 🖼️
         # Same rule as tokendust: the gallery is its own repo, built here so the
         # page and the archive cannot drift. A failed fetch fails the deploy.
