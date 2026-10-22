@@ -110,22 +110,33 @@ jobs:
           pip3 install --upgrade nbconvert
           export JEKYLL_ENV=production
           bundle exec jekyll build
-      - name: Build the OneShotBench gallery 🖼️
+      - name: Build the ZP-Coding site 🖼️
         # Same rule as tokendust: the gallery is its own repo, built here so the
         # page and the archive cannot drift. A failed fetch fails the deploy.
         env:
-          REPO: zedong-peng/oneshot
+          REPO: zedong-peng/zp-coding
           REF: main
         run: |
-          mkdir -p .oneshot-build
-          curl -fsSL "https://github.com/$REPO/archive/refs/heads/$REF.tar.gz" | tar -xz -C .oneshot-build --strip-components=1
-          python3 .oneshot-build/build.py
-          test -f .oneshot-build/site/index.html
+          mkdir -p .zp-coding-build
+          curl -fsSL "https://github.com/$REPO/archive/refs/heads/$REF.tar.gz" | tar -xz -C .zp-coding-build --strip-components=1
+          python3 .zp-coding-build/build.py
+          test -f .zp-coding-build/site/index.html
+          mkdir -p _site/zp-coding
+          cp -a .zp-coding-build/site/. _site/zp-coding/
+          test -f _site/zp-coding/app.js
+          test -f _site/zp-coding/style.css
+          test -d _site/zp-coding/previews
+          # Keep the old /oneshot/ URL alive, including old #run= deep links.
           mkdir -p _site/oneshot
-          cp -a .oneshot-build/site/. _site/oneshot/
-          test -f _site/oneshot/app.js
-          test -f _site/oneshot/style.css
-          test -d _site/oneshot/previews
+          cat > _site/oneshot/index.html <<'HTML'
+          <!doctype html><html lang="en"><head><meta charset="utf-8">
+          <meta http-equiv="refresh" content="0; url=/zp-coding/">
+          <link rel="canonical" href="https://zedongpeng.com/zp-coding/"></head>
+          <body><script>location.replace("/zp-coding/" + location.hash);</script>
+          <p>ZP-Coding moved to <a href="/zp-coding/">/zp-coding/</a>.</p></body></html>
+          HTML
+          mkdir -p _site/oneshot/r
+          cp -a _site/zp-coding/r/. _site/oneshot/r/
       - name: Purge unused CSS 🧹
         run: |
           npm install -g purgecss
