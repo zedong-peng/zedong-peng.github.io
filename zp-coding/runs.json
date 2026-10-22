@@ -1,10 +1,10 @@
 {
  "brand": {
-  "name": "OneShotBench",
+  "name": "ZP-Coding",
   "tagline": "one prompt, one attempt, every model",
-  "home": "https://zedongpeng.com/oneshot/",
-  "url": "zedongpeng.com/oneshot",
-  "repo": "https://github.com/zedong-peng/oneshot",
+  "home": "https://zedongpeng.com/zp-coding/",
+  "url": "zedongpeng.com/zp-coding",
+  "repo": "https://github.com/zedong-peng/zp-coding",
   "author": "Zedong Peng",
   "author_url": "https://zedongpeng.com/"
  },
@@ -13,6 +13,8 @@
    "id": "pelican-bicycle",
    "title": "A pelican riding a bicycle",
    "summary": "An animated SVG pelican on a bicycle, in one HTML file.",
+   "goal": "Create one HTML file containing an SVG 2D animation of a pelican riding a bicycle.",
+   "pass_criteria": "The file exists, is a complete HTML document, contains an <svg> element, and renders inside the sandbox.",
    "prompt": "不要联网 不查看本地其他文件，创建一个 HTML，内容是 SVG 绘制一个鹈鹕骑自行车的 2D 动画",
    "prompt_en": "No internet, don't look at other local files. Create an HTML file whose content is an SVG 2D animation of a pelican riding a bicycle."
   }
