@@ -129,6 +129,15 @@ jobs:
           test -f _site/assets/js/qwen38-4090-leaderboard.js
           test -s _site/assets/benchmarks/qwen38-4090/results.json
           test -s _site/assets/benchmarks/qwen38-4090/samples.json
+          # A short URL, without a nav page or a sitemap entry.
+          mkdir -p _site/qwen38-4090
+          cat > _site/qwen38-4090/index.html <<'HTML'
+          <!doctype html><html lang="en"><head><meta charset="utf-8">
+          <meta http-equiv="refresh" content="0; url=/benchmarks/qwen38-4090/">
+          <link rel="canonical" href="https://zedongpeng.com/benchmarks/qwen38-4090/"></head>
+          <body><script>location.replace("/benchmarks/qwen38-4090/" + location.search + location.hash);</script>
+          <p>The leaderboard is at <a href="/benchmarks/qwen38-4090/">/benchmarks/qwen38-4090/</a>.</p></body></html>
+          HTML
       - name: Build the ZP-Coding site 🖼️
         # Same rule as tokendust: the gallery is its own repo, built here so the
         # page and the archive cannot drift. A failed fetch fails the deploy.
