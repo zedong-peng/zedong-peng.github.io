@@ -125,6 +125,10 @@ pagination:
     <span>ZP-Coding v0.1: a single-attempt benchmark for generative coding agents. One prompt, one attempt, every model; raw outputs side by side.</span>
   </li>
   <li>
+    <a href="/qwen38-4090/"><b>Qwen3.8-27B / RTX 4090</b></a>
+    <span>Single-GPU inference speed, configurations and raw samples. The leaderboard behind the 4090 study.</span>
+  </li>
+  <li>
     <a href="/tokendust/"><b>tokendust</b></a>
     <span>Count the tokens your own agents used and get a share card. The tool behind <a href="/blog/2026/ai-usage/">How Much AI I Actually Use</a>.</span>
   </li>
