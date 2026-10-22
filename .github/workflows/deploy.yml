@@ -110,7 +110,7 @@ jobs:
           pip3 install --upgrade nbconvert
           export JEKYLL_ENV=production
           bundle exec jekyll build
-      - name: Build the oneshot gallery 🖼️
+      - name: Build the OneShotBench gallery 🖼️
         # Same rule as tokendust: the gallery is its own repo, built here so the
         # page and the archive cannot drift. A failed fetch fails the deploy.
         env:

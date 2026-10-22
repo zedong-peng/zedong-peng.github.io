@@ -121,8 +121,8 @@ pagination:
 
 <ul class="td-sites">
   <li>
-    <a href="/oneshot/"><b>oneshot</b></a>
-    <span>One prompt, one attempt, every model. Raw outputs from the same task, side by side.</span>
+    <a href="/oneshot/"><b>OneShotBench</b></a>
+    <span>A single-attempt benchmark for generative coding. One prompt, one attempt, every model; raw outputs side by side.</span>
   </li>
   <li>
     <a href="/tokendust/"><b>tokendust</b></a>
