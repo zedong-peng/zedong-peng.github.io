@@ -19,7 +19,7 @@ links:
 sections:
   - title: Education
     entries:
-      - title: M.Eng. in Electronic and Information Engineering, School of Computer Science
+      - title: M.Eng., Electronic and Information Engineering
         org: Shanghai Jiao Tong University
         place: Shanghai, China
         dates: 2024 – 2027 (expected)
@@ -27,11 +27,10 @@ sections:
         links:
           - label: transcript
             url: /assets/pdf/Zedong_Peng_MS_Transcript.pdf
-      - title: B.Eng. in Information Engineering, School of Electronic Information and Electrical Engineering
+      - title: B.Eng., Information Engineering
         org: Shanghai Jiao Tong University
         place: Shanghai, China
         dates: 2020 – 2024
-        summary: Outstanding Graduate.
         links:
           - label: transcript
             url: /assets/pdf/Zedong_Peng_BS_Transcript.pdf
