@@ -9,7 +9,7 @@
 <div class="cv-entry">
   <div class="cv-main">
     <h3>
-      <b>{{ entry.title }}</b>
+      {{ entry.title }}
       {%- if entry.website %} <a class="cv-link" href="{{ entry.website }}">[paper]</a>{% endif -%}
       {%- if entry.arxiv %} <a class="cv-link" href="{{ entry.arxiv | prepend: 'https://arxiv.org/abs/' }}">[arxiv]</a>{% endif -%}
       {%- if entry.pdf %} <a class="cv-link" href="{{ entry.pdf | prepend: '/assets/pdf/' | prepend: base }}">[pdf]</a>{% endif -%}
