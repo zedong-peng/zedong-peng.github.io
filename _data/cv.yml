@@ -23,7 +23,7 @@ sections:
         org: Shanghai Jiao Tong University
         place: Shanghai, China
         dates: 2024 – 2027 (expected)
-        summary: Advised by [Prof. Jieru Zhao](https://zjru.github.io) and [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/).
+        summary: School of Computer Science. Advised by [Prof. Jieru Zhao](https://zjru.github.io) and [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/).
         links:
           - label: transcript
             url: /assets/pdf/Zedong_Peng_MS_Transcript.pdf
@@ -31,6 +31,7 @@ sections:
         org: Shanghai Jiao Tong University
         place: Shanghai, China
         dates: 2020 – 2024
+        summary: School of Electronic Information and Electrical Engineering. Outstanding Graduate.
         links:
           - label: transcript
             url: /assets/pdf/Zedong_Peng_BS_Transcript.pdf
