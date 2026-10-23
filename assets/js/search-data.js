@@ -23,7 +23,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-how-much-ai-i-actually-use",
+        },{id: "post-how-much-of-post-training-is-an-input",
+        
+          title: "How Much of Post-Training Is an Input?",
+        
+        description: "No text gives a DPO stage back, at 1B, 8B or 32B, while one learned input vector gives back half. Even when a sentence produced the preferences, training on sampled answers does not land on that sentence; distilling it does.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/how-much-of-post-training-is-an-input/";
+          
+        },
+      },{id: "post-how-much-ai-i-actually-use",
         
           title: "How Much AI I Actually Use",
         
