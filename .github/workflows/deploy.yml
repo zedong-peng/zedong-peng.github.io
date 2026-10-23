@@ -138,33 +138,32 @@ jobs:
           <body><script>location.replace("/benchmarks/qwen38-4090/" + location.search + location.hash);</script>
           <p>The leaderboard is at <a href="/benchmarks/qwen38-4090/">/benchmarks/qwen38-4090/</a>.</p></body></html>
           HTML
-      - name: Build the ZP-Coding site 🖼️
+      - name: Build the Velodrome site 🚲
         # Same rule as tokendust: the gallery is its own repo, built here so the
-        # page and the archive cannot drift. A failed fetch fails the deploy.
+        # page and the runs cannot drift. A failed fetch fails the deploy.
         env:
-          REPO: zedong-peng/zp-coding
+          REPO: zedong-peng/velodrome
           REF: main
         run: |
-          mkdir -p .zp-coding-build
-          curl -fsSL "https://github.com/$REPO/archive/refs/heads/$REF.tar.gz" | tar -xz -C .zp-coding-build --strip-components=1
-          python3 .zp-coding-build/build.py
-          test -f .zp-coding-build/site/index.html
-          mkdir -p _site/zp-coding
-          cp -a .zp-coding-build/site/. _site/zp-coding/
-          test -f _site/zp-coding/app.js
-          test -f _site/zp-coding/style.css
-          test -d _site/zp-coding/previews
-          # Keep the old /oneshot/ URL alive, including old #run= deep links.
-          mkdir -p _site/oneshot
-          cat > _site/oneshot/index.html <<'HTML'
+          mkdir -p .velodrome-build
+          curl -fsSL "https://github.com/$REPO/archive/refs/heads/$REF.tar.gz" | tar -xz -C .velodrome-build --strip-components=1
+          python3 .velodrome-build/build.py
+          mkdir -p _site/velodrome
+          cp -a .velodrome-build/site/. _site/velodrome/
+          test -f _site/velodrome/index.html
+          test -f _site/velodrome/app.js
+          test -d _site/velodrome/art
+          # Velodrome replaced ZP-Coding (and before it OneShotBench); keep both URLs alive.
+          for old in zp-coding oneshot; do
+            mkdir -p "_site/$old"
+            cat > "_site/$old/index.html" <<'HTML'
           <!doctype html><html lang="en"><head><meta charset="utf-8">
-          <meta http-equiv="refresh" content="0; url=/zp-coding/">
-          <link rel="canonical" href="https://zedongpeng.com/zp-coding/"></head>
-          <body><script>location.replace("/zp-coding/" + location.hash);</script>
-          <p>ZP-Coding moved to <a href="/zp-coding/">/zp-coding/</a>.</p></body></html>
+          <meta http-equiv="refresh" content="0; url=/velodrome/">
+          <link rel="canonical" href="https://zedongpeng.com/velodrome/"></head>
+          <body><script>location.replace("/velodrome/");</script>
+          <p>This gallery is now <a href="/velodrome/">Velodrome</a>.</p></body></html>
           HTML
-          mkdir -p _site/oneshot/r
-          cp -a _site/zp-coding/r/. _site/oneshot/r/
+          done
       - name: Purge unused CSS 🧹
         run: |
           npm install -g purgecss
