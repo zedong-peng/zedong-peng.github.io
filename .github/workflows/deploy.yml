@@ -138,21 +138,6 @@ jobs:
           <body><script>location.replace("/benchmarks/qwen38-4090/" + location.search + location.hash);</script>
           <p>The leaderboard is at <a href="/benchmarks/qwen38-4090/">/benchmarks/qwen38-4090/</a>.</p></body></html>
           HTML
-      - name: Build the Velodrome site 🚲
-        # Same rule as tokendust: the gallery is its own repo, built here so the
-        # page and the runs cannot drift. A failed fetch fails the deploy.
-        env:
-          REPO: zedong-peng/velodrome
-          REF: main
-        run: |
-          mkdir -p .velodrome-build
-          curl -fsSL "https://github.com/$REPO/archive/refs/heads/$REF.tar.gz" | tar -xz -C .velodrome-build --strip-components=1
-          python3 .velodrome-build/build.py
-          mkdir -p _site/velodrome
-          cp -a .velodrome-build/site/. _site/velodrome/
-          test -f _site/velodrome/index.html
-          test -f _site/velodrome/app.js
-          test -d _site/velodrome/art
       - name: Purge unused CSS 🧹
         run: |
           npm install -g purgecss
