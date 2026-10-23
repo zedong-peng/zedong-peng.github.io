@@ -27,7 +27,7 @@ ninja.data = [{
         
           title: "How Much AI I Actually Use",
         
-        description: "Token usage across my three machines, counted from local logs each day and priced at API list rates. The chart updates itself; this post is the explanation.",
+        description: "My token usage on three machines, counted from local logs and priced at API list rates. Updated every morning.",
         section: "Posts",
         handler: () => {
           
@@ -38,7 +38,7 @@ ninja.data = [{
         
           title: "Where Experience Goes",
         
-        description: "Long context, agent memory, parametric memory, test-time training, continual learning and self-improving agents are one problem under many names: learning from experience after training has ended. Each picks a place to keep an experience and a rule for writing it there. The rule is the hard part, and it should be learned.",
+        description: "Long context, agent memory, parametric memory, test-time training and self-improving agents are one problem: where an experience is kept, and which rule writes it there. The rule is the hard part, and it should be learned.",
         section: "Posts",
         handler: () => {
           
@@ -49,7 +49,7 @@ ninja.data = [{
         
           title: "llmwiki: A Literature Library for Research Agents",
         
-        description: "How my coding agents keep the papers they read: one folder per reference, a citation and a reading note, and two public skills to build your own.",
+        description: "My coding agents keep the papers they read in a git repo, one folder per reference with a citation and a reading note. Two public skills build your own.",
         section: "Posts",
         handler: () => {
           
@@ -60,7 +60,7 @@ ninja.data = [{
         
           title: "How I Manage a Team of AI Agents",
         
-        description: "A CEO, seven specialists named after people whose work fits the job, and a few habits of ordinary management that mattered more than the technology.",
+        description: "A CEO and seven agents, each named after someone whose work fits the job. What mattered was ordinary management.",
         section: "Posts",
         handler: () => {
           
