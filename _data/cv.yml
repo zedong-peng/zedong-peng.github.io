@@ -4,7 +4,7 @@
 name: Zedong Peng
 alternate_name: 彭则栋
 affiliation: Shanghai Jiao Tong University
-updated: 2026-10-20
+updated: 2026-10-23
 email: zedongpeng1@gmail.com
 website: https://zedongpeng.com
 # Profiles: in the page's schema.org data only (sameAs), not shown.
@@ -79,14 +79,6 @@ sections:
         links:
           - label: blog
             url: /blog/2026/llama-cpp-on-an-fpga/
-      - title: "MemoryTax: The Bitter Lesson of Agent Memory"
-        dates: Oct 2026
-        summary: Does agent memory still help once the model can search the raw history itself? Memory systems and coding agents on LoCoMo, with three models.
-        links:
-          - label: website
-            url: https://zedongpeng.com/memorytax/
-          - label: code
-            url: https://github.com/zedong-peng/memorytax
       - title: Robotic Dog Development
         place: Shanghai, China
         dates: Nov 2023 – Nov 2024
