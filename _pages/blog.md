@@ -121,8 +121,8 @@ pagination:
 
 <ul class="td-sites">
   <li>
-    <a href="/zp-coding/"><b>ZP-Coding</b></a>
-    <span>ZP-Coding v0.1: a single-attempt benchmark for generative coding agents. One prompt, one attempt, every model; raw outputs side by side.</span>
+    <a href="/velodrome/"><b>Velodrome</b></a>
+    <span>A pelican riding a bicycle, drawn by model, effort, harness and provider.</span>
   </li>
   <li>
     <a href="/benchmarks/qwen38-4090/"><b>Qwen3.8-27B / RTX 4090</b></a>
