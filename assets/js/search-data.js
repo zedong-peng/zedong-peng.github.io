@@ -23,7 +23,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-how-much-ai-i-actually-use",
+        },{id: "post-how-much-of-post-training-is-an-input",
+        
+          title: "How Much of Post-Training Is an Input?",
+        
+        description: "For a post-training stage that turns a model P into T, how much of the change can a fixed input to P give back? No text does, at 1B, 8B or 32B. One learned vector gives back half. And training on answers a sentence produced does not land on that sentence, while distilling the sentence does.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/how-much-of-post-training-is-an-input/";
+          
+        },
+      },{id: "post-how-much-ai-i-actually-use",
         
           title: "How Much AI I Actually Use",
         
