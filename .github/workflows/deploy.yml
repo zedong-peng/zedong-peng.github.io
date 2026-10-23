@@ -153,17 +153,6 @@ jobs:
           test -f _site/velodrome/index.html
           test -f _site/velodrome/app.js
           test -d _site/velodrome/art
-          # Velodrome replaced ZP-Coding (and before it OneShotBench); keep both URLs alive.
-          for old in zp-coding oneshot; do
-            mkdir -p "_site/$old"
-            cat > "_site/$old/index.html" <<'HTML'
-          <!doctype html><html lang="en"><head><meta charset="utf-8">
-          <meta http-equiv="refresh" content="0; url=/velodrome/">
-          <link rel="canonical" href="https://zedongpeng.com/velodrome/"></head>
-          <body><script>location.replace("/velodrome/");</script>
-          <p>This gallery is now <a href="/velodrome/">Velodrome</a>.</p></body></html>
-          HTML
-          done
       - name: Purge unused CSS 🧹
         run: |
           npm install -g purgecss
