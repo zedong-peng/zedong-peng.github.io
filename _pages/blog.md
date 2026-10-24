@@ -129,10 +129,6 @@ pagination:
     <span>Single-GPU inference speed, configurations and raw samples. The leaderboard behind the 4090 study.</span>
   </li>
   <li>
-    <a href="/tokendust/"><b>tokendust</b></a>
-    <span>Count the tokens your own agents used and get a share card. The tool behind <a href="/blog/2026/ai-usage/">How Much AI I Actually Use</a>.</span>
-  </li>
-  <li>
     <a href="https://sytoken.org/ai-board/"><b>AI 使用实况</b></a>
     <span>每日 AI 用量、花费与笔记的公开记录（中文）。</span>
   </li>
