@@ -23,7 +23,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-how-much-ai-i-actually-use",
+        },{id: "post-健身打怪升级之路",
+        
+          title: "健身打怪升级之路",
+        
+        description: "健身新手的升级路线：0–10 级练一分化，10–30 级练 5×5 和三分化。每一级配讲解视频和训练计划。",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/fitness-leveling-zh/";
+          
+        },
+      },{id: "post-how-much-ai-i-actually-use",
         
           title: "How Much AI I Actually Use",
         
