@@ -132,10 +132,6 @@ pagination:
     <a href="https://sytoken.org/ai-board/"><b>AI 使用实况</b></a>
     <span>每日 AI 用量、花费与笔记的公开记录（中文）。</span>
   </li>
-  <li>
-    <a href="https://notes.sjtu.edu.cn/s/yBJtlfyHE"><b>健身打怪升级之路</b></a>
-    <span>从一分化到 5×5 再到三分化的训练路线，附计划和视频（中文）。</span>
-  </li>
 </ul>
 
 <style>
