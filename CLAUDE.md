@@ -58,7 +58,7 @@ Edit `_bibliography/papers.bib`. Use custom BibTeX fields for extras: `preview`,
 
 ### Writing Posts
 
-A post makes one point, about 700–900 words, built on one claim and the figure or table that carries it. Open with what the post is and the plain answer; headings are plain noun phrases. Date a post earlier than the push that publishes it.
+Open with what the post is and the plain answer; headings are plain noun phrases. Date a post earlier than the push that publishes it.
 
 ### Adding News
 
