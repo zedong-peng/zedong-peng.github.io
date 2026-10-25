@@ -14,14 +14,21 @@ related_posts: false
 
 [一分化训练：理论、计划和讲解](https://www.bilibili.com/video/BV14v4y1G7A3)
 
+<div style="max-width: 600px; margin: 0 auto;">
 {% include figure.liquid path="assets/img/blog/fitness-one-split.png" alt="一分化训练计划表" class="img-fluid rounded z-depth-1" zoomable=true %}
+</div>
 
 ## 10–30 级：5×5 和三分化
 
 [5×5 训练计划：从理论到计划到实操](https://www.bilibili.com/video/BV1DZ4y1y77T)
 
+<div class="row">
+<div class="col-sm mt-3 mt-md-0">
 {% include figure.liquid path="assets/img/blog/fitness-5x5.png" alt="5×5 周期计划：推、拉、蹲三天的动作、重量和组数" class="img-fluid rounded z-depth-1" zoomable=true %}
-
+</div>
+<div class="col-sm mt-3 mt-md-0">
 {% include figure.liquid path="assets/img/blog/fitness-5x5-schedule.jpg" alt="5×5 的八天排期：推、拉、蹲和休息日" class="img-fluid rounded z-depth-1" zoomable=true %}
+</div>
+</div>
 
 三分化训练：[上](https://www.bilibili.com/video/BV1jy4y1g7b1)、[下](https://www.bilibili.com/video/BV1Zh411a7dy)
