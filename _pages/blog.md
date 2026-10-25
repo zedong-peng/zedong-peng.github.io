@@ -132,10 +132,6 @@ pagination:
     <a href="https://sytoken.org/ai-board/"><b>AI 使用实况</b></a>
     <span>每日 AI 用量、花费与笔记的公开记录（中文）。</span>
   </li>
-  <li>
-    <a href="/memorytax/"><b>MemoryTax</b></a>
-    <span>What agent memory actually buys once the model can read the raw history. Paper, code and data.</span>
-  </li>
 </ul>
 
 <style>
