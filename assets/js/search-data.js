@@ -656,6 +656,13 @@ ninja.data = [{
           window.open("https://www.linkedin.com/in/zedong-peng", "_blank");
         },
       },{
+        id: 'social-x',
+        title: 'X',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://twitter.com/zedongpeng1", "_blank");
+        },
+      },{
         id: 'social-scholar',
         title: 'Google Scholar',
         section: 'Socials',
