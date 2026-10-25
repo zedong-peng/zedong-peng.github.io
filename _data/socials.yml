@@ -25,6 +25,7 @@ github_username: zedong-peng # your GitHub user name
 # lattes_id: # your ID on Lattes (Brazilian Lattes CV)
 # leetcode_id: # your LeetCode id
 linkedin_username: zedong-peng # your LinkedIn user name
+x_username: zedongpeng1 # your X handle
 # mastodon_username: # your mastodon instance+username in the format instance.tld/@username
 # medium_username: # your Medium username
 # orcid_id: 0009-0004-5067-5783 # your ORCID ID
@@ -47,6 +48,5 @@ wechat_qr: wechat-qr.png # filename of your wechat qr-code saved as an image (e.
 # wikidata_id: # your wikidata id
 # wikipedia_id: # your wikipedia id (Case sensitive)
 # work_url: # work page URL
-# x_username: # your X handle
 # youtube_id: # your youtube channel id (youtube.com/@<youtube_id>)
 # zotero_username: # your zotero username
