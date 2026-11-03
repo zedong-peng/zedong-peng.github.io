@@ -129,8 +129,8 @@ pagination:
     <span>Single-GPU inference speed, configurations and raw samples. The leaderboard behind the 4090 study.</span>
   </li>
   <li>
-    <a href="https://sytoken.org/ai-board/"><b>AI 使用实况</b></a>
-    <span>每日 AI 用量、花费与笔记的公开记录（中文）。</span>
+    <a href="/blog/2026/ai-usage/"><b>How Much AI I Actually Use</b></a>
+    <span>Daily token usage on three machines, priced at API list rates.</span>
   </li>
 </ul>
 

@@ -20,7 +20,7 @@ toc:
 
 ## 我是怎么实现这个自由的
 
-我先在 [Vultr](https://www.vultr.com/) 上买了一台每月 5 美元的小服务器，在 Cloudflare 上花 7 美元注册了域名 sytoken.org，然后用 GitHub 上开源的 [Sub2API](https://github.com/Wei-Shaw/sub2api) 搭了一个中转站 [水源token](https://sytoken.org/)。
+我先在 [Vultr](https://www.vultr.com/) 上买了一台每月 5 美元的小服务器，在 Cloudflare 上花 7 美元注册了域名 sytoken.org，然后用 GitHub 上开源的 [Sub2API](https://github.com/Wei-Shaw/sub2api) 搭了一个中转站水源token。
 
 但 Sub2API 只是提供了一个形式，真正的 OpenAI 订阅号还得自己买。我在 Twitter 和 Telegram 上找到了一些非常低价的日抛订阅，有 Plus，也有 K12。现在流行的是 K12 订阅，前段时间则是 Team 订阅。
 
@@ -51,7 +51,7 @@ toc:
       <td>¥2/M tokens</td>
     </tr>
     <tr>
-      <td> <a href="https://sytoken.org/" target="_blank">水源token</a>（我自建）</td>
+      <td>水源token（我自建）</td>
       <td>约 ¥0.5/M tokens</td>
     </tr>
     <tr>
@@ -100,6 +100,6 @@ _Artificial Analysis Coding Agent Index 与单任务成本，截图于 2026 年 
 
 ## 从自用工具到中转站
 
-后来我把[水源token](https://sytoken.org/)做成了一个对外的中转站，也在校内论坛发过一篇[帖子](https://shuiyuan.sjtu.edu.cn/t/topic/478920)宣传，一个月下来用户有几百个，每天有几百元流水。
+后来我把水源token做成了一个对外的中转站，也在校内论坛发过一篇[帖子](https://shuiyuan.sjtu.edu.cn/t/topic/478920)宣传，一个月下来用户有几百个，每天有几百元流水。
 
 但主要问题是我没有经营执照，这确实会有一些经营和法律风险。所以现在我已经不再对外运营了，主要就是我自己、两三个认识的人，还有我的室友们在用。

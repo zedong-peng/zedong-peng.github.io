@@ -1,4 +1,4 @@
-/* AI usage board on /life/. Chart logic mirrors the sytoken.org board, namespaced for the blog. */
+/* AI usage board for the ai-usage post. */
 (() => {
   "use strict";
 
