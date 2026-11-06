@@ -1,0 +1,18 @@
+Excerpt from my EPCC report draft, April 8, 2026
+Source: reports/2026-04-08-GrepQA-research-taste/slides/blog.md
+These are selected passages from my working notes, not the meeting transcript.
+
+[Metric interpretation]
+这里一个很关键的修正是 metric interpretation。
+
+这周我重新核对了很多 related work 后发现，LoCoMo 上那些非常高的 leaderboard 数字，经常和我们现在用的 micro F1 不是同一种 metric。很多工作报的是 accuracy 或其他更宽松的指标，看上去 80%-90% 很吓人，但并不能直接和我们当前 F1 setting 对比。
+
+[Research taste]
+它们不太测一个更难也可能更关键的问题：
+
+- 模型知不知道什么值得做？
+
+也就是所谓的 research taste。
+
+[What the project still needed]
+- 真正需要补的是 framing、ablation、cost model，而不只是再多跑几组分数
