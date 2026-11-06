@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anthropic's eval and hillclimbing loop</title>
+<style>
+:root{--ink:var(--foreground,#292924);--soft:var(--muted-foreground,#696960);--rule:var(--border,#d9d8cf);--clay:var(--chart-1,#bf7052);--sage:var(--chart-2,#6c7d62);--wash:var(--secondary,#efeee7);color:var(--ink);font-family:var(--font-sans,Arial,sans-serif)}
+*{box-sizing:border-box}body{margin:0}figure{margin:0;padding:18px 16px 12px}.eyebrow{font:11px var(--font-mono,monospace);letter-spacing:.09em;text-transform:uppercase;color:var(--soft)}h1{font:normal clamp(23px,3.8vw,32px)/1.15 Georgia,serif;margin:10px 0 7px}p{font-size:13px;line-height:1.5;margin:7px 0;color:var(--soft)}.stages{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;margin:25px 0 18px}.stage{position:relative;border-top:1px solid var(--rule);padding-top:13px}.stage:not(:last-child)::after{content:'→';position:absolute;right:-20px;top:16px;color:var(--soft);font-size:18px}.number{font:12px var(--font-mono,monospace);color:var(--clay)}h2{font:normal 22px Georgia,serif;margin:7px 0 10px}.command{font:10px var(--font-mono,monospace);color:var(--soft);overflow-wrap:anywhere;margin-bottom:13px}.items{padding:0;margin:0;list-style:none}.items li{font-size:13px;line-height:1.45;margin:8px 0}.items li::before{content:'·';color:var(--clay);padding-right:7px}.gate{font:11px var(--font-mono,monospace);color:var(--sage);border-top:1px solid var(--rule);padding-top:9px;margin-top:13px;line-height:1.5}.diagnosis{display:flex;gap:16px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:13px 0}.diagnosis strong{flex:0 0 115px;font-size:13px;font-weight:600;line-height:1.5}.diagnosis p{margin:0;font-size:12px}.split{margin-top:14px;display:flex;gap:7px;align-items:center;flex-wrap:wrap;font-size:12px}.split .label{color:var(--soft);font-size:11px;width:100%}.split b{font-weight:normal;padding:6px 9px;background:var(--wash);border-radius:4px}.split .final{color:var(--sage);border:1px solid var(--sage);background:transparent}.note{font-size:11px;margin-top:11px}a{color:inherit}@media(max-width:580px){figure{padding:17px 12px 12px}.stages{grid-template-columns:1fr;gap:15px;margin-top:18px}.stage{padding:10px 0 0 33px;min-height:139px}.number{position:absolute;left:0;top:14px}h2{font-size:21px;margin:0 0 4px}.command{margin:0 0 7px}.items li{display:inline;font-size:12px;line-height:1.7;margin-right:8px}.items li::before{padding-right:4px}.gate{margin-top:8px;padding-top:7px}.stage:not(:last-child)::after{display:none}.diagnosis{gap:9px}.diagnosis strong{flex-basis:90px}.split{gap:5px;font-size:11px}.split b{padding:6px}.note{line-height:1.5}}
+</style>
+</head>
+<body>
+<figure aria-labelledby="title">
+<div class="eyebrow">Figure 2 · Reading Anthropic's design</div>
+<h1 id="title">Build the measurement into the loop</h1>
+<p>Human judgment establishes the eval. The agent searches within it.</p>
+<div class="stages">
+<section class="stage"><span class="number">01</span><h2>Calibrate</h2><div class="command">/claude-api build-eval</div><ul class="items"><li>Representative cases</li><li>Review sample grades</li><li>Measure baseline noise</li></ul><div class="gate">Human approves cases + grader</div></section>
+<section class="stage"><span class="number">02</span><h2>Change</h2><div class="command">/claude-api hillclimb</div><ul class="items"><li>Read training failures</li><li>Propose one hypothesis</li><li>Apply a reversible patch</li></ul><div class="gate">Scope + budget + objective</div></section>
+<section class="stage"><span class="number">03</span><h2>Measure</h2><div class="command">evaluate → keep / revert</div><ul class="items"><li>Run train + held-out eval</li><li>Check gain against noise</li><li>Save traces and decisions</li></ul><div class="gate">Evidence feeds the next round ↶</div></section>
+</div>
+<div class="diagnosis"><strong>When it stalls<br>↳ Diagnose</strong><p>Missing content? Wrong grader? Broken harness? Instructions the model never reaches? Ordinary variance? Each calls for a different next step.</p></div>
+<div class="split"><span class="label">OPTIONAL THREE-WAY SPLIT · FOR A FINAL NUMBER UNUSED IN ROUND SELECTION</span><b>Train · propose</b><span>→</span><b>Validation · select</b><span>→</span><b class="final">Test · once at the end</b></div>
+<p class="note">The default workflow scores a held-out “test” slice every round. The public guide also offers the three-way split shown here. My schematic; <a href="https://github.com/anthropics/skills/blob/ca45fc496a3436251f191354091d557da31c15b5/skills/claude-api/shared/evals/eval-hillclimb.md" target="_blank" rel="noopener">source version read November 6 ↗</a>.</p>
+</figure>
+</body>
+</html>
