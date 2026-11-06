@@ -1,0 +1,274 @@
+[
+  {
+    "v": 1,
+    "f": 29.9,
+    "kind": "full",
+    "change": "Baseline: single keyword predicate, top-k retrieval",
+    "note": "Reported full run in the development log.",
+    "score": "29.90"
+  },
+  {
+    "v": 2,
+    "f": 35.18,
+    "kind": "full",
+    "change": "Sliding window context expansion + multi-query retrieval",
+    "note": "Reported full run in the development log.",
+    "score": "35.18"
+  },
+  {
+    "v": 3,
+    "f": 28.96,
+    "kind": "full",
+    "change": "Precision-focused: window=0, top-k=2, reranking, smarter fallback",
+    "note": "Reported full run in the development log.",
+    "score": "28.96"
+  },
+  {
+    "v": 4,
+    "f": 22.43,
+    "kind": "full",
+    "change": "Adaptive top-k + stricter answer extraction prompt",
+    "note": "Reported full run in the development log.",
+    "score": "22.43"
+  },
+  {
+    "v": 5,
+    "f": 31.51,
+    "kind": "full",
+    "change": "Selective LLM filtering when many turns retrieved",
+    "note": "Reported full run in the development log.",
+    "score": "31.51"
+  },
+  {
+    "v": 6,
+    "f": 46.71,
+    "kind": "alternate",
+    "change": "New engine: 2 predicates, must/should scoring, speaker filter",
+    "note": "Main table / later log: 46.71. Original changelog: 44.69. Both retained here; configuration mapping is unresolved.",
+    "score": "46.71 / 44.69"
+  },
+  {
+    "v": 7,
+    "f": 41.62,
+    "kind": "pilot",
+    "change": "Added session-date-aware time_hint scoring",
+    "note": "Pilot sample; not a full-run comparison.",
+    "score": "41.62"
+  },
+  {
+    "v": 8,
+    "f": 35.18,
+    "kind": "pilot",
+    "change": "Answer-type-aware answering prompts",
+    "note": "Pilot sample; not a full-run comparison.",
+    "score": "35.18"
+  },
+  {
+    "v": 9,
+    "f": 44.57,
+    "kind": "pilot",
+    "change": "Switched to 3 question-side predicates",
+    "note": "Pilot sample; not a full-run comparison.",
+    "score": "44.57"
+  },
+  {
+    "v": 10,
+    "f": 46.46,
+    "kind": "full",
+    "change": "Date-aware answer prompt on top of v6-k8",
+    "note": "Reported full run in the development log.",
+    "score": "46.46"
+  },
+  {
+    "v": 11,
+    "f": 46.16,
+    "kind": "full",
+    "change": "Answer prompt: include all values for list questions",
+    "note": "Reported full run in the development log.",
+    "score": "46.16"
+  },
+  {
+    "v": 12,
+    "f": 47.51,
+    "kind": "full",
+    "change": "Balanced answer prompt: complete but concise",
+    "note": "Reported full run in the development log.",
+    "score": "47.51"
+  },
+  {
+    "v": 13,
+    "f": 48.1,
+    "kind": "alternate",
+    "change": "Resolve relative time expressions using session timestamps",
+    "note": "Changelog: 48.10. Historical selected full-run table: 51.34. The record does not reconcile these runs.",
+    "score": "48.10 / 51.34"
+  },
+  {
+    "v": 14,
+    "f": 47.46,
+    "kind": "full",
+    "change": "Combined temporal reasoning with \"be complete\" instruction",
+    "note": "Reported full run in the development log.",
+    "score": "47.46"
+  },
+  {
+    "v": 15,
+    "f": 45.26,
+    "kind": "pilot",
+    "change": "Answer-anticipation words added to predicate generation",
+    "note": "Pilot sample; not a full-run comparison.",
+    "score": "45.26"
+  },
+  {
+    "v": 16,
+    "f": 47.41,
+    "kind": "pilot",
+    "change": "Conservative third answer-anticipation predicate",
+    "note": "Pilot sample; not a full-run comparison.",
+    "score": "47.41"
+  },
+  {
+    "v": 17,
+    "f": 44.06,
+    "kind": "pilot",
+    "change": "Second predicate explicitly targets answer-turn vocabulary",
+    "note": "Pilot sample; not a full-run comparison.",
+    "score": "44.06"
+  },
+  {
+    "v": 18,
+    "f": 48.16,
+    "kind": "full",
+    "change": "Disabled speaker fallback to reduce noisy retrieval",
+    "note": "Reported full run in the development log.",
+    "score": "48.16"
+  },
+  {
+    "v": 19,
+    "f": 46.48,
+    "kind": "pilot",
+    "change": "Reduced top-k from 8 to 5 to cut retrieval noise",
+    "note": "Pilot sample; not a full-run comparison.",
+    "score": "46.48"
+  },
+  {
+    "v": 20,
+    "f": 45.69,
+    "kind": "pilot",
+    "change": "3 predicates including answer-side keyword guessing",
+    "note": "Pilot sample; not a full-run comparison.",
+    "score": "45.69"
+  },
+  {
+    "v": 21,
+    "f": 51.69,
+    "kind": "full",
+    "change": "3 predicates, question-side only; removed answer guessing",
+    "note": "Retained winner: full 51.69; a later pilot baseline was 49.57. Pilot and full scores are different evaluations.",
+    "score": "51.69"
+  },
+  {
+    "v": 22,
+    "f": null,
+    "kind": "missing",
+    "change": "Enforce single-word must_keywords, avoiding exact-match failures from multiword phrases.",
+    "note": "Source recovered; separate score not found.",
+    "score": "—"
+  },
+  {
+    "v": 23,
+    "f": null,
+    "kind": "missing",
+    "change": "Retrieve top_k=20 and ask the answerer to enumerate all items.",
+    "note": "Not retained; separate score not found.",
+    "score": "—"
+  },
+  {
+    "v": 24,
+    "f": null,
+    "kind": "missing",
+    "change": "Weight keyword matches by inverse document frequency (IDF).",
+    "note": "Not retained; separate score not found.",
+    "score": "—"
+  },
+  {
+    "v": 25,
+    "f": null,
+    "kind": "missing",
+    "change": "If too few turns match, generate relaxed predicates for a second retrieval pass.",
+    "note": "Not retained; separate score not found.",
+    "score": "—"
+  },
+  {
+    "v": 26,
+    "f": null,
+    "kind": "missing",
+    "change": "Use larger retrieval and enumerate-all answers only for list questions.",
+    "note": "Not retained; separate score not found.",
+    "score": "—"
+  },
+  {
+    "v": 27,
+    "f": null,
+    "kind": "missing",
+    "change": "Add date anchors and vocabulary bridges to predicate generation.",
+    "note": "A later commit reports a pilot regression of about 5.4 pp; no absolute score recovered.",
+    "score": "—"
+  },
+  {
+    "v": 28,
+    "f": null,
+    "kind": "missing",
+    "change": "Retrieve broadly, then have an LLM rerank down to the most relevant turns.",
+    "note": "Not retained; separate score not found.",
+    "score": "—"
+  },
+  {
+    "v": 29,
+    "f": null,
+    "kind": "missing",
+    "change": "Inject a month/year predicate in Python while keeping the v21 prompt.",
+    "note": "Date matching initially searched turn text rather than session headers; separate score not found.",
+    "score": "—"
+  },
+  {
+    "v": 30,
+    "f": null,
+    "kind": "missing",
+    "change": "Force shorter answers and lower the answer token limit from 64 to 48.",
+    "note": "Not retained; separate score not found.",
+    "score": "—"
+  },
+  {
+    "v": 31,
+    "f": 51.19,
+    "kind": "pilot",
+    "change": "Include session dates in the text used to score predicates.",
+    "note": "Pilot 51.19 vs v21 pilot 49.57; later full run regressed 0.89 pp vs v21. Common words in headers introduced false matches.",
+    "score": "51.19"
+  },
+  {
+    "v": 32,
+    "f": null,
+    "kind": "missing",
+    "change": "Score session headers only for predicates explicitly tagged as date anchors.",
+    "note": "Attempts to fix v31 interference; not retained. Separate score not found.",
+    "score": "—"
+  },
+  {
+    "v": 33,
+    "f": 46.99,
+    "kind": "pilot",
+    "change": "Classify enumeration questions and generate diverse predicates for them.",
+    "note": "Pilot 46.99 vs v21 pilot 49.57 (−2.58 pp); not retained.",
+    "score": "46.99"
+  },
+  {
+    "v": 34,
+    "f": null,
+    "kind": "missing",
+    "change": "Route temporal questions to concise answers and other questions to comprehensive answers.",
+    "note": "Implementation and latency analysis recovered; independent quality score not found.",
+    "score": "—"
+  }
+]

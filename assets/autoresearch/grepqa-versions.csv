@@ -1,0 +1,35 @@
+v,f,kind,change,note,score
+1,29.9,full,"Baseline: single keyword predicate, top-k retrieval",Reported full run in the development log.,29.90
+2,35.18,full,Sliding window context expansion + multi-query retrieval,Reported full run in the development log.,35.18
+3,28.96,full,"Precision-focused: window=0, top-k=2, reranking, smarter fallback",Reported full run in the development log.,28.96
+4,22.43,full,Adaptive top-k + stricter answer extraction prompt,Reported full run in the development log.,22.43
+5,31.51,full,Selective LLM filtering when many turns retrieved,Reported full run in the development log.,31.51
+6,46.71,alternate,"New engine: 2 predicates, must/should scoring, speaker filter",Main table / later log: 46.71. Original changelog: 44.69. Both retained here; configuration mapping is unresolved.,46.71 / 44.69
+7,41.62,pilot,Added session-date-aware time_hint scoring,Pilot sample; not a full-run comparison.,41.62
+8,35.18,pilot,Answer-type-aware answering prompts,Pilot sample; not a full-run comparison.,35.18
+9,44.57,pilot,Switched to 3 question-side predicates,Pilot sample; not a full-run comparison.,44.57
+10,46.46,full,Date-aware answer prompt on top of v6-k8,Reported full run in the development log.,46.46
+11,46.16,full,Answer prompt: include all values for list questions,Reported full run in the development log.,46.16
+12,47.51,full,Balanced answer prompt: complete but concise,Reported full run in the development log.,47.51
+13,48.1,alternate,Resolve relative time expressions using session timestamps,Changelog: 48.10. Historical selected full-run table: 51.34. The record does not reconcile these runs.,48.10 / 51.34
+14,47.46,full,"Combined temporal reasoning with ""be complete"" instruction",Reported full run in the development log.,47.46
+15,45.26,pilot,Answer-anticipation words added to predicate generation,Pilot sample; not a full-run comparison.,45.26
+16,47.41,pilot,Conservative third answer-anticipation predicate,Pilot sample; not a full-run comparison.,47.41
+17,44.06,pilot,Second predicate explicitly targets answer-turn vocabulary,Pilot sample; not a full-run comparison.,44.06
+18,48.16,full,Disabled speaker fallback to reduce noisy retrieval,Reported full run in the development log.,48.16
+19,46.48,pilot,Reduced top-k from 8 to 5 to cut retrieval noise,Pilot sample; not a full-run comparison.,46.48
+20,45.69,pilot,3 predicates including answer-side keyword guessing,Pilot sample; not a full-run comparison.,45.69
+21,51.69,full,"3 predicates, question-side only; removed answer guessing",Retained winner: full 51.69; a later pilot baseline was 49.57. Pilot and full scores are different evaluations.,51.69
+22,,missing,"Enforce single-word must_keywords, avoiding exact-match failures from multiword phrases.",Source recovered; separate score not found.,—
+23,,missing,Retrieve top_k=20 and ask the answerer to enumerate all items.,Not retained; separate score not found.,—
+24,,missing,Weight keyword matches by inverse document frequency (IDF).,Not retained; separate score not found.,—
+25,,missing,"If too few turns match, generate relaxed predicates for a second retrieval pass.",Not retained; separate score not found.,—
+26,,missing,Use larger retrieval and enumerate-all answers only for list questions.,Not retained; separate score not found.,—
+27,,missing,Add date anchors and vocabulary bridges to predicate generation.,A later commit reports a pilot regression of about 5.4 pp; no absolute score recovered.,—
+28,,missing,"Retrieve broadly, then have an LLM rerank down to the most relevant turns.",Not retained; separate score not found.,—
+29,,missing,Inject a month/year predicate in Python while keeping the v21 prompt.,Date matching initially searched turn text rather than session headers; separate score not found.,—
+30,,missing,Force shorter answers and lower the answer token limit from 64 to 48.,Not retained; separate score not found.,—
+31,51.19,pilot,Include session dates in the text used to score predicates.,Pilot 51.19 vs v21 pilot 49.57; later full run regressed 0.89 pp vs v21. Common words in headers introduced false matches.,51.19
+32,,missing,Score session headers only for predicates explicitly tagged as date anchors.,Attempts to fix v31 interference; not retained. Separate score not found.,—
+33,46.99,pilot,Classify enumeration questions and generate diverse predicates for them.,Pilot 46.99 vs v21 pilot 49.57 (−2.58 pp); not retained.,46.99
+34,,missing,Route temporal questions to concise answers and other questions to comprehensive answers.,Implementation and latency analysis recovered; independent quality score not found.,—
