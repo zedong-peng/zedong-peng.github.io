@@ -19,7 +19,7 @@ Preserve YAML front matter and use two-space indentation in YAML, Liquid, JavaSc
 
 ## Testing Guidelines
 
-There is no unit-test framework or coverage threshold. Before submitting, run a clean Jekyll build. Preview affected pages at desktop and mobile widths; check navigation, images, bibliography links, and CV links. CI performs the deployment build and an internal link check; accessibility checks are available through the Axe workflow.
+There is no unit-test framework or coverage threshold. Before submitting, run a clean Jekyll build. Preview affected pages at desktop and mobile widths; check navigation, images, bibliography links, and CV links. CI performs the deployment build. Check internal links locally before publishing; optional accessibility audits can also run locally.
 
 ## Commit & Pull Request Guidelines
 
