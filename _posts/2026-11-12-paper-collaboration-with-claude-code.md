@@ -3,6 +3,7 @@ layout: post
 title: "If you still use Overleaf, you are behind. Use Claude Code + GitHub repo"
 date: 2026-11-12 20:31:00 +0800
 lang: en
+translation_key: paper-collaboration-with-claude-code
 description: "A paper's figures, tables and PDF go in one private GitHub repo, and Claude Code does the work."
 categories: life
 related_posts: false
