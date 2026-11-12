@@ -3,7 +3,6 @@ layout: post
 title: "If you still use Overleaf, you are behind. Use Claude Code + GitHub repo"
 date: 2026-11-12 20:31:00 +0800
 lang: en
-translation_key: paper-collaboration-with-claude-code
 description: "A paper's figures, tables and PDF go in one private GitHub repo, and Claude Code does the work."
 categories: life
 related_posts: false
@@ -32,19 +31,11 @@ If you use PowerPoint or draw.io, you are behind.
 
 Revise with a screenshot and a spoken note: capture the part that bothers you and say how to change it. Iteration is fast.
 
-Headless Chrome prints the HTML to PDF:
-
-```bash
-chrome --headless --no-pdf-header-footer \
-  --print-to-pdf="$PWD/figs/overview.pdf" "file://$PWD/figs/overview.html"
-pdfcrop --margins 2 figs/overview.pdf figs/overview.pdf
-```
-
 My own figure style is in `zedong-html-fig`, in [zedong-skill](https://github.com/zedong-peng/zedong-skill).
 
 ## Tables
 
-The data comes straight from code, and code generates the tables. Claude Code does the data analysis, and it can draw the analysis charts in HTML too.
+Scripts collect each experiment run into one data file, and another script writes every LaTeX table from it, so no number is typed by hand. Claude Code writes those scripts, does the analysis, and draws the analysis charts in HTML from the same data.
 
 ## Distribution
 
