@@ -123,8 +123,8 @@ pagination:
   {% for series_entry in site.data.series %}
   {% assign series = series_entry[1] %}
   <li>
-    <a href="{{ series.url | relative_url }}"><b>{{ series.title.zh }}</b></a>
-    <span>{{ series.title.en }}. {{ series.summary.en }}</span>
+    <a href="{{ series.url | relative_url }}"><b>{{ series.title.en }}</b></a>
+    <span>{{ series.summary.en }}</span>
   </li>
   {% endfor %}
 </ul>

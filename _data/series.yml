@@ -34,11 +34,11 @@ missing-semester:
         en: Claude Code + GitHub repo
     - key: notes
       topic:
-        zh: 研究记录、点子与协作
-        en: Notes, ideas and collaboration
+        zh: 科研管理与协作
+        en: Running research
       from:
-        zh: 散落的笔记和群聊
-        en: scattered notes and group chats
+        zh: 微信和腾讯会议
+        en: WeChat and Tencent Meeting
       to:
-        zh: GitHub + Claude Code
-        en: GitHub + Claude Code
+        zh: GitHub
+        en: GitHub
