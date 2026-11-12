@@ -117,6 +117,18 @@ pagination:
 {% include blog_post_list.liquid posts=section_posts show_language=true %}
 {% endfor %}
 
+<h2 class="blog-section" id="series">series</h2>
+
+<ul class="td-sites">
+  {% for series_entry in site.data.series %}
+  {% assign series = series_entry[1] %}
+  <li>
+    <a href="{{ series.url | relative_url }}"><b>{{ series.title.zh }}</b></a>
+    <span>{{ series.title.en }}. {{ series.summary.en }}</span>
+  </li>
+  {% endfor %}
+</ul>
+
 <h2 class="blog-section" id="websites">websites</h2>
 
 <ul class="td-sites">

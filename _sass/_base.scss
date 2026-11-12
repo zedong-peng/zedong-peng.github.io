@@ -1481,3 +1481,84 @@ figure.cover {
     color: #23212d !important;
   }
 }
+
+// Blog series: navigation box on posts and the episode list on series pages
+.series-box {
+  border-left: 3px solid var(--global-theme-color);
+  padding: 0.6rem 1rem 0.4rem;
+  margin: 0 0 1.5rem;
+  background: var(--global-code-bg-color);
+  border-radius: 0 0.4rem 0.4rem 0;
+  font-size: 0.92rem;
+
+  .series-box-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 0.6rem;
+    align-items: baseline;
+    margin-bottom: 0.3rem;
+  }
+
+  .series-box-label {
+    color: var(--global-text-color-light);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .series-box-head a {
+    font-weight: 600;
+  }
+
+  .series-episodes {
+    margin-bottom: 0.2rem;
+  }
+}
+
+.series-episodes {
+  padding-left: 1.4rem;
+  margin: 0.4rem 0 1rem;
+
+  li {
+    padding: 0.15rem 0;
+  }
+
+  .series-episode-topic {
+    color: var(--global-text-color-light);
+    margin-right: 0.4rem;
+  }
+
+  .series-episode-topic::after {
+    content: " ·";
+  }
+
+  .series-episode--current .series-episode-title {
+    font-weight: 600;
+    color: var(--global-theme-color);
+  }
+
+  .series-episode--planned .series-episode-title {
+    color: var(--global-text-color-light);
+  }
+
+  .series-episode-soon {
+    font-size: 0.78rem;
+    color: var(--global-text-color-light);
+    border: 1px solid var(--global-divider-color);
+    border-radius: 0.25rem;
+    padding: 0 0.35rem;
+    margin-left: 0.4rem;
+    white-space: nowrap;
+  }
+
+  .series-episode-hook {
+    margin: 0.15rem 0 0.4rem;
+    color: var(--global-text-color-light);
+    font-style: italic;
+  }
+}
+
+.series-page-en {
+  color: var(--global-text-color-light);
+  font-size: 0.92rem;
+}

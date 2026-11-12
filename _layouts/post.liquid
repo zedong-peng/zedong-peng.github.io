@@ -67,6 +67,9 @@ layout: default
   </header>
 
   <article class="post-content">
+    {% if page.series %}
+      {% include series_box.liquid %}
+    {% endif %}
     {% if page.toc and page.toc.beginning %}
       <div id="table-of-contents">
         {% toc %}

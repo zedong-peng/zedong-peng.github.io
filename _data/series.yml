@@ -1,0 +1,44 @@
+# Blog series. A post joins a series with two front-matter fields:
+#   series: <series id below>
+#   series_episode: <episode key below>
+# Episodes are listed in reading order. One without a post yet shows as "coming soon".
+
+missing-semester:
+  url: /blog/series/missing-semester/
+  title:
+    zh: AI 时代科研中缺失的一课
+    en: The Missing Semester of Research, AI Edition
+  summary:
+    zh: 学校不教、AI 又改变了的科研工具。一篇讲一样：换掉什么，换成什么，怎么搭。
+    en: Research tools school does not teach and AI has changed, one per post.
+  episodes:
+    - key: zotero
+      topic:
+        zh: 文献管理
+        en: Literature
+      from:
+        zh: Zotero
+        en: Zotero
+      to:
+        zh: llmwiki
+        en: llmwiki
+    - key: overleaf
+      topic:
+        zh: 论文写作
+        en: Writing papers
+      from:
+        zh: Overleaf
+        en: Overleaf
+      to:
+        zh: GitHub + Claude
+        en: GitHub + Claude
+    - key: notes
+      topic:
+        zh: 研究记录、点子与协作
+        en: Notes, ideas and collaboration
+      from:
+        zh: 散落的笔记和群聊
+        en: scattered notes and group chats
+      to:
+        zh: GitHub + Claude Code
+        en: GitHub + Claude Code

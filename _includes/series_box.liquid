@@ -1,0 +1,13 @@
+{% comment %} Series navigation shown at the top of a post that has `series` and `series_episode` set. {% endcomment %}
+{% assign series = site.data.series[page.series] %}
+{% if series %}
+  {% assign page_language = page.lang | default: site.lang %}
+  {% if page_language contains 'zh' %}{% assign series_lang = 'zh' %}{% else %}{% assign series_lang = 'en' %}{% endif %}
+  <aside class="series-box" aria-label="{% if series_lang == 'zh' %}系列{% else %}Series{% endif %}">
+    <div class="series-box-head">
+      <span class="series-box-label">{% if series_lang == 'zh' %}系列{% else %}Series{% endif %}</span>
+      <a href="{{ series.url | relative_url }}">{{ series.title[series_lang] }}</a>
+    </div>
+    {% include series_episodes.liquid series_id=page.series lang=series_lang current=page.series_episode %}
+  </aside>
+{% endif %}
