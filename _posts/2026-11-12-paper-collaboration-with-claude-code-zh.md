@@ -8,6 +8,8 @@ description: "论文的图、表格和 PDF 都放进一个 GitHub private repo�
 categories: life
 hidden: true
 related_posts: false
+series: missing-semester
+series_episode: overleaf
 ---
 
 本文翻译自[英文版]({% post_url 2026-11-12-paper-collaboration-with-claude-code %})。

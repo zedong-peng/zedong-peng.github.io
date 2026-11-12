@@ -30,8 +30,8 @@ missing-semester:
         zh: Overleaf
         en: Overleaf
       to:
-        zh: GitHub + Claude
-        en: GitHub + Claude
+        zh: Claude Code + GitHub repo
+        en: Claude Code + GitHub repo
     - key: notes
       topic:
         zh: 研究记录、点子与协作
