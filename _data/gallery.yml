@@ -101,3 +101,15 @@
   width: 4032
   height: 3024
   alt: A seaside terrace on Jeju with white parasols, daybeds and palms under canvas shades, the sea and blue sky beyond.
+- file: 2017-07-paris-louvre.jpg
+  place: Louvre, Paris
+  date: 2017-07-15
+  width: 3264
+  height: 2448
+  alt: The Louvre's glass pyramid and its fountains in morning light, with the Richelieu wing behind the pool.
+- file: 2012-07-shanghai-lujiazui.jpg
+  place: Lujiazui, Shanghai
+  date: 2012-07-29
+  width: 1920
+  height: 1080
+  alt: The Lujiazui skyline across the Huangpu River under a blue sky, a red and blue barge passing the Oriental Pearl Tower.
