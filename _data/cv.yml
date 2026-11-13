@@ -44,7 +44,7 @@ sections:
         dates: July 2024 – 2025
         summary: Advised by [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/) and [Prof. Jieru Zhao](https://zjru.github.io).
         highlights:
-          - "The HLS part of LLM4EDA: building a [400k-design hardware dataset](https://arxiv.org/abs/2507.03255) and post-training LLMs on a 24-GPU cluster."
+          - "Building a[400k-design hardware dataset](https://arxiv.org/abs/2507.03255) and post-training LLMs on a 24-GPU cluster."
         links:
           - label: blog
             url: /blog/2025/forgehls-and-diffhls/
