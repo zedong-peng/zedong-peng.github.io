@@ -31,6 +31,6 @@ latest_posts:
 
 **Research:** I am interested in making machine learning better and faster.
 
-**Previously:** I was a research intern at the [NCTI for EDA](https://www.nctieda.com) (2025), where I worked with [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/) on the HLS component of LLM4EDA ([blog post](/blog/2025/forgehls-and-diffhls/)). I was also a research intern at [Intel](https://www.intel.com) (2023-2024), where I worked with [Yuan Zhou](https://www.linkedin.com/in/zhouyuan) on [Gluten](https://github.com/apache/gluten) and [vLLM for CPUs](https://vllm.ai).
+**Previously:** I was a research intern at the [NCTI for EDA](https://www.nctieda.com) (2025), where I worked with [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/) on LLM4EDA ([blog post](/blog/2025/forgehls-and-diffhls/)). I was also a research intern at [Intel](https://www.intel.com) (2023-2024), where I worked with [Yuan Zhou](https://www.linkedin.com/in/zhouyuan) on [Gluten](https://github.com/apache/gluten) and [vLLM for CPUs](https://vllm.ai).
 
 I received my bachelor's degree with honors in Electronic Engineering from [Shanghai Jiao Tong University](https://www.sjtu.edu.cn) in 2024, where I worked with [Prof. Liyao Xiang](http://xiangliyao.cn).
