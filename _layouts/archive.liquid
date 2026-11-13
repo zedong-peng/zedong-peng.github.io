@@ -1,8 +1,9 @@
 ---
 layout: default
 ---
-{% assign visible_posts = page.posts | where_exp: 'post', 'post.hidden != true' %}
+{% comment %} A category or year page from jekyll-archives-v2, which passes its posts as page.documents. {% endcomment %}
+{% assign visible_posts = page.documents | where_exp: 'post', 'post.hidden != true' | sort: 'date' | reverse %}
 <section class="col page-head">
-  <h1>{{ page.title }}</h1>
+  <h1>{% if page.type == 'year' %}{{ page.date | date: '%Y' }}{% else %}{{ page.title | capitalize }}{% endif %}</h1>
   {% include blog_post_list.liquid posts=visible_posts %}
 </section>

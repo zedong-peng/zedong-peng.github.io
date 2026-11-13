@@ -33,6 +33,8 @@
   {% elsif page.title != 'blank' and page.url != '/' %}
     {% if page.title == null or page.title == '' %}
       {{ page.date | date: '%Y' }} | {{ title }}
+    {% elsif page.type == 'categories' %}
+      {{ page.title | capitalize }} | {{ title }}
     {% else %}
       {{ page.title }} | {{ title }}
     {% endif %}

@@ -45,7 +45,7 @@ Edit `_bibliography/papers.bib`. Custom BibTeX fields add the extras: `preview`,
 
 - Open with what the post is and the plain answer. Headings are plain noun phrases.
 - Give `date` an explicit `+0800` offset, and date a post earlier than the push that publishes it.
-- `categories` is `research` or `life`; the blog index lists posts under those two headings.
+- `categories` is exactly one of `research` or `life`. `research` is a post that reports my own research work: an experiment, a system, a paper or a survey. `life` is every other post. The Posts menu in the header and the blog index list those two, after an overview.
 - A translated post is two files that share a `translation_key`. The Chinese file ends in `-zh`, sets `lang: zh-CN`, and sets `hidden: true` so that only the English one is listed.
 - A post joins a series with `series` and `series_episode`, both defined in `_data/series.yml`.
 - A post whose content lives on its own site sets `redirect:` to that URL (see Theme).

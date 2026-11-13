@@ -1,6 +1,16 @@
 {% comment %} The site header. Standalone pages under zedongpeng.com copy this markup and link /assets/css/site.css. {% endcomment %}
 <header class="zp-top" id="navbar">
   <a class="zp-home" href="{{ '/' | relative_url }}">{{ site.first_name }} {{ site.last_name }}</a>
-  <a href="{{ '/blog/' | relative_url }}" {% if page.url contains '/blog/' %}aria-current="page"{% endif %}>Posts</a>
+  <div class="zp-menu">
+    <a href="{{ '/blog/' | relative_url }}" aria-haspopup="true" {% if page.url contains '/blog/' %}aria-current="page"{% endif %}>Posts</a>
+    <div class="zp-panel">
+      <div>
+        <a href="{{ '/blog/' | relative_url }}">Overview</a>
+        {% for category in site.display_categories %}
+        <a href="{{ '/blog/category/' | append: category | append: '/' | relative_url }}">{{ category | capitalize }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
   <a href="{{ '/cv/' | relative_url }}" {% if page.url == '/cv/' %}aria-current="page"{% endif %}>CV</a>
 </header>

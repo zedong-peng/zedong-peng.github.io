@@ -29,8 +29,15 @@ b, strong { font-weight: 600; }
 .zp-top { max-width: 940px; margin: 0 auto; padding: 28px 20px 0; display: flex; align-items: center; gap: 8px; font-size: 13px; }
 .zp-top a { text-decoration: none; }
 .zp-home { font-size: 17px; font-weight: 600; margin-right: auto; }
-.zp-top a:not(.zp-home) { color: var(--fg); background: #f5f4ed; border-radius: 999px; padding: 4px 18px; }
-.zp-top a:not(.zp-home):hover, .zp-top a[aria-current="page"] { background: var(--line); color: var(--fg); }
+.zp-top > a:not(.zp-home), .zp-menu > a { display: block; color: var(--fg); background: #f5f4ed; border-radius: 999px; padding: 4px 18px; }
+.zp-top > a:not(.zp-home):hover, .zp-menu:hover > a, .zp-top a[aria-current="page"] { background: var(--line); color: var(--fg); }
+/* The Posts menu opens on hover or keyboard focus; a tap goes to the overview, which lists every section. */
+.zp-menu { position: relative; }
+.zp-panel { display: none; position: absolute; left: 0; top: 100%; padding-top: 8px; z-index: 10; }
+.zp-menu:hover .zp-panel, .zp-menu:focus-within .zp-panel { display: block; }
+.zp-panel > div { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 8px; min-width: 150px; }
+.zp-panel a { display: block; font-size: 14px; padding: 6px 12px; border-radius: 8px; color: var(--fg); }
+.zp-panel a:hover { background: #f5f4ed; }
 .zp-foot { max-width: 940px; margin: 96px auto 0; padding: 24px 20px 48px; border-top: 1px solid var(--line); }
 
 /* Page column */
@@ -127,7 +134,7 @@ figure { margin: 48px 0 0; }
 
 @media (max-width: 600px) {
   .zp-top { gap: 6px; padding-top: 20px; }
-  .zp-top a:not(.zp-home) { padding: 4px 14px; }
+  .zp-top > a:not(.zp-home), .zp-menu > a { padding: 4px 14px; }
   .page-head { padding-top: 48px; }
   h1 { font-size: 28px; }
   h2 { font-size: 22px; margin-top: 48px; }
