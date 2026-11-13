@@ -8,7 +8,6 @@ nav_order: 1
 
 <section class="col page-head">
 <h1>{{ site.blog_name }}</h1>
-<p class="lead">{{ site.blog_description }}</p>
 
 {% assign visible_posts = site.posts | where_exp: "post", "post.hidden != true" %}
 {% for category in site.display_categories %}

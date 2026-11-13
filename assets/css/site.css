@@ -106,10 +106,9 @@ p { margin: 0 0 20px; }
 
 /* Lists of posts and sites */
 .list { list-style: none; margin: 0; padding: 0; }
-.list li { display: grid; grid-template-columns: 1fr auto; gap: 2px 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.list li { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 2px 24px; padding: 14px 0; border-bottom: 1px solid var(--line); }
 .list li:last-child { border-bottom: 0; }
 .list .t { font-weight: 600; text-decoration: none; }
-.list .d { grid-column: 1; margin: 0; }
 .list .m { grid-row: 1; grid-column: 2; white-space: nowrap; }
 h2.section { border-bottom: 1px solid var(--fg); padding-bottom: 12px; margin-bottom: 0; }
 

@@ -10,17 +10,14 @@
         <a class="t" href="{{ post.redirect | relative_url }}">{{ post.title }}</a>
       {% endif %}
       <span class="m small">
-        {% if post_language contains 'zh' %}{{ post.date | date: '%Y年%-m月%-d日' }}{% else %}{{ post.date | date: '%b %-d, %Y' }}{% endif %}
-      </span>
-      <p class="d small">
-        {{ post.description }}
         {% assign translations = site.posts | where: 'translation_key', post.translation_key %}
         {% if post.translation_key and translations.size > 1 %}
-          {% include post_language_control.liquid post=post %}
+          {% include post_language_control.liquid post=post %} ·
         {% elsif post_language contains 'zh' %}
-          <span class="post-language-control">中文</span>
+          <span class="post-language-control">中文</span> ·
         {% endif %}
-      </p>
+        {% if post_language contains 'zh' %}{{ post.date | date: '%Y年%-m月%-d日' }}{% else %}{{ post.date | date: '%b %-d, %Y' }}{% endif %}
+      </span>
     </li>
   {% endfor %}
 </ul>
