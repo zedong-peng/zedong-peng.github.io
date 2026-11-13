@@ -47,7 +47,7 @@ sections:
           - "Built a [400k-design hardware dataset](https://arxiv.org/abs/2507.03255) and post-trained LLMs on a 24-GPU cluster."
         links:
           - label: blog
-            url: /blog/2025/forgehls-and-diffhls/
+            url: /blog/2026/forgehls-and-diffhls/
       - title: Machine Learning Intern
         org: Intel
         place: Shanghai, China

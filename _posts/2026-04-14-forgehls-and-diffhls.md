@@ -1,13 +1,10 @@
 ---
 layout: post
 title: "ForgeHLS and DiffHLS: why I built them, and why HLS still feels like a trap"
-date: 2025-12-01 20:50:00 +0800
+date: 2026-04-14 20:50:00 +0800
 lang: en
-translation_key: forgehls-diffhls-personal-note
 description: "A personal note on building a large-scale HLS dataset, pushing DiffHLS forward, and why I remain skeptical about HLS as a long-term research direction in 2026."
 categories: research
-citation: true
-related_posts: false
 toc:
   beginning: true
 ---

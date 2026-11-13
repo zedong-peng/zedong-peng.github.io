@@ -3,14 +3,13 @@ layout: post
 title: "How to make your own homepage"
 date: 2024-06-18 12:00:00 +0800
 lang: en
-description: "A domain from Cloudflare, the al-folio template and free hosting on GitHub Pages: how this site is put together, step by step."
+description: "A domain from Cloudflare, the al-folio template and free hosting on GitHub Pages: how to put a homepage like this one together, step by step."
 categories: life
-related_posts: false
 agent_prompt: |
   Read https://zedongpeng.com/blog/2024/how-to-make-your-own-homepage/ and build me a personal homepage with a blog the same way: the al-folio template, hosted on GitHub Pages, on my own domain. Ask me for what only I can give you: my name, photo, papers, CV and the domain I want. For steps that need my GitHub or Cloudflare account, tell me exactly what to click. Do the rest yourself, and show me the site running locally before we publish it.
 ---
 
-This site is the kind of homepage many researchers keep: an about page, a list of papers, a CV and a blog. It costs me about ten dollars a year, and all of that is the domain name. The template and the hosting are free. This post walks through how it is put together, using this site as the example, so you can build your own. If you use an AI coding agent, give it the prompt above; the rest of this post is the same walk-through, for people.
+This site is the kind of homepage many researchers keep: an about page, a CV with a list of papers, and a blog. It costs me about ten dollars a year, and all of that is the domain name. The template and the hosting are free. This post walks through how to build one. I started from the template in 2024 and have since rewritten most of it; where this site now differs from the template, the post says so. If you use an AI coding agent, give it the prompt above; the rest of this post is the same walk-through, for people.
 
 There are three parts:
 
@@ -18,7 +17,7 @@ There are three parts:
 - **Hosting:** [GitHub Pages](https://pages.github.com), which serves the built site for free.
 - **Domain:** zedongpeng.com, bought on [Cloudflare](https://www.cloudflare.com/products/registrar/).
 
-<figure class="homepage-flow" role="img" aria-label="Publishing: your files on the main branch are pushed, GitHub Actions builds them with Jekyll into the gh-pages branch, and GitHub Pages serves it. Visiting: the browser asks Cloudflare DNS for the address, then fetches the page from GitHub Pages."><svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg"><style>
+<figure class="homepage-flow" role="img" aria-label="Publishing: your files on the main branch are pushed, GitHub Actions builds them with Jekyll, and GitHub Pages serves the built site. Visiting: the browser asks Cloudflare DNS for the address, then fetches the page from GitHub Pages."><svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg"><style>
 .homepage-flow svg { width: 100%; height: auto; display: block; color: var(--global-text-color); font-family: inherit; }
 .homepage-flow .box { fill: var(--global-bg-color); stroke: currentColor; stroke-opacity: 0.45; stroke-width: 1.5; }
 .homepage-flow .host { fill: var(--global-theme-color); }
@@ -40,8 +39,8 @@ There are three parts:
 <text class="name" x="285" y="67">GitHub Actions</text>
 <text class="sub" x="285" y="88">Jekyll build</text>
 <rect class="box" x="410" y="40" width="130" height="64" rx="8"/>
-<text class="name" x="475" y="67">gh-pages</text>
-<text class="sub" x="475" y="88">built site</text>
+<text class="name" x="475" y="67">built site</text>
+<text class="sub" x="475" y="88">HTML files</text>
 <rect class="host" x="590" y="40" width="120" height="250" rx="8"/>
 <text class="name on-host" x="650" y="160">GitHub</text>
 <text class="name on-host" x="650" y="180">Pages</text>
@@ -63,7 +62,7 @@ There are three parts:
 <circle class="step" cx="186" cy="248" r="9"/><text class="step-n" x="186" y="252">2</text>
 <text class="lbl" x="236" y="252">the page</text>
 </svg>
-<figcaption class="caption">Top: publishing. Pushing to the main branch starts a build on GitHub's servers, which writes the finished site to the gh-pages branch, and GitHub Pages serves it. Bottom: visiting. The browser asks Cloudflare where zedongpeng.com lives (1), gets GitHub's address, and fetches the page from GitHub Pages (2). Cloudflare only answers the lookup; the pages never pass through it.</figcaption>
+<figcaption class="caption">Top: publishing. Pushing to the main branch starts a build on GitHub's servers, and GitHub Pages serves the finished site. Bottom: visiting. The browser asks Cloudflare where zedongpeng.com lives (1), gets GitHub's address, and fetches the page from GitHub Pages (2). Cloudflare only answers the lookup; the pages never pass through it.</figcaption>
 </figure>
 
 ## Start from the template
@@ -78,9 +77,11 @@ al-folio's own [install guide](https://github.com/alshedivat/al-folio/blob/main/
 
 A minute later, `https://<your-username>.github.io` shows a copy of the al-folio demo. Everything after this is swapping the demo content for your own.
 
+This site no longer has a `gh-pages` branch. Its workflow uploads the built site straight to GitHub Pages, with the source under **Settings → Pages** set to **GitHub Actions**, so steps 2, 4 and 5 fall away. The template's way works as it is; change it only if you want to.
+
 ## Make it yours
 
-al-folio keeps the content apart from the layout. You edit a handful of text files, and the template turns them into pages:
+al-folio keeps the content apart from the layout. You edit a handful of text files in the template, and it turns them into pages:
 
 | File                       | What it holds                                                |
 | -------------------------- | ------------------------------------------------------------ |
@@ -95,10 +96,10 @@ al-folio keeps the content apart from the layout. You edit a handful of text fil
 
 What I changed on this site:
 
-- **Fewer pages.** The demo comes with projects, repositories, teaching and more. I kept four: about, posts, publications and CV. To hide a page, set `nav: false` at the top of its file in `_pages/`. (Publications have since moved onto the CV; `/publications/` now just redirects there.)
-- **Color.** One line in `_sass/_themes.scss`, `--global-theme-color`, turns the links and accents from the default cyan to purple. It appears once for the light theme and once for the dark.
-- **Papers.** Each paper is a BibTeX entry, the format reference managers export. Extra fields become buttons and badges: `pdf=` and `arxiv=` add links under the entry, and `abbr=` puts the venue in a small box beside it.
-- **CV.** The CV page is built from `_data/cv.yml`. For a PDF version I use [RenderCV](https://github.com/rendercv/rendercv), which turns a YAML file into a typeset PDF, and link it at the top of the CV page.
+- **Fewer pages.** The demo comes with projects, repositories, teaching and more. I kept three: about, posts and CV. To hide a page, set `nav: false` at the top of its file in `_pages/`. Publications are a section of the CV, and `/publications/` redirects there.
+- **Look.** I replaced the template's styles with one hand-written file, `assets/css/site.css`, modeled on Anthropic's site: two typefaces, one accent color, light only. If you only want a different color, the template needs one line in `_sass/_themes.scss`, `--global-theme-color`.
+- **Papers.** Each paper is a BibTeX entry, the format reference managers export. Extra fields such as `pdf=`, `arxiv=` and `code=` become bracketed links after the title.
+- **CV.** The CV page is built from `_data/cv.yml`. On every deploy, the workflow prints that page to a PDF with headless Chrome, so the page and the PDF cannot disagree.
 
 A blog post is a Markdown file in `_posts/` whose name starts with the date, like `2024-06-18-how-to-make-your-own-homepage.md`. It begins with a short header:
 
@@ -115,7 +116,7 @@ The text goes below it, and the post appears at `/blog/2024/how-to-make-your-own
 
 ## Publish with a push
 
-Publishing is just pushing to `main`. A workflow that ships with the template, `.github/workflows/deploy.yml`, runs on every push: it builds the site with Jekyll, trims unused styles, and writes the result to `gh-pages`. GitHub Pages serves whatever is on `gh-pages`. That is the top row of the figure, and it takes a few minutes end to end. The **Actions** tab shows where it is.
+Publishing is just pushing to `main`. A workflow that ships with the template, `.github/workflows/deploy.yml`, runs on every push: it builds the site with Jekyll and hands the result to GitHub Pages. That is the top row of the figure, and it takes a few minutes end to end. The **Actions** tab shows where it is.
 
 ## Connect your own domain
 
@@ -139,7 +140,7 @@ Then, on GitHub:
 2. Once it's ready, tick **Enforce HTTPS**.
 3. In `_config.yml`, change `url` to your domain, for example `url: https://zedongpeng.com`, and keep `baseurl:` empty.
 
-`www.zedongpeng.com` now redirects to `zedongpeng.com`. Saving the custom domain also writes a small file named `CNAME` into `gh-pages`. Mine has survived every deploy so far, but if your custom domain goes blank after a deploy, al-folio's FAQ says to add the same file to `main`.
+`www.zedongpeng.com` now redirects to `zedongpeng.com`. With the template, saving the custom domain also writes a small file named `CNAME` into `gh-pages`. If your custom domain goes blank after a deploy, al-folio's FAQ says to add the same file to `main`.
 
 Check the spelling in step 3 letter by letter. A typo there breaks nothing you can see, because links between pages are relative, so the site works. But the template uses `url` for the addresses that only machines read: the canonical link in each page's header, which tells search engines a page's real address, the sitemap and the RSS feed. With a typo, all of them point at a domain you don't own. After changing `url`, open your live site's page source and search for "canonical".
 
@@ -153,9 +154,7 @@ docker compose up
 
 Then open `http://localhost:8080`. The page reloads as you edit.
 
-Two things caught me out:
-
-- **Posts dated in the future don't appear.** Jekyll compares the date with the moment the build runs, so a post dated this evening and pushed this afternoon stays missing until the date is moved back. Give each date a time and an offset, and set `timezone:` in `_config.yml`.
+One thing caught me out: posts dated in the future don't appear. Jekyll compares the date with the moment the build runs, so a post dated this evening and pushed this afternoon stays missing until the date is moved back. Give each date a time and an offset, and set `timezone:` in `_config.yml`.
 
 ## Keep a note for your agent
 
