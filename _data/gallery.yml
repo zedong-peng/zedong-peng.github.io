@@ -2,7 +2,7 @@
 # resolution with its EXIF kept, GPS coordinates included. width and height are the file's, in pixels;
 # caption is one optional sentence shown under the photo; alt says what the photo shows.
 - file: 2026-08-nanjing-zhan-garden.jpg
-  place: Zhan Garden, Nanjing
+  place: 南京・瞻园
   date: 2026-08-23
   width: 2268
   height: 4032
@@ -26,14 +26,14 @@
   height: 4032
   alt: Barcelona at dusk from a hilltop, the Sagrada Família rising above the rooftops toward the sea, three people at the railing in front.
 - file: 2025-10-qianjiang-ankle-x-ray.jpg
-  place: Qianjiang
+  place: 潜江
   date: 2025-10-09
   width: 1280
   height: 1707
-  caption: Fracture surgery.
+  caption: 骨折手术
   alt: An X-ray of my ankle on the operating room monitor, with two screws in the bone.
 - file: 2025-08-nanjing-sunset.jpg
-  place: Nanjing
+  place: 南京
   date: 2025-08-30
   width: 3024
   height: 4032
@@ -45,7 +45,7 @@
   height: 4032
   alt: Tokyo Tower lit orange at night, seen through a rain-streaked window from a red table with drinks on it.
 - file: 2025-05-qingdao-old-town.jpg
-  place: Qingdao
+  place: 青岛
   date: 2025-05-03
   width: 4096
   height: 3072
@@ -71,13 +71,13 @@
   height: 2730
   alt: Me on a station platform of the Eizan line toward Kurama, in front of a hillside of green maples.
 - file: 2024-06-shanghai-sjtu-graduation.jpg
-  place: SJTU Minhang Campus
+  place: 上海交通大学闵行校区
   date: 2024-06-26
   width: 6000
   height: 4000
   alt: Me in a bachelor's gown holding a bouquet of blue and white flowers, in front of a blackboard with 毕业快乐 chalked on it.
 - file: 2024-05-shanghai-dinner.jpg
-  place: Shanghai
+  place: 上海
   date: 2024-05-30
   width: 2268
   height: 4032
@@ -121,7 +121,7 @@
   height: 2448
   alt: The Louvre's glass pyramid and its fountains in morning light, with the Richelieu wing behind the pool.
 - file: 2012-07-shanghai-lujiazui.jpg
-  place: Lujiazui, Shanghai
+  place: 上海・陆家嘴
   date: 2012-07-29
   width: 1920
   height: 1080

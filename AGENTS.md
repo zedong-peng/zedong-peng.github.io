@@ -56,7 +56,7 @@ Edit `_bibliography/papers.bib`. Custom BibTeX fields add the links: `website` (
 
 ## Gallery
 
-`/gallery/` shows the photos of `_data/gallery.yml`, which documents an entry's fields; the files are under `assets/img/gallery/`. They are laid out as anthropic.com/research's gallery view is, on a full-width 12-column grid with two photos a row: `_plugins/gallery-layout.rb` holds Anthropic's rule, which picks each row's sizes and positions from a hash of its two file names, so adding a photo at the top moves the photos below it. Commit one JPEG per photo, converted from the HEIC original at its full resolution with its EXIF kept, GPS coordinates included: I choose which photos to publish, so one whose location is private is not added. A photo names its place and has no map.
+`/gallery/` shows the photos of `_data/gallery.yml`, which documents an entry's fields; the files are under `assets/img/gallery/`. They are laid out as anthropic.com/research's gallery view is, on a full-width 12-column grid with two photos a row: `_plugins/gallery-layout.rb` holds Anthropic's rule, which picks each row's sizes and positions from a hash of its two file names, so adding a photo at the top moves the photos below it. Commit one JPEG per photo, converted from the HEIC original at its full resolution with its EXIF kept, GPS coordinates included: I choose which photos to publish, so one whose location is private is not added. A photo names its place and has no map. A place in China is named in Chinese and one in Japan in Japanese, as `南京・瞻园` and `東京・港区`; any other place is named in English.
 
 ## Style
 
