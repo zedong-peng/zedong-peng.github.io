@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "How I Manage a Team of AI Agents"
-date: 2025-08-19 12:00:00 +0800
-old_urls: [/blog/2026/managing-a-team-of-ai-agents/]
+date: 2026-09-19 12:00:00 +0800
+old_urls: [/blog/2025/managing-a-team-of-ai-agents/]
 lang: en
 description: "A CEO and seven agents, each named after someone whose work fits the job. What mattered was ordinary management."
 categories: life
