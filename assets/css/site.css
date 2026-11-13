@@ -113,6 +113,17 @@ h2.section { border-bottom: 1px solid var(--fg); padding-bottom: 12px; margin-bo
 .home figure { margin: 0; }
 .prose .links, .links { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 32px 0 0; padding: 0; list-style: none; }
 
+/* Figures, wide tables and footnotes, for standalone pages */
+figure { margin: 48px 0 0; }
+.scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.wide table, .scroll table { border-collapse: collapse; width: 100%; font-size: 15px; line-height: 1.6; }
+.wide th, .wide td, .scroll th, .scroll td { padding: 14px 16px 14px 0; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.wide th, .scroll th { font-weight: 400; color: var(--muted); border-bottom-color: var(--fg); }
+.footnotes { margin-top: 64px; padding: 56px 0 0; border-top: 1px solid var(--fg); }
+.footnotes .title { font-weight: 500; margin-bottom: 28px; }
+.footnotes p { position: relative; padding-left: 24px; margin: 0 0 28px; font-size: 15px; line-height: 1.6; }
+.footnotes sup { position: absolute; left: 0; top: 0.45em; font-size: 11px; line-height: 1; }
+
 .comments { margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--line); }
 
 @media (max-width: 600px) {

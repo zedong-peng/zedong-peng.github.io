@@ -20,7 +20,16 @@ docker compose logs -f jekyll   # follow the first build
 docker compose down
 ```
 
-A push to `main` runs `.github/workflows/deploy.yml`: Jekyll build, PurgeCSS, the CV printed to PDF, then `_site` uploaded straight to GitHub Pages (no `gh-pages` branch). Other paths under zedongpeng.com, such as `/memorytax/` or `/qwen38-4090-inference/`, are separate repos with their own Pages. There is no test suite; a clean `bundle exec jekyll build` is the check.
+A push to `main` runs `.github/workflows/deploy.yml`: Jekyll build, the CV printed to PDF, then `_site` uploaded straight to GitHub Pages (no `gh-pages` branch). Other paths under zedongpeng.com, such as `/memorytax/` or `/qwen38-4090-inference/`, are separate repos with their own Pages. There is no test suite; a clean `bundle exec jekyll build` is the check.
+
+## Theme
+
+Every page under zedongpeng.com looks the same: all Lora, the colors and sizes in `assets/css/site.css`, and the header in `_includes/header.liquid`. Change the look there and nowhere else.
+
+A page takes one of two forms:
+
+- A Markdown post in `_posts/`. This is the default.
+- A standalone HTML page in its own repo, served by that repo's GitHub Pages at `zedongpeng.com/<repo>/`, for a page with its own figures, data or build. Start from `assets/template/page.html`: it links `site.css` and loads `/assets/js/site-header.js`, which inserts the same header. Its own styles go in one `<style>` block that uses the variables of `site.css`; it sets no fonts or colors of its own. List it on the blog with a post that sets `redirect:`.
 
 ## CV
 
@@ -39,7 +48,7 @@ Edit `_bibliography/papers.bib`. Custom BibTeX fields add the extras: `preview`,
 - `categories` is `research` or `life`; the blog index lists posts under those two headings.
 - A translated post is two files that share a `translation_key`. The Chinese file ends in `-zh`, sets `lang: zh-CN`, and sets `hidden: true` so that only the English one is listed.
 - A post joins a series with `series` and `series_episode`, both defined in `_data/series.yml`.
-- A post whose content lives on its own site sets `redirect:` to that URL. A standalone HTML article under `assets/html/` is shown with `layout: embed` and `embed:`.
+- A post whose content lives on its own site sets `redirect:` to that URL (see Theme).
 
 ## Style
 

@@ -48,8 +48,6 @@ jobs:
         run: |
           sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends imagemagick
           JEKYLL_ENV=production bundle exec jekyll build
-      - name: Purge unused CSS
-        run: npx --yes purgecss -c purgecss.config.js
       - name: Print CV to PDF
         run: |
           python3 -m http.server 4000 --directory _site >/dev/null 2>&1 &
