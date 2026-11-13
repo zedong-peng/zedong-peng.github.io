@@ -1,7 +1,7 @@
 ## how to run locally
 
 ```
-docker compose up --detach
+docker compose up --detach   # add --build after a Gemfile change
 
 # wait until the first build finishes, then open http://localhost:8080
 docker compose logs -f jekyll
