@@ -1,6 +1,6 @@
 {% comment %}
   Ordered list of a series' episodes.
-  Params: series_id, lang ('zh' or 'en'), current (episode key to mark, optional), hooks (true to show the hook line).
+  Params: series_id, lang ('zh' or 'en'), current (episode key to mark).
 {% endcomment %}
 {% assign series = site.data.series[include.series_id] %}
 {% assign lang_key = include.lang %}
@@ -31,15 +31,6 @@
       {% else %}
         <span class="series-episode-title">{{ ep_title }}</span>
         <span class="series-episode-soon">{% if lang_key == 'zh' %}即将发布{% else %}coming soon{% endif %}</span>
-      {% endif %}
-      {% if include.hooks %}
-        <p class="series-episode-hook">
-          {% if lang_key == 'zh' %}
-            还在用 {{ ep.from.zh }}？你已经落后了。用 {{ ep.to.zh }}。
-          {% else %}
-            If you still use {{ ep.from.en }}, you are behind. Use {{ ep.to.en }}.
-          {% endif %}
-        </p>
       {% endif %}
     </li>
   {% endfor %}

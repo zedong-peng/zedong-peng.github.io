@@ -4,13 +4,9 @@
 # Episodes are listed in reading order. One without a post yet shows as "coming soon".
 
 missing-semester:
-  url: /blog/series/missing-semester/
   title:
     zh: AI 时代科研中缺失的一课
     en: The Missing Semester of Research, AI Edition
-  summary:
-    zh: 学校不教、AI 又改变了的科研工具。一篇讲一样：换掉什么，换成什么，怎么搭。
-    en: Research tools school does not teach and AI has changed, one per post.
   episodes:
     - key: zotero
       topic:

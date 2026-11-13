@@ -6,7 +6,7 @@
   <aside class="series-box" aria-label="{% if series_lang == 'zh' %}系列{% else %}Series{% endif %}">
     <div class="series-box-head">
       <span class="series-box-label">{% if series_lang == 'zh' %}系列{% else %}Series{% endif %}</span>
-      <a href="{{ series.url | relative_url }}">{{ series.title[series_lang] }}</a>
+      <span>{{ series.title[series_lang] }}</span>
     </div>
     {% include series_episodes.liquid series_id=page.series lang=series_lang current=page.series_episode %}
   </aside>

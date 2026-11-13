@@ -4,7 +4,7 @@ Zedong Peng's personal academic site, built on the [al-folio](https://github.com
 
 ## Structure
 
-- `_pages/`: the about page (`/`), the blog index, the CV, the series index and the 404 page. `/publications/` is only a redirect stub to `/cv/`.
+- `_pages/`: the about page (`/`), the blog index, the CV and the 404 page. `/publications/` is only a redirect stub to `/cv/`.
 - `_posts/`: blog posts, named `YYYY-MM-DD-kebab-case-title.md`.
 - `_data/`: `cv.yml` (the CV), `series.yml` (blog series), `socials.yml`.
 - `_bibliography/papers.bib`: all publications, rendered by jekyll-scholar.
@@ -49,7 +49,7 @@ Edit `_bibliography/papers.bib`. Custom BibTeX fields add the extras: `preview`,
 - A translated post is two files that share a `translation_key`. The Chinese file ends in `-zh`, sets `lang: zh-CN`, and sets `hidden: true` so that only the English one is listed.
 - A post joins a series with `series` and `series_episode`, both defined in `_data/series.yml`.
 - A post whose content lives on its own site sets `redirect:` to that URL (see Theme).
-- The blog index lists posts and nothing else, as Anthropic's lists do. A standalone site gets a `redirect:` post, a data site or leaderboard is linked from the post it belongs to, and a series is reached from the box on each of its episodes.
+- The blog index lists posts and nothing else, as Anthropic's lists do. A standalone site gets a `redirect:` post, a data site or leaderboard is linked from the post it belongs to, and a series has no page of its own: the box on each episode lists the others.
 
 ## Style
 

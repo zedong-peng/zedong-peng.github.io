@@ -102,7 +102,6 @@ p { margin: 0 0 20px; }
 .series-episode--current .series-episode-title { font-weight: 500; }
 .series-episode--planned .series-episode-title, .series-episode-soon { color: var(--muted); }
 .series-episode-soon { font-size: 14px; margin-left: 0.4em; white-space: nowrap; }
-.series-episode-hook { margin: 2px 0 8px; color: var(--muted); font-style: italic; }
 
 /* Lists of posts and sites */
 .list { list-style: none; margin: 0; padding: 0; }
