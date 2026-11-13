@@ -4,7 +4,7 @@
 name: Zedong Peng
 alternate_name: 彭则栋
 affiliation: Shanghai Jiao Tong University
-updated: 2026-10-23
+updated: 2026-11-14
 email: zedongpeng1@gmail.com
 website: https://zedongpeng.com
 # Profiles: in the page's schema.org data only (sameAs), not shown.
@@ -41,7 +41,7 @@ sections:
       - title: Research Intern
         org: National Center of Technology Innovation for EDA
         place: Nanjing, China
-        dates: July 2024 – 2025
+        dates: July 2024 – July 2026
         summary: Advised by [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/) and [Prof. Jieru Zhao](https://zjru.github.io).
         highlights:
           - "Building a [400k-design hardware dataset](https://arxiv.org/abs/2507.03255) and post-training LLMs on a 24-GPU cluster."
@@ -54,37 +54,48 @@ sections:
         dates: Nov 2023 – July 2024
         summary: Advised by [Yuan Zhou](https://www.linkedin.com/in/zhouyuan).
         highlights:
-          - "Spark SQL native engine [Gluten](https://github.com/apache/gluten): optimizing the CI pipeline."
-          - "LLM framework optimization: Intel device support for [vLLM](https://vllm.ai)."
-          - "LLM applications: text to SQL."
+          - "Performance tuning for the Intel CPU backend of [vLLM](https://vllm.ai)."
+          - "[Gluten](https://github.com/apache/gluten), a native engine for Spark SQL: moved its CI onto nightly-built Docker images, in seven merged pull requests."
+          - "[Text to SQL](https://github.com/oap-project/text2sql-gluten) on Spark: compared four SQLCoder models, the best 93% correct."
       - title: Winter School
         org: Data Science Institute, Imperial College London
         place: London, UK
         dates: Jan 2024 – Feb 2024
         highlights:
-          - Applied vector representations to analyze language features in COVID-19 text.
+          - Analyzed language in COVID-19 text with vector representations.
       - title: Research Intern
         org: Shanghai Jiao Tong University
         place: Shanghai, China
         dates: July 2022 – July 2024
         summary: Advised by [Prof. Liyao Xiang](http://xiangliyao.cn).
         highlights:
-          - Security-focused machine learning research.
+          - Wrote gate-level zero-knowledge proof circuits for LeNet.
+        links:
+          - label: paper
+            url: https://ieeexplore.ieee.org/abstract/document/10444899
 
   - title: Publications
     bibliography: true
 
   - title: Projects
     entries:
+      - title: Qwen3.8-27B on one RTX 4090
+        dates: "2026"
+        summary: An inference engine that decodes at 322 tokens per second for one user, against 200 for vLLM and 102 for llama.cpp on the same card, without changing the output text.
+        links:
+          - label: blog
+            url: /blog/2026/qwen38-4090-decode/
+          - label: code
+            url: https://github.com/zedong-peng/qwen38-4090-decode
       - title: llama.cpp FPGA backend
         dates: In progress
-        summary: A llama.cpp backend that runs LLM inference on an AMD Alveo U280 FPGA card; twelve models from four families run on it. The code is private for now.
-      - title: Robotic Dog Development
+        summary: A llama.cpp backend that runs LLM inference on an AMD Alveo U280 FPGA card. The code is private for now.
+      - title: Locomotion control on Xiaomi CyberDog
         place: Shanghai, China
         dates: Nov 2023 – Nov 2024
-        summary: Advised by [Prof. Weiming Zhao](https://zwm0426.github.io) and [Xiaomi Technology](https://www.mi.com).
+        summary: With [Prof. Weiming Zhao](https://zwm0426.github.io) and [Xiaomi](https://www.mi.com).
         highlights:
-          - Implemented algorithms that improved locomotion control and user interaction.
+          - Wrote locomotion controllers with classical control, without reinforcement learning, and ran them on the real robot.
 
   - title: Honors and Awards
     compact: true
@@ -99,12 +110,10 @@ sections:
         dates: "2021"
       - title: Liu Yongling Foundation Scholarship
         dates: "2021"
-      - title: Advanced Individual in Social Practice, Shanghai Jiao Tong University
-        dates: "2021"
 
   - title: Skills
     pairs:
       - label: Programming
-        value: C++, Python, SQL, Verilog, Shell, Docker, MATLAB
+        value: C++, Python, CUDA, SQL, Verilog
       - label: Languages
-        value: Chinese (native), English (CET-6, 481), German (A1)
+        value: Chinese (native), English (CET-6), German (A1)
