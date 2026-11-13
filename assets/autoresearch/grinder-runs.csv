@@ -1,8 +1,0 @@
-run,f1_percent,status,change
-Baseline,29.76,baseline,Original prompts
-Exp1,30.07,kept,Category-specific prompts
-Exp2,29.87,reverted,Enhanced temporal prompt
-Exp3,,crashed,top_k=16 (SSL error)
-Exp4,29.68,discarded,Constraint-aware query
-Exp5,22.89,discarded,Temporal weight boost
-Exp6,29.02,discarded,Chain-of-Thought for Cat3
