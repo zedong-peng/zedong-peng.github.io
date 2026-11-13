@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Where Experience Goes"
+title: "Continual learning: where experience goes"
 date: 2026-10-20 12:00:00 +0800
 lang: en
 description: "Long context, agent memory, parametric memory, test-time training and self-improving agents are one problem: where an experience is kept, and which rule writes it there. The rule is the hard part, and it should be learned."
@@ -8,7 +8,7 @@ categories: life
 related_posts: false
 ---
 
-Long context, agent memory, parametric memory, test-time training, continual learning and self-improving agents work on one problem under different names: learning from experience after training has ended. Each answers two questions: where an experience is kept, and what rule decides what gets written there.
+Long context, agent memory, parametric memory, test-time training and self-improving agents are all continual learning: learning from experience after training has ended. Each answers two questions: where an experience is kept, and what rule decides what gets written there.
 
 <figure class="experience-fig" role="img" aria-label="A two-by-two grid of stores. Top row, text: Context, append every token; Notes, a writer decides. Bottom row, parameters: Fast weights, update per token; Weights, gradient step. Long context covers the left column, test-time training the bottom row, agent memory the Notes cell, parametric memory the Weights cell. Experience enters from the left; what the model does loops back into its experience, labelled recursive self-improvement.">
 <svg viewBox="0 0 680 405" xmlns="http://www.w3.org/2000/svg">
