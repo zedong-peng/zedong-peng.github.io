@@ -44,7 +44,7 @@ sections:
         dates: July 2024 – July 2026
         summary: Advised by [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/) and [Prof. Jieru Zhao](https://zjru.github.io).
         highlights:
-          - "Building a [400k-design hardware dataset](https://arxiv.org/abs/2507.03255) and post-training LLMs on a 24-GPU cluster."
+          - "Built a [400k-design hardware dataset](https://arxiv.org/abs/2507.03255) and post-trained LLMs on a 24-GPU cluster."
         links:
           - label: blog
             url: /blog/2025/forgehls-and-diffhls/
@@ -55,24 +55,19 @@ sections:
         summary: Advised by [Yuan Zhou](https://www.linkedin.com/in/zhouyuan).
         highlights:
           - "Performance tuning for the Intel CPU backend of [vLLM](https://vllm.ai)."
-          - "[Gluten](https://github.com/apache/gluten), a native engine for Spark SQL: moved its CI onto nightly-built Docker images, in seven merged pull requests."
-          - "[Text to SQL](https://github.com/oap-project/text2sql-gluten) on Spark: compared four SQLCoder models, the best 93% correct."
+          - "[Gluten](https://github.com/apache/gluten), a native engine for Spark SQL: moved its CI onto nightly-built Docker images."
+          - "[Text to SQL](https://github.com/oap-project/text2sql-gluten) on Spark: an LLM pipeline that translates questions to Spark SQL, 93% correct with SQLCoder-70B."
       - title: Winter School
         org: Data Science Institute, Imperial College London
         place: London, UK
         dates: Jan 2024 – Feb 2024
-        highlights:
-          - Analyzed language in COVID-19 text with vector representations.
       - title: Research Intern
         org: Shanghai Jiao Tong University
         place: Shanghai, China
         dates: July 2022 – July 2024
         summary: Advised by [Prof. Liyao Xiang](http://xiangliyao.cn).
         highlights:
-          - Wrote gate-level zero-knowledge proof circuits for LeNet.
-        links:
-          - label: paper
-            url: https://ieeexplore.ieee.org/abstract/document/10444899
+          - "Wrote zero-knowledge proof circuits for neural networks, published in [IEEE TDSC](https://ieeexplore.ieee.org/abstract/document/10444899)."
 
   - title: Publications
     bibliography: true
@@ -81,7 +76,7 @@ sections:
     entries:
       - title: Qwen3.8-27B on one RTX 4090
         dates: "2026"
-        summary: An inference engine that decodes at 322 tokens per second for one user, against 200 for vLLM and 102 for llama.cpp on the same card, without changing the output text.
+        summary: An inference engine that decodes at 322 tokens per second for one user, against 200 for vLLM and 102 for llama.cpp on the same card.
         links:
           - label: blog
             url: /blog/2026/qwen38-4090-decode/
@@ -89,13 +84,13 @@ sections:
             url: https://github.com/zedong-peng/qwen38-4090-decode
       - title: llama.cpp FPGA backend
         dates: In progress
-        summary: A llama.cpp backend that runs LLM inference on an AMD Alveo U280 FPGA card. The code is private for now.
+        summary: A llama.cpp backend that runs LLM inference on an AMD Alveo U280 FPGA card.
       - title: Locomotion control on Xiaomi CyberDog
         place: Shanghai, China
         dates: Nov 2023 – Nov 2024
         summary: With [Prof. Weiming Zhao](https://zwm0426.github.io) and [Xiaomi](https://www.mi.com).
         highlights:
-          - Wrote locomotion controllers with classical control, without reinforcement learning, and ran them on the real robot.
+          - Designed locomotion controllers and deployed them on the real robot.
 
   - title: Honors and Awards
     compact: true
@@ -106,7 +101,7 @@ sections:
         dates: "2024"
       - title: 2nd Prize, 13th National University Mathematics Competition
         dates: "2021"
-      - title: 1st Prize, SJTU "Yunhan Cup" RobotMaster Intramural Competition
+      - title: 1st Prize, SJTU "Yunhan Cup" RobotMaster Competition
         dates: "2021"
       - title: Liu Yongling Foundation Scholarship
         dates: "2021"
