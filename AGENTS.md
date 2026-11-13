@@ -8,7 +8,7 @@ Zedong Peng's personal academic site, built on the [al-folio](https://github.com
 - `_posts/`: blog posts, named `YYYY-MM-DD-kebab-case-title.md`.
 - `_data/`: `cv.yml` (the CV), `series.yml` (blog series), `socials.yml`.
 - `_bibliography/papers.bib`: all publications, rendered by jekyll-scholar.
-- `_layouts/`, `_includes/`, `_plugins/`: the templates. All styling is one hand-written file, `assets/css/site.css`: one serif family, four sizes, two text colors and one accent, after Anthropic's site. There is no CSS framework and no icon font.
+- `_layouts/`, `_includes/`, `_plugins/`: the templates. All styling is one hand-written file, `assets/css/site.css`: two families, four sizes, two text colors and one accent, after Anthropic's site. There is no CSS framework and no icon font.
 - `assets/`: images, PDFs, JavaScript and standalone HTML.
 - `_config.yml`: site settings, plugins, and third-party library URLs with SRI hashes. A file at the repository root is published unless it is listed under `exclude`.
 
@@ -24,7 +24,7 @@ A push to `main` runs `.github/workflows/deploy.yml`: Jekyll build, the CV print
 
 ## Theme
 
-Every page under zedongpeng.com looks the same: all Lora, the colors and sizes in `assets/css/site.css`, and the header in `_includes/header.liquid`. Change the look there and nowhere else.
+Every page under zedongpeng.com looks the same, and the look is whatever an ordinary anthropic.com article actually does, measured from the rendered page rather than remembered: sans for the header, titles, headings and small print, serif for the text that is read. Poppins and Lora (both OFL) stand in for Anthropic's own typefaces, as its brand skill prescribes. The values are in `assets/css/site.css` and the header in `_includes/header.liquid`. Change the look there and nowhere else.
 
 A page takes one of two forms:
 
