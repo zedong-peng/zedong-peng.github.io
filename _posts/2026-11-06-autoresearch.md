@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Autoresearch, Seven Months After My Grinder"
+title: "Claude Code's hillclimb skill"
 date: 2026-11-06 14:00:00 +0800
 lang: en
 description: "Work in progress. In April I told friends to let a benchmark grinder run while they slept. Anthropic's eval and hillclimbing workflow gives me a better way to think about what should happen overnight."
