@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "健身打怪升级之路"
-date: 2026-10-25 12:00:00 +0800
+date: 2023-10-25 12:00:00 +0800
+old_urls: [/blog/2026/fitness-leveling-zh/]
 lang: zh-CN
 description: "健身新手的升级路线：0–10 级练一分化，10–30 级练 5×5 和三分化。每一级配讲解视频和训练计划。"
 categories: life
