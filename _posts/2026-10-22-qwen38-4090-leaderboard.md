@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Qwen3.8-27B on one RTX 4090 in Artificial Analysis's local agent benchmark"
+title: "Qwen3.8-27B on one RTX 4090 in AA-AgentPerf-Local"
 date: 2026-10-22 15:00:00 +0800
 lang: en
-description: "Artificial Analysis's local agent benchmark: their systems and models, and one RTX 4090 running Qwen3.8-27B with llama.cpp and vLLM."
+description: "Artificial Analysis's local agent benchmark, run unmodified: their systems and models, and one RTX 4090 running Qwen3.8-27B with llama.cpp and vLLM."
 categories: research
 redirect: https://zedongpeng.com/qwen38-4090-inference/
 ---
