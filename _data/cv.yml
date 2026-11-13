@@ -76,9 +76,6 @@ sections:
       - title: llama.cpp FPGA backend
         dates: In progress
         summary: A llama.cpp backend that runs LLM inference on an AMD Alveo U280 FPGA card; twelve models from four families run on it. The code is private for now.
-        links:
-          - label: blog
-            url: /blog/2026/llama-cpp-on-an-fpga/
       - title: Robotic Dog Development
         place: Shanghai, China
         dates: Nov 2023 – Nov 2024
