@@ -50,7 +50,7 @@ Edit `_bibliography/papers.bib`. Custom BibTeX fields add the extras: `preview`,
 - A post joins a series with `series` and `series_episode`, both defined in `_data/series.yml`.
 - A post whose content lives on its own site sets `redirect:` to that URL (see Theme).
 - A post's address holds its year. When a post's date or file name changes, the old address is gone: nothing forwards from it, so update every link to it in the same commit.
-- The blog index lists posts and nothing else, as Anthropic's lists do. A standalone site gets a `redirect:` post, a data site or leaderboard is linked from the post it belongs to, and a series has no page of its own: the box on each episode lists the others.
+- The blog index lists posts and nothing else, as Anthropic's lists do. A standalone site, a leaderboard included, gets a `redirect:` post, and a series has no page of its own: the box on each episode lists the others.
 
 ## Style
 
