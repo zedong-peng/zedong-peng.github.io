@@ -125,6 +125,29 @@ figure { margin: 48px 0 0; }
 .footnotes p { position: relative; padding-left: 24px; margin: 0 0 28px; font-size: 14px; line-height: 1.55; color: var(--muted); }
 .footnotes sup { position: absolute; left: 0; top: 0.45em; font-size: 11px; line-height: 1; }
 
+/* Gallery: the staggered 12-column grid of anthropic.com/research's gallery view, full width as there, so the
+   header and footer of this page are full width too.
+   _plugins/gallery-layout.rb gives each photo its columns (--lg, --md) and its row's alignment.
+   Below 768px Anthropic shows its grid view instead, and so does this: one photo a row.
+   A photo is never cropped: unlike Anthropic's images, it keeps its own aspect ratio at every width. */
+.gallery, body:has(.gallery) .zp-top, body:has(.gallery) .zp-foot { max-width: 1920px; margin-inline: auto; padding-inline: 32px; }
+.gallery-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px 16px; }
+.gallery-grid figure { margin: 0; min-width: 0; }
+.gallery-grid p { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 8px 0; }
+.gallery-grid a { display: block; position: relative; aspect-ratio: var(--aspect); background: var(--wash); border-radius: 4px; overflow: hidden; }
+.gallery-grid a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--fg) 5%, transparent); pointer-events: none; }
+.gallery-grid img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.gallery-grid figcaption { margin-top: 8px; max-width: 520px; }
+@media (min-width: 768px) {
+  .gallery, body:has(.gallery) .zp-top, body:has(.gallery) .zp-foot { padding-inline: 48px; }
+  .gallery-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); row-gap: 96px; }
+  .gallery-grid figure { grid-column: var(--md); align-self: var(--align); }
+}
+@media (min-width: 1280px) {
+  .gallery, body:has(.gallery) .zp-top, body:has(.gallery) .zp-foot { padding-inline: 80px; }
+  .gallery-grid figure { grid-column: var(--lg); }
+}
+
 .comments { margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--line); }
 
 @media (max-width: 600px) {

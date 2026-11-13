@@ -12,5 +12,6 @@
       </div>
     </div>
   </div>
+  <a href="{{ '/gallery/' | relative_url }}" {% if page.url == '/gallery/' %}aria-current="page"{% endif %}>Gallery</a>
   <a href="{{ '/cv/' | relative_url }}" {% if page.url == '/cv/' %}aria-current="page"{% endif %}>CV</a>
 </header>

@@ -1,0 +1,103 @@
+# The photos of /gallery/, in the order shown. Each file is under assets/img/gallery/, a JPEG at the original's
+# resolution with its EXIF kept, GPS coordinates included. width and height are the file's, in pixels;
+# caption is one optional sentence shown under the photo; alt says what the photo shows.
+- file: 2026-08-nanjing-zhan-garden.jpg
+  place: Zhan Garden, Nanjing
+  date: 2026-08-23
+  width: 2268
+  height: 4032
+  alt: A moon gate in a white garden wall with a wave-shaped tiled top, seen across a pebbled court between a pine and tall trees.
+- file: 2026-08-madrid-royal-palace.jpg
+  place: Royal Palace of Madrid
+  date: 2026-08-11
+  width: 4032
+  height: 2268
+  alt: The sun setting behind the square between Almudena Cathedral and the Royal Palace of Madrid, framed by cedar branches.
+- file: 2026-08-barcelona-palau-de-la-musica.jpg
+  place: Palau de la Música Catalana, Barcelona
+  date: 2026-08-06
+  width: 3914
+  height: 6958
+  alt: The concert hall of the Palau de la Música Catalana, looking up at its stained-glass skylight and rose-studded ceiling above the organ and stage.
+- file: 2026-08-barcelona-skyline.jpg
+  place: Barcelona
+  date: 2026-08-05
+  width: 2268
+  height: 4032
+  alt: Barcelona at dusk from a hilltop, the Sagrada Família rising above the rooftops toward the sea, three people at the railing in front.
+- file: 2025-10-qianjiang-ankle-x-ray.jpg
+  place: Qianjiang
+  date: 2025-10-09
+  width: 1280
+  height: 1707
+  caption: Fracture surgery.
+  alt: An X-ray of my ankle on the operating room monitor, with two screws in the bone.
+- file: 2025-08-nanjing-sunset.jpg
+  place: Nanjing
+  date: 2025-08-30
+  width: 3024
+  height: 4032
+  alt: The sun setting through orange clouds over Xuanwu Lake and the Nanjing skyline, Zifeng Tower on the left.
+- file: 2025-06-tokyo-minato.jpg
+  place: 東京・港区
+  date: 2025-06-14
+  width: 2268
+  height: 4032
+  alt: Tokyo Tower lit orange at night, seen through a rain-streaked window from a red table with drinks on it.
+- file: 2024-09-tokyo-aoyama-dessert.jpg
+  place: 東京・青山
+  date: 2024-09-15
+  width: 2897
+  height: 2897
+  caption: ようこそ！俺の青山へ（笑）
+  alt: A dessert of cream and mango with mint in a frosted glass bowl, with a welcome to Aoyama written in chocolate on the rim.
+- file: 2024-07-kyoto-kibuneguchi.jpg
+  place: 京都・貴船口
+  date: 2024-07-25
+  width: 1536
+  height: 2730
+  alt: Me on a station platform of the Eizan line toward Kurama, in front of a hillside of green maples.
+- file: 2024-06-shanghai-sjtu-graduation.jpg
+  place: SJTU Minhang Campus
+  date: 2024-06-26
+  width: 6000
+  height: 4000
+  alt: Me in a bachelor's gown holding a bouquet of blue and white flowers, in front of a blackboard with 毕业快乐 chalked on it.
+- file: 2024-05-shanghai-dinner.jpg
+  place: Shanghai
+  date: 2024-05-30
+  width: 2268
+  height: 4032
+  alt: Fried chicken with herbs and a dipping sauce on a wooden table, between painted plates and two cocktails.
+- file: 2024-03-singapore-eras-tour.jpg
+  place: Singapore
+  date: 2024-03-02
+  width: 2268
+  height: 4032
+  caption: "Taylor Swift: The Eras Tour."
+  alt: A hand with concert wristbands holding up a strip of four photos in a dark stadium, the stage screens and phone lights behind.
+- file: 2024-02-singapore-merlion.jpg
+  place: Singapore
+  date: 2024-02-28
+  width: 3703
+  height: 2777
+  alt: The Merlion spouting water at night, with Marina Bay Sands lit purple across the bay.
+- file: 2024-02-london-westminster.jpg
+  place: River Thames, London
+  date: 2024-02-03
+  width: 4032
+  height: 2268
+  alt: A gull landing on a boat on the Thames, with Westminster Bridge and Big Ben behind it under a grey sky.
+- file: 2024-01-london-novello-theatre.jpg
+  place: Novello Theatre, London
+  date: 2024-01-22
+  width: 4032
+  height: 2268
+  caption: Mamma Mia!
+  alt: The stalls and gilded boxes of the Novello Theatre from the dress circle, with the blue Mamma Mia! curtain down before the show.
+- file: 2023-08-jeju-the-cliff.jpg
+  place: Jeju
+  date: 2023-08-22
+  width: 4032
+  height: 3024
+  alt: A seaside terrace on Jeju with white parasols, daybeds and palms under canvas shades, the sea and blue sky beyond.
