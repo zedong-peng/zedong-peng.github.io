@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Velodrome"
-date: 2026-10-23 16:00:00 +0800
+date: 2025-08-15 16:00:00 +0800
 lang: en
 description: "A pelican riding a bicycle, drawn by model, effort, harness and provider."
 categories: research

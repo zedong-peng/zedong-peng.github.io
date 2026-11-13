@@ -1,4 +1,5 @@
-{% if page.content contains '$$' or page.content contains '\(' %}
+{% comment %} kramdown turns $$…$$ into \[…\] or \(…\), so those are what a post with math contains. {% endcomment %}
+{% if page.content contains '\[' or page.content contains '\(' %}
   <script src="{{ '/assets/js/mathjax-setup.js' | relative_url | bust_file_cache }}"></script>
   <script
     defer

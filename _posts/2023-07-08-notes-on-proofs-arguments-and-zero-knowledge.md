@@ -1,174 +1,104 @@
 ---
 layout: post
 title: Notes on Proofs, Arguments, and Zero-Knowledge
-date: 2023-07-08 15:15:48
+date: 2023-07-08 15:15:48 +0800
 lang: en
 translation_key: zero-knowledge-notes
-description: Notes on machine learning, security, privacy, and mobile computing. Guided by Liyao Xiang.
-categories: life
+description: "Reading notes on Justin Thaler's Proofs, Arguments, and Zero-Knowledge, on commitment schemes, and on watermarking neural networks. Guided by Liyao Xiang."
+categories: research
 featured: false
 ---
 
-# ZKP
+These are my reading notes from 2023, guided by [Liyao Xiang](http://xiangliyao.cn). They cover the first four chapters of Justin Thaler's [Proofs, Arguments, and Zero-Knowledge](https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.html), then commitment schemes, then watermarking neural networks. Section numbers follow the book.
 
-Tags: machine learning, security, privacy, and mobile computing.
+## The book
 
-Guided by [Liyao Xiang](http://xiangliyao.cn).
+### 1 Introduction
 
-# Proofs, Arguments, and Zero-Knowledge
+- IP: interactive proof
+- MIP: multi-prover interactive proof
+- PCP: probabilistically checkable proof
+- [zk-SNARK](https://zhuanlan.zhihu.com/p/487866576): zero-knowledge succinct non-interactive argument of knowledge
 
-<https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.html>
+### 2 Fingerprinting and Freivalds' algorithm
 
-## 1 Introduction
+**2.1 Reed-Solomon fingerprinting.** A Reed-Solomon code can be viewed as a polynomial generated from the data (Figure 2.1 in the book). The probability that two different inputs get the same fingerprint must be small, or the check is unreliable.
 
-- IPs: interactive proofs
-- MIP: multi-prover interactive proofs
-- PCP: probabilistically checkable proofs
-- [zk-SNARK](https://zhuanlan.zhihu.com/p/487866576): Zero-Knowledge Succinct Non-Interactive Argument of Knowledge
+**2.2 Freivalds' algorithm.** Both protocols reduce the task of checking whether two large objects are equal to checking one random entry of a distance-amplifying encoding of those objects. The objects are vectors in Reed-Solomon fingerprinting, and the claimed and actual answer matrices in Freivalds' algorithm.
 
-## 2 Fingerprinting and Freivalds' Algorithm
+**2.3 Lagrange interpolation.** See [this explanation](https://zhuanlan.zhihu.com/p/511200890) and the recurrence in Equation 2.10.
 
-### 2.1 Reed-Solomon Fingerprinting
+### 3 Definitions and technical preliminaries
 
-A Reed-Solomon code can be viewed as a polynomial generated from the data (see Figure 2-1).
+**3.1 Interactive proofs.** $\delta_c$ is the completeness error and $\delta_s$ is the soundness error. The costs of an interactive proof are:
 
-The probability of a hash collision must be small; otherwise, it undermines reliability.
+- the running time of P and V
+- the space used by P and V
+- the total number of bits communicated
+- the total number of messages exchanged
 
-### 2.2 Freivalds' Algorithm
+If V and P exchange $k$ messages, $\lceil k/2 \rceil$ is the round complexity of the proof system.
 
-Both protocols reduce the task of checking whether two large objects are equal - vectors in Reed-Solomon fingerprinting, and the claimed and actual answer matrices in Freivalds' algorithm - to checking the equality of one random entry in distance-amplifying encodings of those objects.
+**3.2 Argument systems.** Terms to know: computational soundness, reusability and public verifiability.
 
-### 2.3 [Lagrange Interpolation](https://zhuanlan.zhihu.com/p/511200890)
+**3.3 Robustness of the definitions.** Definition 3.1 requires $\delta_c$ and $\delta_s$ to be at most 1/3. The constant is a convention and does not change the results.
 
-Recurrence formula (2.10).
+**3.4 Schwartz-Zippel lemma.** The one-variable case: a nonzero polynomial of degree $d$ has at most $d$ roots.
 
-## 3 Definitions and Technical Preliminaries
+**3.5 Low-degree and multilinear extensions.** Lagrange interpolation gives the multilinear extension of a function on the Boolean hypercube (Figure 3.2 in the book):
 
-### 3.1 IPs
+![Lagrange interpolation for a multilinear extension](https://pic3.zhimg.com/v2-2cf5334c0ef96df87706a5810379622e.png)
+![A worked multilinear extension](https://pic4.zhimg.com/v2-6c7fe30c3e4ececac784fa70a1a52463.png)
 
-Errors: $\delta_c$ is the completeness error, and $\delta_s$ is the soundness error.
+### 4 Interactive proofs
 
-Cost factors for an interactive proof:
+**4.1 Sum-check.** The protocol ([explanation](https://cloud.tencent.com/developer/article/2023698)):
 
-- The running time of P and V
-- The space used by P and V
-- The total number of communicated bits
-- The total number of messages exchanged
+![The sum-check protocol](https://pic4.zhimg.com/v2-a3046b52457145f43818c734bf8a112b.png)
 
-If V and P exchange $k$ messages, the upper bound $k/2$ is called the round complexity of the interactive proof system.
+An example:
 
-### 3.2 Argument Systems
+![A sum-check example](https://pic3.zhimg.com/v2-70c1ad7b56c9291398821655afa499b2.png)
 
-- Computational soundness
-- Reusability
-- Public verifiability
+Its advantage is that the verifier's messages to the prover are only random field elements, so they are independent of the input polynomial $g$.
 
-### 3.3 Robustness
+**4.2 SAT $\in$ IP.** SAT asks whether a formula in conjunctive normal form is satisfiable. The SAT protocol is closely related to IP = PSPACE: the problems that interactive proofs with polynomial-time verifiers can solve are exactly the problems solvable in polynomial space. The section also introduces doubly efficient interactive proofs.
 
-Why does Definition 3.1 require $\delta_c$ and $\delta_s$ to be at most 1/3?
+**4.4 A super-efficient IP for MATMULT.** This is the optimized protocol for matrix multiplication from [Tha13]. Given two $n \times n$ matrices $A$ and $B$ over a field $F$, MATMULT computes $C = A \cdot B$. Unlike Freivalds' protocol, it does not require P to send the whole answer matrix.
 
-This choice is for convenience or aesthetics and does not change the result.
+## Commitments
 
-### 3.4 Schwartz-Zippel Lemma
+A commitment fixes a value without revealing it. It has two phases:
 
-A degree-$d$ polynomial has at most $d$ roots.
+- Commit: for data $v$, compute the commitment $c$ and send $c$ to the verifier.
+- Open: send $v$. The verifier computes the commitment $c'$ of $v$ and compares it with $c$.
 
-### 3.5 Low-Degree and Multilinear Extensions
-
-How is the Lagrange interpolation in Figure 3.2 used?
-
-![](https://pic3.zhimg.com/v2-2cf5334c0ef96df87706a5810379622e.png)
-![image alt](https://pic4.zhimg.com/v2-6c7fe30c3e4ececac784fa70a1a52463.png)
-
-## 4 IPs
-
-### 4.1 Sum-Check
-
-[Algorithm explanation](https://cloud.tencent.com/developer/article/2023698):
-
-![](https://pic4.zhimg.com/v2-a3046b52457145f43818c734bf8a112b.png)
-
-Example:
-
-![](https://pic3.zhimg.com/v2-70c1ad7b56c9291398821655afa499b2.png)
-
-Advantage: the verifier's messages to the prover contain only random field elements and are therefore completely independent of the input polynomial $g$.
-
-### 4.2 SAT $\in$ IP
-
-The SAT problem asks whether a formula in conjunctive normal form is satisfiable.
-
-The SAT protocol is closely related to IP = PSPACE: the class of problems solvable by interactive proofs with polynomial-time verifiers is exactly the class of problems solvable in polynomial space.
-
-Doubly efficient IPs.
-
-### 4.4 Third Application: Super-Efficient IP for MATMULT
-
-This section describes the highly optimized IP protocol for matrix multiplication (MATMULT) from [Tha13].
-
-Given two $n \times n$ input matrices $A$ and $B$ over a field $F$, MATMULT computes the matrix product $C=A \cdot B$.
-
-Compared with Freivalds' protocol, this protocol avoids requiring P to send the complete answer matrix.
-
-# 2.15
-
-### sec18-adi
-
-Watermark MLaaS, where the service can only be used by one person.
-
-Method: use backdoors.
-
-([Pedersen commitment algorithm](https://zhuanlan.zhihu.com/p/62355190))
-
-Opening a commitment: decrypting.
-
-Two properties of commitments: binding and hiding.
-
-Setup - input - proof - verify.
-
-Peng: introduce the Pedersen commitment algorithm. For further reading, see Chapters 14-16 on polynomial commitments in _Proofs, Arguments, and Zero-Knowledge_.
-
-Wu: read Chapter 10 of _Proofs, Arguments, and Zero-Knowledge_, focusing on Section 10.3.
-
-## Commitment
-
-Use private data without decrypting it.
-
-Process:
-
-- Commit: for data $v$, compute the corresponding commitment $c$, then send $v$ and $c$ to the verifier.
-- Open the commitment: receive $v$, compute the corresponding commitment $c'$, and compare $c$ with $c'$.
-
-Two properties:
+And two properties:
 
 - Hiding: before the commitment is opened, the verifier does not know $v$.
-- Binding: $v$ is uniquely associated with the commitment $c$.
+- Binding: $c$ can be opened to only one $v$.
 
-The opening phase can use a ZKP to protect $v$.
+The opening phase can use a zero-knowledge proof to keep $v$ private. For polynomial commitments, see [this introduction](https://zhuanlan.zhihu.com/p/574383126) and Chapters 14 to 16 of the book.
 
-### Hash Commitment
+### Hash commitment
 
-The simplest commitment scheme.
+This is the simplest scheme. The one-wayness of the hash function gives hiding, and its collision resistance gives binding.
 
-For a hash function, one-wayness provides hiding, while collision resistance provides binding.
+![A hash commitment](https://pic2.zhimg.com/80/v2-a79da07ebfb37eb4d0d4cee26d809ea5_1440w.webp)
 
-![image alt](https://pic2.zhimg.com/80/v2-a79da07ebfb37eb4d0d4cee26d809ea5_1440w.webp)
+Image from [Cryptographic Commitments](https://zhuanlan.zhihu.com/p/150514744).
 
-Image source: [Cryptographic Commitments](https://zhuanlan.zhihu.com/p/150514744)
+### Pedersen commitment
 
-### Pedersen Commitment
+The algorithm is Protocol 5 in Section 12.3 of the book; see also [this explanation](https://zhuanlan.zhihu.com/p/62355190).
 
-Algorithm: _Proofs, Arguments, and Zero-Knowledge_, Section 12.3, Protocol 5.
+![The Pedersen commitment protocol](https://pic4.zhimg.com/v2-b5a9291f8088cda6a7786754d6a8ba5b.png)
 
-![](https://pic4.zhimg.com/v2-b5a9291f8088cda6a7786754d6a8ba5b.png)
+It works in a [cyclic group](https://baike.baidu.com/item/循环群/2876454?fr=aladdin): a group $G$ in which every element is a power of one fixed element $a$, the generator, written $G = (a)$. The exchange between the committer and the verifier:
 
-A [cyclic group](https://baike.baidu.com/item/循环群/2876454?fr=aladdin) is a group $G$ in which every element is a power of one fixed element $a$. It is written as $G=(a)$, and $a$ is called a generator of the group. A group is a special kind of set, and "element" refers to a member of that set.
+![The Pedersen commitment between the committer and the verifier](https://pic2.zhimg.com/80/v2-a608bec8d7385afdaa9e2e61ba521ea9_1440w.webp)
 
-![image alt](https://pic2.zhimg.com/80/v2-a608bec8d7385afdaa9e2e61ba521ea9_1440w.webp)
-
-A random value plus the hardness of the discrete logarithm problem provides hiding.
-
-$c=g^m h^z$ provides binding and additive homomorphism: two Pedersen commitments can be combined,
+The commitment is $c = g^m h^z$. The random value $z$ hides $m$, and binding rests on the hardness of the discrete logarithm. The form is also additively homomorphic, so two Pedersen commitments combine into a commitment to the sum:
 
 $$
 c_1 \cdot c_2
@@ -178,39 +108,31 @@ c_1 \cdot c_2
 = c_3.
 $$
 
-[Computational hardness](https://mp.weixin.qq.com/s?__biz=MzU0MDY4MDMzOA==&mid=2247484310&idx=1&sn=e780ccd6fc2eed51ec2ccc6f6b7803b9&chksm=fb34ca6bcc43437d447b0da56c68b125b01950f801362336e07184f091468537921066ccd2c8&scene=21#wechat_redirect):
+### Hardness assumptions
 
-- Integer factorization problem
-  - Given two large primes $p$ and $q$, it is easy to compute $n=pq$. Given $n$, however, finding $p$ and $q$ is difficult.
-- Discrete logarithm problem
-  - Over the real numbers, computing $\log_2(9)$ using binary search is easy.
-    - ![](https://pic2.zhimg.com/v2-023b908f29af7f1d4d30b5a58ee42189.jpeg)
-  - In a finite field with modulus $n$ and generator $g$, given an integer $a$, it is easy to compute $g^a=b$. Given $b$ and $g$, however, computing $a$ is difficult. This involves arithmetic over finite fields.
-- Elliptic-curve discrete logarithm problem
-  - In an elliptic-curve group over a finite field $F$, let $P$ be a point on the curve. Given an integer $a$, computing $aP=Q$ is easy. Given $P$ and $Q$, however, computing $a$ is difficult.
+Three problems that these schemes rely on ([source](https://mp.weixin.qq.com/s?__biz=MzU0MDY4MDMzOA==&mid=2247484310&idx=1&sn=e780ccd6fc2eed51ec2ccc6f6b7803b9&chksm=fb34ca6bcc43437d447b0da56c68b125b01950f801362336e07184f091468537921066ccd2c8&scene=21#wechat_redirect)):
 
-### [Polynomial Commitment](https://zhuanlan.zhihu.com/p/574383126)
+- Integer factorization. Given two large primes $p$ and $q$, computing $n = pq$ is easy. Given $n$, finding $p$ and $q$ is hard.
+- Discrete logarithm. Over the real numbers a logarithm such as $\log_2 9$ is easy to compute by binary search. In a finite field with generator $g$, computing $b = g^a$ from an integer $a$ is easy, but computing $a$ from $b$ and $g$ is hard.
+- Elliptic-curve discrete logarithm. Let $P$ be a point on an elliptic curve over a finite field. Given an integer $a$, computing $Q = aP$ is easy. Given $P$ and $Q$, computing $a$ is hard.
 
-# 2.18
+![Binary search for a real logarithm](https://pic2.zhimg.com/v2-023b908f29af7f1d4d30b5a58ee42189.jpeg)
 
-Watermarking, commitments, and ZKPs:
+## Watermarking neural networks
 
-1. Applications of digital watermarks in neural networks
-2. Combining digital watermarks with cryptographic tools such as zero-knowledge proofs
+Two questions: how digital watermarks apply to neural networks, and how they combine with cryptographic tools such as zero-knowledge proofs.
 
-[A Survey of Deep Neural Network Watermarking Techniques](https://arxiv.org/abs/2103.09274)
+[Adi et al., USENIX Security 2018](https://www.usenix.org/conference/usenixsecurity18/presentation/adi) watermark a model offered as a service by planting a backdoor in it. Two surveys:
 
-[A Systematic Review on Model Watermarking for Neural Networks](https://arxiv.org/abs/2009.12153)
+- [A Survey of Deep Neural Network Watermarking Techniques](https://arxiv.org/abs/2103.09274)
+- [A Systematic Review on Model Watermarking for Neural Networks](https://arxiv.org/abs/2009.12153)
 
-# 3.15
+Notes on the setting:
 
-Blockchain timestamps and ambiguity attacks.
-
-The model is public, but verification is black-box because the parameters are not disclosed.
-
-Computational-resource assumption: an attacker will not spend excessive resources retraining a model because the cost would be too high.
-
-The trigger must be strong enough that it cannot be removed through adversarial fine-tuning.
+- Blockchain timestamps, and ambiguity attacks.
+- The model is public but verification is black-box, because the parameters are not disclosed.
+- The computational-resource assumption: an attacker will not retrain the model, because that costs too much.
+- The trigger must be strong enough that adversarial fine-tuning cannot remove it.
 
 ---
 
