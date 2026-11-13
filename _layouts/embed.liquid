@@ -17,13 +17,13 @@
       }
     </style>
   </head>
-  <body class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %}">
+  <body>
     {% include header.liquid %}
 
     <div role="main">
       <iframe id="embed-frame" class="embed-frame" src="{{ page.embed | relative_url }}" title="{{ page.title }}"></iframe>
       <noscript>
-        <p class="container">
+        <p class="col">
           <a href="{{ page.embed | relative_url }}">{{ page.title }}</a>
         </p>
       </noscript>

@@ -1,7 +1,7 @@
 <div class="agent-prompt">
   <div class="agent-prompt-head">
     <span>Prompt for your AI agent</span>
-    <button type="button" class="agent-prompt-copy" aria-label="Copy prompt"><i class="fa-solid fa-clipboard"></i> Copy</button>
+    <button type="button" class="agent-prompt-copy" aria-label="Copy prompt">Copy</button>
   </div>
   <p class="agent-prompt-text">{{ page.agent_prompt | strip | escape | newline_to_br }}</p>
 </div>
@@ -45,9 +45,9 @@
     button.addEventListener('click', function () {
       var text = button.closest('.agent-prompt').querySelector('.agent-prompt-text').innerText.trim();
       var done = function () {
-        button.innerHTML = '<i class="fa-solid fa-clipboard-check"></i> Copied';
+        button.innerHTML = 'Copied';
         setTimeout(function () {
-          button.innerHTML = '<i class="fa-solid fa-clipboard"></i> Copy';
+          button.innerHTML = 'Copy';
         }, 2000);
       };
       // Fall back to a hidden textarea where the clipboard API is refused.

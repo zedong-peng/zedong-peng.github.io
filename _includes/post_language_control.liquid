@@ -6,7 +6,6 @@
 {% endif %}
 
 {% capture language_options %}
-  <i class="ti ti-language" aria-hidden="true"></i>
   {% if include.links == false or translations.size < 2 %}
     <span class="post-language-current" lang="{{ current_language }}">
       {%- if current_language contains 'zh' %}中文{% elsif current_language == 'en' %}EN{% else %}{{ current_language }}{% endif -%}

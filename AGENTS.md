@@ -8,7 +8,7 @@ Zedong Peng's personal academic site, built on the [al-folio](https://github.com
 - `_posts/`: blog posts, named `YYYY-MM-DD-kebab-case-title.md`.
 - `_data/`: `cv.yml` (the CV), `series.yml` (blog series), `socials.yml`.
 - `_bibliography/papers.bib`: all publications, rendered by jekyll-scholar.
-- `_layouts/`, `_includes/`, `_sass/`, `_plugins/`: the theme.
+- `_layouts/`, `_includes/`, `_plugins/`: the templates. All styling is one hand-written file, `assets/css/site.css`: one serif family, four sizes, two text colors and one accent, after Anthropic's site. There is no CSS framework and no icon font.
 - `assets/`: images, PDFs, JavaScript and standalone HTML.
 - `_config.yml`: site settings, plugins, and third-party library URLs with SRI hashes. A file at the repository root is published unless it is listed under `exclude`.
 

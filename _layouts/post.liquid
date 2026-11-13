@@ -1,104 +1,43 @@
 ---
 layout: default
 ---
-{% assign year = page.date | date: '%Y' %}
-{% assign tags = page.tags | join: '' %}
-{% assign categories = page.categories | join: '' %}
-{% assign url_beginning = page.url | slice: 0, 6 %}
 {% assign page_language = page.lang | default: site.lang %}
-
 {% if page._styles %}
-  <!-- Page/Post style -->
-  <style type="text/css">
+  <style>
     {{ page._styles }}
   </style>
 {% endif %}
-
-<div class="post">
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">
+<article>
+  <header class="col page-head">
+    <p class="eyebrow">
+      {% for category in page.categories %}
+        <a href="{{ '/blog/' | relative_url }}#{{ category | slugify }}">{{ category | capitalize }}</a> ·
+      {% endfor %}
       {% if page_language contains 'zh' %}
-        发布于 {{ page.date | date: '%Y年%m月%d日' }}
-        {% if page.author %}，作者：{{ page.author }}{% endif %}
-        {% if page.last_updated %}，最后更新于 {{ page.last_updated | date: '%Y年%m月%d日' }}{% endif %}
+        {{ page.date | date: '%Y年%-m月%-d日' }}
       {% else %}
-        Created on {{ page.date | date: '%B %d, %Y' }}
-        {% if page.author %}by {{ page.author }}{% endif %}
-        {% if page.last_updated %}, last updated on {{ page.last_updated | date: '%B %d, %Y' }}{% endif %}
+        {{ page.date | date: '%B %-d, %Y' }}
       {% endif %}
-      {% if page.meta %}• {{ page.meta }}{% endif %}
-    </p>
-    <p class="post-tags">
-      {% if url_beginning == '/blog/' %}
-        <a href="{{ year | prepend: '/blog/' | relative_url }}"> <i class="fa-solid fa-calendar fa-sm"></i> {{ year }} </a>
-      {% else %}
-        <i class="fa-solid fa-calendar fa-sm"></i> {{ year }}
-      {% endif %}
-      {% if tags != '' %}
-        &nbsp; &middot; &nbsp;
-        {% for tag in page.tags %}
-          {% if url_beginning == '/blog/' %}
-            <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}"> <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a>
-          {% else %}
-            <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}
-          {% endif %}
-          {% unless forloop.last %}
-            &nbsp;
-          {% endunless %}
-        {% endfor %}
-      {% endif %}
-
-      {% if categories != '' %}
-        &nbsp; &middot; &nbsp;
-        {% for category in page.categories %}
-          {% if url_beginning == '/blog/' %}
-            <a href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}"> <i class="fa-solid fa-tag fa-sm"></i> {{ category -}}</a>
-          {% else %}
-            <i class="fa-solid fa-tag fa-sm"></i> {{ category }}
-          {% endif %}
-          {% unless forloop.last %}
-            &nbsp;
-          {% endunless %}
-        {% endfor %}
+      {% assign translations = site.posts | where: 'translation_key', page.translation_key %}
+      {% if page.translation_key and translations.size > 1 %}
+        · {% include post_language_control.liquid post=page %}
       {% endif %}
     </p>
-    {% include post_language_control.liquid post=page context='article' %}
+    <h1>{{ page.title }}</h1>
   </header>
-
-  <article class="post-content">
+  <div class="col prose">
     {% if page.series %}
       {% include series_box.liquid %}
     {% endif %}
     {% if page.toc and page.toc.beginning %}
-      <div id="table-of-contents">
-        {% toc %}
-      </div>
-      <hr>
+      <nav id="table-of-contents">{% toc %}</nav>
     {% endif %}
-    <div id="markdown-content">
-      {% if page.agent_prompt %}
-        {% include agent_prompt.liquid %}
-      {% endif %}
-      {{ content }}
-    </div>
-  </article>
-
-  {% if page.citation %}
-    {% include citation.liquid %}
-  {% endif %}
-
-  {% if page.related_publications %}
-    <h2>References</h2>
-    <div class="publications">
-      {% bibliography --group_by none --cited_in_order %}
-    </div>
-  {% endif %}
-
-  {% if site.disqus_shortname and page.disqus_comments %}
-    {% include disqus.liquid %}
-  {% endif %}
+    {% if page.agent_prompt %}
+      {% include agent_prompt.liquid %}
+    {% endif %}
+    {{ content }}
+  </div>
   {% if site.giscus and page.giscus_comments %}
-    {% include giscus.liquid %}
+    <div class="col">{% include giscus.liquid %}</div>
   {% endif %}
-</div>
+</article>
