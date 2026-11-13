@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Linear Attention 在 GPU 上到底慢在哪"
+title: "Linear Attention 在 Blackwell GPU 上到底慢在哪"
 date: 2026-03-01 12:00:00 +0800
 lang: zh-CN
 translation_key: linear-attention-gpu
