@@ -3,7 +3,6 @@ name: Deploy site
 on:
   push:
     branches:
-      - master
       - main
     paths:
       - "assets/**"
@@ -16,95 +15,42 @@ on:
       - "**.yml"
       - "Gemfile"
       - "Gemfile.lock"
-      - "!.github/workflows/deploy.yml"
-      - "!AGENTS.md"
-      - "!CLAUDE.md"
-      - "!README.md"
-  pull_request:
-    branches:
-      - master
-      - main
-    paths:
-      - "assets/**"
-      - "_sass/**"
-      - "**.bib"
-      - "**.html"
-      - "**.js"
-      - "**.liquid"
-      - "**/*.md"
-      - "**.yml"
-      - "Gemfile"
-      - "Gemfile.lock"
-      - "!.github/workflows/deploy.yml"
       - "!AGENTS.md"
       - "!CLAUDE.md"
       - "!README.md"
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
-# A newer push supersedes an older build of the same branch.
+# A newer push supersedes an older build.
 concurrency:
-  group: site-${{ github.workflow }}-${{ github.ref }}
+  group: pages
   cancel-in-progress: true
 
 jobs:
   deploy:
-    # available images: https://github.com/actions/runner-images#available-images
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Ruby 💎
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3"
           bundler-cache: true
-      - name: Setup Python 🐍
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-          cache: "pip" # caching pip dependencies
-      - name: Install and Build 🔧
+      - name: Build
         run: |
-          sudo apt-get update && sudo apt-get install -y imagemagick
-          pip3 install --upgrade nbconvert
-          export JEKYLL_ENV=production
-          bundle exec jekyll build
-      - name: Build the Qwen3.8-4090 leaderboard 📈
-        # The leaderboard is built as a standalone static site from its own repo.
-        # It is not a Jekyll page: the blog only serves the output.
-        env:
-          REPO: zedong-peng/qwen38-4090-inference
-          REF: main
-        run: |
-          mkdir -p .qwen38-build
-          curl -fsSL "https://github.com/$REPO/archive/refs/heads/$REF.tar.gz" | tar -xz -C .qwen38-build --strip-components=1
-          python3 .qwen38-build/tools/build_site.py --output .qwen38-build/dist
-          test -f .qwen38-build/dist/benchmarks/qwen38-4090/index.html
-          mkdir -p _site/benchmarks/qwen38-4090
-          cp -a .qwen38-build/dist/benchmarks/qwen38-4090/. _site/benchmarks/qwen38-4090/
-          mkdir -p _site/assets
-          cp -a .qwen38-build/dist/assets/. _site/assets/
-          test -f _site/assets/css/qwen38-4090-leaderboard.css
-          test -f _site/assets/js/qwen38-4090-leaderboard.js
-          test -s _site/assets/benchmarks/qwen38-4090/results.json
-          test -s _site/assets/benchmarks/qwen38-4090/samples.json
-          # A short URL, without a nav page or a sitemap entry.
-          mkdir -p _site/qwen38-4090
-          cat > _site/qwen38-4090/index.html <<'HTML'
-          <!doctype html><html lang="en"><head><meta charset="utf-8">
-          <meta http-equiv="refresh" content="0; url=/benchmarks/qwen38-4090/">
-          <link rel="canonical" href="https://zedongpeng.com/benchmarks/qwen38-4090/"></head>
-          <body><script>location.replace("/benchmarks/qwen38-4090/" + location.search + location.hash);</script>
-          <p>The leaderboard is at <a href="/benchmarks/qwen38-4090/">/benchmarks/qwen38-4090/</a>.</p></body></html>
-          HTML
-      - name: Purge unused CSS 🧹
-        run: |
-          npm install -g purgecss
-          purgecss -c purgecss.config.js
-      - name: Print CV to PDF 🖨️
+          sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends imagemagick
+          JEKYLL_ENV=production bundle exec jekyll build
+      - name: Purge unused CSS
+        run: npx --yes purgecss -c purgecss.config.js
+      - name: Print CV to PDF
         run: |
           python3 -m http.server 4000 --directory _site >/dev/null 2>&1 &
           server=$!
@@ -113,8 +59,10 @@ jobs:
             --print-to-pdf=_site/assets/pdf/Zedong_Peng_CV.pdf http://localhost:4000/cv/
           kill $server
           test -s _site/assets/pdf/Zedong_Peng_CV.pdf
-      - name: Deploy 🚀
-        if: github.event_name != 'pull_request'
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Upload
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: _site
+          path: _site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

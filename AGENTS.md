@@ -20,7 +20,7 @@ docker compose logs -f jekyll   # follow the first build
 docker compose down
 ```
 
-A push to `main` runs `.github/workflows/deploy.yml`: Jekyll build, the Qwen3.8-4090 leaderboard built from its own repo, PurgeCSS, the CV printed to PDF, then `_site` published to the `gh-pages` branch. There is no test suite; a clean `bundle exec jekyll build` is the check.
+A push to `main` runs `.github/workflows/deploy.yml`: Jekyll build, PurgeCSS, the CV printed to PDF, then `_site` uploaded straight to GitHub Pages (no `gh-pages` branch). Other paths under zedongpeng.com, such as `/memorytax/` or `/qwen38-4090-inference/`, are separate repos with their own Pages. There is no test suite; a clean `bundle exec jekyll build` is the check.
 
 ## CV
 

@@ -137,7 +137,7 @@ pagination:
     <span>A pelican riding a bicycle, drawn by model, effort, harness and provider.</span>
   </li>
   <li>
-    <a href="/benchmarks/qwen38-4090/"><b>Qwen3.8-27B / RTX 4090</b></a>
+    <a href="/qwen38-4090-inference/"><b>Qwen3.8-27B / RTX 4090</b></a>
     <span>Single-GPU inference speed, configurations and raw samples. The leaderboard behind the 4090 study.</span>
   </li>
   <li>
