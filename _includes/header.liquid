@@ -7,7 +7,7 @@
       <div>
         <a href="{{ '/blog/' | relative_url }}">Overview</a>
         {% for category in site.display_categories %}
-        <a href="{{ '/blog/category/' | append: category | append: '/' | relative_url }}">{{ category | capitalize }}</a>
+        <a href="{{ '/blog/category/' | append: category | append: '/' | relative_url }}">{{ site.category_names[category] | default: category }}</a>
         {% endfor %}
       </div>
     </div>

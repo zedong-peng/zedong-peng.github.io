@@ -11,7 +11,7 @@ layout: default
   <header class="col page-head">
     <p class="eyebrow">
       {% for category in page.categories %}
-        <a href="{{ '/blog/category/' | append: category | append: '/' | relative_url }}">{{ category | capitalize }}</a> ·
+        <a href="{{ '/blog/category/' | append: category | append: '/' | relative_url }}">{{ site.category_names[category] | default: category }}</a> ·
       {% endfor %}
       {% if page_language contains 'zh' %}
         {{ page.date | date: '%Y年%-m月%-d日' }}

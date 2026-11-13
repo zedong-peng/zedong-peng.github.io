@@ -9,7 +9,7 @@ title: Posts
 
 {% for category in site.display_categories %}
 {% assign section_posts = site.posts | where_exp: "post", "post.categories contains category" %}
-<h2 class="section" id="{{ category | slugify }}">{{ category | capitalize }}</h2>
+<h2 class="section" id="{{ category | slugify }}">{{ site.category_names[category] | default: category }}</h2>
 {% include blog_post_list.liquid posts=section_posts %}
 {% endfor %}
 </section>

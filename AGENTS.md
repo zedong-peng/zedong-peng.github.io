@@ -46,7 +46,7 @@ Edit `_bibliography/papers.bib`. Custom BibTeX fields add the links: `website` (
 
 - Open with what the post is and the plain answer. Headings are plain noun phrases.
 - Give `date` an explicit `+0800` offset, and date a post earlier than the push that publishes it.
-- `categories` is exactly one of `research` or `life`. `research` is a post that reports my own research work: an experiment, a system, a paper or a survey. `life` is every other post. The Posts menu in the header and the blog index list those two, after an overview.
+- `categories` is exactly one of `better-ml`, `faster-ml` or `life`, after the homepage's line, making machine learning better and faster. `better-ml` is a post that reports my own research on what a model or an agent can do: an experiment, a dataset, a benchmark, a paper, a survey or reading notes. `faster-ml` is one that reports my own research on how fast a model runs: inference, kernels, hardware. `life` is every other post. The Posts menu in the header and the blog index list those three, after an overview. `category_names` in `_config.yml` holds how each is written on the page.
 - A post is in one language and has no translation, as on Anthropic's site. English is the default; a post written for Chinese readers ends in `-zh` and sets `lang: zh-CN`.
 - A post joins a series with `series` and `series_episode`, both defined in `_data/series.yml`.
 - A post whose content lives on its own site sets `redirect:` to that URL (see Theme).

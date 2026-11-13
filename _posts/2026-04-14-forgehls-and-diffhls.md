@@ -4,7 +4,7 @@ title: "ForgeHLS and DiffHLS: why I built them, and why HLS still feels like a t
 date: 2026-04-14 20:50:00 +0800
 lang: en
 description: "A personal note on building a large-scale HLS dataset, pushing DiffHLS forward, and why I remain skeptical about HLS as a long-term research direction in 2026."
-categories: research
+categories: better-ml
 toc:
   beginning: true
 ---

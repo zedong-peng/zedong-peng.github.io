@@ -23,7 +23,11 @@ og_image: https://zedongpeng.com/assets/img/profile.bighead.png # the site-wide 
 
 blog_name: Posts
 permalink: /blog/:year/:title/
-display_categories: ["research", "life"] # the sections of the blog index and of the Posts menu
+display_categories: ["better-ml", "faster-ml", "life"] # the sections of the blog index and of the Posts menu
+category_names: # how a category is written on the page
+  better-ml: Better ML
+  faster-ml: Faster ML
+  life: Life
 
 # Giscus comments, see https://giscus.app/
 giscus:
@@ -97,7 +101,7 @@ terser:
   compress:
     drop_console: true
 
-# Category pages (/blog/category/research/) and year pages (/blog/2026/), in _layouts/archive.liquid
+# Category pages (/blog/category/better-ml/) and year pages (/blog/2026/), in _layouts/archive.liquid
 jekyll-archives:
   posts:
     enabled: [year, categories]

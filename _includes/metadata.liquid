@@ -18,7 +18,7 @@
     {% if page.title == null or page.title == '' %}
       {{ page.date | date: '%Y' }} | {{ title }}
     {% elsif page.type == 'categories' %}
-      {{ page.title | capitalize }} | {{ title }}
+      {{ site.category_names[page.title] | default: page.title }} | {{ title }}
     {% else %}
       {{ page.title }} | {{ title }}
     {% endif %}
