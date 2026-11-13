@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Make Sand Think"
+title: "Make sand think"
 date: 2026-07-23 22:17:00 +0800
 lang: en
 description: "A riddle, and an honest answer: how a handful of sand becomes a machine that talks."

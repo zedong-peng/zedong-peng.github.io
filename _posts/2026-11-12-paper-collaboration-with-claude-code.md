@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "If you still use Overleaf, you are behind. Use Claude Code + GitHub repo"
+title: "If you still use Overleaf, you are behind"
 date: 2026-11-12 20:31:00 +0800
 lang: en
 translation_key: paper-collaboration-with-claude-code

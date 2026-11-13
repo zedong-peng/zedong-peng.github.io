@@ -4,15 +4,11 @@ title: Notes on Proofs, Arguments, and Zero-Knowledge
 date: 2023-07-08 15:14:48 +0800
 lang: zh-CN
 translation_key: zero-knowledge-notes
-description: Tags machine learning, security, privacy, and mobile computing. Guided by Liyao Xiang
+description: "Justin Thaler《Proofs, Arguments, and Zero-Knowledge》的读书笔记，以及承诺方案和神经网络水印。指导老师：Liyao Xiang。"
 categories: research
 featured: false
 hidden: true
 ---
-
-# ZKP
-
-Tags: machine learning, security, privacy, and mobile computing.
 
 Guided by [Liyao Xiang](http://xiangliyao.cn).
 

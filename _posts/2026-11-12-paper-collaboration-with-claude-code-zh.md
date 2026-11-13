@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "还在用 Overleaf，你就落后了。用 Claude Code + GitHub repo"
+title: "还在用 Overleaf，你就落后了"
 date: 2026-11-12 20:30:00 +0800
 lang: zh-CN
 translation_key: paper-collaboration-with-claude-code

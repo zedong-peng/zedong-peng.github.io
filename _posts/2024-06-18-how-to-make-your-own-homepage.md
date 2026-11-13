@@ -1,8 +1,7 @@
 ---
 layout: post
-title: "How to Make Your Own Homepage"
+title: "How to make your own homepage"
 date: 2024-06-18 12:00:00 +0800
-old_urls: [/blog/2025/how-to-make-your-own-homepage/]
 lang: en
 description: "A domain from Cloudflare, the al-folio template and free hosting on GitHub Pages: how this site is put together, step by step."
 categories: life
@@ -106,7 +105,7 @@ A blog post is a Markdown file in `_posts/` whose name starts with the date, lik
 ```yaml
 ---
 layout: post
-title: "How to Make Your Own Homepage"
+title: "How to make your own homepage"
 date: 2024-06-18 12:00:00 +0800
 description: "A domain from Cloudflare, the al-folio template and free hosting on GitHub Pages."
 ---

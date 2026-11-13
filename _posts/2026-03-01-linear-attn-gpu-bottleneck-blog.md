@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Where Is Linear Attention Actually Slow on Blackwell GPUs?"
+title: "Where is linear attention actually slow on Blackwell GPUs?"
 date: 2026-03-01 12:01:00 +0800
 lang: en
 translation_key: linear-attention-gpu

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "MemoryTax: The Bitter Lesson of Agent Memory"
+title: "MemoryTax: the bitter lesson of agent memory"
 date: 2026-10-11 10:00:00 +0800
 lang: en
 description: "Does agent memory still help once the model can search the raw history itself? Memory systems and coding agents on LoCoMo with three models."
