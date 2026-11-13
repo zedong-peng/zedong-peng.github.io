@@ -3,5 +3,4 @@
   <a class="zp-home" href="{{ '/' | relative_url }}">{{ site.first_name }} {{ site.last_name }}</a>
   <a href="{{ '/blog/' | relative_url }}" {% if page.url contains '/blog/' %}aria-current="page"{% endif %}>Posts</a>
   <a href="{{ '/cv/' | relative_url }}" {% if page.url == '/cv/' %}aria-current="page"{% endif %}>CV</a>
-  <button type="button" class="zp-theme" id="zp-theme" aria-label="Switch light or dark">Light / dark</button>
 </header>

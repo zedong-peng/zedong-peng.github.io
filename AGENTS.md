@@ -24,7 +24,7 @@ A push to `main` runs `.github/workflows/deploy.yml`: Jekyll build, the CV print
 
 ## Theme
 
-Every page under zedongpeng.com looks the same, and the look is whatever an ordinary anthropic.com article actually does, measured from the rendered page rather than remembered: sans for the header, titles, headings and small print, serif for the text that is read. Poppins and Lora (both OFL) stand in for Anthropic's own typefaces, as its brand skill prescribes. The values are in `assets/css/site.css` and the header in `_includes/header.liquid`. Change the look there and nowhere else.
+Every page under zedongpeng.com looks the same, and the look is whatever an ordinary anthropic.com article actually does, measured from the rendered page rather than remembered: sans for the header, titles, headings and small print, serif for the text that is read. Poppins and Lora (both OFL) stand in for Anthropic's own typefaces, as its brand skill prescribes. The values are in `assets/css/site.css` and the header in `_includes/header.liquid`. The site is light only, as Anthropic's is: no dark mode and no theme switch. Change the look there and nowhere else.
 
 A page takes one of two forms:
 

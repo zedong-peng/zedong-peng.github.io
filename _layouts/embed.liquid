@@ -1,7 +1,7 @@
 {% comment %}
   A self-contained HTML article (page.embed) shown under the site navbar and above the footer. The frame takes the
   article's full height so the window scrolls as on any other page; in-page links scroll the window, other links open
-  in the top window, and the site's light/dark setting is passed into the article.
+  in the top window, and the article is held to the light theme.
 {% endcomment %}
 {% assign document_language = page.lang | default: site.lang %}
 <!doctype html>
@@ -45,10 +45,6 @@
           window.scrollTo({ top: y, behavior: smooth ? 'smooth' : 'auto' });
           return true;
         };
-        const syncTheme = (doc) => {
-          const t = document.documentElement.getAttribute('data-theme');
-          if (t) doc.documentElement.setAttribute('data-theme', t);
-        };
         frame.addEventListener('load', () => {
           let doc;
           try {
@@ -57,8 +53,8 @@
             return;
           }
           if (!doc) return;
-          syncTheme(doc);
-          new MutationObserver(() => syncTheme(doc)).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+          // The site is light only; keep the article from following a dark system setting.
+          doc.documentElement.setAttribute('data-theme', 'light');
           fit(doc);
           new ResizeObserver(() => fit(doc)).observe(doc.body);
           doc.addEventListener('click', (ev) => {

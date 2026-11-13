@@ -1,14 +1,3 @@
-<script>
-  document.getElementById('zp-theme').addEventListener('click', function () {
-    var root = document.documentElement;
-    var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    var next = dark ? 'light' : 'dark';
-    root.dataset.theme = next;
-    try { localStorage.setItem('theme', next); } catch (e) {}
-    var giscus = document.querySelector('iframe.giscus-frame');
-    if (giscus) giscus.contentWindow.postMessage({ giscus: { setConfig: { theme: next } } }, 'https://giscus.app');
-  });
-</script>
 {% if page.content contains '$$' or page.content contains '\(' %}
   <script src="{{ '/assets/js/mathjax-setup.js' | relative_url | bust_file_cache }}"></script>
   <script
