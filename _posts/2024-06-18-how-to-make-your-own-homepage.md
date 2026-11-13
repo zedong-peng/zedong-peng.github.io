@@ -1,13 +1,14 @@
 ---
 layout: post
 title: "How to Make Your Own Homepage"
-date: 2025-10-18 12:00:00 +0800
+date: 2024-06-18 12:00:00 +0800
+old_urls: [/blog/2025/how-to-make-your-own-homepage/]
 lang: en
 description: "A domain from Cloudflare, the al-folio template and free hosting on GitHub Pages: how this site is put together, step by step."
 categories: life
 related_posts: false
 agent_prompt: |
-  Read https://zedongpeng.com/blog/2025/how-to-make-your-own-homepage/ and build me a personal homepage with a blog the same way: the al-folio template, hosted on GitHub Pages, on my own domain. Ask me for what only I can give you: my name, photo, papers, CV and the domain I want. For steps that need my GitHub or Cloudflare account, tell me exactly what to click. Do the rest yourself, and show me the site running locally before we publish it.
+  Read https://zedongpeng.com/blog/2024/how-to-make-your-own-homepage/ and build me a personal homepage with a blog the same way: the al-folio template, hosted on GitHub Pages, on my own domain. Ask me for what only I can give you: my name, photo, papers, CV and the domain I want. For steps that need my GitHub or Cloudflare account, tell me exactly what to click. Do the rest yourself, and show me the site running locally before we publish it.
 ---
 
 This site is the kind of homepage many researchers keep: an about page, a list of papers, a CV and a blog. It costs me about ten dollars a year, and all of that is the domain name. The template and the hosting are free. This post walks through how it is put together, using this site as the example, so you can build your own. If you use an AI coding agent, give it the prompt above; the rest of this post is the same walk-through, for people.
@@ -100,18 +101,18 @@ What I changed on this site:
 - **Papers.** Each paper is a BibTeX entry, the format reference managers export. Extra fields become buttons and badges: `pdf=` and `arxiv=` add links under the entry, and `abbr=` puts the venue in a small box beside it.
 - **CV.** The CV page is built from `_data/cv.yml`. For a PDF version I use [RenderCV](https://github.com/rendercv/rendercv), which turns a YAML file into a typeset PDF, and link it at the top of the CV page.
 
-A blog post is a Markdown file in `_posts/` whose name starts with the date, like `2025-10-18-how-to-make-your-own-homepage.md`. It begins with a short header:
+A blog post is a Markdown file in `_posts/` whose name starts with the date, like `2024-06-18-how-to-make-your-own-homepage.md`. It begins with a short header:
 
 ```yaml
 ---
 layout: post
 title: "How to Make Your Own Homepage"
-date: 2025-10-18 12:00:00 +0800
+date: 2024-06-18 12:00:00 +0800
 description: "A domain from Cloudflare, the al-folio template and free hosting on GitHub Pages."
 ---
 ```
 
-The text goes below it, and the post appears at `/blog/2025/how-to-make-your-own-homepage/`.
+The text goes below it, and the post appears at `/blog/2024/how-to-make-your-own-homepage/`.
 
 ## Publish with a push
 
