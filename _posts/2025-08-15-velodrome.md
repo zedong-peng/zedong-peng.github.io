@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Velodrome: models draw a pelican on a bicycle"
+title: "Velodrome: models draw a pelican riding a bicycle in one prompt"
 date: 2025-08-15 16:00:00 +0800
 lang: en
 description: "A pelican riding a bicycle, drawn by model, effort, harness and provider."
