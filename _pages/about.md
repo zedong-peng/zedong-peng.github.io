@@ -6,7 +6,7 @@ subtitle: ""
 
 subtitle: |+
   (彭 则栋) <br><br>
-  M.Eng. student in CS at <a href="https://www.sjtu.edu.cn">SJTU</a>, 2024 – 2027, <br>
+  M.Eng. in CS at <a href="https://www.sjtu.edu.cn">SJTU</a>, 2024 – 2027, <br>
   advised by <a href="https://zjru.github.io">Prof. Jieru Zhao</a>. <br>
 
 profile:
@@ -31,6 +31,6 @@ latest_posts:
 
 **Research:** I am interested in making machine learning better and faster.
 
-**Previously:** I was a research intern at the [NCTI for EDA](https://www.nctieda.com) (2025), where I worked with [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/) on data construction and LLM post-training for hardware design. I was also a research intern at [Intel](https://www.intel.com) (2023-2024), where I worked on [Gluten](https://github.com/apache/gluten) and [vLLM for CPUs](https://vllm.ai).
+**Previously:** I was a research intern at the [NCTI for EDA](https://www.nctieda.com) (2025), where I worked with [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/) on data construction and LLM post-training for hardware design. I was also a research intern at [Intel](https://www.intel.com) (2023-2024), where I worked on [vLLM for CPUs](https://vllm.ai).
 
-I received my bachelor's degree with honors in Electronic Engineering from [Shanghai Jiao Tong University](https://www.sjtu.edu.cn) in 2024, where I worked with [Prof. Liyao Xiang](http://xiangliyao.cn).
+I received my bachelor's degree with honors in Electronic Engineering from [SJTU](https://www.sjtu.edu.cn) in 2024, where I worked with [Prof. Liyao Xiang](http://xiangliyao.cn) on AI security.
