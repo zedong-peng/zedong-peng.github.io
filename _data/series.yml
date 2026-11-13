@@ -4,37 +4,17 @@
 # Episodes are listed in reading order. One without a post yet shows as "coming soon".
 
 missing-semester:
-  title:
-    zh: AI 时代科研中缺失的一课
-    en: The Missing Semester of Research, AI Edition
+  title: The Missing Semester of Research, AI Edition
   episodes:
     - key: zotero
-      topic:
-        zh: 文献管理
-        en: Literature
-      from:
-        zh: Zotero
-        en: Zotero
-      to:
-        zh: llmwiki
-        en: llmwiki
+      topic: Literature
+      from: Zotero
+      to: llmwiki
     - key: overleaf
-      topic:
-        zh: 论文写作
-        en: Writing papers
-      from:
-        zh: Overleaf
-        en: Overleaf
-      to:
-        zh: Claude Code + GitHub repo
-        en: Claude Code + GitHub repo
+      topic: Writing papers
+      from: Overleaf
+      to: Claude Code + GitHub repo
     - key: notes
-      topic:
-        zh: 科研管理与协作
-        en: Running research
-      from:
-        zh: 微信和腾讯会议
-        en: WeChat and Tencent Meeting
-      to:
-        zh: GitHub
-        en: GitHub
+      topic: Running research
+      from: WeChat and Tencent Meeting
+      to: GitHub

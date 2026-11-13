@@ -5,7 +5,6 @@ date: 2026-09-19 12:00:00 +0800
 lang: en
 description: "A CEO and seven agents, each named after someone whose work fits the job. What mattered was ordinary management."
 categories: life
-related_posts: false
 ---
 
 Most of my research runs on a team of Claude Code sessions organized like a small company: a CEO and seven members, each owning one line of work and named after someone whose work fits it. Ross Freeman, after the inventor of the FPGA, builds my FPGA backend. A name works as a one-word style guide.

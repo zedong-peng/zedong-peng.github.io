@@ -1,13 +1,27 @@
 {% comment %} Series navigation shown at the top of a post that has `series` and `series_episode` set. {% endcomment %}
 {% assign series = site.data.series[page.series] %}
 {% if series %}
-  {% assign page_language = page.lang | default: site.lang %}
-  {% if page_language contains 'zh' %}{% assign series_lang = 'zh' %}{% else %}{% assign series_lang = 'en' %}{% endif %}
-  <aside class="series-box" aria-label="{% if series_lang == 'zh' %}系列{% else %}Series{% endif %}">
+  <aside class="series-box" aria-label="Series">
     <div class="series-box-head">
-      <span class="series-box-label">{% if series_lang == 'zh' %}系列{% else %}Series{% endif %}</span>
-      <span>{{ series.title[series_lang] }}</span>
+      <span class="series-box-label">Series</span>
+      <span>{{ series.title }}</span>
     </div>
-    {% include series_episodes.liquid series_id=page.series lang=series_lang current=page.series_episode %}
+    <ol class="series-episodes">
+      {% for ep in series.episodes %}
+        {% assign ep_post = site.posts | where: 'series', page.series | where: 'series_episode', ep.key | first %}
+        {% capture ep_title %}{{ ep.from }} → {{ ep.to }}{% endcapture %}
+        <li class="{% if ep.key == page.series_episode %}series-episode--current{% elsif ep_post == nil %}series-episode--planned{% endif %}">
+          <span class="series-episode-topic">{{ ep.topic }}</span>
+          {% if ep.key == page.series_episode %}
+            <span class="series-episode-title" aria-current="page">{{ ep_title }}</span>
+          {% elsif ep_post %}
+            <a class="series-episode-title" href="{{ ep_post.url | relative_url }}">{{ ep_title }}</a>
+          {% else %}
+            <span class="series-episode-title">{{ ep_title }}</span>
+            <span class="series-episode-soon">coming soon</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
   </aside>
 {% endif %}

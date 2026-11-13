@@ -5,7 +5,6 @@ date: 2026-07-15 19:20:00 +0800
 lang: zh-CN
 description: "为什么我坚持用最强的模型，以及我如何用一台小服务器和 Sub2API 搭出自己的 AI 中转站。"
 categories: life
-related_posts: false
 toc:
   beginning: true
 ---
@@ -86,7 +85,7 @@ toc:
 
 可以看出，国外的顶级大模型只要走订阅，其实没那么贵。再结合性能来看，自己建站用GPT-5.6-sol是最便宜的一档：
 
-{% include figure.liquid path="assets/img/blog/artificial-analysis-coding-agent-index-cost-per-task-2026-07-27.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+{% include figure.liquid path="assets/img/blog/artificial-analysis-coding-agent-index-cost-per-task-2026-07-27.png" alt="Artificial Analysis Coding Agent Index 与单任务成本" %}
 
 _Artificial Analysis Coding Agent Index 与单任务成本，截图于 2026 年 7 月 27 日。_
 

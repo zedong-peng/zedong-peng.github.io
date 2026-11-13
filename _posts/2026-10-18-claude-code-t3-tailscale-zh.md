@@ -5,7 +5,6 @@ date: 2026-10-18 12:00:00 +0800
 lang: zh-CN
 description: "海外家里的一台笔记本，环境干净。用 Tailscale 和 T3 Code 分给身边的朋友，手机、电脑、网页都能用 Claude Code。"
 categories: life
-related_posts: false
 ---
 
 海外家里有一台笔记本，环境干净，我用它跑 Claude Code。身边的朋友有需要，我就分给他们用，用不用他们自己定。这台机器硬盘只剩十几个 G，所以它只当入口，重活都交给各人自己的服务器。
@@ -55,7 +54,7 @@ tailscale --socket=$HOME/.tailscale/sock up
 
 **为什么用 T3 Code，而不是直接 ssh 进去开终端？**
 
-多端，加上多个订阅。我自己就有好几个订阅，用量见 [AI 使用实况]({% post_url 2026-10-21-ai-usage %})。T3 Code 把它们放进同一个界面，会话在手机和电脑之间同步，ssh 做不到这些，在手机上敲终端也很难受。
+多端，加上多个订阅。我自己就有好几个订阅，用量见 [AI 使用实况](https://zedongpeng.com/ai-usage/)。T3 Code 把它们放进同一个界面，会话在手机和电脑之间同步，ssh 做不到这些，在手机上敲终端也很难受。
 
 **第 1 步分享出来的节点，之后还有用吗？**
 

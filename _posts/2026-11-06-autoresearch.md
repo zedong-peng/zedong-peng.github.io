@@ -5,7 +5,6 @@ date: 2026-11-06 14:00:00 +0800
 lang: en
 description: "Anthropic's hillclimb skill lets Claude Code improve a prompt or a skill against an eval, round after round, unattended. What it adds to the cruder loop I ran in April, and the one default I would change."
 categories: life
-related_posts: false
 _styles: |
   .autoresearch-figure { display: block; width: 100%; border: 0; }
   .autoresearch-loop { height: 460px; }

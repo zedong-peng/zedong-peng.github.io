@@ -3,10 +3,8 @@ layout: post
 title: "LoRA as parametric memory: a failed experiment"
 date: 2025-03-30 12:00:00 +0800
 lang: en
-translation_key: lora-parametric-memory
 description: "I tried writing conversation facts into model weights via LoRA fine-tuning. The accuracy was dismal and temporal questions were completely unanswerable."
 categories: research
-related_posts: false
 toc:
   beginning: true
 ---

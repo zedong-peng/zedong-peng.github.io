@@ -5,7 +5,6 @@ date: 2026-07-23 22:17:00 +0800
 lang: en
 description: "A riddle, and an honest answer: how a handful of sand becomes a machine that talks."
 categories: life
-related_posts: false
 ---
 
 > “We’ve essentially found a way to make sand think. It’s miraculous.”

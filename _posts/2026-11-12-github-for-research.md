@@ -3,10 +3,8 @@ layout: post
 title: "Manage research with GitHub"
 date: 2026-11-12 21:40:00 +0800
 lang: en
-translation_key: github-for-research
 description: "Main holds the problem statement, reusable modules and evals; agents try several solutions in parallel worktrees; the commit history is the research history."
 categories: life
-related_posts: false
 series: missing-semester
 series_episode: notes
 ---

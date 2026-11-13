@@ -11,16 +11,12 @@ layout: default
   <header class="col page-head">
     <p class="eyebrow">
       {% for category in page.categories %}
-        <a href="{{ '/blog/' | relative_url }}#{{ category | slugify }}">{{ category | capitalize }}</a> ·
+        <a href="{{ '/blog/category/' | append: category | append: '/' | relative_url }}">{{ category | capitalize }}</a> ·
       {% endfor %}
       {% if page_language contains 'zh' %}
         {{ page.date | date: '%Y年%-m月%-d日' }}
       {% else %}
         {{ page.date | date: '%B %-d, %Y' }}
-      {% endif %}
-      {% assign translations = site.posts | where: 'translation_key', page.translation_key %}
-      {% if page.translation_key and translations.size > 1 %}
-        · {% include post_language_control.liquid post=page %}
       {% endif %}
     </p>
     <h1>{{ page.title }}</h1>

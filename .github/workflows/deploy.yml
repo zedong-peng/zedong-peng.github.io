@@ -6,13 +6,15 @@ on:
       - main
     paths:
       - "assets/**"
-      - "_sass/**"
+      - "_plugins/**"
+      - "robots.txt"
       - "**.bib"
       - "**.html"
       - "**.js"
       - "**.liquid"
       - "**/*.md"
       - "**.yml"
+      - "feed.xml"
       - "Gemfile"
       - "Gemfile.lock"
       - "!AGENTS.md"

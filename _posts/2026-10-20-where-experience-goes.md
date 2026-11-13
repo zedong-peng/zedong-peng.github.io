@@ -5,7 +5,6 @@ date: 2026-10-20 12:00:00 +0800
 lang: en
 description: "Long context, agent memory, parametric memory, test-time training and self-improving agents are one problem: where an experience is kept, and which rule writes it there. The rule is the hard part, and it should be learned."
 categories: life
-related_posts: false
 ---
 
 Long context, agent memory, parametric memory, test-time training and self-improving agents are all continual learning: learning from experience after training has ended. Each answers two questions: where an experience is kept, and what rule decides what gets written there.

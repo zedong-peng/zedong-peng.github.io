@@ -5,8 +5,6 @@ date: 2023-07-09 10:56:26 +0800
 lang: zh-CN
 description: "留学申请路上的记录"
 categories: life
-thumbnail: assets/img/blog/study-abroad-louvre.jpg
-related_posts: false
 toc:
   beginning: true
 ---

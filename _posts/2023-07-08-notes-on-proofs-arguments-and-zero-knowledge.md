@@ -3,10 +3,8 @@ layout: post
 title: Notes on Proofs, Arguments, and Zero-Knowledge
 date: 2023-07-08 15:15:48 +0800
 lang: en
-translation_key: zero-knowledge-notes
 description: "Reading notes on Justin Thaler's Proofs, Arguments, and Zero-Knowledge, on commitment schemes, and on watermarking neural networks. Guided by Liyao Xiang."
 categories: research
-featured: false
 ---
 
 These are my reading notes from 2023, guided by [Liyao Xiang](http://xiangliyao.cn). They cover the first four chapters of Justin Thaler's [Proofs, Arguments, and Zero-Knowledge](https://people.cs.georgetown.edu/jthaler/ProofsArgsAndZK.html), then commitment schemes, then watermarking neural networks. Section numbers follow the book.

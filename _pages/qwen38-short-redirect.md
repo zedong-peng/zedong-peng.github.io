@@ -1,7 +1,6 @@
 ---
 layout: null
 permalink: /qwen38-4090/
-nav: false
 sitemap: false
 ---
 <!doctype html>

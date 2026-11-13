@@ -1,12 +1,14 @@
 /* The whole site's style, measured from an ordinary anthropic.com article: sans for the header, titles, headings
    and small print, serif for the text that is read. Poppins and Lora stand in for Anthropic's own typefaces.
-   Sizes 32 / 26 / 17 / 14, two text colors, one accent. Light only, as there.
-   Standalone pages under zedongpeng.com reuse the header by linking this file and copying _includes/header.liquid. */
+   Sizes 32 / 26 / 17 / 14, two text colors, one accent, and four of its colors for figures. Light only, as there.
+   Standalone pages under zedongpeng.com link this file and load /assets/js/site-header.js, which inserts _includes/header.liquid. */
 :root {
   --bg: #faf9f5; --fg: #141413; --muted: #5e5d59; --line: #e8e6dc; --wash: #f0eee6; --accent: #d97757;
   --sans: Poppins, "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif;
   --serif: Lora, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", Georgia, serif;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* For figures and code, from anthropic.com's stylesheet: clay-interactive, olive, sky, cloud-medium. */
+  --clay: #c6613f; --olive: #788c5d; --sky: #6a9bcc; --cloud: #b0aea5;
   color-scheme: light;
 }
 /* Names that posts and the CV already use. */
@@ -74,9 +76,9 @@ p { margin: 0 0 20px; }
 .prose mjx-container[display="true"] { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
 .prose summary { cursor: pointer; }
 .highlight .c, .highlight .c1, .highlight .cm, .highlight .cs { color: var(--muted); font-style: italic; }
-.highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .se { color: #788c5d; }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .se { color: var(--olive); }
 .highlight .k, .highlight .kd, .highlight .kn, .highlight .kr, .highlight .nt { color: var(--accent); }
-.highlight .m, .highlight .mi, .highlight .mf, .highlight .nb { color: #6a9bcc; }
+.highlight .m, .highlight .mi, .highlight .mf, .highlight .nb { color: var(--sky); }
 #table-of-contents { font-family: var(--sans); font-size: 14px; line-height: 1.7; color: var(--muted); margin: 0 0 40px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
 #table-of-contents ul { list-style: none; padding-left: 0; margin: 0; }
 #table-of-contents ul ul { padding-left: 1.2em; }
@@ -85,14 +87,8 @@ p { margin: 0 0 20px; }
 .row { display: flex; flex-wrap: wrap; gap: 16px; }
 .row > [class^="col"] { flex: 1 1 240px; min-width: 0; }
 .text-center { text-align: center; }
-.img-fluid { max-width: 100%; height: auto; }
 
-/* Language switch and series */
-.post-language-control { white-space: nowrap; }
-.post-language-control .ti { display: none; }
-.post-language-control a { text-decoration: none; }
-.post-language-current { color: var(--fg); }
-.post-language-separator { margin: 0 0.3em; }
+/* Series */
 .series-box { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 16px 0 8px; margin: 0 0 40px; font-family: var(--sans); font-size: 14px; line-height: 1.7; }
 .series-box-head { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-bottom: 4px; }
 .series-box-label { color: var(--muted); }

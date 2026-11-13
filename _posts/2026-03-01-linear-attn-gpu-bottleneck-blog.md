@@ -3,15 +3,11 @@ layout: post
 title: "Where is linear attention actually slow on Blackwell GPUs?"
 date: 2026-03-01 12:01:00 +0800
 lang: en
-translation_key: linear-attention-gpu
 description: "Poor GPU performance for linear attention is an intuition, not a conclusion. We ran experiments, then had half of our interpretation overturned. This post records that process."
 categories: research
-related_posts: false
 toc:
   beginning: true
 ---
-
-# Where Is Linear Attention Slow on GPUs, and Can a Specialized Accelerator Help?
 
 "Linear attention performs poorly on GPUs" is a common claim, but it is an intuition rather than a conclusion. We decided to turn it into a falsifiable question and ran a set of experiments. A senior colleague then overturned half of our interpretation. This post records that process.
 
