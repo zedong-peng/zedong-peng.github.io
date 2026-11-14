@@ -21,17 +21,15 @@ sections:
     entries:
       - title: M.Eng., Electronic and Information Engineering
         org: Shanghai Jiao Tong University
-        place: Shanghai, China
         dates: 2024 – 2027 (expected)
-        summary: School of Computer Science. Advised by [Prof. Jieru Zhao](https://zjru.github.io).
+        summary: Advised by [Prof. Jieru Zhao](https://zjru.github.io).
         links:
           - label: transcript
             url: /assets/pdf/Zedong_Peng_MS_Transcript.pdf
       - title: B.Eng., Information Engineering
         org: Shanghai Jiao Tong University
-        place: Shanghai, China
         dates: 2020 – 2024
-        summary: School of Electronic Information and Electrical Engineering. Outstanding Graduate.
+        summary: Outstanding Graduate.
         links:
           - label: transcript
             url: /assets/pdf/Zedong_Peng_BS_Transcript.pdf
