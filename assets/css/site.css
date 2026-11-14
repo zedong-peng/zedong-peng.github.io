@@ -1,12 +1,19 @@
 /* The whole site's style, measured from an ordinary anthropic.com article: sans for the header, titles, headings
    and small print, serif for the text that is read. Poppins and Lora stand in for Anthropic's own typefaces.
-   Sizes 32 / 26 / 17 / 14, two text colors, one accent, and four of its colors for figures. Light only, as there.
+   Sizes 36 / 28 / 17 at 1920px wide and 25 / 22 / 16 at 390px, scaled linearly between, as there; small print 13 at every width.
+   Two text colors, one accent, and four of its colors for figures. Light only, as there.
    Standalone pages under zedongpeng.com link this file and load /assets/js/site-header.js, which inserts _includes/header.liquid. */
 :root {
   --bg: #faf9f5; --fg: #141413; --muted: #5e5d59; --line: #e8e6dc; --wash: #f0eee6; --accent: #d97757;
   --sans: Poppins, "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif;
   --serif: Lora, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", Georgia, serif;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* anthropic.com's type scale: each size grows linearly from a 390px viewport to a 1920px one. */
+  --fluid: calc((100vw - 390px) / 1530);
+  --size-h1: clamp(25px, calc(25px + 11 * var(--fluid)), 36px);
+  --size-h2: clamp(22px, calc(22px + 6 * var(--fluid)), 28px);
+  --size-text: clamp(16px, calc(16px + var(--fluid)), 17px);
+  --size-small: 13px;
   /* For figures and code, from anthropic.com's stylesheet: clay-interactive, olive, sky, cloud-medium. */
   --clay: #c6613f; --olive: #788c5d; --sky: #6a9bcc; --cloud: #b0aea5;
   color-scheme: light;
@@ -20,17 +27,17 @@
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.55 var(--sans); font-feature-settings: "lnum" 1, "pnum" 1; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: var(--size-text)/1.55 var(--sans); font-feature-settings: "lnum" 1, "pnum" 1; }
 a { color: inherit; text-decoration: underline; text-underline-offset: 0.18em; text-decoration-thickness: 0.08em; }
 a:hover { color: var(--accent); }
 img, svg, video, iframe { max-width: 100%; }
-.small { font-size: 14px; line-height: 1.55; color: var(--muted); }
+.small { font-size: var(--size-small); line-height: 1.55; color: var(--muted); }
 b, strong { font-weight: 600; }
 
 /* Header and footer */
-.zp-top { max-width: 940px; margin: 0 auto; padding: 28px 20px 0; display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.zp-top { max-width: 940px; margin: 0 auto; padding: 28px 20px 0; display: flex; align-items: center; gap: 8px; font-size: var(--size-small); }
 .zp-top a { text-decoration: none; }
-.zp-home { font-size: 17px; font-weight: 600; margin-right: auto; }
+.zp-home { font-size: var(--size-text); font-weight: 600; margin-right: auto; }
 .zp-top > a:not(.zp-home), .zp-menu > a { display: block; color: var(--fg); background: #f5f4ed; border-radius: 999px; padding: 4px 18px; }
 .zp-top > a:not(.zp-home):hover, .zp-menu:hover > a, .zp-top a[aria-current="page"] { background: var(--line); color: var(--fg); }
 /* The Posts menu opens on hover or keyboard focus; a tap goes to the overview, which lists every section. */
@@ -38,7 +45,7 @@ b, strong { font-weight: 600; }
 .zp-panel { display: none; position: absolute; left: 0; top: 100%; padding-top: 8px; z-index: 10; }
 .zp-menu:hover .zp-panel, .zp-menu:focus-within .zp-panel { display: block; }
 .zp-panel > div { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 8px; min-width: 150px; }
-.zp-panel a { display: block; font-size: 14px; padding: 6px 12px; border-radius: 8px; color: var(--fg); }
+.zp-panel a { display: block; font-size: var(--size-small); padding: 6px 12px; border-radius: 8px; color: var(--fg); }
 .zp-panel a:hover { background: #f5f4ed; }
 .zp-foot { max-width: 940px; margin: 96px auto 0; padding: 24px 20px 48px; border-top: 1px solid var(--line); }
 
@@ -46,17 +53,17 @@ b, strong { font-weight: 600; }
 .col { max-width: 680px; margin: 0 auto; padding: 0 20px; }
 .wide { max-width: 940px; margin: 0 auto; padding: 0 20px; }
 .page-head { padding-top: 72px; }
-.eyebrow { font-size: 14px; color: var(--muted); margin: 0; }
+.eyebrow { font-size: var(--size-small); color: var(--muted); margin: 0; }
 .eyebrow a { text-decoration: none; }
 h1, h2, h3, h4 { font-family: var(--sans); font-weight: 600; margin: 0; }
-h1 { font-size: 32px; line-height: 1.15; letter-spacing: -0.01em; margin: 12px 0 32px; }
-h2 { font-size: 26px; line-height: 1.2; margin: 64px 0 20px; }
-h3, h4 { font-size: 17px; line-height: 1.4; margin: 40px 0 12px; }
+h1 { font-size: var(--size-h1); line-height: 1.15; letter-spacing: -0.01em; margin: 12px 0 32px; }
+h2 { font-size: var(--size-h2); line-height: 1.2; margin: 64px 0 20px; }
+h3, h4 { font-size: var(--size-text); line-height: 1.4; margin: 40px 0 12px; }
 p { margin: 0 0 20px; }
 .lead { font-family: var(--sans); color: var(--muted); margin: -16px 0 32px; }
 
 /* Prose written in Markdown: the text that is read is serif. */
-.prose { font-family: var(--serif); font-size: 17px; line-height: 1.6; }
+.prose { font-family: var(--serif); font-size: var(--size-text); line-height: 1.6; }
 .prose ul, .prose ol { margin: 0 0 20px; padding-left: 1.4em; }
 .prose li { margin: 4px 0; }
 .prose li > ul, .prose li > ol { margin: 4px 0; }
@@ -64,13 +71,13 @@ p { margin: 0 0 20px; }
 .prose hr { border: 0; border-top: 1px solid var(--line); margin: 48px 0; }
 .prose figure { margin: 32px 0; }
 .prose img { height: auto; border-radius: 6px; }
-.prose figcaption, .prose .caption { font-family: var(--sans); font-size: 14px; line-height: 1.55; color: var(--muted); margin-top: 8px; }
-.prose table { display: block; overflow-x: auto; border-collapse: collapse; font-family: var(--sans); font-size: 14px; line-height: 1.55; margin: 0 0 24px; }
+.prose figcaption, .prose .caption { font-family: var(--sans); font-size: var(--size-small); line-height: 1.55; color: var(--muted); margin-top: 8px; }
+.prose table { display: block; overflow-x: auto; border-collapse: collapse; font-family: var(--sans); font-size: var(--size-small); line-height: 1.55; margin: 0 0 24px; }
 .prose th, .prose td { padding: 10px 16px 10px 0; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
 .prose th { font-weight: 400; color: var(--muted); border-bottom-color: var(--fg); }
 .prose code { font: 0.85em/1.5 var(--mono); background: var(--wash); padding: 0.1em 0.3em; border-radius: 4px; }
 .prose pre { background: var(--wash); border-radius: 6px; padding: 16px 18px; overflow-x: auto; margin: 0 0 24px; }
-.prose pre code { background: none; padding: 0; font-size: 14px; }
+.prose pre code { background: none; padding: 0; font-size: var(--size-small); }
 .prose sup { font-size: 0.7em; line-height: 0; }
 .prose details { margin: 0 0 20px; }
 .prose mjx-container[display="true"] { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
@@ -79,7 +86,7 @@ p { margin: 0 0 20px; }
 .highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .se { color: var(--olive); }
 .highlight .k, .highlight .kd, .highlight .kn, .highlight .kr, .highlight .nt { color: var(--accent); }
 .highlight .m, .highlight .mi, .highlight .mf, .highlight .nb { color: var(--sky); }
-#table-of-contents { font-family: var(--sans); font-size: 14px; line-height: 1.7; color: var(--muted); margin: 0 0 40px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+#table-of-contents { font-family: var(--sans); font-size: var(--size-small); line-height: 1.7; color: var(--muted); margin: 0 0 40px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
 #table-of-contents ul { list-style: none; padding-left: 0; margin: 0; }
 #table-of-contents ul ul { padding-left: 1.2em; }
 #table-of-contents a { text-decoration: none; }
@@ -89,7 +96,7 @@ p { margin: 0 0 20px; }
 .text-center { text-align: center; }
 
 /* Series */
-.series-box { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 16px 0 8px; margin: 0 0 40px; font-family: var(--sans); font-size: 14px; line-height: 1.7; }
+.series-box { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 16px 0 8px; margin: 0 0 40px; font-family: var(--sans); font-size: var(--size-small); line-height: 1.7; }
 .series-box-head { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-bottom: 4px; }
 .series-box-label { color: var(--muted); }
 .series-episodes { padding-left: 1.4em; margin: 8px 0 16px; }
@@ -98,7 +105,7 @@ p { margin: 0 0 20px; }
 .series-episode-topic::after { content: " ·"; }
 .series-episode--current .series-episode-title { font-weight: 500; }
 .series-episode--planned .series-episode-title, .series-episode-soon { color: var(--muted); }
-.series-episode-soon { font-size: 14px; margin-left: 0.4em; white-space: nowrap; }
+.series-episode-soon { font-size: var(--size-small); margin-left: 0.4em; white-space: nowrap; }
 
 /* Lists of posts and sites */
 .list { list-style: none; margin: 0; padding: 0; }
@@ -117,12 +124,12 @@ h2.section { border-bottom: 1px solid var(--fg); padding-bottom: 12px; margin-bo
 /* Figures, wide tables and footnotes, for standalone pages */
 figure { margin: 48px 0 0; }
 .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.wide table, .scroll table { border-collapse: collapse; width: 100%; font-size: 14px; line-height: 1.55; }
+.wide table, .scroll table { border-collapse: collapse; width: 100%; font-size: var(--size-small); line-height: 1.55; }
 .wide th, .wide td, .scroll th, .scroll td { padding: 14px 16px 14px 0; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
 .wide th, .scroll th { font-weight: 400; color: var(--muted); border-bottom-color: var(--fg); }
 .footnotes { margin-top: 64px; padding: 56px 0 0; border-top: 1px solid var(--fg); }
 .footnotes .title { font-weight: 600; margin-bottom: 28px; }
-.footnotes p { position: relative; padding-left: 24px; margin: 0 0 28px; font-size: 14px; line-height: 1.55; color: var(--muted); }
+.footnotes p { position: relative; padding-left: 24px; margin: 0 0 28px; font-size: var(--size-small); line-height: 1.55; color: var(--muted); }
 .footnotes sup { position: absolute; left: 0; top: 0.45em; font-size: 11px; line-height: 1; }
 
 /* Gallery: the staggered 12-column grid of anthropic.com/research's gallery view, full width as there, so the
@@ -150,12 +157,15 @@ figure { margin: 48px 0 0; }
 
 .comments { margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--line); }
 
+/* Below 768px anthropic.com keeps a 32px margin on each side. */
+@media (max-width: 767px) {
+  .zp-top, .zp-foot, .col, .wide { padding-inline: 32px; }
+}
 @media (max-width: 600px) {
   .zp-top { gap: 6px; padding-top: 20px; }
-  .zp-top > a:not(.zp-home), .zp-menu > a { padding: 4px 14px; }
+  .zp-top > a:not(.zp-home), .zp-menu > a { padding: 4px 12px; }
   .page-head { padding-top: 48px; }
-  h1 { font-size: 28px; }
-  h2 { font-size: 22px; margin-top: 48px; }
+  h2 { margin-top: 48px; }
   .home { grid-template-columns: 1fr; gap: 24px; }
   .home figure { max-width: 180px; grid-row: 1; }
   .list li { grid-template-columns: 1fr; }
