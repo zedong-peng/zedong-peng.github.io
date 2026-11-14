@@ -92,7 +92,6 @@ layout: default
     margin: 0.1rem 0 0;
   }
   .cv a.cv-link {
-    font-size: 0.9em;
     color: var(--global-theme-color);
     text-decoration: none;
   }
@@ -212,7 +211,7 @@ layout: default
                   <b>{{ title }}</b>
                 {%- endif %}
                 {%- if entry.org -%}
-                  , <em>{{ entry.org }}</em>
+                  , {{ entry.org }}
                 {%- endif %}
                 {%- for link in entry.links %} <a class="cv-link" href="{% if link.url contains '://' %}{{ link.url }}{% else %}{{ site.url }}{{ link.url }}{% endif %}">[{{ link.label }}]</a>
                 {%- endfor -%}

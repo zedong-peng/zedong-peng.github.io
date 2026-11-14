@@ -34,7 +34,7 @@
       {%- endfor %}
     </p>
     <p>
-      <em>{{ entry.booktitle | default: entry.journal }}</em>
+      {{ entry.booktitle | default: entry.journal }}
     </p>
   </div>
   <div class="cv-side">
