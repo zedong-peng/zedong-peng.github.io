@@ -44,7 +44,7 @@ sections:
         dates: July 2024 – July 2026
         summary: Advised by [Prof. Qiang Xu](https://cure-lab.github.io/author/qiang-xu-徐强/) and [Prof. Jieru Zhao](https://zjru.github.io).
         highlights:
-          - "Built a [400k-design hardware dataset](https://arxiv.org/abs/2507.03255) and post-trained LLMs on a 24-GPU cluster."
+          - "[ForgeHLS](https://arxiv.org/abs/2507.03255): built a 400k-design hardware dataset and post-trained LLMs on it with a 24-GPU cluster, raising Llama 3's synthesis pass rate from 19% to 69%."
         links:
           - label: blog
             url: /blog/2026/forgehls-and-diffhls/
