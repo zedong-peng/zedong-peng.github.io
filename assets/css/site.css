@@ -27,7 +27,7 @@
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--bg); color: var(--fg); font: var(--size-text)/1.55 var(--sans); font-feature-settings: "lnum" 1, "pnum" 1; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: var(--size-text); line-height: 1.55; font-feature-settings: "lnum" 1, "pnum" 1; }
 a { color: inherit; text-decoration: underline; text-underline-offset: 0.18em; text-decoration-thickness: 0.08em; }
 a:hover { color: var(--accent); }
 img, svg, video, iframe { max-width: 100%; }
