@@ -30,7 +30,7 @@ Every page under zedongpeng.com looks the same, and the look is whatever an ordi
 A page takes one of two forms:
 
 - A Markdown post in `_posts/`. This is the default.
-- A standalone HTML page in its own repo, served by that repo's GitHub Pages at `zedongpeng.com/<repo>/`, for a page with its own figures, data or build. Start from `assets/template/page.html`: it links `site.css` and loads `/assets/js/site-header.js`, which inserts the same header. Its own styles go in one `<style>` block that uses the variables of `site.css`; it sets no fonts or colors of its own. A figure, in a post or on a standalone page, takes its colors from those variables too and never writes a hex value. List it on the blog with a post that sets `redirect:`.
+- A standalone HTML page in its own repo, served by that repo's GitHub Pages at `zedongpeng.com/<repo>/`, for a page with its own figures, data or build. Start from `assets/template/page.html`: it links `site.css` and loads `/assets/js/site-header.js`, which inserts the same header. Its own styles go in one `<style>` block that uses the variables of `site.css`; it sets no fonts or colors of its own. A figure, in a post or on a standalone page, takes its colors from those variables too and never writes a hex value. List it on the blog with a post that sets `redirect:`, unless a post on the same subject already presents and links it.
 
 ## CV
 
@@ -52,7 +52,7 @@ Edit `_bibliography/papers.bib`. Custom BibTeX fields add the links: `website` (
 - A post whose content lives on its own site sets `redirect:` to that URL (see Theme).
 - A category name links to its page, `/blog/category/<name>/`.
 - A post's address holds its year. When a post's date or file name changes, the old address is gone: nothing forwards from it, so update every link to it in the same commit.
-- The blog index lists posts and nothing else, as Anthropic's lists do. A standalone site, a leaderboard included, gets a `redirect:` post, and a series has no page of its own: the box on each episode lists the others.
+- The blog index lists posts and nothing else, as Anthropic's lists do. A standalone site, a leaderboard included, gets a `redirect:` post unless a post on its subject links it (the Qwen3.8-27B leaderboard is linked from the RTX 4090 decoding post, which reports its results), and a series has no page of its own: the box on each episode lists the others.
 
 ## Gallery
 
