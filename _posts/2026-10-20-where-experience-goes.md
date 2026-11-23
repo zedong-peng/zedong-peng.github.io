@@ -62,7 +62,7 @@ Long context, agent memory, parametric memory, test-time training and self-impro
 <figcaption class="caption">Top row keeps text, bottom row changes parameters; left column writes every token, right column only what a rule picks. Recursive self-improvement is the loop.</figcaption>
 </figure>
 
-None of the four places is short of room. What goes wrong is the write rule. Four cases from my own work:
+The hard part is the write rule. Four cases from my own work:
 
 | Store                                                             | Rule, designed in advance                    | What happened                                                                                                                         |
 | ----------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
@@ -73,8 +73,10 @@ None of the four places is short of room. What goes wrong is the write rule. Fou
 
 Each time, what was kept was decided before the experience arrived. The part that matters is the part the rule did not anticipate.
 
-**The rule should be learned.** [The bitter lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html) applies to what a model keeps as much as to what it computes. An agent has a signal for it at every step, with no teacher: the gap between what it expected and what happened. The Brainfuck model adapted once it saw where its prediction went wrong. On ARC, when Qwen3.8-27B wrote down the rule from the moment level 1 was solved and played level 2 with it in the prompt, it passed 5 of 10 runs; without it, none. Where that error signal should land is what I work on.
+**The rule should be learned.** [The bitter lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html) applies to what a model keeps as much as to what it computes. An agent has a signal for it at every step, with no teacher: the gap between what it expected and what happened. The Brainfuck model adapted once it saw where its prediction went wrong. On ARC, when Qwen3.8-27B wrote down the rule from the moment level 1 was solved and played level 2 with it in the prompt, it passed 5 of 10 runs; without it, none. Where that error signal should land is what I work on. The signal alone is not enough, though. In the database runs described next, the writer saw the right answer after every miss and still never wrote down which fact had changed; on the four questions that needed a changed fact, 2 of 104 runs got them right. An error has to be traced to its cause before it can be kept.
 
-**Notes are a buffer; weights are the destination.** A note must be read again every time and is only as good as its reader: Qwen3-8B, given the same rule, passes none of 10. Weights need no reader.
+**Notes are a buffer; weights are the destination.** A note must be read again every time and is only as good as its reader: Qwen3-8B, given the same rule, passes none of 10. Weights need no reader. Notes also fill up. Across three database migrations, Qwen3.8-27B kept notes under a 660-word cap. By the second migration, 34 of 50 edits were dropped for length, and the notes' gain over the base model fell from 1.59 to 0.42 (score per 10 questions). A second run distilled its notes into LoRA weights after each migration, then cleared them. After the second migration it was level with notes alone (0.47 against 0.42); after the third it reached 1.01, against 0.44. What moved into the weights was how to work, not the facts that changed.
 
 A teenager learns to drive in a dozen hours. They see what the car does, an instructor's words change their next move, and a week later it is in their hands. Nobody calls those three different fields.
+
+*Updated 2026-11-23: notes fill up, and the error signal alone did not find the changed fact.*
