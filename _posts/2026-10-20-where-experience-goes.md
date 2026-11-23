@@ -79,4 +79,4 @@ Each time, what was kept was decided before the experience arrived. The part tha
 
 A teenager learns to drive in a dozen hours. They see what the car does, an instructor's words change their next move, and a week later it is in their hands. Nobody calls those three different fields.
 
-*Updated 2026-11-23: notes fill up, and an error signal alone did not find the changed fact.
+*Updated 2026-11-23: notes fill up, and an error signal alone did not find the changed fact.*
