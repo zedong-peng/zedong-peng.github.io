@@ -86,7 +86,7 @@ Each time, what was kept was decided before the experience arrived. The part tha
 
 The weights beat the notes only under the 600-word cap. Notes allowed 4,000 words never reached the limit and scored 1.04 above the weights (95% interval 0.64 to 1.49). The weights keep one advantage: 23k prompt tokens a question against 54k.
 
-When prices moved to a new column, every learner read the old one more often than the base model, which had learned nothing. The long notes still pointed to the old columns (one called prc "the authoritative list price column"). They read two swapped group names correctly (0 of 66 runs wrong; the base model 5), because they told the model to check which group is which first, and the database labels each group. Nothing in the database says which price column is current.
+When prices moved to a new column, every learner read the old one more often than the base model, which had learned nothing. The long notes still pointed to the old columns (one called prc "the authoritative list price column"). They read two swapped group names correctly (0 of 66 runs wrong; the base model 5), because they told the model to check which group is which first, and the database labels each group. Only the name prc_v2 hints which price column is current; the values do not.
 
 A teenager learns to drive in a dozen hours. They see what the car does, an instructor's words change their next move, and a week later it is in their hands. Nobody calls those three different fields.
 
