@@ -84,10 +84,10 @@ Each time, what was kept was decided before the experience arrived. The part tha
 | Weights, three sleeps      | 1.01                                       | 17 of 20                          |
 | Notes, 4,000 words         | 2.06                                       | 19 of 20                          |
 
-The weights beat the notes only under the 600-word cap. Notes allowed 4,000 words never reached the limit and scored 1.04 above the weights (95% interval 0.64 to 1.49). The weights keep one advantage: 23k prompt tokens a question against 54k.
+The weights beat the notes only under the 600-word cap. Notes allowed 4,000 words never reached the limit and scored 1.04 above the weights (95% interval 0.64 to 1.49). Adding the weights to those notes lowered the score by 0.50 (0.03 to 0.98): the weights brought back habits from the older versions. The weights keep one advantage: 23k prompt tokens a question against 54k.
 
 When prices moved to a new column, every learner read the old one more often than the base model, which had learned nothing. The long notes still pointed to the old columns (one called prc "the authoritative list price column"). They read two swapped group names correctly (0 of 66 runs wrong; the base model 5), because they told the model to check which group is which first, and the database labels each group. Only the name prc_v2 hints which price column is current; the values do not.
 
 A teenager learns to drive in a dozen hours. They see what the car does, an instructor's words change their next move, and a week later it is in their hands. Nobody calls those three different fields.
 
-*Updated 2026-11-24: given room, notes beat the weights, and the old price column stuck in every store.*
+*Updated 2026-11-24: given room, notes beat the weights, alone or added to them, and the old price column stuck in every store.*
